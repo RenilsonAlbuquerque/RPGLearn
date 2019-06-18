@@ -1,0 +1,3 @@
+rootProject.name = 'rpgmobile'
+
+include ':app'
