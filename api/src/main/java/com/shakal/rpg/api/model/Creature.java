@@ -15,6 +15,7 @@ import javax.persistence.Table;
 import com.shakal.rpg.api.contracts.ICreature;
 import com.shakal.rpg.api.model.enums.AtributeEnum;
 import com.shakal.rpg.api.model.relation.CreatureAtribute;
+import com.shakal.rpg.api.model.relation.CreatureResistence;
 
 @Entity
 @Table(name= "tb_creature")
@@ -23,18 +24,38 @@ public abstract class Creature implements ICreature{
 
 	@Id
 	@GeneratedValue
-	private long id;
+	private Long id;
 
 	@OneToMany(mappedBy = "creature",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	private List<CreatureAtribute> atributes;
 	
+	@OneToMany(mappedBy = "creature",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	private List<CreatureResistence> resistences;
 	
-	public long getId() {
+	
+	public Long getId() {
 		return id;
 	}
 
 	public void setId(long id) {
 		this.id = id;
+	}
+
+	
+	public List<CreatureResistence> getResistences() {
+		return resistences;
+	}
+
+	public void setResistences(List<CreatureResistence> resistences) {
+		this.resistences = resistences;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public void setAtributes(List<CreatureAtribute> atributes) {
+		this.atributes = atributes;
 	}
 
 	@Override

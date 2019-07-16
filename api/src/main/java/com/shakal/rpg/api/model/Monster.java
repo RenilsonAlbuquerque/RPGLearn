@@ -2,13 +2,19 @@ package com.shakal.rpg.api.model;
 
 
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+
+import com.shakal.rpg.api.model.relation.CreatureAtribute;
+import com.shakal.rpg.api.model.relation.CreatureResistence;
 
 
 @Entity
@@ -25,9 +31,6 @@ public class Monster extends Creature{
 
 	
 	
-	public Monster() {
-		super();
-	}
 
 
 	public int getBaseLifeDice() {
@@ -47,7 +50,8 @@ public class Monster extends Creature{
 	public void setRace(MonsterRace race) {
 		this.race = race;
 	}
-	
+
+
 	
 	
 	

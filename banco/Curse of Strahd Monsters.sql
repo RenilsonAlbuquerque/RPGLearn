@@ -18,7 +18,7 @@ corruptores.");
 
 
 
-insert into tb_creature(id) values(1);
+insert into tb_creature(id,base_life_dice) values(1,200);
 insert into tb_monster(creature_id,race_id) values (1,1);
 insert into mtm_creature_atribute(creature_id,atribute_id,value,proeficiency,modfier) values(1,1,24,false,7);
 insert into mtm_creature_atribute(creature_id,atribute_id,value,proeficiency,modfier) values(1,2,20,false,5);
