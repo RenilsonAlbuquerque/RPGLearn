@@ -5,21 +5,19 @@ package com.shakal.rpg.api.model;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 
 @Entity
 @Table(name= "tb_monster")
+@PrimaryKeyJoinColumn(name = "creature_id")
 public class Monster extends Creature{
 
 	
-	
-	private String name;
+	private int baseLifeDice;
 	
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
 	@JoinColumn(name ="race_id")
@@ -31,15 +29,16 @@ public class Monster extends Creature{
 		super();
 	}
 
-	
 
-	public String getName() {
-		return name;
+	public int getBaseLifeDice() {
+		return baseLifeDice;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+
+	public void setBaseLifeDice(int baseLifeDice) {
+		this.baseLifeDice = baseLifeDice;
 	}
+
 
 	public MonsterRace getRace() {
 		return race;

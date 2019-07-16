@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import com.shakal.rpg.api.model.enums.SexEnum;
@@ -19,6 +20,7 @@ import com.shakal.rpg.api.model.relation.CharacterWeapon;
 
 @Entity
 @Table(name= "tb_character")
+@PrimaryKeyJoinColumn(name = "character_id")
 public class Character {
 
 	

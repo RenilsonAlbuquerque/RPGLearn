@@ -17,7 +17,7 @@ public class MonsterRace {
 	
 	private String name;
 	
-	@Column(length = 500)
+	@Column(length = 4000)
 	private String description;
 	
 	

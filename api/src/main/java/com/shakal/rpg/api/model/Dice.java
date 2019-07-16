@@ -1,5 +1,6 @@
 package com.shakal.rpg.api.model;
 
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -11,13 +12,14 @@ import javax.persistence.Table;
 import com.shakal.rpg.api.model.enums.DiceEnum;
 
 @Entity
-@Table(name= "tb_weapon")
+@Table(name= "tb_dice")
 public class Dice {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
+	@Embedded
 	@Enumerated(EnumType.STRING)
 	private DiceEnum value;
 	
