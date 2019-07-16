@@ -8,8 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name= "tb_race")
-public class Race {
+@Table(name= "tb_monster_race")
+public class MonsterRace {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -20,35 +20,28 @@ public class Race {
 	@Column(length = 500)
 	private String description;
 	
-	public Race() {
-		
-	}
-
+	
+	
 
 	public long getId() {
 		return id;
 	}
 
-
 	public void setId(long id) {
 		this.id = id;
 	}
-
 
 	public String getName() {
 		return name;
 	}
 
-
 	public void setName(String name) {
 		this.name = name;
 	}
 
-
 	public String getDescription() {
 		return description;
 	}
-
 
 	public void setDescription(String description) {
 		this.description = description;
