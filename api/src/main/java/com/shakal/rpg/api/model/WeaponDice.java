@@ -9,7 +9,6 @@ import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 import com.shakal.rpg.api.model.embedded.WeaponDiceId;
-import com.shakal.rpg.api.model.enums.DiceEnum;
 
 @Entity
 @Table(name= "mtm_weapon_dice")

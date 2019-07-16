@@ -15,11 +15,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name= "tb_monster")
-public class Monster {
+public class Monster extends Creature{
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	
 	
 	private String name;
 	
@@ -33,13 +31,7 @@ public class Monster {
 		super();
 	}
 
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
+	
 
 	public String getName() {
 		return name;
