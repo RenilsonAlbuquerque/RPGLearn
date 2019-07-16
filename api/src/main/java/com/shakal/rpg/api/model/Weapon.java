@@ -1,5 +1,7 @@
 package com.shakal.rpg.api.model;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -32,7 +34,7 @@ public class Weapon implements IWereable{
 	private int weight;
 	
 	@OneToMany(mappedBy = "weapon",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-	private WeaponDice damage;
+	private List<WeaponDice> damage;
 	
 
 
@@ -94,13 +96,13 @@ public class Weapon implements IWereable{
 
 	
 
-	public WeaponDice getDamage() {
+	public List<WeaponDice> getDamage() {
 		return damage;
 	}
 
 
 
-	public void setDamage(WeaponDice damage) {
+	public void setDamage(List<WeaponDice> damage) {
 		this.damage = damage;
 	}
 

@@ -4,9 +4,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Table;
@@ -30,7 +27,7 @@ public class WeaponDice {
 	
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
 	@MapsId("diceId")
-	private DiceEnum dice;
+	private Dice dice;
 	
 	
 	private int quantity;
@@ -45,7 +42,7 @@ public class WeaponDice {
 	}
 
 
-	public WeaponDice(Weapon weapon, DiceEnum dice, int quantity) {
+	public WeaponDice(Weapon weapon, Dice dice, int quantity) {
 		super();
 		this.weapon = weapon;
 		this.dice = dice;
@@ -77,12 +74,12 @@ public class WeaponDice {
 	}
 
 
-	public DiceEnum getDice() {
+	public Dice getDice() {
 		return dice;
 	}
 
 
-	public void setDice(DiceEnum dice) {
+	public void setDice(Dice dice) {
 		this.dice = dice;
 	}
 
