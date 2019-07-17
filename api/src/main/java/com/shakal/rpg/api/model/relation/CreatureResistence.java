@@ -14,7 +14,7 @@ import javax.persistence.Table;
 import com.shakal.rpg.api.model.Creature;
 import com.shakal.rpg.api.model.DamageType;
 
-import com.shakal.rpg.api.model.embedded.MonsterResistenceId;
+import com.shakal.rpg.api.model.embedded.CreatureResistenceId;
 import com.shakal.rpg.api.model.enums.ResistenceTypeEnum;
 
 @Entity
@@ -22,7 +22,7 @@ import com.shakal.rpg.api.model.enums.ResistenceTypeEnum;
 public class CreatureResistence {
 
 	@EmbeddedId
-	private MonsterResistenceId id;
+	private CreatureResistenceId id;
 	
 	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL )
@@ -39,11 +39,11 @@ public class CreatureResistence {
 	
 
 
-	public MonsterResistenceId getId() {
+	public CreatureResistenceId getId() {
 		return id;
 	}
 
-	public void setId(MonsterResistenceId id) {
+	public void setId(CreatureResistenceId id) {
 		this.id = id;
 	}
 

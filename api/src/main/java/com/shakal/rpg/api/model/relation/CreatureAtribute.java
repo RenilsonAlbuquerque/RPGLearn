@@ -9,10 +9,7 @@ import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 import com.shakal.rpg.api.model.Atribute;
-import com.shakal.rpg.api.model.Character;
 import com.shakal.rpg.api.model.Creature;
-import com.shakal.rpg.api.model.Weapon;
-import com.shakal.rpg.api.model.embedded.CharacterWeaponId;
 import com.shakal.rpg.api.model.embedded.CreatureAtributeId;
 
 @Entity

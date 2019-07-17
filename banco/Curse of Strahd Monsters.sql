@@ -18,8 +18,10 @@ corruptores.");
 
 
 
-insert into tb_creature(id,base_life_dice) values(1,200);
-insert into tb_monster(creature_id,race_id) values (1,1);
+insert into tb_creature(id) values(1);
+insert into tb_monster(creature_id,race_id,base_life_dice) values (1,1,200);
+
+#atributes
 insert into mtm_creature_atribute(creature_id,atribute_id,value,proeficiency,modfier) values(1,1,24,false,7);
 insert into mtm_creature_atribute(creature_id,atribute_id,value,proeficiency,modfier) values(1,2,20,false,5);
 insert into mtm_creature_atribute(creature_id,atribute_id,value,proeficiency,modfier) values(1,3,24,true,7);
@@ -27,6 +29,16 @@ insert into mtm_creature_atribute(creature_id,atribute_id,value,proeficiency,mod
 insert into mtm_creature_atribute(creature_id,atribute_id,value,proeficiency,modfier) values(1,5,22,true,6);
 insert into mtm_creature_atribute(creature_id,atribute_id,value,proeficiency,modfier) values(1,6,25,true,7);
 
+#resistence
+insert into mtm_creature_resistence(creature_id,damage_type_id,value) values (1,2,1);
+insert into mtm_creature_resistence(creature_id,damage_type_id,value) values (1,8,1);
+insert into mtm_creature_resistence(creature_id,damage_type_id,value) values (1,11,1);
 
+#features
+insert into tb_monster_features(id,name,description,monster_id) values (1,"Armas Angelicais"," Os ataques armados do planetário são mágicos.
+Quando o planetário atinge com qualquer arma, a arma causa 5d8
+de dano radiante (incluso no ataque) extra",1);
+
+insert into tb_monster_features(id,name,description,monster_id) values (2,"Consciência Divina"," O planetário sabe quando ouve uma mentira.",1);
 
 

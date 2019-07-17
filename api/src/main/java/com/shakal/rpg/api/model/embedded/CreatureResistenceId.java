@@ -6,9 +6,9 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class MonsterResistenceId implements Serializable{
+public class CreatureResistenceId implements Serializable{
 
-	@Column(name = "monster_id")
+	@Column(name = "creature_id")
     private Long creatureId;
 
     @Column(name = "damage_type_id")

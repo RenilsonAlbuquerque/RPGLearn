@@ -57,12 +57,18 @@ public abstract class Creature implements ICreature{
 	public void setAtributes(List<CreatureAtribute> atributes) {
 		this.atributes = atributes;
 	}
+	
+	
+
+	public List<CreatureAtribute> getAtributes() {
+		return atributes;
+	}
 
 	@Override
 	public Atribute getForce() {
 		Atribute result = null;
 		for(CreatureAtribute a: this.atributes) {
-			if(a.getAtribute().getName() == AtributeEnum.FORCE) {
+			if(a.getAtribute().getValue() == AtributeEnum.FORCE) {
 				result = a.getAtribute();
 			}
 		}
@@ -73,7 +79,7 @@ public abstract class Creature implements ICreature{
 	public Atribute getDexterity() {
 		Atribute result = null;
 		for(CreatureAtribute a: this.atributes) {
-			if(a.getAtribute().getName() == AtributeEnum.DEXTERITY) {
+			if(a.getAtribute().getValue() == AtributeEnum.DEXTERITY) {
 				result = a.getAtribute();
 			}
 		}
@@ -84,7 +90,7 @@ public abstract class Creature implements ICreature{
 	public Atribute getConstitution() {
 		Atribute result = null;
 		for(CreatureAtribute a: this.atributes) {
-			if(a.getAtribute().getName() == AtributeEnum.CONSTITUTION) {
+			if(a.getAtribute().getValue() == AtributeEnum.CONSTITUTION) {
 				result = a.getAtribute();
 			}
 		}
@@ -95,7 +101,7 @@ public abstract class Creature implements ICreature{
 	public Atribute getInteligence() {
 		Atribute result = null;
 		for(CreatureAtribute a: this.atributes) {
-			if(a.getAtribute().getName() == AtributeEnum.INTELIGENCE) {
+			if(a.getAtribute().getValue() == AtributeEnum.INTELIGENCE) {
 				result = a.getAtribute();
 			}
 		}
@@ -106,7 +112,7 @@ public abstract class Creature implements ICreature{
 	public Atribute getWisdom() {
 		Atribute result = null;
 		for(CreatureAtribute a: this.atributes) {
-			if(a.getAtribute().getName() == AtributeEnum.WISDOM) {
+			if(a.getAtribute().getValue() == AtributeEnum.WISDOM) {
 				result = a.getAtribute();
 			}
 		}
@@ -117,7 +123,7 @@ public abstract class Creature implements ICreature{
 	public Atribute getCharisma() {
 		Atribute result = null;
 		for(CreatureAtribute a: this.atributes) {
-			if(a.getAtribute().getName() == AtributeEnum.CHARISMA) {
+			if(a.getAtribute().getValue() == AtributeEnum.CHARISMA) {
 				result = a.getAtribute();
 			}
 		}

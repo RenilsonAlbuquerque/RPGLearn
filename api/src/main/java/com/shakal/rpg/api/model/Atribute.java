@@ -1,7 +1,7 @@
 package com.shakal.rpg.api.model;
 
 
-import javax.persistence.Embedded;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -21,25 +21,35 @@ public class Atribute {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
-	@Embedded
-	@Enumerated(EnumType.STRING)
-	private AtributeEnum name;
+	
+	@Enumerated(EnumType.ORDINAL)
+	private AtributeEnum value;
+	
+	public Atribute() {
+		super();
+	}
 
 	public long getId() {
 		return id;
 	}
 
+	
+
 	public void setId(long id) {
 		this.id = id;
 	}
+	
 
-	public AtributeEnum getName() {
-		return name;
+	public AtributeEnum getValue() {
+		return value;
 	}
 
-	public void setName(AtributeEnum name) {
-		this.name = name;
+	public void setValue(AtributeEnum value) {
+		this.value = value;
 	}
+	
+
+	
 
 	
 	

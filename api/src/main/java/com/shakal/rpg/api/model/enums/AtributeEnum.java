@@ -1,13 +1,14 @@
 package com.shakal.rpg.api.model.enums;
 
-import javax.persistence.Embeddable;
 
-@Embeddable
+
+
 public enum AtributeEnum {
 
-	FORCE(1),DEXTERITY(2),CONSTITUTION(3),INTELIGENCE(4),WISDOM(5),CHARISMA(6);
+	FORCE(0),DEXTERITY(1),CONSTITUTION(2),INTELIGENCE(3),WISDOM(4),CHARISMA(5);
 	
 	private int value;
+	
 	
 	private AtributeEnum (int value){
 		this.value = value;

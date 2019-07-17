@@ -13,8 +13,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
-import com.shakal.rpg.api.model.relation.CreatureAtribute;
-import com.shakal.rpg.api.model.relation.CreatureResistence;
 
 
 @Entity
@@ -29,7 +27,8 @@ public class Monster extends Creature{
 	@JoinColumn(name ="race_id")
 	private MonsterRace race;
 
-	
+	@OneToMany(mappedBy = "monster",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	private List<MonsterFeatures> features;
 	
 
 
@@ -49,6 +48,16 @@ public class Monster extends Creature{
 
 	public void setRace(MonsterRace race) {
 		this.race = race;
+	}
+
+
+	public List<MonsterFeatures> getFeatures() {
+		return features;
+	}
+
+
+	public void setFeatures(List<MonsterFeatures> features) {
+		this.features = features;
 	}
 
 

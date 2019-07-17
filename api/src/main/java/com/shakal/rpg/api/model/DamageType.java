@@ -1,6 +1,6 @@
 package com.shakal.rpg.api.model;
 
-import javax.persistence.Embedded;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -20,8 +20,8 @@ public class DamageType {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
-	@Embedded
-	@Enumerated(EnumType.STRING)
+	
+	@Enumerated(EnumType.ORDINAL)
 	private DamageTypeEnum value;
 
 	public long getId() {

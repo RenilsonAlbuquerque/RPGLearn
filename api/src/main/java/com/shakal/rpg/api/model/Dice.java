@@ -19,8 +19,8 @@ public class Dice {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
-	@Embedded
-	@Enumerated(EnumType.STRING)
+	
+	@Enumerated(EnumType.ORDINAL)
 	private DiceEnum value;
 	
 	
