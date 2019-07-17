@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.shakal.rpg.api.contracts.service.IMonsterService;
 import com.shakal.rpg.api.dto.MonsterSheetDTO;
 import com.shakal.rpg.api.model.Monster;
+import com.shakal.rpg.api.model.enums.ResistenceTypeEnum;
 import com.shakal.rpg.api.repository.MonsterDAO;
 import com.shakal.rpg.api.exception.*;
 import com.shakal.rpg.api.mappers.AtributeMapper;
@@ -34,9 +35,18 @@ public class MonsterService implements IMonsterService {
 		MonsterSheetDTO result = new MonsterSheetDTO();
 		result.setId(search.getId());
 		result.setName(search.getRace().getName());
+		result.setArmorClass(search.getArmorClass());
 		result.setLifePoints(search.getBaseLifeDice());
 		result.setAtributes( search.getAtributes().stream().map(
 				atribute -> AtributeMapper.entityToSheetDTO(atribute)).collect(Collectors.toList()));
+		result.setDamageResistence( search.getResistences().stream()
+				.filter(resistence -> resistence.getType().getValue() == ResistenceTypeEnum.RESISTENCE.getValue())
+				.map(resistence -> resistence.getDamageType().getValue().toString()).collect(Collectors.toList()));
+		result.setDamageImunity( search.getResistences().stream()
+				.filter(resistence -> resistence.getType().getValue() == ResistenceTypeEnum.IMUNITY.getValue())
+				.map(resistence -> resistence.getDamageType().getValue().toString()).collect(Collectors.toList()));
+		result.setLanguages( search.getLanguages().stream()
+				.map(language -> language.getName()).collect(Collectors.toList()));
 		result.setFeatures( search.getFeatures().stream().map(
 				feature -> FeatureMapper.entityToDTO(feature)).collect(Collectors.toList()));
 		result.setSavingThrows( search.getAtributes().stream().filter(saving -> saving.isProeficiency()).map(

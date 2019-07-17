@@ -13,7 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.shakal.rpg.api.contracts.IWereable;
+import com.shakal.rpg.api.contracts.entity.IWereable;
 import com.shakal.rpg.api.model.enums.WeaponClassificationEnum;
 
 @Entity

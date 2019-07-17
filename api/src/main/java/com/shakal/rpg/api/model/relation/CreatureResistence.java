@@ -33,8 +33,8 @@ public class CreatureResistence {
 	@MapsId("damageTypeId")
 	private DamageType damageType;
 	
-	@Embedded
-	@Enumerated(EnumType.STRING)
+	
+	@Enumerated(EnumType.ORDINAL)
 	private ResistenceTypeEnum type;
 	
 

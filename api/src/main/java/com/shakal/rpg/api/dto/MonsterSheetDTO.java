@@ -6,9 +6,13 @@ public class MonsterSheetDTO {
 	
 	private long id;
 	private String name;
+	private int armorClass;
 	private int lifePoints;
 	private List<AtributeDTO> atributes;
 	private List<SavingThrowDTO> savingThrows;
+	private List<String> damageResistence;
+	private List<String> damageImunity;
+	private List<String> languages;
 	private List<NameDescriptionDTO> features;
 	
 	
@@ -23,6 +27,13 @@ public class MonsterSheetDTO {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public int getArmorClass() {
+		return armorClass;
+	}
+	public void setArmorClass(int armorClass) {
+		this.armorClass = armorClass;
 	}
 	public int getLifePoints() {
 		return lifePoints;
@@ -47,6 +58,24 @@ public class MonsterSheetDTO {
 	}
 	public void setSavingThrows(List<SavingThrowDTO> savingThrows) {
 		this.savingThrows = savingThrows;
+	}
+	public List<String> getDamageResistence() {
+		return damageResistence;
+	}
+	public void setDamageResistence(List<String> damageResistence) {
+		this.damageResistence = damageResistence;
+	}
+	public List<String> getDamageImunity() {
+		return damageImunity;
+	}
+	public void setDamageImunity(List<String> damageImunity) {
+		this.damageImunity = damageImunity;
+	}
+	public List<String> getLanguages() {
+		return languages;
+	}
+	public void setLanguages(List<String> languages) {
+		this.languages = languages;
 	}
 	
 	

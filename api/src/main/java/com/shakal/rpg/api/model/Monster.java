@@ -21,7 +21,9 @@ import javax.persistence.Table;
 public class Monster extends Creature{
 
 	
+	private int armorClass;
 	private int baseLifeDice;
+	
 	
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
 	@JoinColumn(name ="race_id")
@@ -30,6 +32,16 @@ public class Monster extends Creature{
 	@OneToMany(mappedBy = "monster",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	private List<MonsterFeatures> features;
 	
+
+
+	public int getArmorClass() {
+		return armorClass;
+	}
+
+
+	public void setArmorClass(int armorClass) {
+		this.armorClass = armorClass;
+	}
 
 
 	public int getBaseLifeDice() {

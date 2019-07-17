@@ -1,4 +1,4 @@
-package com.shakal.rpg.api.contracts;
+package com.shakal.rpg.api.contracts.entity;
 
 import com.shakal.rpg.api.model.Atribute;
 

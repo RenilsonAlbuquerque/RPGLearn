@@ -23,4 +23,16 @@ insert into tb_damage_type(id,value) values (11,11);
 insert into tb_damage_type(id,value) values (12,12);
 insert into tb_damage_type(id,value) values (13,13);
 
+insert into tb_language(id,name)values(1,"Todos");
+insert into tb_language(id,name)values(2,"Comum");
+insert into tb_language(id,name)values(3,"Élfico");
+insert into tb_language(id,name)values(4,"Anão");
+insert into tb_language(id,name)values(5,"Dracônico");
+insert into tb_language(id,name)values(6,"Celestial");
+insert into tb_language(id,name)values(7,"Infernal");
+insert into tb_language(id,name)values(8,"Druida");
+
+
+
+
 

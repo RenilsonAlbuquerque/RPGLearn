@@ -5,8 +5,8 @@ import javax.persistence.Embeddable;
 
 public enum ResistenceTypeEnum {
 
-	RESISTENCE(1),
-	IMUNITY(2);
+	RESISTENCE(0),
+	IMUNITY(1);
 	
 	private int value;
 	

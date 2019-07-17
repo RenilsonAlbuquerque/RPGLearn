@@ -9,10 +9,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.shakal.rpg.api.contracts.ICreature;
+import com.shakal.rpg.api.contracts.entity.ICreature;
 import com.shakal.rpg.api.model.enums.AtributeEnum;
 import com.shakal.rpg.api.model.relation.CreatureAtribute;
 import com.shakal.rpg.api.model.relation.CreatureResistence;
@@ -31,6 +34,13 @@ public abstract class Creature implements ICreature{
 	
 	@OneToMany(mappedBy = "creature",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	private List<CreatureResistence> resistences;
+	
+	
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(name = "mtm_creature_language",
+            joinColumns = @JoinColumn(name = "creature_id", referencedColumnName = "id"),
+            inverseJoinColumns =  @JoinColumn(name = "language_id", referencedColumnName = "id"))
+    private List<Language> languages;
 	
 	
 	public Long getId() {
@@ -62,6 +72,15 @@ public abstract class Creature implements ICreature{
 
 	public List<CreatureAtribute> getAtributes() {
 		return atributes;
+	}
+
+	
+	public List<Language> getLanguages() {
+		return languages;
+	}
+
+	public void setLanguages(List<Language> languages) {
+		this.languages = languages;
 	}
 
 	@Override

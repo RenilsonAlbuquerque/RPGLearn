@@ -1,4 +1,4 @@
-package com.shakal.rpg.api.contracts;
+package com.shakal.rpg.api.contracts.entity;
 
 public interface IBuyable {
 
