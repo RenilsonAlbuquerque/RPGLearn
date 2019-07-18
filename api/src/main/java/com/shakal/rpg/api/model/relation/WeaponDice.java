@@ -1,4 +1,4 @@
-package com.shakal.rpg.api.model;
+package com.shakal.rpg.api.model.relation;
 
 import javax.persistence.CascadeType;
 import javax.persistence.EmbeddedId;
@@ -8,6 +8,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Table;
 
+import com.shakal.rpg.api.model.Dice;
+import com.shakal.rpg.api.model.Weapon;
 import com.shakal.rpg.api.model.embedded.WeaponDiceId;
 
 @Entity
@@ -17,7 +19,6 @@ public class WeaponDice {
 	
 	@EmbeddedId
 	private WeaponDiceId id;
-	
 	
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
 	@MapsId("weaponId")
@@ -31,10 +32,6 @@ public class WeaponDice {
 	
 	private int quantity;
 	
-	
-	
-	
-
 
 	public WeaponDice() {
 		super();

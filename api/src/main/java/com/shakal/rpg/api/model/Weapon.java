@@ -15,6 +15,7 @@ import javax.persistence.Table;
 
 import com.shakal.rpg.api.contracts.entity.IWereable;
 import com.shakal.rpg.api.model.enums.WeaponClassificationEnum;
+import com.shakal.rpg.api.model.relation.WeaponDice;
 
 @Entity
 @Table(name= "tb_weapon")

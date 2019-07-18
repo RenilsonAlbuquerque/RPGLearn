@@ -6,7 +6,12 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ResponseStatus(HttpStatus.CONFLICT)
 public class DuplicatedResourceException extends Exception {
 
-    public DuplicatedResourceException(String message) {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public DuplicatedResourceException(String message) {
         super(message);
 
     }

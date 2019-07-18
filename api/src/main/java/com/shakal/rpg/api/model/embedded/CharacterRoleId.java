@@ -12,4 +12,6 @@ public class CharacterRoleId implements Serializable {
     
 	@Column(name = "role_id")
     private Long roleId;
+	
+	
 }
