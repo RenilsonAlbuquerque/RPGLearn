@@ -8,12 +8,14 @@ public class MonsterSheetDTO {
 	private String name;
 	private int armorClass;
 	private int lifePoints;
+	private String challengeLevel;
 	private List<AtributeDTO> atributes;
 	private List<SavingThrowDTO> savingThrows;
 	private List<String> damageResistence;
 	private List<String> damageImunity;
 	private List<String> languages;
 	private List<NameDescriptionDTO> features;
+	private List<MonsterActionDTO> actions;
 	
 	
 	public long getId() {
@@ -76,6 +78,18 @@ public class MonsterSheetDTO {
 	}
 	public void setLanguages(List<String> languages) {
 		this.languages = languages;
+	}
+	public String getChallengeLevel() {
+		return challengeLevel;
+	}
+	public void setChallengeLevel(String challengeLevel) {
+		this.challengeLevel = challengeLevel;
+	}
+	public List<MonsterActionDTO> getActions() {
+		return actions;
+	}
+	public void setActions(List<MonsterActionDTO> actions) {
+		this.actions = actions;
 	}
 	
 	

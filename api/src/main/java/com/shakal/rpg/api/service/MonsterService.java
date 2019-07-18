@@ -6,14 +6,18 @@ import org.springframework.stereotype.Service;
 
 import com.shakal.rpg.api.contracts.service.IMonsterService;
 import com.shakal.rpg.api.dto.MonsterSheetDTO;
+import com.shakal.rpg.api.model.Attack;
 import com.shakal.rpg.api.model.Monster;
 import com.shakal.rpg.api.model.enums.ResistenceTypeEnum;
 import com.shakal.rpg.api.repository.MonsterDAO;
 import com.shakal.rpg.api.exception.*;
 import com.shakal.rpg.api.mappers.AtributeMapper;
+import com.shakal.rpg.api.mappers.AttackMapper;
 import com.shakal.rpg.api.mappers.FeatureMapper;
 import com.shakal.rpg.api.mappers.SavingThrowMapper;
 import com.shakal.rpg.api.utils.Messages;
+
+
 
 
 
@@ -37,6 +41,8 @@ public class MonsterService implements IMonsterService {
 		result.setName(search.getRace().getName());
 		result.setArmorClass(search.getArmorClass());
 		result.setLifePoints(search.getBaseLifeDice());
+		result.setChallengeLevel(search.getChallengeLevel().getValue() + " " 
+								+ "(" + search.getChallengeLevel().getExperiencePoints() + " XP)");
 		result.setAtributes( search.getAtributes().stream().map(
 				atribute -> AtributeMapper.entityToSheetDTO(atribute)).collect(Collectors.toList()));
 		result.setDamageResistence( search.getResistences().stream()
@@ -51,6 +57,10 @@ public class MonsterService implements IMonsterService {
 				feature -> FeatureMapper.entityToDTO(feature)).collect(Collectors.toList()));
 		result.setSavingThrows( search.getAtributes().stream().filter(saving -> saving.isProeficiency()).map(
 				saving -> SavingThrowMapper.entityToDTO(saving)).collect(Collectors.toList()));
+		
+		result.setActions(search.getActions().stream().filter(attack -> attack instanceof Attack)
+				.map(attack -> AttackMapper.entityToDTO((Attack)attack))
+				.collect(Collectors.toList()));
 		
 		return result;
 	}

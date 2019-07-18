@@ -32,6 +32,8 @@ public class AttackDice {
 	
 	private int quantity;
 	
+	private int bonusDamage;
+	
 	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL )
 	@JoinColumn(name = "damage_type_id")
@@ -80,6 +82,22 @@ public class AttackDice {
 
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
+	}
+
+	public int getBonusDamage() {
+		return bonusDamage;
+	}
+
+	public void setBonusDamage(int bonusDamage) {
+		this.bonusDamage = bonusDamage;
+	}
+
+	public DamageType getDamageType() {
+		return damageType;
+	}
+
+	public void setDamageType(DamageType damageType) {
+		this.damageType = damageType;
 	}
 	
 	

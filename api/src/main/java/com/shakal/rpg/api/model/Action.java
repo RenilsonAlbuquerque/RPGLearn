@@ -1,12 +1,17 @@
 package com.shakal.rpg.api.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 @Entity
@@ -23,6 +28,10 @@ public class Action {
 	@Column(length = 4000)
 	private String description;
 
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
+	@JoinColumn(name ="creature_id")
+	private Creature creature;
+	
 	public long getId() {
 		return id;
 	}

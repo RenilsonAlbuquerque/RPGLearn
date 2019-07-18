@@ -42,6 +42,8 @@ public abstract class Creature implements ICreature{
             inverseJoinColumns =  @JoinColumn(name = "language_id", referencedColumnName = "id"))
     private List<Language> languages;
 	
+	@OneToMany(mappedBy = "creature",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	private List<Action> actions;
 	
 	public Long getId() {
 		return id;
@@ -81,6 +83,15 @@ public abstract class Creature implements ICreature{
 
 	public void setLanguages(List<Language> languages) {
 		this.languages = languages;
+	}
+
+	
+	public List<Action> getActions() {
+		return actions;
+	}
+
+	public void setActions(List<Action> actions) {
+		this.actions = actions;
 	}
 
 	@Override

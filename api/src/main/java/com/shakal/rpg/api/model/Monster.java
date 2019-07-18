@@ -24,6 +24,9 @@ public class Monster extends Creature{
 	private int armorClass;
 	private int baseLifeDice;
 	
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
+	@JoinColumn(name ="challenge_level_id")
+	private MonsterChallengeLevel challengeLevel;
 	
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
 	@JoinColumn(name ="race_id")
@@ -31,6 +34,8 @@ public class Monster extends Creature{
 
 	@OneToMany(mappedBy = "monster",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	private List<MonsterFeatures> features;
+	
+	
 	
 
 
@@ -71,6 +76,19 @@ public class Monster extends Creature{
 	public void setFeatures(List<MonsterFeatures> features) {
 		this.features = features;
 	}
+
+
+	public MonsterChallengeLevel getChallengeLevel() {
+		return challengeLevel;
+	}
+
+
+	public void setChallengeLevel(MonsterChallengeLevel challengeLevel) {
+		this.challengeLevel = challengeLevel;
+	}
+
+
+	
 
 
 	

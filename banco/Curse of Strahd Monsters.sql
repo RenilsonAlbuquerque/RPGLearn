@@ -19,7 +19,7 @@ corruptores.");
 
 
 insert into tb_creature(id) values(1);
-insert into tb_monster(creature_id,race_id,armor_class,base_life_dice) values (1,1,19,200);
+insert into tb_monster(creature_id,race_id,armor_class,challenge_level_id,base_life_dice) values (1,1,19,18,200);
 
 #Idiomas
 insert into mtm_creature_language(creature_id,language_id) values (1,1);
@@ -46,4 +46,10 @@ insert into tb_monster_features(id,name,description,monster_id) values (2,"Consc
 insert into tb_monster_features(id,name,description,monster_id) values (3,"Resistência à Magia.","O planetário possui vantagem nos testes
 de resistência contra magias e outros efeitos mágicos.",1);
 
+insert into tb_action(id,name,description) values (1,"Espada Grande"," Ataque Corpo-a-Corpo com Arma: +12 para
+atingir, alcance 1,5 m, um alvo. Acerto: 21 (4d6 + 7) de dano
+cortante mais 22 (5d8) de dano radiante.");
 
+insert into tb_attack(action_id) values (1);
+insert into mtm_attack_dice(attack_id,dice_id,quantity,bonus_damage,damage_type_id) values (1,2,4,7,12);
+insert into mtm_attack_dice(attack_id,dice_id,quantity,bonus_damage,damage_type_id) values (1,3,5,0,11);
