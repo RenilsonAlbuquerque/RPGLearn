@@ -1,1 +1,23 @@
-<p>base works!</p>
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-primary">
+    <!-- Navbar content -->
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" [routerLink]="['monster']">Monstros</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['serie']">Séries</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['person']">Pessoas</a>
+      </li>
+    </ul>
+  </nav>
+
+  &nbsp;
+  <br>
+  <br>
+  <br>
+  <br>
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
