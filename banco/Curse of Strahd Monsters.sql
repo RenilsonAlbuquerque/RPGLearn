@@ -46,9 +46,9 @@ insert into tb_monster_features(id,name,description,monster_id) values (2,"Consc
 insert into tb_monster_features(id,name,description,monster_id) values (3,"Resistência à Magia.","O planetário possui vantagem nos testes
 de resistência contra magias e outros efeitos mágicos.",1);
 
-insert into tb_action(id,name,description) values (1,"Espada Grande"," Ataque Corpo-a-Corpo com Arma: +12 para
+insert into tb_action(id,name,description,creature_id) values (1,"Espada Grande"," Ataque Corpo-a-Corpo com Arma: +12 para
 atingir, alcance 1,5 m, um alvo. Acerto: 21 (4d6 + 7) de dano
-cortante mais 22 (5d8) de dano radiante.");
+cortante mais 22 (5d8) de dano radiante.",1);
 
 insert into tb_attack(action_id) values (1);
 insert into mtm_attack_dice(attack_id,dice_id,quantity,bonus_damage,damage_type_id) values (1,2,4,7,12);
