@@ -9,8 +9,8 @@ public class MonsterMapper {
 		MonsterOverviewDTO result = new MonsterOverviewDTO();
 		result.setId(entity.getId());
 		result.setRace(entity.getRace().getName());
-		result.setType(entity.getRace().getName());
-		result.setChallengeLevel(entity.getChallengeLevel().getValue() + " (" + entity.getChallengeLevel().getExperiencePoints() + ")");
+		result.setType(entity.getRace().getMonsterType().getName());
+		result.setChallengeLevel(entity.getChallengeLevel().getValue());
 		return result;
 	}
 }

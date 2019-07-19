@@ -28,6 +28,8 @@ public class Monster extends Creature{
 	@JoinColumn(name ="challenge_level_id")
 	private MonsterChallengeLevel challengeLevel;
 	
+	
+	
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
 	@JoinColumn(name ="race_id")
 	private MonsterRace race;
@@ -87,6 +89,8 @@ public class Monster extends Creature{
 		this.challengeLevel = challengeLevel;
 	}
 
+
+	
 
 	
 

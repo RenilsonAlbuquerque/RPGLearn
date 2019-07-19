@@ -1,20 +1,6 @@
 SELECT * FROM rpg.tb_monster_race;
 use rpg;
-insert into tb_monster_race (id, name,description) values (1,"PLANETÁRIO","Os planetários agem como as armas dos deuses que
-servem, apresentando uma representação tangível da
-força de suas divindades. Um planetário pode evocar
-chuva para aliviar uma seca ou pode liberar uma praga
-de insetos para devorar colheitas. Os ouvidos celestiais de
-um planetário detectam cada falsidade e seus olhos
-radiantes veem através de toda enganação.
-Planetários são musculosos, carecas e possuem uma
-pele num tom verde opalescente e asas plumadas
-brancas. Eles são bem mais altos que a maioria dos
-humanoides, brandindo imensas espadas graciosamente.
-Às vezes, enviados para ajudar mortais poderosos em
-tarefas importantes do bem, os planetários gostam
-especialmente das missões que envolvam combater
-corruptores.");
+
 
 
 
