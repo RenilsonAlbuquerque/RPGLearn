@@ -1,21 +1,32 @@
 package com.shakal.rpg.api.service;
+import java.util.HashMap;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.shakal.rpg.api.contracts.service.IMonsterService;
 import com.shakal.rpg.api.dto.MonsterSheetDTO;
+import com.shakal.rpg.api.dto.filter.CustomPage;
+import com.shakal.rpg.api.dto.filter.PaginationFilter;
+import com.shakal.rpg.api.dto.overview.MonsterOverviewDTO;
 import com.shakal.rpg.api.model.Attack;
 import com.shakal.rpg.api.model.Monster;
 import com.shakal.rpg.api.model.enums.ResistenceTypeEnum;
 import com.shakal.rpg.api.repository.MonsterDAO;
+import com.shakal.rpg.api.specification.MonsterSpecification;
 import com.shakal.rpg.api.exception.*;
 import com.shakal.rpg.api.mappers.AtributeMapper;
 import com.shakal.rpg.api.mappers.AttackMapper;
 import com.shakal.rpg.api.mappers.FeatureMapper;
+import com.shakal.rpg.api.mappers.MonsterMapper;
 import com.shakal.rpg.api.mappers.SavingThrowMapper;
 import com.shakal.rpg.api.utils.Messages;
+import com.shakal.rpg.api.utils.PaginationGenerator;
 
 
 
@@ -63,6 +74,26 @@ public class MonsterService implements IMonsterService {
 				.collect(Collectors.toList()));
 		
 		return result;
+	}
+
+	@Override
+	public CustomPage<MonsterOverviewDTO> searchMonsterPaged(HashMap<String, Object> params, PaginationFilter filter) {
+		Specification<Monster> specification = MonsterSpecification.searchMonster(params);
+	    
+    	Page<Monster> page = this.monsterDao.findAll(specification,PageRequest.of(filter.getPage() -1, 
+				filter.getSize()));
+    	return (CustomPage<MonsterOverviewDTO>) PaginationGenerator.convertPage(page,page
+        		.stream().map( monster -> MonsterMapper.entityToOverview(monster))
+                .collect(Collectors.toList()));
+	}
+
+	@Override
+	public CustomPage<MonsterOverviewDTO> listsMonsterPaged(PaginationFilter filter) {
+		Page<Monster> page = this.monsterDao.findAll(PageRequest.of(filter.getPage() -1, 
+				filter.getSize()));
+    	return (CustomPage<MonsterOverviewDTO>) PaginationGenerator.convertPage(page,page
+        		.stream().map( monster -> MonsterMapper.entityToOverview(monster))
+                .collect(Collectors.toList()));
 	}
 	
 	
