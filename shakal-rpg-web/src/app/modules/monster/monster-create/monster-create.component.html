@@ -1,10 +1,46 @@
-<form>
-        <div class="form-group">
-          <label for="exampleInputEmail1">Nome</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nome">
-        </div>
-        <div class="form-group">
-            <label for="exampleFormControlTextarea1">Descrição</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-        </div>
-</form>
+<mat-horizontal-stepper  #stepper>
+    <mat-step [stepControl]="informacoesFormGroup">
+        <form [formGroup]="informacoesFormGroup">
+            <ng-template matStepLabel>Informações</ng-template>
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <div class="form-group">
+                            <label for="photoURL">URL Foto</label>
+                            <input type="text" class="form-control" formControlName="profilePicture" id="photoURL"  placeholder="Url">
+                        </div>
+                        <div class="card w-100 h-100">
+                            <img height="310"  class="card-img" src="{{ informacoesFormGroup.profilePicture}}" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Nome</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nome">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Descrição</label>
+                        <textarea  class="form-control" id="exampleFormControlTextarea1" rows="11"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <button mat-button matStepperNext>Next</button>
+            </div>
+            
+           
+        </form>
+        </mat-step>
+        <mat-step [stepControl]="secondFormGroup">
+          
+        </mat-step>
+        <mat-step>
+          <ng-template matStepLabel>Done</ng-template>
+          You are now done.
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button (click)="stepper.reset()">Reset</button>
+          </div>
+        </mat-step>
+      </mat-horizontal-stepper>

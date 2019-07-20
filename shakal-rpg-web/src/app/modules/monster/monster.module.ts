@@ -12,6 +12,10 @@ import { MonsterSearchCardComponent } from './monster-search-card/monster-search
 import { MonsterCreateComponent } from './monster-create/monster-create.component';
 
 
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MaterialModule } from '../material-design/material.module';
+
+
 
 @NgModule({
   declarations: [MonsterListComponent, MonsterDetailComponent, MonsterInfoComponent, MonsterSheetComponent, MonsterCardComponent, MonsterSearchCardComponent, MonsterCreateComponent],
@@ -19,10 +23,13 @@ import { MonsterCreateComponent } from './monster-create/monster-create.componen
     NgbModalModule,
     CommonModule,
     MonsterRoutingModule,
-    NgbPaginationModule
+    NgbPaginationModule,
+    MaterialModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers:[
-    MonsterService
+    MonsterService,FormBuilder
   ],
   exports: [MonsterCardComponent,MonsterSearchCardComponent] 
 })
