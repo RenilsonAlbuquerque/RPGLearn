@@ -47,16 +47,11 @@ public class MonsterController {
 	
 	 @PostMapping(value = "/filter",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	 public ResponseEntity<CustomPage<MonsterOverviewDTO>> filter(@RequestBody PaginationFilter filter,
-	    													@RequestParam(required = false) String name,
-	    													@RequestParam(required = false) Integer year,
-	    													@RequestParam(required = false) String language){
-	    	HashMap<String,Object> queryParams = new HashMap<String,Object>();
-	    	if(name != null) {queryParams.put("name", name);}
-	    	if(year != null) {queryParams.put("releaseYear", year);}
-	    	if(language != null) {queryParams.put("language", language);}
+	    													@RequestParam(required = false) String name
+	    													){
 	    	
 	    	 return new ResponseEntity<CustomPage<MonsterOverviewDTO>>
-	    	 		(monsterService.searchMonsterPaged(queryParams,filter), HttpStatus.OK);
+	    	 		(monsterService.searchMonsterPaged(name,filter), HttpStatus.OK);
 	 }
 	 @GetMapping("/info/{id}")
 	 public ResponseEntity<MonsterInfoDTO> getMonsterInfoById(@PathVariable Long id) throws ResourceNotFoundException {

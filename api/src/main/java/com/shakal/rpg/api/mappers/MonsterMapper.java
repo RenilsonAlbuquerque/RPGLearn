@@ -17,6 +17,7 @@ public class MonsterMapper {
 	public static MonsterInfoDTO entityToInfo(Monster entity) {
 		MonsterInfoDTO result = new MonsterInfoDTO();
 		result.setRace(entity.getRace().getName());
+		result.setProfilePicturePath(entity.getImagePath());
 		result.setType(entity.getRace().getMonsterType().getName());
 		result.setDescription(entity.getRace().getDescription());
 		return result;

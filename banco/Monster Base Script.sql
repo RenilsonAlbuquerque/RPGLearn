@@ -44,3 +44,29 @@ humanoides, brandindo imensas espadas graciosamente.
 tarefas importantes do bem, os planetários gostam
 especialmente das missões que envolvam combater
 corruptores.");
+
+insert into tb_monster_race (id,type_id, name,description) values (2,3,"Deva","Devas são anjos que agem
+como mensageiros ou
+agentes divinos no Plano
+Material, na Umbra e em
+Faéria e que podem
+assumir uma forma
+apropriada ao reino para
+o qual foram enviados.
+Lendas contam sobre
+anjos que assumiram
+formas mortais por anos,
+trazendo ajuda, esperança
+e coragem ao povo de bom
+coração. Um deva pode
+assumir qualquer forma,
+apesar de preferirem se
+parecer com mortais como um
+humanoide ou animal inócuo.
+Quando as circunstância
+requerem que ele acabe com seu
+disfarce, um deva se mostra como uma
+bela criatura similar a um humanoide com
+pele prateada. Seus cabelos e olhos brilham com um
+esplendor sobrenatural e grandes asas plumadas
+brotam de suas escápulas.");

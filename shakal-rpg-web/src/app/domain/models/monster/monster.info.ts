@@ -1,7 +1,7 @@
 export interface MonsterInfo{
     id: number,
     race: String,
-    profilePicturepath: String,
+    profilePicturePath: String,
     type: String,
     description: String
 }

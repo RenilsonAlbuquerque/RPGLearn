@@ -28,6 +28,8 @@ public abstract class Creature implements ICreature{
 	@Id
 	@GeneratedValue
 	private Long id;
+	
+	private String imagePath;
 
 	@OneToMany(mappedBy = "creature",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	private List<CreatureAtribute> atributes;
@@ -54,6 +56,14 @@ public abstract class Creature implements ICreature{
 	}
 
 	
+	public String getImagePath() {
+		return imagePath;
+	}
+
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
+	}
+
 	public List<CreatureResistence> getResistences() {
 		return resistences;
 	}

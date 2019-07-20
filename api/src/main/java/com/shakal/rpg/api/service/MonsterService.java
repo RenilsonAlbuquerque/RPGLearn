@@ -78,8 +78,8 @@ public class MonsterService implements IMonsterService {
 	}
 
 	@Override
-	public CustomPage<MonsterOverviewDTO> searchMonsterPaged(HashMap<String, Object> params, PaginationFilter filter) {
-		Specification<Monster> specification = MonsterSpecification.searchMonster(params);
+	public CustomPage<MonsterOverviewDTO> searchMonsterPaged(String name, PaginationFilter filter) {
+		Specification<Monster> specification = MonsterSpecification.searchMonster(name);
 	    
     	Page<Monster> page = this.monsterDao.findAll(specification,PageRequest.of(filter.getPage() -1, 
 				filter.getSize()));

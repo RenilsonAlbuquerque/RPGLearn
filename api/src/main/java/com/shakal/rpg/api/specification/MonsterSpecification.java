@@ -15,15 +15,14 @@ import com.shakal.rpg.api.model.Monster;
 
 public class MonsterSpecification {
 	
-	public static Specification<Monster> searchMonster(HashMap<String, Object> params){
+	public static Specification<Monster> searchMonster(String search){
 		
 		return new Specification<Monster>() {
 			@Override
 			public Predicate toPredicate(Root<Monster> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
 				List<Monster> predicates = new ArrayList<Monster>();
-			
-				params.forEach((key, value) -> 
-					predicates.add((Monster) criteriaBuilder.or(criteriaBuilder.like(root.get(key),"%" + value.toString()+ "%"))));
+				
+				predicates.add((Monster) criteriaBuilder.or(criteriaBuilder.like(root.get("name"),"%" + search + "%")));
 				return criteriaBuilder.or(predicates.toArray(new Predicate[predicates.size()]));
 			}
 		};

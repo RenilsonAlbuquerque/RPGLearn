@@ -12,7 +12,7 @@ import com.shakal.rpg.api.exception.ResourceNotFoundException;
 public interface IMonsterService {
 	
 	MonsterSheetDTO getMonsterSheetById(long id) throws ResourceNotFoundException;
-	CustomPage<MonsterOverviewDTO> searchMonsterPaged(HashMap<String, Object> params, PaginationFilter filter);
+	CustomPage<MonsterOverviewDTO> searchMonsterPaged(String search, PaginationFilter filter);
 	CustomPage<MonsterOverviewDTO> listsMonsterPaged(PaginationFilter filter);
 	MonsterInfoDTO getMonsterInfoById(long id) throws ResourceNotFoundException;
 }
