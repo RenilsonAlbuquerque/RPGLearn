@@ -7,7 +7,7 @@ public class SavingThrowMapper {
 
 	public static SavingThrowDTO entityToDTO(CreatureAtribute entity) {
 		SavingThrowDTO result = new SavingThrowDTO();
-		result.setName(entity.getAtribute().getValue().toString());
+		result.setName(AtributeMapper.translate(entity.getAtribute().getValue()));
 		result.setValue(entity.getValue());
 		return result;
 		

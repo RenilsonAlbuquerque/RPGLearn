@@ -1,0 +1,55 @@
+<div class="row">   
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-title">{{ monster?.name }}</h5>
+        </div>
+        <div class="card-body">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <p class="card-title text-justify"><strong>Classe de armadura: </strong> {{ monster?.armorClass }}</p>
+                    <p class="card-title text-justify"><strong>Pontos de vida: </strong> {{ monster?.lifePoints }}</p>
+                    <p class="card-title text-justify"><strong>Deslocamento: </strong> {{ monster?.lifePoints }}</p>
+                </li>
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-2" *ngFor="let atribute of monster?.atributes">
+                            <p><strong>{{ atribute.name}}</strong></p>
+                            <p>{{ atribute.value}} (7)</p>
+                        </div>
+                    </div>  
+                </li>
+                <li class="list-group-item">
+                    <div class="row">
+                        <p><strong>Testes de resistência:</strong> </p>
+                        <p *ngFor="let resistency of monster?.savingThrows">{{ resistency.name + " " + resistency.value}}, </p>
+                    </div>
+                    <div class="row">
+                            <p><strong>Reisistência a dano:</strong> </p>
+                            <p *ngFor="let resistency of monster?.damageResistence">{{ resistency}}, </p>
+                    </div>
+                    <div class="row">
+                            <p><strong>Imunidade a dano:</strong> </p>
+                            <p *ngFor="let imunity of monster?.damageImunity">{{ imunity}}, </p>
+                    </div>  
+                    <div class="row">
+                            <p><strong>Idiomas: </strong> </p>
+                            <p *ngFor="let language of monster?.languages">{{ language}}, </p>
+                    </div>
+                    <div class="row">
+                            <p><strong>Nível de desafio: </strong> </p>
+                            <p>{{ monster.challengeLevel}} </p>
+                    </div>
+                       
+                </li>
+                <li class="list-group-item">
+                        <div class="row" *ngFor="let feature of monster?.features">
+                                <p><strong>{{feature.name}}</strong> </p>
+                                <p>{{feature.description}}</p>
+                        </div>
+                </li>
+            </ul>
+            
+            <br/><br/>
+        </div>
+    </div>
+</div>

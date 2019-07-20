@@ -5,6 +5,7 @@ import { Page } from 'src/app/infra/models/page';
 import { MonsterOverview } from 'src/app/domain/models/monster.overview';
 import { environment } from 'src/environments/environment';
 import { MonsterInfo } from 'src/app/domain/models/monster/monster.info';
+import { MonsterSheet } from 'src/app/domain/models/monster/monster.sheet';
 
 
 @Injectable()
@@ -19,7 +20,10 @@ export class MonsterService {
   getSearchResult(searchString: String, pageNumber): Observable<Page<MonsterOverview>>{
     return this.httpClient.post<Page<MonsterOverview>>(`${environment.BASE_URL}monster/filter?name=${searchString}`,{page:pageNumber, size:9});
   }
-   getMonsterInfoById(id): Observable<MonsterInfo>{
+  getMonsterInfoById(id): Observable<MonsterInfo>{
     return this.httpClient.get<MonsterInfo>(`${environment.BASE_URL}monster/info/${id}`);
+  }
+  getMonsterSheetById(id): Observable<MonsterSheet>{
+    return this.httpClient.get<MonsterSheet>(`${environment.BASE_URL}monster/sheet/${id}`);
   }
 }
