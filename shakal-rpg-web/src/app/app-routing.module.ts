@@ -16,6 +16,10 @@ const routes: Routes = [
       {
         path: 'monster',
         loadChildren: './modules/monster/monster.module#MonsterModule'
+      },
+      {
+        path: 'combat',
+        loadChildren: './modules/combat/combat.module#CombatModule'
       }
     ]
   }

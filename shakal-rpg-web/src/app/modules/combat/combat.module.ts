@@ -1,0 +1,19 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { CombatMenuComponent } from './combat-menu/combat-menu.component';
+import { CombatRoutingModule } from './combat.module.router';
+import { CombatScreenComponent } from './combat-screen/combat-screen.component';
+import { MonsterCardComponent } from '../monster/monster-card/monster-card.component';
+import { MonsterModule } from '../monster/monster.module';
+
+
+
+@NgModule({
+  declarations: [CombatMenuComponent, CombatScreenComponent],
+  imports: [
+    CombatRoutingModule,
+    CommonModule,
+    MonsterModule
+  ]
+})
+export class CombatModule { }

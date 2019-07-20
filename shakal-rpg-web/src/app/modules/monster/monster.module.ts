@@ -7,11 +7,12 @@ import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { MonsterDetailComponent } from './monster-detail/monster-detail.component';
 import { MonsterInfoComponent } from './monster-info/monster-info.component';
 import { MonsterSheetComponent } from './monster-sheet/monster-sheet.component';
+import { MonsterCardComponent } from './monster-card/monster-card.component';
 
 
 
 @NgModule({
-  declarations: [MonsterListComponent, MonsterDetailComponent, MonsterInfoComponent, MonsterSheetComponent],
+  declarations: [MonsterListComponent, MonsterDetailComponent, MonsterInfoComponent, MonsterSheetComponent, MonsterCardComponent],
   imports: [
     CommonModule,
     MonsterRoutingModule,
@@ -19,6 +20,7 @@ import { MonsterSheetComponent } from './monster-sheet/monster-sheet.component';
   ],
   providers:[
     MonsterService
-  ]
+  ],
+  exports: [MonsterCardComponent] 
 })
 export class MonsterModule { }

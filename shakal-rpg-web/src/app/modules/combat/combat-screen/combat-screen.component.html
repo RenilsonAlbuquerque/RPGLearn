@@ -1,0 +1,36 @@
+<div>
+    <div class="card" >
+        <div class="card-header">
+                <h6>Inimigos</h6>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-2" *ngFor="let monster of monsters" >
+                    <app-monster-card [monster]="monster"></app-monster-card>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer text-muted">
+            <ul class="nav nav-pills card-header-pills">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Adcionar</a>
+                </li>          
+            </ul>
+        </div>
+    </div>
+    <br>
+    <div class="card" >
+            <div class="card-header">
+                    <h6>Jogadores</h6>
+                </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-2" *ngFor="let player of players" >
+                        <app-monster-card [monster]="player"></app-monster-card>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    
+</div>
