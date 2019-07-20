@@ -7,33 +7,98 @@
                     <div class="form-group">
                         <div class="form-group">
                             <label for="photoURL">URL Foto</label>
-                            <input type="text" class="form-control" formControlName="profilePicture" id="photoURL"  placeholder="Url">
+                            <input type="text" class="form-control" [(ngModel)]="profilePicture" formControlName="profilePicture" id="photoURL"  placeholder="Url">
                         </div>
                         <div class="card w-100 h-100">
-                            <img height="310"  class="card-img" src="{{ informacoesFormGroup.profilePicture}}" alt="">
+                            <img height="310"  class="card-img" src="{{ profilePicture}}" alt="">
                         </div>
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Nome</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nome">
+                        <label for="monsterName">Nome</label>
+                        <input type="text" formControlName="name" class="form-control" id="monsterName" aria-describedby="emailHelp" placeholder="Nome">
                     </div>
                     <div class="form-group">
-                        <label for="exampleFormControlTextarea1">Descrição</label>
-                        <textarea  class="form-control" id="exampleFormControlTextarea1" rows="11"></textarea>
+                        <label for="monterDescription">Descrição</label>
+                        <textarea formControlName="description" class="form-control" id="monterDescription" rows="11"></textarea>
                     </div>
                 </div>
             </div>
             <div>
-                <button mat-button matStepperNext>Next</button>
+                <button type="button" focus-index="1" class="btn btn-primary" matStepperNext>Próximo</button>
             </div>
-            
-           
         </form>
         </mat-step>
-        <mat-step [stepControl]="secondFormGroup">
-          
+        <mat-step [stepControl]="habilitiesFormGroup">
+            <form [formGroup]="habilitiesFormGroup">
+                <ng-template matStepLabel>Habilidades</ng-template>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="form-group col-4">
+                                <label for="monsterAc">Classe de armadura</label>
+                                <input type="text" formControlName="armorClass" class="form-control" id="monsterAc"  placeholder="Classe de armadura">
+                            </div>
+                            <div class="form-group col-4">
+                                <label for="monsterLifePoints">Pontos de vida</label>
+                                <input type="text" formControlName="lifePoints" class="form-control" id="monsterLifePoints" rows="11" placeholder="Pontos de vida">
+                            </div>
+                            <div class="form-group col-4">
+                                <label for="moviment">Deslocamento</label>
+                                <input type="text" formControlName="moviment" class="form-control" id="moviment" rows="11" placeholder="Deslocamento">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="form-group col-2">
+                                <label for="monsterForce">Força</label>
+                                <input type="text" formControlName="force" class="form-control" id="monsterForce"  placeholder="Força">
+                            </div>
+                            <div class="form-group col-2">
+                                <label for="monsterDex">Destreza</label>
+                                <input type="text" formControlName="dexterity" class="form-control" id="monsterDex" rows="11" placeholder="Destreza">
+                            </div>
+                            <div class="form-group col-2">
+                                <label for="monsterCons">Constituição</label>
+                                <input type="text" formControlName="constitution" class="form-control" id="monsterCons" rows="11" placeholder="Constituição">
+                            </div>
+                            <div class="form-group col-2">
+                                <label for="monsterInt">Inteligência</label>
+                                <input type="text" formControlName="inteligence" class="form-control" id="monsterInt" rows="11" placeholder="Inteligencia">
+                            </div>
+                            <div class="form-group col-2">
+                                <label for="monsterWis">Sabedoria</label>
+                                <input type="text" formControlName="wisdom" class="form-control" id="monsterWis" rows="11" placeholder="Sabedoria">
+                            </div>
+                            <div class="form-group col-2">
+                                <label for="monsterCha">Carisma</label>
+                                <input type="text" formControlName="charisma" class="form-control" id="monsterCha" rows="11" placeholder="Constituoção">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <mat-form-field class="example-chip-list">
+                                <mat-chip-list #chipList aria-label="Fruit selection">
+                                  <mat-chip *ngFor="let fruit of fruits" [selectable]="selectable"
+                                           [removable]="removable" (removed)="remove(fruit)">
+                                    {{fruit.name}}
+                                    <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                                  </mat-chip>
+                                  <input placeholder="Alinhamentos"
+                                         [matChipInputFor]="chipList"
+                                         [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                         [matChipInputAddOnBlur]="addOnBlur"
+                                         (matChipInputTokenEnd)="add($event)">
+                                </mat-chip-list>
+                              </mat-form-field>
+                        </div>
+                    </li>
+                </ul>
+                
+            </form>
         </mat-step>
         <mat-step>
           <ng-template matStepLabel>Done</ng-template>

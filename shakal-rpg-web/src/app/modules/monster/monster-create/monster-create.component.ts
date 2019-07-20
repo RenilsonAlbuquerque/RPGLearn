@@ -10,16 +10,30 @@ import { MonsterCreate } from 'src/app/domain/models/monster/monster.create';
 export class MonsterCreateComponent implements OnInit {
 
   public monster: MonsterCreate;
-  informacoesFormGroup: FormGroup;
-  secondFormGroup: FormGroup;
+  public informacoesFormGroup: FormGroup;
+  public habilitiesFormGroup: FormGroup;
+
+  profilePicture: string;
+
   constructor(private _formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.informacoesFormGroup = this._formBuilder.group({
-      profilePicture: ['']
+      profilePicture: [''],
+      name: ['',Validators.required],
+      description: ['',Validators.required]
     });
-    this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
+    this.habilitiesFormGroup = this._formBuilder.group({
+      armorClass: ['', Validators.required],
+      lifePoints: ['', Validators.required],
+      moviment: ['', Validators.required],
+      force: ['', Validators.required],
+      dexterity: ['', Validators.required],
+      constitution: ['', Validators.required],
+      inteligence: ['', Validators.required],
+      wisdom: ['', Validators.required],
+      charisma: ['', Validators.required]
+
     });
   }
 
