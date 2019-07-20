@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { MonsterCreate } from 'src/app/domain/models/monster/monster.create';
+import { MonsterCreateInput } from 'src/app/domain/models/monster/monster.create.input';
+import { MonsterService } from '../monster.module.service';
 
 @Component({
   selector: 'app-monster-create',
@@ -9,15 +11,21 @@ import { MonsterCreate } from 'src/app/domain/models/monster/monster.create';
 })
 export class MonsterCreateComponent implements OnInit {
 
+  public inputValues: MonsterCreateInput;
   public monster: MonsterCreate;
   public informacoesFormGroup: FormGroup;
   public habilitiesFormGroup: FormGroup;
 
+
   profilePicture: string;
 
-  constructor(private _formBuilder: FormBuilder) { }
+  constructor(private _formBuilder: FormBuilder,private monsterService: MonsterService) { }
 
   ngOnInit() {
+    this.monsterService.getMonsterCreateInput().subscribe(
+      response => (this.inputValues = response,console.log(response))   
+    )
+
     this.informacoesFormGroup = this._formBuilder.group({
       profilePicture: [''],
       name: ['',Validators.required],

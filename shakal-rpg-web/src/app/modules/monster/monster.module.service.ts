@@ -6,6 +6,7 @@ import { MonsterOverview } from 'src/app/domain/models/monster.overview';
 import { environment } from 'src/environments/environment';
 import { MonsterInfo } from 'src/app/domain/models/monster/monster.info';
 import { MonsterSheet } from 'src/app/domain/models/monster/monster.sheet';
+import { MonsterCreateInput } from 'src/app/domain/models/monster/monster.create.input';
 
 
 @Injectable()
@@ -25,5 +26,8 @@ export class MonsterService {
   }
   getMonsterSheetById(id): Observable<MonsterSheet>{
     return this.httpClient.get<MonsterSheet>(`${environment.BASE_URL}monster/sheet/${id}`);
+  }
+  getMonsterCreateInput(): Observable<MonsterCreateInput>{
+    return this.httpClient.get<MonsterCreateInput>(`${environment.BASE_URL}monster/input`);
   }
 }

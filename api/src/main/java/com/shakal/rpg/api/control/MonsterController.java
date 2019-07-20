@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.shakal.rpg.api.contracts.service.IMonsterService;
 import com.shakal.rpg.api.dto.MonsterSheetDTO;
+import com.shakal.rpg.api.dto.create.MonsterCreateInputDTO;
 import com.shakal.rpg.api.dto.filter.CustomPage;
 import com.shakal.rpg.api.dto.filter.PaginationFilter;
 import com.shakal.rpg.api.dto.info.MonsterInfoDTO;
@@ -58,6 +59,12 @@ public class MonsterController {
 	    	
 	     return new ResponseEntity<MonsterInfoDTO>(monsterService.getMonsterInfoById(id), HttpStatus.OK);
 	 }
+	 @GetMapping("/input")
+	 public ResponseEntity<MonsterCreateInputDTO> getMonsterValuesToCreate() {
+	    	
+	     return new ResponseEntity<MonsterCreateInputDTO>(monsterService.getMonsterInfoToCreate(), HttpStatus.OK);
+	 }
+	 
 	
 
 }

@@ -1,8 +1,8 @@
 package com.shakal.rpg.api.contracts.service;
 
-import java.util.HashMap;
 
 import com.shakal.rpg.api.dto.MonsterSheetDTO;
+import com.shakal.rpg.api.dto.create.MonsterCreateInputDTO;
 import com.shakal.rpg.api.dto.filter.CustomPage;
 import com.shakal.rpg.api.dto.filter.PaginationFilter;
 import com.shakal.rpg.api.dto.info.MonsterInfoDTO;
@@ -15,4 +15,5 @@ public interface IMonsterService {
 	CustomPage<MonsterOverviewDTO> searchMonsterPaged(String search, PaginationFilter filter);
 	CustomPage<MonsterOverviewDTO> listsMonsterPaged(PaginationFilter filter);
 	MonsterInfoDTO getMonsterInfoById(long id) throws ResourceNotFoundException;
+	MonsterCreateInputDTO getMonsterInfoToCreate();
 }
