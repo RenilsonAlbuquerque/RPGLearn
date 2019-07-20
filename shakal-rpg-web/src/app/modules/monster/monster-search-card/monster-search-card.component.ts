@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { Page } from 'src/app/infra/models/page';
 import { MonsterOverview } from 'src/app/domain/models/monster.overview';
 import { MonsterService } from '../monster.module.service';
 import { Router } from '@angular/router';
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-monster-search-card',
@@ -13,6 +14,11 @@ export class MonsterSearchCardComponent implements OnInit {
 
   public page: Page<MonsterOverview>;
   public search: String;
+
+  @Output() adcionarMonstro = new EventEmitter();
+  @Output() fecharModal = new EventEmitter();
+
+
   constructor(private monsterService: MonsterService, private router: Router) { }
 
   ngOnInit() {
@@ -31,8 +37,15 @@ export class MonsterSearchCardComponent implements OnInit {
       response => (this.page = response)  
     )
   }
-  goDetails(monster){
-    this.router.navigate(['home/monster/detail', monster.id])
+  selectMonster(monster: MonsterOverview){
+    this.adcionarMonstro.emit(
+      {
+        id: monster.id,
+        name: monster.race,
+        level: monster.challengeLevel,
+        lifePoints: monster.lifePoints
+      });
+      this.fecharModal.emit(false);
   }
 
 }

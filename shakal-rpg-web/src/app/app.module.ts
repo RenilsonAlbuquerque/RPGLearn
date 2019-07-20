@@ -18,7 +18,7 @@ import { LayoutModule } from './modules/layout/layout.module';
     AppRoutingModule,
     HttpClientModule,
     NgbModule,
-    NgbModalModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

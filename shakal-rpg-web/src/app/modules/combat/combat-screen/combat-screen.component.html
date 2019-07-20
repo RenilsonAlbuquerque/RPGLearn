@@ -25,10 +25,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <app-monster-search-card></app-monster-search-card>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Adcionar</button>
+          <app-monster-search-card (adcionarMonstro)="addMonster($event)" (fecharModal)="disposeModalAddMonster($event)"></app-monster-search-card>
         </div>
       </ng-template>
     <br>

@@ -8,13 +8,13 @@
                 <li class="list-group-item">
                     <p><strong>Classe de armadura: </strong> {{ monster?.armorClass }}</p>
                     <p><strong>Pontos de vida: </strong> {{ monster?.lifePoints }}</p>
-                    <p><strong>Deslocamento: </strong> {{ monster?.lifePoints }}</p>
+                    <p><strong>Deslocamento: </strong> --</p>
                 </li>
                 <li class="list-group-item">
                     <div class="row">
                         <div class="col-2" *ngFor="let atribute of monster?.atributes">
                             <p><strong>{{ atribute.name}}</strong></p>
-                            <p>{{ atribute.value}} (7)</p>
+                            <p>{{ atribute.value}} ({{(atribute?.modfier) > 0 ? "+": ""}}{{atribute?.modfier}})</p>
                         </div>
                     </div>  
                 </li>
