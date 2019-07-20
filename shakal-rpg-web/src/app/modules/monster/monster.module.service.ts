@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Page } from 'src/app/infra/models/page';
 import { MonsterOverview } from 'src/app/domain/models/monster.overview';
 import { environment } from 'src/environments/environment';
+import { MonsterInfo } from 'src/app/domain/models/monster/monster.info';
 
 
 @Injectable()
@@ -17,5 +18,8 @@ export class MonsterService {
   }
   getSearchResult(searchString: String, pageNumber): Observable<Page<MonsterOverview>>{
     return this.httpClient.post<Page<MonsterOverview>>(`${environment.BASE_URL}monster/filter?name=${searchString}`,{page:pageNumber, size:9});
+  }
+   getMonsterInfoById(id): Observable<MonsterInfo>{
+    return this.httpClient.get<MonsterInfo>(`${environment.BASE_URL}monster/info/${id}`);
   }
 }

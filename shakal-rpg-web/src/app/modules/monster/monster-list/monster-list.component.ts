@@ -18,7 +18,7 @@ export class MonsterListComponent implements OnInit {
   ngOnInit() {
     this.search = "";
     this.monsterService.getOverview(1).subscribe(
-        response => (this.page = response)  
+        response => (this.page = response,console.log(response))   
     )
   }
   pageChange(){
@@ -30,6 +30,9 @@ export class MonsterListComponent implements OnInit {
     this.monsterService.getSearchResult(this.search,1).subscribe(
       response => (this.page = response)  
     )
+  }
+  goDetails(monster){
+    this.router.navigate(['home/monster/detail', monster.id])
   }
 
 }

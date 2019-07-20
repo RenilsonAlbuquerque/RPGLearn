@@ -4,11 +4,13 @@ import { MonsterListComponent } from './monster-list/monster-list.component';
 import { MonsterRoutingModule } from './monster.module.router';
 import { MonsterService } from './monster.module.service';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+import { MonsterDetailComponent } from './monster-detail/monster-detail.component';
+import { MonsterInfoComponent } from './monster-info/monster-info.component';
 
 
 
 @NgModule({
-  declarations: [MonsterListComponent],
+  declarations: [MonsterListComponent, MonsterDetailComponent, MonsterInfoComponent],
   imports: [
     CommonModule,
     MonsterRoutingModule,

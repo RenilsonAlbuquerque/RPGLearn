@@ -13,6 +13,7 @@ import com.shakal.rpg.api.contracts.service.IMonsterService;
 import com.shakal.rpg.api.dto.MonsterSheetDTO;
 import com.shakal.rpg.api.dto.filter.CustomPage;
 import com.shakal.rpg.api.dto.filter.PaginationFilter;
+import com.shakal.rpg.api.dto.info.MonsterInfoDTO;
 import com.shakal.rpg.api.dto.overview.MonsterOverviewDTO;
 import com.shakal.rpg.api.model.Attack;
 import com.shakal.rpg.api.model.Monster;
@@ -94,6 +95,14 @@ public class MonsterService implements IMonsterService {
     	return (CustomPage<MonsterOverviewDTO>) PaginationGenerator.convertPage(page,page
         		.stream().map( monster -> MonsterMapper.entityToOverview(monster))
                 .collect(Collectors.toList()));
+	}
+
+	@Override
+	public MonsterInfoDTO getMonsterInfoById(long id) throws ResourceNotFoundException {
+		Monster search = this.monsterDao.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException(Messages.MONSTER_NOT_FOUND));
+		return MonsterMapper.entityToInfo(search);
+		
 	}
 	
 	
