@@ -1,0 +1,33 @@
+
+<div>
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Procurar" (input)="search = $event.target.value" (keyup)="onSearch()" aria-label="Username" aria-describedby="basic-addon1">
+    </div>
+    <div class="col-12">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Raça</th>
+                    <th scope="col">Nível de desafio</th>
+                    <th scope="col">Tipo</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr (click)="goDetails(monster)" *ngFor="let monster of page.elements">
+                    <td>{{monster.race}}</td>
+                    <td>{{monster.challengeLevel}}</td>
+                    <td>{{monster.type}}</td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+<ngb-pagination class="d-flex justify-content-center" 
+        [collectionSize]="page.totalOfPages" 
+        [(page)]="page.currentPageNumber" 
+        [pageSize]="page.size" 
+        [maxSize]="10" 
+        [rotate]="true" 
+        [ellipses]="false" 
+        (pageChange)="pageChange()">
+      </ngb-pagination>
+      </div>

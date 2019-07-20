@@ -5,6 +5,8 @@ import { CombatRoutingModule } from './combat.module.router';
 import { CombatScreenComponent } from './combat-screen/combat-screen.component';
 import { MonsterCardComponent } from '../monster/monster-card/monster-card.component';
 import { MonsterModule } from '../monster/monster.module';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { MonsterService } from '../monster/monster.module.service';
 
 
 
@@ -13,7 +15,11 @@ import { MonsterModule } from '../monster/monster.module';
   imports: [
     CombatRoutingModule,
     CommonModule,
-    MonsterModule
+    MonsterModule,
+    NgbModalModule
+  ],
+  providers:[
+    MonsterService
   ]
 })
 export class CombatModule { }

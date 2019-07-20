@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MonsterCard } from 'src/app/domain/models/monster/monster.card';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -11,20 +12,20 @@ export class CombatScreenComponent implements OnInit {
 
   public monsters: MonsterCard[];
   public players: MonsterCard[];
-
-  constructor() { 
+  closeResult: string;
+  constructor(private modalService: NgbModal) { 
     this.monsters = [];
     this.players = [];
 
     this.monsters.push({
       id: 1,
-      name: "Strahd",
+      name: "Dracolich",
       level: 18,
       lifePoints: 400
     } as MonsterCard);
     this.monsters.push({
       id: 2,
-      name: "Abade",
+      name: "Planetário",
       level: 16,
       lifePoints: 350
     } as MonsterCard);
@@ -50,6 +51,13 @@ export class CombatScreenComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+  open(content) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Closed with: ${reason}`;
+    });
   }
 
 }
