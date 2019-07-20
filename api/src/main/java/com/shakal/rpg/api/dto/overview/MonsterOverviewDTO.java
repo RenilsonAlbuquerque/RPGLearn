@@ -6,6 +6,7 @@ public class MonsterOverviewDTO {
 	private int challengeLevel;
 	private String race;
 	private String type;
+	private int lifePoints;
 	
 	
 	
@@ -33,6 +34,12 @@ public class MonsterOverviewDTO {
 	}
 	public void setChallengeLevel(int challengeLevel) {
 		this.challengeLevel = challengeLevel;
+	}
+	public int getLifePoints() {
+		return lifePoints;
+	}
+	public void setLifePoints(int lifePoints) {
+		this.lifePoints = lifePoints;
 	}
 	
 	

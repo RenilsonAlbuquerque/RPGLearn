@@ -9,7 +9,7 @@ import { MonsterService } from '../monster.module.service';
   styleUrls: ['./monster-info.component.scss']
 })
 export class MonsterInfoComponent implements OnInit {
-
+  
   public monster: MonsterInfo
   constructor(private _activatedRoute: ActivatedRoute, private monsterService: MonsterService) { }
 

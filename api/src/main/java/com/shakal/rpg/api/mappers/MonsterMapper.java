@@ -12,6 +12,7 @@ public class MonsterMapper {
 		result.setRace(entity.getRace().getName());
 		result.setType(entity.getRace().getMonsterType().getName());
 		result.setChallengeLevel(entity.getChallengeLevel().getValue());
+		result.setLifePoints(entity.getBaseLifeDice());
 		return result;
 	}
 	public static MonsterInfoDTO entityToInfo(Monster entity) {

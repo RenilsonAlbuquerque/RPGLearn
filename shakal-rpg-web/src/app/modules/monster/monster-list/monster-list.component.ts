@@ -34,5 +34,8 @@ export class MonsterListComponent implements OnInit {
   goDetails(monster){
     this.router.navigate(['home/monster/detail', monster.id])
   }
+  goCreate(){
+    this.router.navigate(['home/monster/create'])
+  }
 
 }

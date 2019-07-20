@@ -9,11 +9,12 @@ import { MonsterInfoComponent } from './monster-info/monster-info.component';
 import { MonsterSheetComponent } from './monster-sheet/monster-sheet.component';
 import { MonsterCardComponent } from './monster-card/monster-card.component';
 import { MonsterSearchCardComponent } from './monster-search-card/monster-search-card.component';
+import { MonsterCreateComponent } from './monster-create/monster-create.component';
 
 
 
 @NgModule({
-  declarations: [MonsterListComponent, MonsterDetailComponent, MonsterInfoComponent, MonsterSheetComponent, MonsterCardComponent, MonsterSearchCardComponent],
+  declarations: [MonsterListComponent, MonsterDetailComponent, MonsterInfoComponent, MonsterSheetComponent, MonsterCardComponent, MonsterSearchCardComponent, MonsterCreateComponent],
   imports: [
     NgbModalModule,
     CommonModule,

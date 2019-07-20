@@ -1,8 +1,13 @@
 
 <div>
+    <div>
+        <button type="button" focus-index="1" class="btn btn-primary" (click)="goCreate()" >Adcionar</button>
+    </div>
+    <br>
     <div class="input-group mb-3">
       <input type="text" class="form-control" placeholder="Procurar" (input)="search = $event.target.value" (keyup)="onSearch()" aria-label="Username" aria-describedby="basic-addon1">
     </div>
+    
     <div class="col-12">
         <table class="table table-hover">
             <thead>
