@@ -20,6 +20,7 @@ export class MonsterCreateComponent implements OnInit {
   public habilitiesFormGroup: FormGroup;
   public featuresFormGroup: FormGroup;
 
+  public allLanguages: string[];
 
   profilePicture: string;
 
@@ -27,7 +28,10 @@ export class MonsterCreateComponent implements OnInit {
 
   ngOnInit() {
     this.monsterService.getMonsterCreateInput().subscribe(
-      response => (this.inputValues = response,console.log(response))   
+      response => (
+        this.inputValues = response
+        //this.allLanguages = response.languages.map((item, key) => item)
+        )   
     )
 
     this.informacoesFormGroup = this._formBuilder.group({
@@ -45,7 +49,10 @@ export class MonsterCreateComponent implements OnInit {
       inteligence: ['', Validators.required],
       wisdom: ['', Validators.required],
       charisma: ['', Validators.required],
-      level:['', Validators.required]
+      level:[{}, Validators.required],
+      damageResistence:[],
+      damageImunity:[],
+      languages:[]
 
     });
   }
@@ -55,6 +62,7 @@ export class MonsterCreateComponent implements OnInit {
     )
   }
   private mapFormToDTO(): MonsterCreate {
+    console.log(this.habilitiesFormGroup.get('languages').value)
     return {
       raceName: this.informacoesFormGroup.get('profilePicture').value,
       raceDescription: this.informacoesFormGroup.get('description').value,
