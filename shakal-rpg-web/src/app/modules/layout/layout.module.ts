@@ -4,13 +4,15 @@ import { BaseComponent } from './base/base.component';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+import { MaterialModule } from '../material-design/material.module';
+
 @NgModule({
-  declarations: [BaseComponent],
+  declarations: [BaseComponent ],
   imports: [
- 
-  AppRoutingModule,
+    AppRoutingModule,
     CommonModule,
-    NgbModule
+    NgbModule,
+    MaterialModule
   ]
 })
 export class LayoutModule { }

@@ -20,6 +20,7 @@ import com.shakal.rpg.api.model.Attack;
 import com.shakal.rpg.api.model.Monster;
 import com.shakal.rpg.api.model.enums.ResistenceTypeEnum;
 import com.shakal.rpg.api.repository.LanguageDAO;
+import com.shakal.rpg.api.repository.MonsterChallengeLevelDAO;
 import com.shakal.rpg.api.repository.MonsterDAO;
 import com.shakal.rpg.api.specification.MonsterSpecification;
 import com.shakal.rpg.api.exception.*;
@@ -27,6 +28,7 @@ import com.shakal.rpg.api.mappers.AtributeMapper;
 import com.shakal.rpg.api.mappers.AttackMapper;
 import com.shakal.rpg.api.mappers.FeatureMapper;
 import com.shakal.rpg.api.mappers.LanguageMappers;
+import com.shakal.rpg.api.mappers.LevelMapper;
 import com.shakal.rpg.api.mappers.MonsterMapper;
 import com.shakal.rpg.api.mappers.SavingThrowMapper;
 import com.shakal.rpg.api.utils.Messages;
@@ -41,11 +43,13 @@ public class MonsterService implements IMonsterService {
 
 	private MonsterDAO monsterDao;
 	private LanguageDAO languageDao;
+	private MonsterChallengeLevelDAO challengeLevelDao;
 	
 	@Autowired
-	public MonsterService(MonsterDAO monsterDao,LanguageDAO languageDao) {
+	public MonsterService(MonsterDAO monsterDao,LanguageDAO languageDao, MonsterChallengeLevelDAO monsterChallengeDao) {
 		this.monsterDao = monsterDao;
 		this.languageDao = languageDao;
+		this.challengeLevelDao = monsterChallengeDao;
 	}
 
 	@Override
@@ -115,6 +119,9 @@ public class MonsterService implements IMonsterService {
 		MonsterCreateInputDTO result = new MonsterCreateInputDTO();
 		result.setLanguages(this.languageDao.findAll().stream()
 				.map(language -> LanguageMappers.entityToDTO(language) )
+				.collect(Collectors.toList()));
+		result.setLevels(this.challengeLevelDao.findAll().stream()
+				.map(level -> LevelMapper.entityToDTO(level) )
 				.collect(Collectors.toList()));
 		return result;
 	}

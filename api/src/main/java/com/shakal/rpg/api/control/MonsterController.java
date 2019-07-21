@@ -1,7 +1,7 @@
 package com.shakal.rpg.api.control;
 
 
-import java.util.HashMap;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.shakal.rpg.api.contracts.service.IMonsterService;
 import com.shakal.rpg.api.dto.MonsterSheetDTO;
+import com.shakal.rpg.api.dto.create.MonsterCreateDTO;
 import com.shakal.rpg.api.dto.create.MonsterCreateInputDTO;
 import com.shakal.rpg.api.dto.filter.CustomPage;
 import com.shakal.rpg.api.dto.filter.PaginationFilter;
@@ -36,6 +37,12 @@ public class MonsterController {
 	private IMonsterService monsterService;
 	
 	@PostMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<MonsterCreateDTO> listAllOverview(@RequestBody MonsterCreateDTO createDto){
+        System.out.println(createDto.getRaceName());
+		return new ResponseEntity<MonsterCreateDTO>(createDto, HttpStatus.OK);
+    }
+	
+	@PostMapping(value="/list",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<CustomPage<MonsterOverviewDTO>> listAllOverview(@RequestBody PaginationFilter filter){
         return new ResponseEntity<CustomPage<MonsterOverviewDTO>>(monsterService.listsMonsterPaged(filter), HttpStatus.OK);
     }

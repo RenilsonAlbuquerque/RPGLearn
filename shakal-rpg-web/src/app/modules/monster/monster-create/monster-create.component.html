@@ -80,44 +80,45 @@
                     </li>
                     <li class="list-group-item">
                         <div class="row">
-                            <mat-form-field class="example-chip-list">
-                                <mat-chip-list #chipList aria-label="Fruit selection">
-                                  <mat-chip
-                                    *ngFor="let langauge of inputValues?.langauges"
-                                    [selectable]="selectable"
-                                    [removable]="removable"
-                                    (removed)="remove(fruit)">
-                                    {{fruit}}
-                                    <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-                                  </mat-chip>
-                                  <input
-                                    placeholder="Idiomas"
-                                    #fruitInput
-                                    [formControl]="fruitCtrl"
-                                    [matAutocomplete]="auto"
-                                    [matChipInputFor]="chipList"
-                                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                                    [matChipInputAddOnBlur]="addOnBlur"
-                                    (matChipInputTokenEnd)="add($event)">
-                                </mat-chip-list>
-                                <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-                                  <mat-option *ngFor="let fruit of filteredFruits | async" [value]="fruit">
-                                    {{fruit}}
-                                  </mat-option>
-                                </mat-autocomplete>
-                              </mat-form-field>
+                            <div class="form-group col-6">
+                                <app-input-chip [placeholderComponent]="Idiomas" [allElements]="inputValues?.languages"></app-input-chip>  
+                            </div>
+                            <div class="form-group col-6">
+                                    <app-input-chip [placeholderComponent]="Idiomas"></app-input-chip>  
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-4">
+                                <mat-form-field>
+                                <mat-label>Nível de desafio</mat-label>
+                                <mat-select>
+                                    <mat-option *ngFor="let level of inputValues?.levels" [value]="level.value">
+                                        {{level.value}}
+                                    </mat-option>
+                                </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div>
+                            <button type="button" focus-index="1" class="btn btn-primary" matStepperNext>Próximo</button>
                         </div>
                     </li>
+                   
                 </ul>
-                
             </form>
         </mat-step>
+        <mat-step [stepControl]="featuresFormGroup">
+                <form [formGroup]="featuresFormGroup">
+                    <ng-template matStepLabel>Características</ng-template>
+                </form>
+        </mat-step>        
         <mat-step>
-          <ng-template matStepLabel>Done</ng-template>
+          <ng-template matStepLabel>Finalizar</ng-template>
           You are now done.
           <div>
             <button mat-button matStepperPrevious>Back</button>
             <button mat-button (click)="stepper.reset()">Reset</button>
+            <button mat-button (click)="onSubmit()">Finalizar</button>
           </div>
         </mat-step>
       </mat-horizontal-stepper>

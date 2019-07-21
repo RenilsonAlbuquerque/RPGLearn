@@ -14,6 +14,8 @@ import { MonsterCreateComponent } from './monster-create/monster-create.componen
 
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material-design/material.module';
+import { BasecomponentsModule } from '../basecomponents/basecomponents.module';
+
 
 
 
@@ -26,7 +28,8 @@ import { MaterialModule } from '../material-design/material.module';
     NgbPaginationModule,
     MaterialModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BasecomponentsModule
   ],
   providers:[
     MonsterService,FormBuilder

@@ -3,6 +3,8 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { MonsterCreate } from 'src/app/domain/models/monster/monster.create';
 import { MonsterCreateInput } from 'src/app/domain/models/monster/monster.create.input';
 import { MonsterService } from '../monster.module.service';
+import { KeyValue } from 'src/app/domain/models/comon/key.value';
+
 
 @Component({
   selector: 'app-monster-create',
@@ -12,9 +14,11 @@ import { MonsterService } from '../monster.module.service';
 export class MonsterCreateComponent implements OnInit {
 
   public inputValues: MonsterCreateInput;
+  
   public monster: MonsterCreate;
   public informacoesFormGroup: FormGroup;
   public habilitiesFormGroup: FormGroup;
+  public featuresFormGroup: FormGroup;
 
 
   profilePicture: string;
@@ -40,9 +44,23 @@ export class MonsterCreateComponent implements OnInit {
       constitution: ['', Validators.required],
       inteligence: ['', Validators.required],
       wisdom: ['', Validators.required],
-      charisma: ['', Validators.required]
+      charisma: ['', Validators.required],
+      level:['', Validators.required]
 
     });
+  }
+  public onSubmit(){
+    this.monsterService.createMonster(this.mapFormToDTO()).subscribe(
+      response => (console.log(response))   
+    )
+  }
+  private mapFormToDTO(): MonsterCreate {
+    return {
+      raceName: this.informacoesFormGroup.get('profilePicture').value,
+      raceDescription: this.informacoesFormGroup.get('description').value,
+      imagePath: this.informacoesFormGroup.get('profilePicture').value,
+      level: this.habilitiesFormGroup.get('level').value
+    } as MonsterCreate;
   }
 
 }

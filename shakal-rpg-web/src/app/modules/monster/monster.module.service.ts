@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
 import { MonsterInfo } from 'src/app/domain/models/monster/monster.info';
 import { MonsterSheet } from 'src/app/domain/models/monster/monster.sheet';
 import { MonsterCreateInput } from 'src/app/domain/models/monster/monster.create.input';
+import { MonsterCreate } from 'src/app/domain/models/monster/monster.create';
 
 
 @Injectable()
@@ -16,7 +17,7 @@ export class MonsterService {
   }
 
   getOverview(pageNumber): Observable<Page<MonsterOverview>>{
-    return this.httpClient.post<Page<MonsterOverview>>(`${environment.BASE_URL}monster`,{page:pageNumber, size:9});
+    return this.httpClient.post<Page<MonsterOverview>>(`${environment.BASE_URL}monster/list`,{page:pageNumber, size:9});
   }
   getSearchResult(searchString: String, pageNumber): Observable<Page<MonsterOverview>>{
     return this.httpClient.post<Page<MonsterOverview>>(`${environment.BASE_URL}monster/filter?name=${searchString}`,{page:pageNumber, size:9});
@@ -29,5 +30,8 @@ export class MonsterService {
   }
   getMonsterCreateInput(): Observable<MonsterCreateInput>{
     return this.httpClient.get<MonsterCreateInput>(`${environment.BASE_URL}monster/input`);
+  }
+  createMonster(data : MonsterCreate): Observable<MonsterCreate>{
+    return this.httpClient.post<MonsterCreate>(`${environment.BASE_URL}monster`, data);
   }
 }

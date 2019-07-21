@@ -17,7 +17,7 @@ export class MonsterSheetComponent implements OnInit {
     this._activatedRoute.params.subscribe(params => {
       let id = params['id'];
       this.monsterService.getMonsterSheetById(id).subscribe(
-        response => (this.monster = response, console.log(response))  
+        response => (this.monster = response)  
       )
     });
    
