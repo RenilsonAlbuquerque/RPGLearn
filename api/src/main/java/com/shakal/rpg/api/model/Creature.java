@@ -11,6 +11,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -30,6 +31,10 @@ public abstract class Creature implements ICreature{
 	private Long id;
 	
 	private String imagePath;
+	
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
+	@JoinColumn(name ="alignment_id")
+	private Alignment size;
 
 	@OneToMany(mappedBy = "creature",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	private List<CreatureAtribute> atributes;

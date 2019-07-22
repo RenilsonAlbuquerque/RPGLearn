@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.shakal.rpg.api.contracts.service.IMonsterService;
 import com.shakal.rpg.api.dto.MonsterSheetDTO;
+import com.shakal.rpg.api.dto.create.MonsterCreateDTO;
 import com.shakal.rpg.api.dto.create.MonsterCreateInputDTO;
 import com.shakal.rpg.api.dto.filter.CustomPage;
 import com.shakal.rpg.api.dto.filter.PaginationFilter;
@@ -19,19 +20,24 @@ import com.shakal.rpg.api.dto.overview.MonsterOverviewDTO;
 import com.shakal.rpg.api.model.Attack;
 import com.shakal.rpg.api.model.Monster;
 import com.shakal.rpg.api.model.enums.ResistenceTypeEnum;
+import com.shakal.rpg.api.repository.AlignmentDAO;
 import com.shakal.rpg.api.repository.DamageTypeDAO;
 import com.shakal.rpg.api.repository.LanguageDAO;
 import com.shakal.rpg.api.repository.MonsterChallengeLevelDAO;
 import com.shakal.rpg.api.repository.MonsterDAO;
+import com.shakal.rpg.api.repository.MonsterSizeDAO;
+import com.shakal.rpg.api.repository.MonsterTypeDAO;
 import com.shakal.rpg.api.specification.MonsterSpecification;
 import com.shakal.rpg.api.exception.*;
 import com.shakal.rpg.api.mappers.AtributeMapper;
 import com.shakal.rpg.api.mappers.AttackMapper;
+import com.shakal.rpg.api.mappers.CreatureMapper;
 import com.shakal.rpg.api.mappers.DamageMapper;
 import com.shakal.rpg.api.mappers.FeatureMapper;
 import com.shakal.rpg.api.mappers.LanguageMappers;
 import com.shakal.rpg.api.mappers.LevelMapper;
 import com.shakal.rpg.api.mappers.MonsterMapper;
+import com.shakal.rpg.api.mappers.MonsterTypeMapper;
 import com.shakal.rpg.api.mappers.SavingThrowMapper;
 import com.shakal.rpg.api.utils.Messages;
 import com.shakal.rpg.api.utils.PaginationGenerator;
@@ -47,14 +53,22 @@ public class MonsterService implements IMonsterService {
 	private LanguageDAO languageDao;
 	private MonsterChallengeLevelDAO challengeLevelDao;
 	private DamageTypeDAO damageTypeDao;
+	private MonsterTypeDAO monsterTypeDao;
+	private MonsterSizeDAO monsterSizeDao;
+	private AlignmentDAO alignmentDao;
 	
 	@Autowired
 	public MonsterService(MonsterDAO monsterDao,LanguageDAO languageDao, 
-			MonsterChallengeLevelDAO monsterChallengeDao, DamageTypeDAO damageTypeDao) {
+			MonsterChallengeLevelDAO monsterChallengeDao, DamageTypeDAO damageTypeDao,
+			MonsterTypeDAO monsterTypeDao, MonsterSizeDAO monsterSizeDao,
+			AlignmentDAO alignmentDao) {
 		this.monsterDao = monsterDao;
 		this.languageDao = languageDao;
 		this.challengeLevelDao = monsterChallengeDao;
 		this.damageTypeDao = damageTypeDao;
+		this.monsterTypeDao = monsterTypeDao;
+		this.monsterSizeDao = monsterSizeDao;
+		this.alignmentDao = alignmentDao;
 	}
 
 	@Override
@@ -122,6 +136,15 @@ public class MonsterService implements IMonsterService {
 	@Override
 	public MonsterCreateInputDTO getMonsterInfoToCreate() {
 		MonsterCreateInputDTO result = new MonsterCreateInputDTO();
+		result.setAlignments(this.alignmentDao.findAll().stream()
+				.map(alignment -> CreatureMapper.alignmentEntityToDTO(alignment))
+				.collect(Collectors.toList()));
+		result.setSizes(this.monsterSizeDao.findAll().stream()
+				.map(size-> MonsterMapper.sizeEntityToDTO(size))
+				.collect(Collectors.toList()));
+		result.setTypes(this.monsterTypeDao.findAll().stream()
+				.map(type -> MonsterTypeMapper.entityToDto(type))
+				.collect(Collectors.toList()));
 		result.setLanguages(this.languageDao.findAll().stream()
 				.map(language -> LanguageMappers.entityToDTO(language) )
 				.collect(Collectors.toList()));
@@ -132,6 +155,13 @@ public class MonsterService implements IMonsterService {
 				.map(damage -> DamageMapper.entityTODTO(damage))
 				.collect(Collectors.toList()));
 		return result;
+	}
+
+	@Override
+	public MonsterCreateDTO insertMonster(MonsterCreateDTO inputDto) throws ResourceNotFoundException {
+		Monster entity = new Monster();
+		//entity.setRace(new MonsterRace());
+		return inputDto;
 	}
 	
 	

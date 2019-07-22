@@ -31,10 +31,13 @@ export class MonsterCreateComponent implements OnInit {
 
   ngOnInit() {
     this.monsterService.getMonsterCreateInput().subscribe(
-      response => (this.inputValues = response)   
+      response => (this.inputValues = response, console.log(response))   
     )
 
     this.informacoesFormGroup = this._formBuilder.group({
+      alignment:[{},Validators.required],
+      size:[{}, Validators.required],
+      type:[{}, Validators.required],
       profilePicture: [''],
       name: ['',Validators.required],
       description: ['',Validators.required]
@@ -67,9 +70,19 @@ export class MonsterCreateComponent implements OnInit {
   }
   private mapFormToDTO(): MonsterCreate {
     return {
-      raceName: this.informacoesFormGroup.controls['profilePicture'].value,
+      raceName: this.informacoesFormGroup.controls['name'].value,
       raceDescription: this.informacoesFormGroup.controls['description'].value,
       imagePath: this.informacoesFormGroup.controls['profilePicture'].value,
+      size: this.informacoesFormGroup.controls['size'].value,
+      alignment: this.informacoesFormGroup.controls['alignment'].value,
+      armorClass:this.habilitiesFormGroup.controls['armorClass'].value,
+      lifePoints:this.habilitiesFormGroup.controls['lifePoints'].value,
+      force:this.habilitiesFormGroup.controls['force'].value,
+      dexterity:this.habilitiesFormGroup.controls['dexterity'].value,
+      constitution:this.habilitiesFormGroup.controls['constitution'].value,
+      inteligence: this.habilitiesFormGroup.controls['inteligence'].value,
+      wisdom:this.habilitiesFormGroup.controls['wisdom'].value,
+      charisma: this.habilitiesFormGroup.controls['charisma'].value,
       level: this.habilitiesFormGroup.controls['level'].value,
       damageImunity: this.habilitiesFormGroup.controls['damageImunity'].value,
       damageResistence: this.habilitiesFormGroup.controls['damageResistence'].value,

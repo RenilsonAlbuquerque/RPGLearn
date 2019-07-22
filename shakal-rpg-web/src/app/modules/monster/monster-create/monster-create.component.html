@@ -1,7 +1,39 @@
 <mat-horizontal-stepper  #stepper>
     <mat-step [stepControl]="informacoesFormGroup">
         <form [formGroup]="informacoesFormGroup">
-            <ng-template matStepLabel>Informações</ng-template>
+            <ng-template  matStepLabel>Informações</ng-template>
+            <div class="row">
+                    <mat-form-field class="form-group col-4" appearance="outline">
+                            
+                                    <mat-label>Tipo de criatura</mat-label>
+                                    <mat-select formControlName="type">
+                                        <mat-option *ngFor="let type of inputValues?.types" [value]="type.id">
+                                            {{type.name}}
+                                        </mat-option>
+                                    </mat-select>
+                                   
+                    </mat-form-field>
+                    <mat-form-field class="form-group col-4" appearance="outline">
+                           
+                                    <mat-label>Tamanho</mat-label>
+                                    <mat-select formControlName="size">
+                                        <mat-option *ngFor="let size of inputValues?.sizes" [value]="size.id">
+                                            {{size.value}}
+                                        </mat-option>
+                                    </mat-select>
+                                
+                    </mat-form-field>
+                    <mat-form-field class="form-group col-4" appearance="outline">
+                            
+                                    <mat-label>Alinhamento</mat-label>
+                                    <mat-select formControlName="alignment">
+                                        <mat-option *ngFor="let alignment of inputValues?.alignments" [value]="alignment.id">
+                                            {{alignment.value}}
+                                        </mat-option>
+                                    </mat-select>
+                                  
+                    </mat-form-field>
+            </div>
             <div class="row">
                 <div class="col-md-6 col-sm-12">
                         <div class="form-group">
@@ -42,7 +74,7 @@
         </mat-step>
         <mat-step [stepControl]="habilitiesFormGroup">
             <form [formGroup]="habilitiesFormGroup">
-                <ng-template matStepLabel>Habilidades</ng-template>
+                <ng-template  matStepLabel>Habilidades</ng-template>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">
                         <div class="row">
@@ -73,7 +105,7 @@
                         <div class="row">
                             <mat-form-field class="col-md-2 col-sm-4" appearance="outline">
                                 <mat-label>Força</mat-label>
-                                <input matInput formControlName="force" placeholder="Força">
+                                <input  matInput formControlName="force" placeholder="Força">
                                 <mat-error *ngIf="!habilitiesFormGroup.controls['force'].valid && habilitiesFormGroup.controls['force'].touched">
                                         Campo obrigatório
                                 </mat-error>
@@ -196,7 +228,7 @@
                 </form>
         </mat-step>        
         <mat-step>
-          <ng-template matStepLabel>Finalizar</ng-template>
+          <ng-template  matStepLabel>Finalizar</ng-template>
           <div>
               <div class="row">
                 <h3>Tem certeza?</h3>

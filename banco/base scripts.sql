@@ -69,4 +69,20 @@ insert into tb_monster_challenge_level(id,value,experience_points) values (27,25
 insert into tb_monster_challenge_level(id,value,experience_points) values (28,26,90000);
 insert into tb_monster_challenge_level(id,value,experience_points) values (29,30,155000);
 
+insert into tb_monster_size(id,name,description) values (1,"Miúdo","0,75 m/0,75 m");
+insert into tb_monster_size(id,name,description) values (2,"Pequeno","1,5 m/1,5 m");
+insert into tb_monster_size(id,name,description) values (3,"Médio","1,5 m/1,5 m");
+insert into tb_monster_size(id,name,description) values (4,"Grande","3 m/3 m");
+insert into tb_monster_size(id,name,description) values (5,"Enorme","4,5 m/4,5 m");
+insert into tb_monster_size(id,name,description) values (6,"Imenso","6 m/6 m ou maior");
+
+insert into tb_alignment(id,name,description) values(1,"Leal e Bom", "é a tendência de criaturas que se pode contar para fazer o que é correto como é esperadopela sociedade. Dragões dourados, paladinos e muitos anões são leais e bons");
+insert into tb_alignment(id,name,description) values(2,"Neutro e Bom", " é a tendência do povo que faz o melhor que pode para ajudar outros de acordo com suas necessidades. Muitos celestiais, alguns gigantes das nuvens, e grande parte dos gnomos são neutros e bons.");
+insert into tb_alignment(id,name,description) values(3,"Caótico e Bom", " é a tendência de criaturas que agem de acordo com sua própria consciência, se importando pouco com as expectativas dos outros. Dragões de cobre, muitos elfos e unicórnios são caóticos e bons.");
+insert into tb_alignment(id,name,description) values(4,"Leal e Neutro", " é a tendência dos indivíduos que agem de acordo com as leis, tradições ou códigos pessoais. Muitos monges e alguns magos são leais e neutros");
+insert into tb_alignment(id,name,description) values(5,"Neutro", "  é a tendência daqueles que preferem manter distância de questões morais e não tomar partido, fazendo o que aparenta ser melhor conforme a situação. ");
+insert into tb_alignment(id,name,description) values(6,"Caótico e Neutro", " é a tendência das criaturas que seguem seus caprichos, mantendo sua liberdade pessoal acima de tudo. Muitos bárbaros e ladinos, e alguns bardos, são caóticos e neutros");
+insert into tb_alignment(id,name,description) values(7,"Leal e Mau", " é a tendência das criaturas que conseguem metodicamente tudo o que querem, dentro dos limites de uma tradição, lei ou ordem. Diabos, dragões azuis e hobgoblins são leais e maus");
+insert into tb_alignment(id,name,description) values(8,"Neutro e Mau", "  é a tendência daqueles que farão tudo o que quiserem, sem compaixão ou remorso. Muitos drow, alguns gigantes das nuvens e yugoloths são neutros e maus.");
+insert into tb_alignment(id,name,description) values(9,"Caótico e Mau", "  é a tendência de criaturas que agem com violência arbitrária, estimulada por sua ganância, ódio ou sede de sangue. Demônios, dragões vermelhos e orcs são caóticos e maus.");
 

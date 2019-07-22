@@ -2,13 +2,43 @@ package com.shakal.rpg.api.dto.create;
 
 import java.util.List;
 
+import com.shakal.rpg.api.dto.commons.KeyNameDescriptionDto;
 import com.shakal.rpg.api.dto.commons.KeyValueDTO;
 
 public class MonsterCreateInputDTO {
 
-	public List<KeyValueDTO> damageType;
-	public List<KeyValueDTO> languages;
-	public List<KeyValueDTO> levels;
+	private List<KeyValueDTO> alignments;
+	private List<KeyValueDTO> sizes;
+	private List<KeyNameDescriptionDto> types;
+	private List<KeyValueDTO> damageType;
+	private List<KeyValueDTO> languages;
+	private List<KeyValueDTO> levels;
+
+	
+	
+	public List<KeyValueDTO> getAlignments() {
+		return alignments;
+	}
+
+	public void setAlignments(List<KeyValueDTO> alignments) {
+		this.alignments = alignments;
+	}
+
+	public List<KeyValueDTO> getSizes() {
+		return sizes;
+	}
+
+	public void setSizes(List<KeyValueDTO> sizes) {
+		this.sizes = sizes;
+	}
+
+	public List<KeyNameDescriptionDto> getTypes() {
+		return types;
+	}
+
+	public void setTypes(List<KeyNameDescriptionDto> types) {
+		this.types = types;
+	}
 
 	public List<KeyValueDTO> getLanguages() {
 		return languages;
