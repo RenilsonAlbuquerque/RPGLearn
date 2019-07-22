@@ -1,5 +1,7 @@
 package com.shakal.rpg.api.service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +19,17 @@ import com.shakal.rpg.api.dto.filter.CustomPage;
 import com.shakal.rpg.api.dto.filter.PaginationFilter;
 import com.shakal.rpg.api.dto.info.MonsterInfoDTO;
 import com.shakal.rpg.api.dto.overview.MonsterOverviewDTO;
+import com.shakal.rpg.api.model.Alignment;
 import com.shakal.rpg.api.model.Attack;
 import com.shakal.rpg.api.model.Monster;
+import com.shakal.rpg.api.model.MonsterChallengeLevel;
+import com.shakal.rpg.api.model.MonsterRace;
+import com.shakal.rpg.api.model.MonsterSize;
+import com.shakal.rpg.api.model.MonsterType;
 import com.shakal.rpg.api.model.enums.ResistenceTypeEnum;
+import com.shakal.rpg.api.model.relation.CreatureAtribute;
 import com.shakal.rpg.api.repository.AlignmentDAO;
+import com.shakal.rpg.api.repository.AtributeDAO;
 import com.shakal.rpg.api.repository.DamageTypeDAO;
 import com.shakal.rpg.api.repository.LanguageDAO;
 import com.shakal.rpg.api.repository.MonsterChallengeLevelDAO;
@@ -29,6 +38,7 @@ import com.shakal.rpg.api.repository.MonsterSizeDAO;
 import com.shakal.rpg.api.repository.MonsterTypeDAO;
 import com.shakal.rpg.api.specification.MonsterSpecification;
 import com.shakal.rpg.api.exception.*;
+import com.shakal.rpg.api.helpers.AtributeHelper;
 import com.shakal.rpg.api.mappers.AtributeMapper;
 import com.shakal.rpg.api.mappers.AttackMapper;
 import com.shakal.rpg.api.mappers.CreatureMapper;
@@ -56,12 +66,13 @@ public class MonsterService implements IMonsterService {
 	private MonsterTypeDAO monsterTypeDao;
 	private MonsterSizeDAO monsterSizeDao;
 	private AlignmentDAO alignmentDao;
+	private AtributeDAO atributeDao;
 	
 	@Autowired
 	public MonsterService(MonsterDAO monsterDao,LanguageDAO languageDao, 
 			MonsterChallengeLevelDAO monsterChallengeDao, DamageTypeDAO damageTypeDao,
 			MonsterTypeDAO monsterTypeDao, MonsterSizeDAO monsterSizeDao,
-			AlignmentDAO alignmentDao) {
+			AlignmentDAO alignmentDao, AtributeDAO atributeDao) {
 		this.monsterDao = monsterDao;
 		this.languageDao = languageDao;
 		this.challengeLevelDao = monsterChallengeDao;
@@ -69,6 +80,7 @@ public class MonsterService implements IMonsterService {
 		this.monsterTypeDao = monsterTypeDao;
 		this.monsterSizeDao = monsterSizeDao;
 		this.alignmentDao = alignmentDao;
+		this.atributeDao = atributeDao;
 	}
 
 	@Override
@@ -159,9 +171,75 @@ public class MonsterService implements IMonsterService {
 
 	@Override
 	public MonsterCreateDTO insertMonster(MonsterCreateDTO inputDto) throws ResourceNotFoundException {
+		//Search entities
+		MonsterType typeResult = this.monsterTypeDao.findById(inputDto.getType())
+				.orElseThrow(() -> new ResourceNotFoundException(Messages.MONSTER_NOT_FOUND));
+		
+		MonsterSize sizeSearch = this.monsterSizeDao.findById(inputDto.getSize())
+				.orElseThrow(() -> new ResourceNotFoundException(Messages.MONSTER_NOT_FOUND));
+		
+		Alignment alignmentSearch = this.alignmentDao.findById(inputDto.getAlignment())
+				.orElseThrow(() -> new ResourceNotFoundException(Messages.MONSTER_NOT_FOUND));
+		
+		MonsterChallengeLevel levelSearch = this.challengeLevelDao.findById(inputDto.getLevel())
+				.orElseThrow(() -> new ResourceNotFoundException(Messages.MONSTER_NOT_FOUND));
+		
+		//Moput atributes
+		
+		
 		Monster entity = new Monster();
-		//entity.setRace(new MonsterRace());
+		entity.setRace(new MonsterRace(inputDto.getRaceName(),
+										inputDto.getRaceDescription(),
+										typeResult));
+		
+		entity.setRace(new MonsterRace(inputDto.getRaceName(),
+										inputDto.getRaceDescription(),
+										typeResult));
+		entity.setSize(sizeSearch);
+		entity.setAlignment(alignmentSearch);
+		entity.setImagePath(inputDto.getImagePath());
+		entity.setArmorClass(inputDto.getArmorClass());
+		entity.setBaseLifeDice(inputDto.getLifePoints());
+		entity.setChallengeLevel(levelSearch);
+		entity.setAtributes(this.mountAtributes(inputDto));
+		this.monsterDao.save(entity);
+		
 		return inputDto;
+	}
+	private List<CreatureAtribute> mountAtributes(MonsterCreateDTO inputDto){
+		List<CreatureAtribute> result = new ArrayList<CreatureAtribute>();
+		CreatureAtribute force = new CreatureAtribute();
+			force.setAtribute(this.atributeDao.getOne(1L));
+			force.setValue(inputDto.getForce());
+			force.setModfier(AtributeHelper.calculateAtributeBonus(inputDto.getForce()));
+		result.add(force);
+		CreatureAtribute dex = new CreatureAtribute();
+			dex.setAtribute(this.atributeDao.getOne(2L));
+			dex.setValue(inputDto.getDexterity());
+			dex.setModfier(AtributeHelper.calculateAtributeBonus(inputDto.getForce()));
+		result.add(dex);
+		CreatureAtribute constitution = new CreatureAtribute();
+			constitution.setAtribute(this.atributeDao.getOne(3L));
+			constitution.setValue(inputDto.getConstitution());
+			constitution.setModfier(AtributeHelper.calculateAtributeBonus(inputDto.getConstitution()));
+		result.add(constitution);
+		CreatureAtribute inteligence = new CreatureAtribute();
+			inteligence.setAtribute(this.atributeDao.getOne(4L));
+			inteligence.setValue(inputDto.getInteligence());
+			inteligence.setModfier(AtributeHelper.calculateAtributeBonus(inputDto.getInteligence()));
+		result.add(constitution);
+		CreatureAtribute wisdom = new CreatureAtribute();
+			wisdom.setAtribute(this.atributeDao.getOne(5L));
+			wisdom.setValue(inputDto.getWisdom());
+			wisdom.setModfier(AtributeHelper.calculateAtributeBonus(inputDto.getWisdom()));
+		result.add(wisdom);
+		CreatureAtribute charisma = new CreatureAtribute();
+			charisma.setAtribute(this.atributeDao.getOne(6L));
+			charisma.setValue(inputDto.getCharisma());
+			charisma.setModfier(AtributeHelper.calculateAtributeBonus(inputDto.getCharisma()));
+		result.add(charisma);
+		
+		return result;
 	}
 	
 	

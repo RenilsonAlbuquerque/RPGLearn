@@ -11,6 +11,9 @@ public class MonsterCreateDTO {
 	private String raceName;
 	private String raceDescription;
 	private String imagePath;
+	private long size;
+	private long type;
+	private long alignment;
 	private int armorClass;
 	private int lifePoints;
 	private int force;
@@ -19,7 +22,7 @@ public class MonsterCreateDTO {
 	private int inteligence;
 	private int wisdom;
 	private int charisma;
-	private KeyValueDTO level;
+	private long level;
 	private List<KeyValueDTO> damageImunity;
 	private List<KeyValueDTO> damageResistence;
 	private List<KeyValueDTO> languages;
@@ -45,10 +48,30 @@ public class MonsterCreateDTO {
 	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;
 	}
-	public KeyValueDTO getLevel() {
+	
+	public long getSize() {
+		return size;
+	}
+	public void setSize(long size) {
+		this.size = size;
+	}
+	public long getType() {
+		return type;
+	}
+	public void setType(long type) {
+		this.type = type;
+	}
+	public long getAlignment() {
+		return alignment;
+	}
+	public void setAlignment(long alignment) {
+		this.alignment = alignment;
+	}
+	
+	public long getLevel() {
 		return level;
 	}
-	public void setLevel(KeyValueDTO level) {
+	public void setLevel(long level) {
 		this.level = level;
 	}
 	public List<KeyValueDTO> getDamageImunity() {

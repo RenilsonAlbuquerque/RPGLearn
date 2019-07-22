@@ -5,9 +5,9 @@ export interface MonsterCreate{
     raceName: string,
     raceDescription: string;
     imagePath: string,
-    alignment: KeyValue,
-    size: KeyValue,
-    type: NameDescription,
+    alignment: number,
+    size: number,
+    type: number,
     armorClass: number,
     lifePoints: number,
     force:number,
@@ -16,7 +16,7 @@ export interface MonsterCreate{
     inteligence:number,
     wisdom: number,
     charisma: number,
-    level: KeyValue
+    level: number,
     damageImunity: KeyValue[],
     damageResistence: KeyValue[]
     langauges: KeyValue[],

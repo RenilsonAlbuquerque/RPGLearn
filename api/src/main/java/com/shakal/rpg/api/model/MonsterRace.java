@@ -31,6 +31,17 @@ public class MonsterRace {
 	
 	
 
+	public MonsterRace() {
+		super();
+	}
+
+	public MonsterRace(String name, String description, MonsterType monsterType) {
+		super();
+		this.name = name;
+		this.description = description;
+		this.monsterType = monsterType;
+	}
+
 	public long getId() {
 		return id;
 	}

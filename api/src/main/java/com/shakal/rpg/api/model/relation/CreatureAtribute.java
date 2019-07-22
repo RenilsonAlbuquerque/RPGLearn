@@ -19,11 +19,11 @@ public class CreatureAtribute {
 	@EmbeddedId
 	private CreatureAtributeId id;
 	
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@MapsId("creatureId")
 	private Creature creature;
 	
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@MapsId("atributeId")
 	private Atribute atribute;
 	

@@ -164,8 +164,8 @@
                             <div class="form-group col-md-6 col-sm-12">
                                 <mat-form-field appearance="outline" class="col-12">
                                 <mat-label>Nível de desafio</mat-label>
-                                <mat-select>
-                                    <mat-option *ngFor="let level of inputValues?.levels" [value]="level.value">
+                                <mat-select formControlName="level">
+                                    <mat-option *ngFor="let level of inputValues?.levels" [value]="level.id">
                                         {{level.value}}
                                     </mat-option>
                                 </mat-select>

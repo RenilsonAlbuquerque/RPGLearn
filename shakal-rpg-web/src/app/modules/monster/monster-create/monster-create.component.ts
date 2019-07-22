@@ -4,7 +4,6 @@ import { MonsterCreate } from 'src/app/domain/models/monster/monster.create';
 import { MonsterCreateInput } from 'src/app/domain/models/monster/monster.create.input';
 import { MonsterService } from '../monster.module.service';
 import { KeyValue } from 'src/app/domain/models/comon/key.value';
-import { NameDescription } from 'src/app/domain/models/comon/name-description';
 
 
 @Component({
@@ -33,7 +32,8 @@ export class MonsterCreateComponent implements OnInit {
     this.monsterService.getMonsterCreateInput().subscribe(
       response => (this.inputValues = response, console.log(response))   
     )
-
+    //this.inputValues.alignments[0].id
+    //this.inputValues.sizes[0].id
     this.informacoesFormGroup = this._formBuilder.group({
       alignment:[{},Validators.required],
       size:[{}, Validators.required],
@@ -46,12 +46,12 @@ export class MonsterCreateComponent implements OnInit {
       armorClass: ['', Validators.required],
       lifePoints: ['', Validators.required],
       moviment: ['', Validators.required],
-      force: ['', Validators.required],
-      dexterity: ['', Validators.required],
-      constitution: ['', Validators.required],
-      inteligence: ['', Validators.required],
-      wisdom: ['', Validators.required],
-      charisma: ['', Validators.required],
+      force: [0, Validators.required],
+      dexterity: [0, Validators.required],
+      constitution: [0, Validators.required],
+      inteligence: [0, Validators.required],
+      wisdom: [0, Validators.required],
+      charisma: [0, Validators.required],
       level:[{}, Validators.required],
       damageResistence:[[],Validators.required],
       damageImunity:[[],Validators.required],
@@ -75,14 +75,15 @@ export class MonsterCreateComponent implements OnInit {
       imagePath: this.informacoesFormGroup.controls['profilePicture'].value,
       size: this.informacoesFormGroup.controls['size'].value,
       alignment: this.informacoesFormGroup.controls['alignment'].value,
-      armorClass:this.habilitiesFormGroup.controls['armorClass'].value,
-      lifePoints:this.habilitiesFormGroup.controls['lifePoints'].value,
-      force:this.habilitiesFormGroup.controls['force'].value,
-      dexterity:this.habilitiesFormGroup.controls['dexterity'].value,
-      constitution:this.habilitiesFormGroup.controls['constitution'].value,
-      inteligence: this.habilitiesFormGroup.controls['inteligence'].value,
-      wisdom:this.habilitiesFormGroup.controls['wisdom'].value,
-      charisma: this.habilitiesFormGroup.controls['charisma'].value,
+      type: this.informacoesFormGroup.controls['type'].value,
+      armorClass:Number(this.habilitiesFormGroup.controls['armorClass'].value),
+      lifePoints:Number(this.habilitiesFormGroup.controls['lifePoints'].value),
+      force:Number(this.habilitiesFormGroup.get('force').value),
+      dexterity:Number(this.habilitiesFormGroup.controls['dexterity'].value),
+      constitution:Number(this.habilitiesFormGroup.controls['constitution'].value),
+      inteligence: Number(this.habilitiesFormGroup.controls['inteligence'].value),
+      wisdom:Number(this.habilitiesFormGroup.controls['wisdom'].value),
+      charisma: Number(this.habilitiesFormGroup.controls['charisma'].value),
       level: this.habilitiesFormGroup.controls['level'].value,
       damageImunity: this.habilitiesFormGroup.controls['damageImunity'].value,
       damageResistence: this.habilitiesFormGroup.controls['damageResistence'].value,

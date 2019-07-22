@@ -37,9 +37,8 @@ public class MonsterController {
 	private IMonsterService monsterService;
 	
 	@PostMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<MonsterCreateDTO> listAllOverview(@RequestBody MonsterCreateDTO createDto){
-        System.out.println(createDto.getRaceName());
-		return new ResponseEntity<MonsterCreateDTO>(createDto, HttpStatus.OK);
+    public ResponseEntity<MonsterCreateDTO> createMoster(@RequestBody MonsterCreateDTO createDto) throws ResourceNotFoundException{
+		return new ResponseEntity<MonsterCreateDTO>(this.monsterService.insertMonster(createDto), HttpStatus.OK);
     }
 	
 	@PostMapping(value="/list",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)

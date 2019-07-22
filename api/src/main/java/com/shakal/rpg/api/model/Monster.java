@@ -92,6 +92,16 @@ public class Monster extends Creature{
 	}
 
 
+	public MonsterSize getSize() {
+		return size;
+	}
+
+
+	public void setSize(MonsterSize size) {
+		this.size = size;
+	}
+
+
 	
 
 	

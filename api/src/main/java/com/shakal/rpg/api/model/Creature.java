@@ -34,7 +34,7 @@ public abstract class Creature implements ICreature{
 	
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
 	@JoinColumn(name ="alignment_id")
-	private Alignment size;
+	private Alignment alignment;
 
 	@OneToMany(mappedBy = "creature",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	private List<CreatureAtribute> atributes;
@@ -104,9 +104,18 @@ public abstract class Creature implements ICreature{
 	public List<Action> getActions() {
 		return actions;
 	}
-
+	
 	public void setActions(List<Action> actions) {
 		this.actions = actions;
+	}
+	
+	
+	public Alignment getAlignment() {
+		return alignment;
+	}
+
+	public void setAlignment(Alignment alignment) {
+		this.alignment = alignment;
 	}
 
 	@Override
