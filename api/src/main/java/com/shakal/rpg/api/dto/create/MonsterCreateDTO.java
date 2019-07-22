@@ -4,6 +4,7 @@ package com.shakal.rpg.api.dto.create;
 import java.util.List;
 
 import com.shakal.rpg.api.dto.commons.KeyValueDTO;
+import com.shakal.rpg.api.dto.commons.NameDescriptionDTO;
 
 public class MonsterCreateDTO {
 
@@ -14,6 +15,7 @@ public class MonsterCreateDTO {
 	private List<KeyValueDTO> damageImunity;
 	private List<KeyValueDTO> damageResistence;
 	private List<KeyValueDTO> languages;
+	private List<NameDescriptionDTO> features;
 	
 	
 	
@@ -58,6 +60,12 @@ public class MonsterCreateDTO {
 	}
 	public void setLanguages(List<KeyValueDTO> languages) {
 		this.languages = languages;
+	}
+	public List<NameDescriptionDTO> getFeatures() {
+		return features;
+	}
+	public void setFeatures(List<NameDescriptionDTO> features) {
+		this.features = features;
 	}
 	
 	

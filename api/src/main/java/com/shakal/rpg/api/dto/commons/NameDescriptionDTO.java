@@ -1,4 +1,4 @@
-package com.shakal.rpg.api.dto;
+package com.shakal.rpg.api.dto.commons;
 
 public class NameDescriptionDTO {
 

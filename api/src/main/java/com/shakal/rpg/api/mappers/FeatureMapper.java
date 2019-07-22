@@ -1,6 +1,6 @@
 package com.shakal.rpg.api.mappers;
 
-import com.shakal.rpg.api.dto.NameDescriptionDTO;
+import com.shakal.rpg.api.dto.commons.NameDescriptionDTO;
 import com.shakal.rpg.api.model.MonsterFeatures;
 
 public class FeatureMapper {

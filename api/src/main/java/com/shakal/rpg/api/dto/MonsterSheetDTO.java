@@ -2,6 +2,8 @@ package com.shakal.rpg.api.dto;
 
 import java.util.List;
 
+import com.shakal.rpg.api.dto.commons.NameDescriptionDTO;
+
 public class MonsterSheetDTO {
 	
 	private long id;

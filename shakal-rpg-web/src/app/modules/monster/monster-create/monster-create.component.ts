@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators, FormArray} from '@angular/forms';
 import { MonsterCreate } from 'src/app/domain/models/monster/monster.create';
 import { MonsterCreateInput } from 'src/app/domain/models/monster/monster.create.input';
 import { MonsterService } from '../monster.module.service';
 import { KeyValue } from 'src/app/domain/models/comon/key.value';
+import { NameDescription } from 'src/app/domain/models/comon/name-description';
 
 
 @Component({
@@ -13,15 +14,17 @@ import { KeyValue } from 'src/app/domain/models/comon/key.value';
 })
 export class MonsterCreateComponent implements OnInit {
 
+  //Business objectss
   public inputValues: MonsterCreateInput;
   
-  public monster: MonsterCreate;
+  //FormGroups
   public informacoesFormGroup: FormGroup;
   public habilitiesFormGroup: FormGroup;
   public featuresFormGroup: FormGroup;
+  
 
-
-
+  //Items of the component
+  public features: FormArray;
   profilePicture: string;
 
   constructor(private _formBuilder: FormBuilder,private monsterService: MonsterService) { }
@@ -50,10 +53,14 @@ export class MonsterCreateComponent implements OnInit {
       damageResistence:[[],Validators.required],
       damageImunity:[[],Validators.required],
       languages:[[],Validators.required]
-
     });
+    this.featuresFormGroup = this._formBuilder.group({
+      features: this._formBuilder.array([  ])
+    });
+    this.features = this.featuresFormGroup.get('features') as FormArray;
   }
   public onSubmit(){
+    console.log(this.mapFormToDTO());
     this.monsterService.createMonster(this.mapFormToDTO()).subscribe(
       response => (console.log(response))   
     )
@@ -63,7 +70,11 @@ export class MonsterCreateComponent implements OnInit {
       raceName: this.informacoesFormGroup.controls['profilePicture'].value,
       raceDescription: this.informacoesFormGroup.controls['description'].value,
       imagePath: this.informacoesFormGroup.controls['profilePicture'].value,
-      level: this.habilitiesFormGroup.controls['level'].value
+      level: this.habilitiesFormGroup.controls['level'].value,
+      damageImunity: this.habilitiesFormGroup.controls['damageImunity'].value,
+      damageResistence: this.habilitiesFormGroup.controls['damageResistence'].value,
+      langauges: this.habilitiesFormGroup.controls['languages'].value,
+      features: this.featuresFormGroup.controls['features'].value
     } as MonsterCreate;
   }
   changeLanguages(elements: KeyValue[]){
@@ -75,6 +86,17 @@ export class MonsterCreateComponent implements OnInit {
   changeDamageResistences(elements: KeyValue[]){
     this.habilitiesFormGroup.controls['damageResistence'].setValue(elements);
   }
-  
+  addFeature(){
+    this.features.push(this.createNameDescriptionItem());
+  }
+  removeFeature(index) {
+    this.features.removeAt(index);
+  }
+  createNameDescriptionItem(): FormGroup {
+    return this._formBuilder.group({
+      name: ['',Validators.required],
+      description: ['',Validators.required],
+    });
+  }
 
 }
