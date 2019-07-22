@@ -19,6 +19,7 @@ import com.shakal.rpg.api.dto.overview.MonsterOverviewDTO;
 import com.shakal.rpg.api.model.Attack;
 import com.shakal.rpg.api.model.Monster;
 import com.shakal.rpg.api.model.enums.ResistenceTypeEnum;
+import com.shakal.rpg.api.repository.DamageTypeDAO;
 import com.shakal.rpg.api.repository.LanguageDAO;
 import com.shakal.rpg.api.repository.MonsterChallengeLevelDAO;
 import com.shakal.rpg.api.repository.MonsterDAO;
@@ -26,6 +27,7 @@ import com.shakal.rpg.api.specification.MonsterSpecification;
 import com.shakal.rpg.api.exception.*;
 import com.shakal.rpg.api.mappers.AtributeMapper;
 import com.shakal.rpg.api.mappers.AttackMapper;
+import com.shakal.rpg.api.mappers.DamageMapper;
 import com.shakal.rpg.api.mappers.FeatureMapper;
 import com.shakal.rpg.api.mappers.LanguageMappers;
 import com.shakal.rpg.api.mappers.LevelMapper;
@@ -44,12 +46,15 @@ public class MonsterService implements IMonsterService {
 	private MonsterDAO monsterDao;
 	private LanguageDAO languageDao;
 	private MonsterChallengeLevelDAO challengeLevelDao;
+	private DamageTypeDAO damageTypeDao;
 	
 	@Autowired
-	public MonsterService(MonsterDAO monsterDao,LanguageDAO languageDao, MonsterChallengeLevelDAO monsterChallengeDao) {
+	public MonsterService(MonsterDAO monsterDao,LanguageDAO languageDao, 
+			MonsterChallengeLevelDAO monsterChallengeDao, DamageTypeDAO damageTypeDao) {
 		this.monsterDao = monsterDao;
 		this.languageDao = languageDao;
 		this.challengeLevelDao = monsterChallengeDao;
+		this.damageTypeDao = damageTypeDao;
 	}
 
 	@Override
@@ -122,6 +127,9 @@ public class MonsterService implements IMonsterService {
 				.collect(Collectors.toList()));
 		result.setLevels(this.challengeLevelDao.findAll().stream()
 				.map(level -> LevelMapper.entityToDTO(level) )
+				.collect(Collectors.toList()));
+		result.setDamageType(this.damageTypeDao.findAll().stream()
+				.map(damage -> DamageMapper.entityTODTO(damage))
 				.collect(Collectors.toList()));
 		return result;
 	}

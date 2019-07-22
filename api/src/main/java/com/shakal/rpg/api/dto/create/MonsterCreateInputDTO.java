@@ -6,6 +6,7 @@ import com.shakal.rpg.api.dto.commons.KeyValueDTO;
 
 public class MonsterCreateInputDTO {
 
+	public List<KeyValueDTO> damageType;
 	public List<KeyValueDTO> languages;
 	public List<KeyValueDTO> levels;
 
@@ -24,6 +25,15 @@ public class MonsterCreateInputDTO {
 	public void setLevels(List<KeyValueDTO> levels) {
 		this.levels = levels;
 	}
+
+	public List<KeyValueDTO> getDamageType() {
+		return damageType;
+	}
+
+	public void setDamageType(List<KeyValueDTO> damageType) {
+		this.damageType = damageType;
+	}
+	
 	
 	
 	
