@@ -24,7 +24,7 @@ export class MonsterSearchCardComponent implements OnInit {
   ngOnInit() {
     this.search = "";
     this.monsterService.getOverview(1).subscribe(
-        response => (this.page = response,console.log(response))   
+        response => (this.page = response)   
     )
   }
   pageChange(){

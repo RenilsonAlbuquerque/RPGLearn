@@ -3,7 +3,7 @@
         <form [formGroup]="informacoesFormGroup">
             <ng-template matStepLabel>Informações</ng-template>
             <div class="row">
-                <div class="col-6">
+                <div class="col-md-6 col-sm-12">
                     <div class="form-group">
                         <div class="form-group">
                             <label for="photoURL">URL Foto</label>
@@ -14,7 +14,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-md-6 col-sm-12">
                     <div class="form-group">
                         <label for="monsterName">Nome</label>
                         <input type="text" formControlName="name" class="form-control" id="monsterName" aria-describedby="emailHelp" placeholder="Nome">
@@ -52,27 +52,27 @@
                     </li>
                     <li class="list-group-item">
                         <div class="row">
-                            <div class="form-group col-2">
+                            <div class="form-group col-md-2 col-sm-4">
                                 <label for="monsterForce">Força</label>
                                 <input type="text" formControlName="force" class="form-control" id="monsterForce"  placeholder="Força">
                             </div>
-                            <div class="form-group col-2">
+                            <div class="form-group col-md-2 col-sm-4">
                                 <label for="monsterDex">Destreza</label>
                                 <input type="text" formControlName="dexterity" class="form-control" id="monsterDex" rows="11" placeholder="Destreza">
                             </div>
-                            <div class="form-group col-2">
+                            <div class="form-group col-md-2 col-sm-4">
                                 <label for="monsterCons">Constituição</label>
                                 <input type="text" formControlName="constitution" class="form-control" id="monsterCons" rows="11" placeholder="Constituição">
                             </div>
-                            <div class="form-group col-2">
+                            <div class="form-group col-md-2 col-sm-4">
                                 <label for="monsterInt">Inteligência</label>
                                 <input type="text" formControlName="inteligence" class="form-control" id="monsterInt" rows="11" placeholder="Inteligencia">
                             </div>
-                            <div class="form-group col-2">
+                            <div class="form-group col-md-2 col-sm-4">
                                 <label for="monsterWis">Sabedoria</label>
                                 <input type="text" formControlName="wisdom" class="form-control" id="monsterWis" rows="11" placeholder="Sabedoria">
                             </div>
-                            <div class="form-group col-2">
+                            <div class="form-group col-md-2 col-sm-4">
                                 <label for="monsterCha">Carisma</label>
                                 <input type="text" formControlName="charisma" class="form-control" id="monsterCha" rows="11" placeholder="Constituoção">
                             </div>
@@ -80,19 +80,19 @@
                     </li>
                     <li class="list-group-item">
                         <div class="row">
-                            <div class="form-group col-6">
-                                <app-input-chip [placeholderComponent]="'Resisnência a dano'" [elementControl]="habilitiesFormGroup.get('damageResistence')" [allElements]="inputValues.damageType"></app-input-chip>  
+                            <div class="form-group col-md-6 col-sm-12">
+                                <app-input-chip [placeholderComponent]="'Resisnência a dano'" (changeFunc)="changeDamageResistences($event)" [allElements]="inputValues.damageType"></app-input-chip>  
                             </div>
-                            <div class="form-group col-6">
-                                <app-input-chip [placeholderComponent]="'Imunidade a dano'" [elementControl]="habilitiesFormGroup.get('damageImunity')" [allElements]="inputValues.damageType"></app-input-chip>  
+                            <div class="form-group col-md-6 col-sm-12">
+                                <app-input-chip [placeholderComponent]="'Imunidade a dano'" (changeFunc)="changeDamageImunities($event)" [allElements]="inputValues.damageType"></app-input-chip>  
                             </div>
                         </div>
                         
                         <div class="row">
-                            <div class="form-group col-6">
-                                <app-input-chip [placeholderComponent]="'Idiomas'"  [elementControl]="habilitiesFormGroup.get('damageImunity')" [allElements]="inputValues.languages"></app-input-chip>  
+                            <div class="form-group col-md-6 col-sm-12">
+                                <app-input-chip [placeholderComponent]="'Idiomas'" (changeFunc)="changeLanguages($event)"  [allElements]="inputValues.languages"></app-input-chip>  
                             </div>
-                            <div class="form-group col-6">
+                            <div class="form-group col-md-6 col-sm-12">
                                 <mat-form-field class="col-12">
                                 <mat-label>Nível de desafio</mat-label>
                                 <mat-select>
@@ -126,7 +126,6 @@
                         <button type="button" class="btn btn-success pull-right" matStepperPrevious>Back</button>
                         <button type="button" class="btn btn-success pull-right" (click)="stepper.reset()">Reset</button>
                         <button type="button" class="btn btn-success pull-right" (click)="onSubmit()">Finalizar</button>
-
             </div>                                  
           </div>
          

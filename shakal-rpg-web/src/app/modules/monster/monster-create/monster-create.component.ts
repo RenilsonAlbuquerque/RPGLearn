@@ -20,7 +20,7 @@ export class MonsterCreateComponent implements OnInit {
   public habilitiesFormGroup: FormGroup;
   public featuresFormGroup: FormGroup;
 
-  public allLanguages: string[];
+
 
   profilePicture: string;
 
@@ -28,10 +28,7 @@ export class MonsterCreateComponent implements OnInit {
 
   ngOnInit() {
     this.monsterService.getMonsterCreateInput().subscribe(
-      response => (
-        this.inputValues = response
-        //this.allLanguages = response.languages.map((item, key) => item)
-        )   
+      response => (this.inputValues = response)   
     )
 
     this.informacoesFormGroup = this._formBuilder.group({
@@ -50,9 +47,9 @@ export class MonsterCreateComponent implements OnInit {
       wisdom: ['', Validators.required],
       charisma: ['', Validators.required],
       level:[{}, Validators.required],
-      damageResistence:[],
-      damageImunity:[],
-      languages:[]
+      damageResistence:[[],Validators.required],
+      damageImunity:[[],Validators.required],
+      languages:[[],Validators.required]
 
     });
   }
@@ -62,13 +59,22 @@ export class MonsterCreateComponent implements OnInit {
     )
   }
   private mapFormToDTO(): MonsterCreate {
-    console.log(this.habilitiesFormGroup.get('languages').value)
     return {
-      raceName: this.informacoesFormGroup.get('profilePicture').value,
-      raceDescription: this.informacoesFormGroup.get('description').value,
-      imagePath: this.informacoesFormGroup.get('profilePicture').value,
-      level: this.habilitiesFormGroup.get('level').value
+      raceName: this.informacoesFormGroup.controls['profilePicture'].value,
+      raceDescription: this.informacoesFormGroup.controls['description'].value,
+      imagePath: this.informacoesFormGroup.controls['profilePicture'].value,
+      level: this.habilitiesFormGroup.controls['level'].value
     } as MonsterCreate;
   }
+  changeLanguages(elements: KeyValue[]){
+    this.habilitiesFormGroup.controls['languages'].setValue(elements);
+  }
+  changeDamageImunities(elements: KeyValue[]){
+    this.habilitiesFormGroup.controls['damageImunity'].setValue(elements);
+  }
+  changeDamageResistences(elements: KeyValue[]){
+    this.habilitiesFormGroup.controls['damageResistence'].setValue(elements);
+  }
+  
 
 }

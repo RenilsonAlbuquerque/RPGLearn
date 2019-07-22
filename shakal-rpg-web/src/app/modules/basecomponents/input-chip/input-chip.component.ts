@@ -1,6 +1,6 @@
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import {Component, ElementRef, ViewChild, Input} from '@angular/core';
-import {FormControl} from '@angular/forms';
+import {Component, ElementRef, ViewChild, Input, OnChanges, Output, EventEmitter, OnInit} from '@angular/core';
+import {FormControl, FormGroup} from '@angular/forms';
 import { MatAutocomplete, MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
 import {MatChipInputEvent} from '@angular/material/chips';
 import {Observable} from 'rxjs';
@@ -15,11 +15,15 @@ import { KeyValue } from 'src/app/domain/models/comon/key.value';
   templateUrl: './input-chip.component.html',
   styleUrls: ['./input-chip.component.scss']
 })
-export class InputChipComponent {
+export class InputChipComponent  {
 
   @Input() placeholderComponent: string;
-  @Input() allElements: KeyValue[] = [];
-  @Input() elementControl = new FormControl();
+  @Input() allElements: KeyValue[];
+
+  @Output() changeFunc = new EventEmitter();
+
+  chipSelectedElements: KeyValue[] = [];
+  elementControl = new FormControl();
   
 
   visible = true;
@@ -27,7 +31,7 @@ export class InputChipComponent {
   removable = true;
   addOnBlur = true;
   separatorKeysCodes: number[] = [ENTER, COMMA];
-  public chipSelectedElements: KeyValue[] = [];
+  
   public filteredElements: Observable<String[]>;
   
   private allowFreeTextAddEngineer = false;
@@ -43,12 +47,11 @@ export class InputChipComponent {
     );
     
   }
-
+  
   public addElement(event: MatChipInputEvent): void {
-    console.log(this.placeholderComponent)
+    this.changeFunc.emit(this.chipSelectedElements);
     if (!this.allowFreeTextAddEngineer) {
       // only allowed to select from the filtered autocomplete list
-      console.log('allowFreeTextAddEngineer is false');
       return;
     }
     //
@@ -64,15 +67,18 @@ export class InputChipComponent {
      if ((value || '').trim()) {
       this.selectEngineerByName(value.trim());
     }
-
+    
     this.resetInputs();
   }
   public removeElement(element: KeyValue): void {
+    this.changeFunc.emit();
     const index = this.chipSelectedElements.indexOf(element);
     if (index >= 0) {
       this.chipSelectedElements.splice(index, 1);
       this.resetInputs();
     }
+    
+    
   }
   private resetInputs() {
     // clear input element
