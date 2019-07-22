@@ -1,6 +1,8 @@
 package com.shakal.rpg.api.dto.create;
 
 
+import java.util.List;
+
 import com.shakal.rpg.api.dto.commons.KeyValueDTO;
 
 public class MonsterCreateDTO {
@@ -9,6 +11,10 @@ public class MonsterCreateDTO {
 	private String raceDescription;
 	private String imagePath;
 	private KeyValueDTO level;
+	private List<KeyValueDTO> damageImunity;
+	private List<KeyValueDTO> damageResistence;
+	private List<KeyValueDTO> languages;
+	
 	
 	
 	public String getRaceName() {
@@ -34,6 +40,24 @@ public class MonsterCreateDTO {
 	}
 	public void setLevel(KeyValueDTO level) {
 		this.level = level;
+	}
+	public List<KeyValueDTO> getDamageImunity() {
+		return damageImunity;
+	}
+	public void setDamageImunity(List<KeyValueDTO> damageImunity) {
+		this.damageImunity = damageImunity;
+	}
+	public List<KeyValueDTO> getDamageResistence() {
+		return damageResistence;
+	}
+	public void setDamageResistence(List<KeyValueDTO> damageResistence) {
+		this.damageResistence = damageResistence;
+	}
+	public List<KeyValueDTO> getLanguages() {
+		return languages;
+	}
+	public void setLanguages(List<KeyValueDTO> languages) {
+		this.languages = languages;
 	}
 	
 	

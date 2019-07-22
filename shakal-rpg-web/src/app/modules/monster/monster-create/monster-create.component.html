@@ -4,29 +4,39 @@
             <ng-template matStepLabel>Informações</ng-template>
             <div class="row">
                 <div class="col-md-6 col-sm-12">
-                    <div class="form-group">
                         <div class="form-group">
-                            <label for="photoURL">URL Foto</label>
-                            <input type="text" class="form-control" [(ngModel)]="profilePicture" formControlName="profilePicture" id="photoURL"  placeholder="Url">
-                        </div>
-                        <div class="card w-100 h-100">
-                            <img height="310"  class="card-img" src="{{ profilePicture}}" alt="">
-                        </div>
-                    </div>
+                               
+                                <div class="card w-100 h-100">
+                                    <img height="320"  class="card-img" src="{{ profilePicture}}" alt="">
+                                </div>
+                                <mat-form-field class="form-group col-12" appearance="outline">
+                                        <mat-label>URL Foto</mat-label>
+                                        <input matInput placeholder="Url imagem" [(ngModel)]="profilePicture" formControlName="profilePicture">
+                                        
+                                </mat-form-field>
+                            </div>
+                       
                 </div>
                 <div class="col-md-6 col-sm-12">
-                    <div class="form-group">
-                        <label for="monsterName">Nome</label>
-                        <input type="text" formControlName="name" class="form-control" id="monsterName" aria-describedby="emailHelp" placeholder="Nome">
-                    </div>
-                    <div class="form-group">
-                        <label for="monterDescription">Descrição</label>
-                        <textarea formControlName="description" class="form-control" id="monterDescription" rows="11"></textarea>
-                    </div>
+                    <mat-form-field class="form-group col-12" appearance="outline">
+                            <mat-label>Nome</mat-label>
+                            <input matInput placeholder="Descrição" formControlName="name">
+                            <mat-error *ngIf="!informacoesFormGroup.controls['name'].valid && informacoesFormGroup.controls['name'].touched">
+                                    Campo obrigatório
+                            </mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="form-group col-12" appearance="outline">
+                            <mat-label>Descrição</mat-label>
+                            <textarea matInput formControlName="description" matInput rows="13"></textarea>
+                            <mat-error *ngIf="!informacoesFormGroup.controls['description'].valid && informacoesFormGroup.controls['description'].touched">
+                                    Campo obrigatório
+                            </mat-error>
+                    </mat-form-field>
+                   
                 </div>
             </div>
-            <div>
-                <button type="button" focus-index="1" class="btn btn-primary" matStepperNext>Próximo</button>
+            <div class="example-button-row float-right">
+                <button mat-raised-button color="primary" matStepperNext>Próximo</button>
             </div>
         </form>
         </mat-step>
@@ -36,46 +46,73 @@
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">
                         <div class="row">
-                            <div class="form-group col-4">
-                                <label for="monsterAc">Classe de armadura</label>
-                                <input type="text" formControlName="armorClass" class="form-control" id="monsterAc"  placeholder="Classe de armadura">
-                            </div>
-                            <div class="form-group col-4">
-                                <label for="monsterLifePoints">Pontos de vida</label>
-                                <input type="text" formControlName="lifePoints" class="form-control" id="monsterLifePoints" rows="11" placeholder="Pontos de vida">
-                            </div>
-                            <div class="form-group col-4">
-                                <label for="moviment">Deslocamento</label>
-                                <input type="text" formControlName="moviment" class="form-control" id="moviment" rows="11" placeholder="Deslocamento">
-                            </div>
+                            <mat-form-field class="form-group col-4" appearance="outline">
+                                <mat-label>Classe de armadura</mat-label>
+                                <input matInput placeholder="Classe de armadura" formControlName="armorClass">
+                                <mat-error *ngIf="!habilitiesFormGroup.controls['armorClass'].valid && habilitiesFormGroup.controls['armorClass'].touched">
+                                        Campo obrigatório
+                                </mat-error>
+                            </mat-form-field>
+                            <mat-form-field class="form-group col-4" appearance="outline">
+                                <mat-label>Pontos de vida</mat-label>
+                                <input matInput placeholder="Pontos de vida" formControlName="lifePoints">
+                                <mat-error *ngIf="!habilitiesFormGroup.controls['lifePoints'].valid && habilitiesFormGroup.controls['lifePoints'].touched">
+                                        Campo obrigatório
+                                </mat-error>
+                            </mat-form-field>
+                            <mat-form-field class="form-group col-4" appearance="outline">
+                                <mat-label>Deslocamento</mat-label>
+                                <input matInput placeholder="Deslocamento" formControlName="moviment">
+                                <mat-error *ngIf="!habilitiesFormGroup.controls['moviment'].valid && habilitiesFormGroup.controls['moviment'].touched">
+                                        Campo obrigatório
+                                </mat-error>
+                            </mat-form-field>
                         </div>
                     </li>
                     <li class="list-group-item">
                         <div class="row">
-                            <div class="form-group col-md-2 col-sm-4">
-                                <label for="monsterForce">Força</label>
-                                <input type="text" formControlName="force" class="form-control" id="monsterForce"  placeholder="Força">
-                            </div>
-                            <div class="form-group col-md-2 col-sm-4">
-                                <label for="monsterDex">Destreza</label>
-                                <input type="text" formControlName="dexterity" class="form-control" id="monsterDex" rows="11" placeholder="Destreza">
-                            </div>
-                            <div class="form-group col-md-2 col-sm-4">
-                                <label for="monsterCons">Constituição</label>
-                                <input type="text" formControlName="constitution" class="form-control" id="monsterCons" rows="11" placeholder="Constituição">
-                            </div>
-                            <div class="form-group col-md-2 col-sm-4">
-                                <label for="monsterInt">Inteligência</label>
-                                <input type="text" formControlName="inteligence" class="form-control" id="monsterInt" rows="11" placeholder="Inteligencia">
-                            </div>
-                            <div class="form-group col-md-2 col-sm-4">
-                                <label for="monsterWis">Sabedoria</label>
-                                <input type="text" formControlName="wisdom" class="form-control" id="monsterWis" rows="11" placeholder="Sabedoria">
-                            </div>
-                            <div class="form-group col-md-2 col-sm-4">
-                                <label for="monsterCha">Carisma</label>
-                                <input type="text" formControlName="charisma" class="form-control" id="monsterCha" rows="11" placeholder="Constituoção">
-                            </div>
+                            <mat-form-field class="col-md-2 col-sm-4" appearance="outline">
+                                <mat-label>Força</mat-label>
+                                <input matInput formControlName="force" placeholder="Força">
+                                <mat-error *ngIf="!habilitiesFormGroup.controls['force'].valid && habilitiesFormGroup.controls['force'].touched">
+                                        Campo obrigatório
+                                </mat-error>
+                            </mat-form-field>
+                            <mat-form-field class="col-md-2 col-sm-4" appearance="outline">
+                                <mat-label>Destreza</mat-label>
+                                <input matInput formControlName="dexterity" placeholder="Destreza">
+                                <mat-error *ngIf="!habilitiesFormGroup.controls['dexterity'].valid && habilitiesFormGroup.controls['dexterity'].touched">
+                                        Campo obrigatório
+                                </mat-error>
+                            </mat-form-field>
+                            <mat-form-field class="col-md-2 col-sm-4" appearance="outline">
+                                <mat-label>Constituição</mat-label>
+                                <input matInput formControlName="constitution" placeholder="Constituição">
+                                <mat-error *ngIf="!habilitiesFormGroup.controls['constitution'].valid && habilitiesFormGroup.controls['constitution'].touched">
+                                        Campo obrigatório
+                                </mat-error>
+                            </mat-form-field>
+                            <mat-form-field class="col-md-2 col-sm-4" appearance="outline">
+                                <mat-label>Inteligência</mat-label>
+                                <input matInput formControlName="inteligence" placeholder="Inteligência">
+                                <mat-error *ngIf="!habilitiesFormGroup.controls['inteligence'].valid && habilitiesFormGroup.controls['inteligence'].touched">
+                                        Campo obrigatório
+                                </mat-error>
+                            </mat-form-field>
+                            <mat-form-field class="col-md-2 col-sm-4" appearance="outline">
+                                <mat-label>Sabedoria</mat-label>
+                                <input matInput formControlName="wisdom" placeholder="Sabedoria">
+                                <mat-error *ngIf="!habilitiesFormGroup.controls['wisdom'].valid && habilitiesFormGroup.controls['wisdom'].touched">
+                                        Campo obrigatório
+                                </mat-error>
+                            </mat-form-field>
+                            <mat-form-field class="col-md-2 col-sm-4" appearance="outline">
+                                <mat-label>carisma</mat-label>
+                                <input matInput formControlName="charisma" placeholder="Carisma">
+                                <mat-error *ngIf="!habilitiesFormGroup.controls['charisma'].valid && habilitiesFormGroup.controls['charisma'].touched">
+                                        Campo obrigatório
+                                </mat-error>
+                            </mat-form-field>
                         </div>
                     </li>
                     <li class="list-group-item">
@@ -93,7 +130,7 @@
                                 <app-input-chip [placeholderComponent]="'Idiomas'" (changeFunc)="changeLanguages($event)"  [allElements]="inputValues.languages"></app-input-chip>  
                             </div>
                             <div class="form-group col-md-6 col-sm-12">
-                                <mat-form-field class="col-12">
+                                <mat-form-field appearance="outline" class="col-12">
                                 <mat-label>Nível de desafio</mat-label>
                                 <mat-select>
                                     <mat-option *ngFor="let level of inputValues?.levels" [value]="level.value">
@@ -103,9 +140,12 @@
                                 </mat-form-field>
                             </div>
                         </div>
-                        <div>
-                            <button type="button" focus-index="1" class="btn btn-primary" matStepperNext>Próximo</button>
+                        <div class="example-button-row float-right">
+                                
+                                <button mat-raised-button color="primary" matStepperPrevious>Anterior</button>
+                                <button mat-raised-button color="primary" matStepperNext>Próximo</button>
                         </div>
+                       
                     </li>
                    
                 </ul>
@@ -114,6 +154,11 @@
         <mat-step [stepControl]="featuresFormGroup">
                 <form [formGroup]="featuresFormGroup">
                     <ng-template matStepLabel>Características</ng-template>
+                    <div class="example-button-row float-right">
+                                
+                            <button mat-raised-button color="primary" matStepperPrevious>Anterior</button>
+                            <button mat-raised-button color="primary" matStepperNext>Próximo</button>
+                    </div>
                 </form>
         </mat-step>        
         <mat-step>
@@ -123,9 +168,9 @@
                 <h3>Tem certeza?</h3>
               </div>
             <div class="row align-items-end">
-                        <button type="button" class="btn btn-success pull-right" matStepperPrevious>Back</button>
-                        <button type="button" class="btn btn-success pull-right" (click)="stepper.reset()">Reset</button>
-                        <button type="button" class="btn btn-success pull-right" (click)="onSubmit()">Finalizar</button>
+                <button type="button" class="btn btn-success pull-right" matStepperPrevious>Back</button>
+                <button type="button" class="btn btn-success pull-right" (click)="stepper.reset()">Reset</button>
+                <button type="button" class="btn btn-success pull-right" (click)="onSubmit()">Finalizar</button>
             </div>                                  
           </div>
          

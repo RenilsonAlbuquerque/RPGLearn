@@ -5,6 +5,9 @@ export interface MonsterCreate{
     raceDescription: string;
     imagePath: string,
     level: KeyValue
+    damageImunity: KeyValue[],
+    damageResistence: KeyValue[]
+    langauges: KeyValue[]
 
 
 }
