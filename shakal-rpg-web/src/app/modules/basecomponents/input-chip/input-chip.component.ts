@@ -20,6 +20,7 @@ export class InputChipComponent {
   @Input() placeholderComponent: string;
   @Input() allElements: KeyValue[] = [];
   @Input() elementControl = new FormControl();
+  
 
   visible = true;
   selectable = true;
@@ -44,6 +45,7 @@ export class InputChipComponent {
   }
 
   public addElement(event: MatChipInputEvent): void {
+    console.log(this.placeholderComponent)
     if (!this.allowFreeTextAddEngineer) {
       // only allowed to select from the filtered autocomplete list
       console.log('allowFreeTextAddEngineer is false');
