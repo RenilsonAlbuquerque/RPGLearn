@@ -9,6 +9,11 @@ import javax.persistence.Embeddable;
 public class WeaponDiceId implements Serializable {
 	
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Column(name = "weapon_id")
     private Long weaponId;
 

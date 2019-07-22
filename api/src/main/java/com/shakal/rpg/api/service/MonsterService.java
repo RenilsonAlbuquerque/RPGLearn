@@ -173,20 +173,20 @@ public class MonsterService implements IMonsterService {
 	public MonsterCreateDTO insertMonster(MonsterCreateDTO inputDto) throws ResourceNotFoundException {
 		//Search entities
 		MonsterType typeResult = this.monsterTypeDao.findById(inputDto.getType())
-				.orElseThrow(() -> new ResourceNotFoundException(Messages.MONSTER_NOT_FOUND));
+				.orElseThrow(() -> new ResourceNotFoundException(Messages.INVALID_MONSTER_TYPE));
 		
 		MonsterSize sizeSearch = this.monsterSizeDao.findById(inputDto.getSize())
-				.orElseThrow(() -> new ResourceNotFoundException(Messages.MONSTER_NOT_FOUND));
+				.orElseThrow(() -> new ResourceNotFoundException(Messages.INVALID_MONSTER_SIZE));
 		
 		Alignment alignmentSearch = this.alignmentDao.findById(inputDto.getAlignment())
-				.orElseThrow(() -> new ResourceNotFoundException(Messages.MONSTER_NOT_FOUND));
+				.orElseThrow(() -> new ResourceNotFoundException(Messages.INVALID_CREATURE_ALIGNMENT));
 		
 		MonsterChallengeLevel levelSearch = this.challengeLevelDao.findById(inputDto.getLevel())
-				.orElseThrow(() -> new ResourceNotFoundException(Messages.MONSTER_NOT_FOUND));
-		
-		//Moput atributes
+				.orElseThrow(() -> new ResourceNotFoundException(Messages.INVALID_MONSTER_CHALLENGE_LEVEL));
 		
 		
+		
+		//Create the entity and persist
 		Monster entity = new Monster();
 		entity.setRace(new MonsterRace(inputDto.getRaceName(),
 										inputDto.getRaceDescription(),
@@ -195,13 +195,13 @@ public class MonsterService implements IMonsterService {
 		entity.setRace(new MonsterRace(inputDto.getRaceName(),
 										inputDto.getRaceDescription(),
 										typeResult));
+		entity.setImagePath(inputDto.getImagePath());
 		entity.setSize(sizeSearch);
 		entity.setAlignment(alignmentSearch);
-		entity.setImagePath(inputDto.getImagePath());
 		entity.setArmorClass(inputDto.getArmorClass());
 		entity.setBaseLifeDice(inputDto.getLifePoints());
-		entity.setChallengeLevel(levelSearch);
 		entity.setAtributes(this.mountAtributes(inputDto));
+		entity.setChallengeLevel(levelSearch);
 		this.monsterDao.save(entity);
 		
 		return inputDto;

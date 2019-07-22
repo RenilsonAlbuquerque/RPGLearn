@@ -10,9 +10,9 @@ public class MonsterCreateDTO {
 
 	private String raceName;
 	private String raceDescription;
+	private long type;
 	private String imagePath;
 	private long size;
-	private long type;
 	private long alignment;
 	private int armorClass;
 	private int lifePoints;
