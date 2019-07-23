@@ -87,7 +87,7 @@ export class MonsterCreateComponent implements OnInit {
       level: this.habilitiesFormGroup.controls['level'].value,
       damageImunity: this.habilitiesFormGroup.controls['damageImunity'].value,
       damageResistence: this.habilitiesFormGroup.controls['damageResistence'].value,
-      langauges: this.habilitiesFormGroup.controls['languages'].value,
+      languages: this.habilitiesFormGroup.controls['languages'].value,
       features: this.featuresFormGroup.controls['features'].value
     } as MonsterCreate;
   }

@@ -14,7 +14,7 @@
                     <div class="row">
                         <div class="col-2" *ngFor="let atribute of monster?.atributes">
                             <p><strong>{{ atribute.name}}</strong></p>
-                            <p>{{ atribute.value}} ({{(atribute?.modfier) > 0 ? "+": ""}}{{atribute?.modfier}})</p>
+                            <p>{{ atribute.value}} ({{(atribute?.modfier) >= 0 ? "+": ""}}{{atribute?.modfier}})</p>
                         </div>
                     </div>  
                 </li>
@@ -30,17 +30,22 @@
                             <p><strong>Reisistência a dano:</strong> </p>
                             
                             <div class="d-inline-block" *ngFor="let resistency of monster?.damageResistence">
-                                <span class="badge badge-pill badge-primary">{{ resistency}}</span>
+                                <span class="badge badge-pill badge-primary">{{ resistency }}</span>
                             </div>
                             
                     </div>
                     <div class="row">
                             <p><strong>Imunidade a dano:</strong> </p>
-                            <p *ngFor="let imunity of monster?.damageImunity">{{ imunity}}, </p>
+                            <div class="d-inline-block" *ngFor="let imunity of monster?.damageImunity">
+                                <span class="badge badge-pill badge-danger">{{ imunity }}</span>
+                            </div>
                     </div>  
                     <div class="row">
                             <p><strong>Idiomas: </strong> </p>
-                            <p *ngFor="let language of monster?.languages">{{ language}}, </p>
+                            <div class="d-inline-block" *ngFor="let language of monster?.languages">
+                                <span class="badge badge-pill badge-warning">{{ language }}</span>
+                            </div>
+                           
                     </div>
                     <div class="row">
                             <p><strong>Nível de desafio: </strong> </p>

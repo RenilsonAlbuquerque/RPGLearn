@@ -27,11 +27,11 @@ public class MonsterSpecification {
 
 			@Override
 			public Predicate toPredicate(Root<Monster> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
-				List<Monster> predicates = new ArrayList<Monster>();
+				List<Predicate> predicates = new ArrayList<Predicate>();
 				
 				Join<Monster,MonsterRace> raceJoin = root.join("race");
 				
-				predicates.add((Monster) criteriaBuilder.or(criteriaBuilder.like(raceJoin.get("name"),"%" + search + "%")));
+				predicates.add( criteriaBuilder.or(criteriaBuilder.like(raceJoin.get("name"),"%" + search + "%")));
 				return criteriaBuilder.or(predicates.toArray(new Predicate[predicates.size()]));
 			}
 		};

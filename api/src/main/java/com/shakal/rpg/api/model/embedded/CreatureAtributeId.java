@@ -15,6 +15,13 @@ public class CreatureAtributeId implements Serializable {
     @Column(name = "atribute_id")
     private Long atributeId;
 
+    public CreatureAtributeId() {
+    	
+    }
+    public CreatureAtributeId(long atributeId, long creatureId) {
+    	this.atributeId = atributeId;
+    	this.creatureId = creatureId;
+    }
 	public Long getCreatureId() {
 		return creatureId;
 	}

@@ -26,10 +26,12 @@ import com.shakal.rpg.api.model.MonsterChallengeLevel;
 import com.shakal.rpg.api.model.MonsterRace;
 import com.shakal.rpg.api.model.MonsterSize;
 import com.shakal.rpg.api.model.MonsterType;
+import com.shakal.rpg.api.model.embedded.CreatureAtributeId;
 import com.shakal.rpg.api.model.enums.ResistenceTypeEnum;
 import com.shakal.rpg.api.model.relation.CreatureAtribute;
 import com.shakal.rpg.api.repository.AlignmentDAO;
 import com.shakal.rpg.api.repository.AtributeDAO;
+import com.shakal.rpg.api.repository.CreatureAtributeDAO;
 import com.shakal.rpg.api.repository.DamageTypeDAO;
 import com.shakal.rpg.api.repository.LanguageDAO;
 import com.shakal.rpg.api.repository.MonsterChallengeLevelDAO;
@@ -67,12 +69,15 @@ public class MonsterService implements IMonsterService {
 	private MonsterSizeDAO monsterSizeDao;
 	private AlignmentDAO alignmentDao;
 	private AtributeDAO atributeDao;
+	private CreatureAtributeDAO creatureAtributeDao;
+	private CreatureResistenceService cretureResisteceService;
 	
 	@Autowired
 	public MonsterService(MonsterDAO monsterDao,LanguageDAO languageDao, 
 			MonsterChallengeLevelDAO monsterChallengeDao, DamageTypeDAO damageTypeDao,
 			MonsterTypeDAO monsterTypeDao, MonsterSizeDAO monsterSizeDao,
-			AlignmentDAO alignmentDao, AtributeDAO atributeDao) {
+			AlignmentDAO alignmentDao, AtributeDAO atributeDao,
+			CreatureAtributeDAO creatureAtributeDao, CreatureResistenceService creatureResistenceService) {
 		this.monsterDao = monsterDao;
 		this.languageDao = languageDao;
 		this.challengeLevelDao = monsterChallengeDao;
@@ -81,6 +86,8 @@ public class MonsterService implements IMonsterService {
 		this.monsterSizeDao = monsterSizeDao;
 		this.alignmentDao = alignmentDao;
 		this.atributeDao = atributeDao;
+		this.creatureAtributeDao = creatureAtributeDao;
+		this.cretureResisteceService = creatureResistenceService;
 	}
 
 	@Override
@@ -200,44 +207,72 @@ public class MonsterService implements IMonsterService {
 		entity.setAlignment(alignmentSearch);
 		entity.setArmorClass(inputDto.getArmorClass());
 		entity.setBaseLifeDice(inputDto.getLifePoints());
-		entity.setAtributes(this.mountAtributes(inputDto));
 		entity.setChallengeLevel(levelSearch);
-		this.monsterDao.save(entity);
+		entity.setLanguages(inputDto.getLanguages().stream()
+				.map(language -> this.languageDao.getOne(language.getId()))
+				.collect(Collectors.toList()));
+		
+		entity = this.monsterDao.save(entity);
+		entity.setAtributes(this.mountAtributes(inputDto, entity));
+		entity.setResistences(this.cretureResisteceService.mountResistence(inputDto, entity));
 		
 		return inputDto;
 	}
-	private List<CreatureAtribute> mountAtributes(MonsterCreateDTO inputDto){
+	private List<CreatureAtribute> mountAtributes(MonsterCreateDTO inputDto, Monster monster){
 		List<CreatureAtribute> result = new ArrayList<CreatureAtribute>();
 		CreatureAtribute force = new CreatureAtribute();
+			force.setId(new CreatureAtributeId(1L,monster.getId()));
 			force.setAtribute(this.atributeDao.getOne(1L));
 			force.setValue(inputDto.getForce());
 			force.setModfier(AtributeHelper.calculateAtributeBonus(inputDto.getForce()));
+			force.setCreature(monster);
 		result.add(force);
+		this.creatureAtributeDao.save(force);
+		
 		CreatureAtribute dex = new CreatureAtribute();
+			dex.setId(new CreatureAtributeId(2L,monster.getId()));
 			dex.setAtribute(this.atributeDao.getOne(2L));
+			dex.setCreature(monster);
 			dex.setValue(inputDto.getDexterity());
 			dex.setModfier(AtributeHelper.calculateAtributeBonus(inputDto.getForce()));
 		result.add(dex);
+		this.creatureAtributeDao.save(dex);
+		
 		CreatureAtribute constitution = new CreatureAtribute();
+			constitution.setId(new CreatureAtributeId(3L,monster.getId()));
 			constitution.setAtribute(this.atributeDao.getOne(3L));
+			constitution.setCreature(monster);
 			constitution.setValue(inputDto.getConstitution());
 			constitution.setModfier(AtributeHelper.calculateAtributeBonus(inputDto.getConstitution()));
 		result.add(constitution);
+		this.creatureAtributeDao.save(constitution);
+		
 		CreatureAtribute inteligence = new CreatureAtribute();
+			inteligence.setId(new CreatureAtributeId(4L,monster.getId()));
 			inteligence.setAtribute(this.atributeDao.getOne(4L));
+			inteligence.setCreature(monster);
 			inteligence.setValue(inputDto.getInteligence());
 			inteligence.setModfier(AtributeHelper.calculateAtributeBonus(inputDto.getInteligence()));
-		result.add(constitution);
+		result.add(inteligence);
+		this.creatureAtributeDao.save(inteligence);
+		
 		CreatureAtribute wisdom = new CreatureAtribute();
+			wisdom.setId(new CreatureAtributeId(5L,monster.getId()));
 			wisdom.setAtribute(this.atributeDao.getOne(5L));
+			wisdom.setCreature(monster);
 			wisdom.setValue(inputDto.getWisdom());
 			wisdom.setModfier(AtributeHelper.calculateAtributeBonus(inputDto.getWisdom()));
 		result.add(wisdom);
+		this.creatureAtributeDao.save(wisdom);
+		
 		CreatureAtribute charisma = new CreatureAtribute();
+			charisma.setId(new CreatureAtributeId(6L,monster.getId()));
 			charisma.setAtribute(this.atributeDao.getOne(6L));
+			charisma.setCreature(monster);
 			charisma.setValue(inputDto.getCharisma());
 			charisma.setModfier(AtributeHelper.calculateAtributeBonus(inputDto.getCharisma()));
 		result.add(charisma);
+		this.creatureAtributeDao.save(charisma);
 		
 		return result;
 	}

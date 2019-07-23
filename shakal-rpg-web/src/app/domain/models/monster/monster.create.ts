@@ -19,7 +19,7 @@ export interface MonsterCreate{
     level: number,
     damageImunity: KeyValue[],
     damageResistence: KeyValue[]
-    langauges: KeyValue[],
+    languages: KeyValue[],
     features: NameDescription[]
 
 

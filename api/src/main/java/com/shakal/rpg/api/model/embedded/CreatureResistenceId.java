@@ -14,6 +14,17 @@ public class CreatureResistenceId implements Serializable{
     @Column(name = "damage_type_id")
     private Long damageTypeId;
 
+    public CreatureResistenceId() {
+    	
+    }
+    
+    
+	public CreatureResistenceId(Long creatureId, Long damageTypeId) {
+		super();
+		this.creatureId = creatureId;
+		this.damageTypeId = damageTypeId;
+	}
+
 	public Long getMonsterId() {
 		return creatureId;
 	}

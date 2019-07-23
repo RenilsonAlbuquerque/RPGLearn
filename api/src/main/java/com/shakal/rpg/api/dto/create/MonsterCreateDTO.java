@@ -10,10 +10,10 @@ public class MonsterCreateDTO {
 
 	private String raceName;
 	private String raceDescription;
-	private long type;
 	private String imagePath;
-	private long size;
 	private long alignment;
+	private long size;
+	private long type;
 	private int armorClass;
 	private int lifePoints;
 	private int force;
@@ -27,8 +27,6 @@ public class MonsterCreateDTO {
 	private List<KeyValueDTO> damageResistence;
 	private List<KeyValueDTO> languages;
 	private List<NameDescriptionDTO> features;
-	
-	
 	
 	public String getRaceName() {
 		return raceName;
@@ -48,7 +46,12 @@ public class MonsterCreateDTO {
 	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;
 	}
-	
+	public long getAlignment() {
+		return alignment;
+	}
+	public void setAlignment(long alignment) {
+		this.alignment = alignment;
+	}
 	public long getSize() {
 		return size;
 	}
@@ -60,43 +63,6 @@ public class MonsterCreateDTO {
 	}
 	public void setType(long type) {
 		this.type = type;
-	}
-	public long getAlignment() {
-		return alignment;
-	}
-	public void setAlignment(long alignment) {
-		this.alignment = alignment;
-	}
-	
-	public long getLevel() {
-		return level;
-	}
-	public void setLevel(long level) {
-		this.level = level;
-	}
-	public List<KeyValueDTO> getDamageImunity() {
-		return damageImunity;
-	}
-	public void setDamageImunity(List<KeyValueDTO> damageImunity) {
-		this.damageImunity = damageImunity;
-	}
-	public List<KeyValueDTO> getDamageResistence() {
-		return damageResistence;
-	}
-	public void setDamageResistence(List<KeyValueDTO> damageResistence) {
-		this.damageResistence = damageResistence;
-	}
-	public List<KeyValueDTO> getLanguages() {
-		return languages;
-	}
-	public void setLanguages(List<KeyValueDTO> languages) {
-		this.languages = languages;
-	}
-	public List<NameDescriptionDTO> getFeatures() {
-		return features;
-	}
-	public void setFeatures(List<NameDescriptionDTO> features) {
-		this.features = features;
 	}
 	public int getArmorClass() {
 		return armorClass;
@@ -146,6 +112,41 @@ public class MonsterCreateDTO {
 	public void setCharisma(int charisma) {
 		this.charisma = charisma;
 	}
+	public long getLevel() {
+		return level;
+	}
+	public void setLevel(long level) {
+		this.level = level;
+	}
+	public List<KeyValueDTO> getDamageImunity() {
+		return damageImunity;
+	}
+	public void setDamageImunity(List<KeyValueDTO> damageImunity) {
+		this.damageImunity = damageImunity;
+	}
+	public List<KeyValueDTO> getDamageResistence() {
+		return damageResistence;
+	}
+	public void setDamageResistence(List<KeyValueDTO> damageResistence) {
+		this.damageResistence = damageResistence;
+	}
+	public List<KeyValueDTO> getLanguages() {
+		return languages;
+	}
+	public void setLanguages(List<KeyValueDTO> languages) {
+		this.languages = languages;
+	}
+	public List<NameDescriptionDTO> getFeatures() {
+		return features;
+	}
+	public void setFeatures(List<NameDescriptionDTO> features) {
+		this.features = features;
+	}
+	
+	
+	
+	
+	
 	
 	
 	
