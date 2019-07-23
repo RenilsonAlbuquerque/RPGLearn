@@ -1,4 +1,4 @@
-<mat-horizontal-stepper  #stepper>
+<mat-horizontal-stepper linear #stepper>
     <mat-step [stepControl]="informacoesFormGroup">
         <form [formGroup]="informacoesFormGroup">
             <ng-template  matStepLabel>Informações</ng-template>
@@ -169,6 +169,9 @@
                                         {{level.value}}
                                     </mat-option>
                                 </mat-select>
+                                <mat-error *ngIf="!habilitiesFormGroup.controls['level'].valid && habilitiesFormGroup.controls['level'].touched">
+                                    Campo obrigatório
+                                </mat-error>
                                 </mat-form-field>
                             </div>
                         </div>

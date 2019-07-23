@@ -25,7 +25,7 @@ public class MonsterFeatures {
 	private String description;
 	
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
-	@JoinColumn(name = "monster_id")
+	@JoinColumn(name = "monster_id", referencedColumnName ="creature_id")
 	private Monster monster;
 
 	public long getId() {

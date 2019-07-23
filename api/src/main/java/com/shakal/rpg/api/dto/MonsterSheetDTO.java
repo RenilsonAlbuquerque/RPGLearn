@@ -8,6 +8,8 @@ public class MonsterSheetDTO {
 	
 	private long id;
 	private String name;
+	private String alignment;
+	private String size;
 	private int armorClass;
 	private int lifePoints;
 	private String challengeLevel;
@@ -33,6 +35,18 @@ public class MonsterSheetDTO {
 		this.name = name;
 	}
 	
+	public String getAlignment() {
+		return alignment;
+	}
+	public void setAlignment(String alignment) {
+		this.alignment = alignment;
+	}
+	public String getSize() {
+		return size;
+	}
+	public void setSize(String size) {
+		this.size = size;
+	}
 	public int getArmorClass() {
 		return armorClass;
 	}

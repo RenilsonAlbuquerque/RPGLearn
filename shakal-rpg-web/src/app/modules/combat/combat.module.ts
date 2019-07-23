@@ -7,6 +7,7 @@ import { MonsterCardComponent } from '../monster/monster-card/monster-card.compo
 import { MonsterModule } from '../monster/monster.module';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { MonsterService } from '../monster/monster.module.service';
+import { MaterialModule } from '../material-design/material.module';
 
 
 
@@ -16,7 +17,8 @@ import { MonsterService } from '../monster/monster.module.service';
     CombatRoutingModule,
     CommonModule,
     MonsterModule,
-    NgbModalModule
+    NgbModalModule,
+    MaterialModule
   ],
   providers:[
     MonsterService

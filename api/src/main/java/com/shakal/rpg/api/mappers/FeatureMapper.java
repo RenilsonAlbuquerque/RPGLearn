@@ -11,4 +11,10 @@ public class FeatureMapper {
 		result.setDescription(entity.getDescription());
 		return result;
 	}
+	public static MonsterFeatures dtoToEntity(NameDescriptionDTO inputDto) {
+		MonsterFeatures entity = new MonsterFeatures();
+		entity.setName(inputDto.getName());
+		entity.setDesctiption(inputDto.getDescription());
+		return entity;
+	}
 }

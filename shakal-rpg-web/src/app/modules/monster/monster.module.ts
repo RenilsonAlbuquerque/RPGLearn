@@ -34,6 +34,6 @@ import { BasecomponentsModule } from '../basecomponents/basecomponents.module';
   providers:[
     MonsterService,FormBuilder
   ],
-  exports: [MonsterCardComponent,MonsterSearchCardComponent] 
+  exports: [MonsterCardComponent,MonsterSearchCardComponent, MonsterSheetComponent] 
 })
 export class MonsterModule { }

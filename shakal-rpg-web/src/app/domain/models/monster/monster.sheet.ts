@@ -5,6 +5,8 @@ import { NameDescription } from '../comon/name-description';
 export interface MonsterSheet{
     id: number,
     name: String,
+    alignment: string,
+    size: string,
     armorClass: number,
     lifePoints: number,
     challengeLevel: String,

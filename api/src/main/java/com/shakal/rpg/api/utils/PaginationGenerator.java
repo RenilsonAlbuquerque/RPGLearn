@@ -22,7 +22,7 @@ public class PaginationGenerator {
 		CustomPage result = new CustomPage();
 		result.setElements(elements);
 		result.setCurrentPageNumber(inputPage.getNumber() +1);
-		result.setTotalOfPages(inputPage.getTotalPages());
+		result.setTotalOfPages(inputPage.getTotalPages() +1);
 		result.setSize(inputPage.getSize());
 		result.setFirst(inputPage.isFirst());
 		result.setLast(inputPage.isLast());

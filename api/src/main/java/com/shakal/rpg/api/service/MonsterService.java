@@ -98,6 +98,8 @@ public class MonsterService implements IMonsterService {
 		MonsterSheetDTO result = new MonsterSheetDTO();
 		result.setId(search.getId());
 		result.setName(search.getRace().getName());
+		result.setAlignment(search.getAlignment().getName());
+		result.setSize(search.getSize().getName());
 		result.setArmorClass(search.getArmorClass());
 		result.setLifePoints(search.getBaseLifeDice());
 		result.setChallengeLevel(search.getChallengeLevel().getValue() + " " 
@@ -212,6 +214,9 @@ public class MonsterService implements IMonsterService {
 				.map(language -> this.languageDao.getOne(language.getId()))
 				.collect(Collectors.toList()));
 		
+		entity.setFeatures(inputDto.getFeatures().stream()
+							.map(feature -> FeatureMapper.dtoToEntity(feature))
+							.collect(Collectors.toList()));
 		entity = this.monsterDao.save(entity);
 		entity.setAtributes(this.mountAtributes(inputDto, entity));
 		entity.setResistences(this.cretureResisteceService.mountResistence(inputDto, entity));

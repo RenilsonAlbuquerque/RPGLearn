@@ -36,7 +36,7 @@ public class Monster extends Creature{
 	@JoinColumn(name ="race_id")
 	private MonsterRace race;
 
-	@OneToMany(mappedBy = "monster",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "monster",cascade = CascadeType.PERSIST,fetch = FetchType.LAZY, orphanRemoval = true)
 	private List<MonsterFeatures> features;
 	
 	

@@ -15,7 +15,7 @@ export class CombatScreenComponent implements OnInit {
   
   private modalReference;
   closeResult: string;
-
+  
 
   constructor(private modalService: NgbModal) { 
     this.monsters = [];
@@ -28,6 +28,13 @@ export class CombatScreenComponent implements OnInit {
   ngOnInit() {
   }
   open(content) {
+    this.modalReference = this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Closed with: ${reason}`;
+    });
+  }
+  openSheet(content) {
     this.modalReference = this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
