@@ -3,6 +3,7 @@ package com.shakal.rpg.api.model;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -30,6 +31,7 @@ public abstract class Creature implements ICreature{
 	@GeneratedValue
 	private Long id;
 	
+	@Column(length = 500)
 	private String imagePath;
 	
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL )

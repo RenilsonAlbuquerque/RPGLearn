@@ -1,11 +1,9 @@
 <div class="card bg-dark text-white">
         <img class="card-img"
-        src="https://dungeonmasterdotblog.files.wordpress.com/2018/11/strahd_closeup.png?w=1100" alt="_blank" />
-        <div class="card-img-overlay">
-                <h6 class="card-title">{{monster.name }}</h6>
-                <h6 class="card-title"><small>{{"Nv: " +  monster.level }}</small></h6>
-        </div>
+        src="{{monster?.imagePath}}" alt="_blank" />
         <div class="card-body">
+          <p class="card-text"><small class="text">{{monster.name }}</small></p>
+          <p class="card-text"><small class="text">{{"Nv: " +  monster.level }}</small></p>
           <p class="card-text"><small class="text">Pontos de vida: {{monster.lifePoints}}</small></p>
         </div>
 </div>
