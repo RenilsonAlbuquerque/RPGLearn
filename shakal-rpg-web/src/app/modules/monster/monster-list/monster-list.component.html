@@ -27,13 +27,13 @@
           </table>
     </div>
   <ngb-pagination class="d-flex justify-content-center" 
-    [collectionSize]="page?.totalOfPages" 
+    [collectionSize]="page.totalOfPages" 
     [(page)]="page.currentPageNumber" 
-    [pageSize]="page?.size" 
+    [pageSize]="page.size" 
     [maxSize]="10" 
     [rotate]="true" 
     [ellipses]="false" 
     (pageChange)="pageChange()">
   </ngb-pagination>
-  </div>
+</div>
   

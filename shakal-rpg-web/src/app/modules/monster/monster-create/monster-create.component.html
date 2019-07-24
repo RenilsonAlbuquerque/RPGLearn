@@ -103,48 +103,77 @@
                     </li>
                     <li class="list-group-item">
                         <div class="row">
-                            <mat-form-field class="col-md-2 col-sm-4" appearance="outline">
-                                <mat-label>Força</mat-label>
-                                <input  matInput formControlName="force" placeholder="Força">
-                                <mat-error *ngIf="!habilitiesFormGroup.controls['force'].valid && habilitiesFormGroup.controls['force'].touched">
-                                        Campo obrigatório
-                                </mat-error>
-                            </mat-form-field>
-                            <mat-form-field class="col-md-2 col-sm-4" appearance="outline">
-                                <mat-label>Destreza</mat-label>
-                                <input matInput formControlName="dexterity" placeholder="Destreza">
-                                <mat-error *ngIf="!habilitiesFormGroup.controls['dexterity'].valid && habilitiesFormGroup.controls['dexterity'].touched">
-                                        Campo obrigatório
-                                </mat-error>
-                            </mat-form-field>
-                            <mat-form-field class="col-md-2 col-sm-4" appearance="outline">
-                                <mat-label>Constituição</mat-label>
-                                <input matInput formControlName="constitution" placeholder="Constituição">
-                                <mat-error *ngIf="!habilitiesFormGroup.controls['constitution'].valid && habilitiesFormGroup.controls['constitution'].touched">
-                                        Campo obrigatório
-                                </mat-error>
-                            </mat-form-field>
-                            <mat-form-field class="col-md-2 col-sm-4" appearance="outline">
-                                <mat-label>Inteligência</mat-label>
-                                <input matInput formControlName="inteligence" placeholder="Inteligência">
-                                <mat-error *ngIf="!habilitiesFormGroup.controls['inteligence'].valid && habilitiesFormGroup.controls['inteligence'].touched">
-                                        Campo obrigatório
-                                </mat-error>
-                            </mat-form-field>
-                            <mat-form-field class="col-md-2 col-sm-4" appearance="outline">
-                                <mat-label>Sabedoria</mat-label>
-                                <input matInput formControlName="wisdom" placeholder="Sabedoria">
-                                <mat-error *ngIf="!habilitiesFormGroup.controls['wisdom'].valid && habilitiesFormGroup.controls['wisdom'].touched">
-                                        Campo obrigatório
-                                </mat-error>
-                            </mat-form-field>
-                            <mat-form-field class="col-md-2 col-sm-4" appearance="outline">
-                                <mat-label>carisma</mat-label>
-                                <input matInput formControlName="charisma" placeholder="Carisma">
-                                <mat-error *ngIf="!habilitiesFormGroup.controls['charisma'].valid && habilitiesFormGroup.controls['charisma'].touched">
-                                        Campo obrigatório
-                                </mat-error>
-                            </mat-form-field>
+                            <div class="col-md-2 col-sm-4">
+                                    <mat-form-field class="col-md-12" appearance="outline">
+                                            <mat-label>Força</mat-label>
+                                            <input  matInput formControlName="force" placeholder="Força">
+                                            <mat-error *ngIf="!habilitiesFormGroup.controls['force'].valid && habilitiesFormGroup.controls['force'].touched">
+                                                    Campo obrigatório
+                                            </mat-error>
+                                            
+                                        </mat-form-field>
+                                        <mat-checkbox formControlName="proeficientForce">Proeficiente</mat-checkbox>
+                                       
+                            </div>
+                            
+                            <div class="col-md-2 col-sm-4">
+                                    <mat-form-field class="col-12" appearance="outline">
+                                            <mat-label>Destreza</mat-label>
+                                            <input matInput formControlName="dexterity" placeholder="Destreza">
+                                            <mat-error *ngIf="!habilitiesFormGroup.controls['dexterity'].valid && habilitiesFormGroup.controls['dexterity'].touched">
+                                                    Campo obrigatório
+                                            </mat-error>
+                                        </mat-form-field>
+                                        <mat-checkbox formControlName="proeficientDexterity">Proeficiente</mat-checkbox>
+                                      
+                            </div>
+                            
+                            <div class="col-md-2 col-sm-4">
+                                    <mat-form-field class="col-12" appearance="outline">
+                                            <mat-label>Constituição</mat-label>
+                                            <input matInput formControlName="constitution" placeholder="Constituição">
+                                            <mat-error *ngIf="!habilitiesFormGroup.controls['constitution'].valid && habilitiesFormGroup.controls['constitution'].touched">
+                                                    Campo obrigatório
+                                            </mat-error>
+                                        </mat-form-field>
+                                        <mat-checkbox formControlName="proeficientConstitution">Proeficiente</mat-checkbox>
+                                        
+                            </div>
+                            
+                            <div class="col-md-2 col-sm-4">
+                                    <mat-form-field class="col-12" appearance="outline">
+                                            <mat-label>Inteligência</mat-label>
+                                            <input matInput formControlName="inteligence" placeholder="Inteligência">
+                                            <mat-error *ngIf="!habilitiesFormGroup.controls['inteligence'].valid && habilitiesFormGroup.controls['inteligence'].touched">
+                                                    Campo obrigatório
+                                            </mat-error>
+                                        </mat-form-field>
+                                        <mat-checkbox formControlName="proeficientInteligence">Proeficiente</mat-checkbox>
+                                       
+                            </div>
+                            
+                            <div class="col-md-2 col-sm-4">
+                                    <mat-form-field class="col-12" appearance="outline">
+                                            <mat-label>Sabedoria</mat-label>
+                                            <input matInput formControlName="wisdom" placeholder="Sabedoria">
+                                            <mat-error *ngIf="!habilitiesFormGroup.controls['wisdom'].valid && habilitiesFormGroup.controls['wisdom'].touched">
+                                                    Campo obrigatório
+                                            </mat-error>
+                                        </mat-form-field>
+                                        <mat-checkbox formControlName="proeficientWisdom">Proeficiente</mat-checkbox>
+                                        
+                            </div>
+                            
+                            <div class="col-md-2 col-sm-4">
+                                    <mat-form-field class="col-12" appearance="outline">
+                                            <mat-label>carisma</mat-label>
+                                            <input matInput formControlName="charisma" placeholder="Carisma">
+                                            <mat-error *ngIf="!habilitiesFormGroup.controls['charisma'].valid && habilitiesFormGroup.controls['charisma'].touched">
+                                                    Campo obrigatório
+                                            </mat-error>
+                                        </mat-form-field>
+                                        <mat-checkbox formControlName="proeficientCharisma">Proeficiente</mat-checkbox>
+                            </div>
                         </div>
                     </li>
                     <li class="list-group-item">

@@ -5,10 +5,10 @@ import com.shakal.rpg.api.model.relation.CreatureAtribute;
 
 public class SavingThrowMapper {
 
-	public static SavingThrowDTO entityToDTO(CreatureAtribute entity) {
+	public static SavingThrowDTO entityToDTO(CreatureAtribute entity, int proeficiencyBonus) {
 		SavingThrowDTO result = new SavingThrowDTO();
 		result.setName(AtributeMapper.translate(entity.getAtribute().getValue()));
-		result.setValue(entity.getValue());
+		result.setValue(entity.getModfier() + proeficiencyBonus);
 		return result;
 		
 	}

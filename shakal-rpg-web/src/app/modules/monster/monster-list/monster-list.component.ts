@@ -13,6 +13,7 @@ export class MonsterListComponent implements OnInit {
 
   public page: Page<MonsterOverview>;
   public search: String;
+  
   constructor(private monsterService: MonsterService, private router: Router) { }
 
   ngOnInit() {

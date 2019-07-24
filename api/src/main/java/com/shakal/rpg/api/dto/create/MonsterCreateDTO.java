@@ -17,11 +17,17 @@ public class MonsterCreateDTO {
 	private int armorClass;
 	private int lifePoints;
 	private int force;
+	private boolean proeficientForce;
 	private int dexterity;
+	private boolean proeficientDexterity;
 	private int constitution;
+	private boolean proeficientConstitution;
 	private int inteligence;
+	private boolean proeficientInteligence;
 	private int wisdom;
+	private boolean proeficientWisdom;
 	private int charisma;
+	private boolean proeficientCharisma;
 	private long level;
 	private List<KeyValueDTO> damageImunity;
 	private List<KeyValueDTO> damageResistence;
@@ -141,6 +147,42 @@ public class MonsterCreateDTO {
 	}
 	public void setFeatures(List<NameDescriptionDTO> features) {
 		this.features = features;
+	}
+	public boolean isProeficientForce() {
+		return proeficientForce;
+	}
+	public void setProeficientForce(boolean proeficientForce) {
+		this.proeficientForce = proeficientForce;
+	}
+	public boolean isProeficientDexterity() {
+		return proeficientDexterity;
+	}
+	public void setProeficientDexterity(boolean proeficientDexterity) {
+		this.proeficientDexterity = proeficientDexterity;
+	}
+	public boolean isProeficientConstitution() {
+		return proeficientConstitution;
+	}
+	public void setProeficientConstitution(boolean proeficientConstitution) {
+		this.proeficientConstitution = proeficientConstitution;
+	}
+	public boolean isProeficientInteligence() {
+		return proeficientInteligence;
+	}
+	public void setProeficientInteligence(boolean proeficientInteligence) {
+		this.proeficientInteligence = proeficientInteligence;
+	}
+	public boolean isProeficientWisdom() {
+		return proeficientWisdom;
+	}
+	public void setProeficientWisdom(boolean proeficientWisdom) {
+		this.proeficientWisdom = proeficientWisdom;
+	}
+	public boolean isProeficientCharisma() {
+		return proeficientCharisma;
+	}
+	public void setProeficientCharisma(boolean proeficientCharisma) {
+		this.proeficientCharisma = proeficientCharisma;
 	}
 	
 	

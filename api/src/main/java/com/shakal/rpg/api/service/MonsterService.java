@@ -1,7 +1,10 @@
 package com.shakal.rpg.api.service;
 
+
 import java.util.ArrayList;
+
 import java.util.List;
+
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import com.shakal.rpg.api.contracts.service.IMonsterService;
 import com.shakal.rpg.api.dto.MonsterSheetDTO;
+
 import com.shakal.rpg.api.dto.create.MonsterCreateDTO;
 import com.shakal.rpg.api.dto.create.MonsterCreateInputDTO;
 import com.shakal.rpg.api.dto.filter.CustomPage;
@@ -36,6 +40,7 @@ import com.shakal.rpg.api.repository.DamageTypeDAO;
 import com.shakal.rpg.api.repository.LanguageDAO;
 import com.shakal.rpg.api.repository.MonsterChallengeLevelDAO;
 import com.shakal.rpg.api.repository.MonsterDAO;
+import com.shakal.rpg.api.repository.MonsterFeatureDAO;
 import com.shakal.rpg.api.repository.MonsterSizeDAO;
 import com.shakal.rpg.api.repository.MonsterTypeDAO;
 import com.shakal.rpg.api.specification.MonsterSpecification;
@@ -71,13 +76,15 @@ public class MonsterService implements IMonsterService {
 	private AtributeDAO atributeDao;
 	private CreatureAtributeDAO creatureAtributeDao;
 	private CreatureResistenceService cretureResisteceService;
+	private MonsterFeatureDAO monsterFeatureDAO;
 	
 	@Autowired
 	public MonsterService(MonsterDAO monsterDao,LanguageDAO languageDao, 
 			MonsterChallengeLevelDAO monsterChallengeDao, DamageTypeDAO damageTypeDao,
 			MonsterTypeDAO monsterTypeDao, MonsterSizeDAO monsterSizeDao,
 			AlignmentDAO alignmentDao, AtributeDAO atributeDao,
-			CreatureAtributeDAO creatureAtributeDao, CreatureResistenceService creatureResistenceService) {
+			CreatureAtributeDAO creatureAtributeDao, CreatureResistenceService creatureResistenceService,
+			MonsterFeatureDAO monsterFeatureDao) {
 		this.monsterDao = monsterDao;
 		this.languageDao = languageDao;
 		this.challengeLevelDao = monsterChallengeDao;
@@ -117,7 +124,7 @@ public class MonsterService implements IMonsterService {
 		result.setFeatures( search.getFeatures().stream().map(
 				feature -> FeatureMapper.entityToDTO(feature)).collect(Collectors.toList()));
 		result.setSavingThrows( search.getAtributes().stream().filter(saving -> saving.isProeficiency()).map(
-				saving -> SavingThrowMapper.entityToDTO(saving)).collect(Collectors.toList()));
+				saving -> SavingThrowMapper.entityToDTO(saving,search.getChallengeLevel().getProeficiencyBonus())).collect(Collectors.toList()));
 		
 		result.setActions(search.getActions().stream().filter(attack -> attack instanceof Attack)
 				.map(attack -> AttackMapper.entityToDTO((Attack)attack))
@@ -132,7 +139,8 @@ public class MonsterService implements IMonsterService {
 	    
     	Page<Monster> page = this.monsterDao.findAll(specification,PageRequest.of(filter.getPage() -1, 
 				filter.getSize()));
-    	return (CustomPage<MonsterOverviewDTO>) PaginationGenerator.convertPage(page,page
+    	return (CustomPage<MonsterOverviewDTO>) PaginationGenerator.convertPage(page,
+    			page
         		.stream().map( monster -> MonsterMapper.entityToOverview(monster))
                 .collect(Collectors.toList()));
 	}
@@ -214,13 +222,15 @@ public class MonsterService implements IMonsterService {
 				.map(language -> this.languageDao.getOne(language.getId()))
 				.collect(Collectors.toList()));
 		
-		entity.setFeatures(inputDto.getFeatures().stream()
-							.map(feature -> FeatureMapper.dtoToEntity(feature))
-							.collect(Collectors.toList()));
+		
+		
 		entity = this.monsterDao.save(entity);
+		
 		entity.setAtributes(this.mountAtributes(inputDto, entity));
 		entity.setResistences(this.cretureResisteceService.mountResistence(inputDto, entity));
+		entity = FeatureMapper.saveFeatures(inputDto.getFeatures(),entity);
 		
+		this.monsterDao.save(entity);
 		return inputDto;
 	}
 	private List<CreatureAtribute> mountAtributes(MonsterCreateDTO inputDto, Monster monster){
@@ -231,6 +241,7 @@ public class MonsterService implements IMonsterService {
 			force.setValue(inputDto.getForce());
 			force.setModfier(AtributeHelper.calculateAtributeBonus(inputDto.getForce()));
 			force.setCreature(monster);
+			force.setProeficiency(inputDto.isProeficientForce());
 		result.add(force);
 		this.creatureAtributeDao.save(force);
 		
@@ -240,6 +251,7 @@ public class MonsterService implements IMonsterService {
 			dex.setCreature(monster);
 			dex.setValue(inputDto.getDexterity());
 			dex.setModfier(AtributeHelper.calculateAtributeBonus(inputDto.getForce()));
+			dex.setProeficiency(inputDto.isProeficientDexterity());
 		result.add(dex);
 		this.creatureAtributeDao.save(dex);
 		
@@ -249,6 +261,7 @@ public class MonsterService implements IMonsterService {
 			constitution.setCreature(monster);
 			constitution.setValue(inputDto.getConstitution());
 			constitution.setModfier(AtributeHelper.calculateAtributeBonus(inputDto.getConstitution()));
+			constitution.setProeficiency(inputDto.isProeficientConstitution());
 		result.add(constitution);
 		this.creatureAtributeDao.save(constitution);
 		
@@ -258,6 +271,7 @@ public class MonsterService implements IMonsterService {
 			inteligence.setCreature(monster);
 			inteligence.setValue(inputDto.getInteligence());
 			inteligence.setModfier(AtributeHelper.calculateAtributeBonus(inputDto.getInteligence()));
+			inteligence.setProeficiency(inputDto.isProeficientInteligence());
 		result.add(inteligence);
 		this.creatureAtributeDao.save(inteligence);
 		
@@ -267,6 +281,7 @@ public class MonsterService implements IMonsterService {
 			wisdom.setCreature(monster);
 			wisdom.setValue(inputDto.getWisdom());
 			wisdom.setModfier(AtributeHelper.calculateAtributeBonus(inputDto.getWisdom()));
+			wisdom.setProeficiency(inputDto.isProeficientConstitution());
 		result.add(wisdom);
 		this.creatureAtributeDao.save(wisdom);
 		
@@ -276,6 +291,7 @@ public class MonsterService implements IMonsterService {
 			charisma.setCreature(monster);
 			charisma.setValue(inputDto.getCharisma());
 			charisma.setModfier(AtributeHelper.calculateAtributeBonus(inputDto.getCharisma()));
+			charisma.setProeficiency(inputDto.isProeficientCharisma());
 		result.add(charisma);
 		this.creatureAtributeDao.save(charisma);
 		

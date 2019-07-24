@@ -24,7 +24,7 @@
                         <p><strong>Testes de resistência:</strong> </p>
                             
                         <div class="d-inline-block" *ngFor="let resistency of monster?.savingThrows">
-                            <span class="badge badge-pill badge-danger">{{ resistency.name + " " + resistency.value}}</span>
+                            <span class="badge badge-pill badge-danger">{{ resistency.name}} {{(resistency?.value) >= 0 ? "+": ""}} {{resistency.value}}</span>
                         </div>
                     </div>
                     <div class="row">
@@ -50,7 +50,7 @@
                     </div>
                     <div class="row">
                             <p><strong>Nível de desafio: </strong> </p>
-                            <p>{{ monster.challengeLevel}} </p>
+                            <p> {{ monster.challengeLevel}} </p>
                     </div>
                        
                 </li>

@@ -2,7 +2,9 @@ package com.shakal.rpg.api.model;
 
 
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -36,8 +38,8 @@ public class Monster extends Creature{
 	@JoinColumn(name ="race_id")
 	private MonsterRace race;
 
-	@OneToMany(mappedBy = "monster",cascade = CascadeType.PERSIST,fetch = FetchType.LAZY, orphanRemoval = true)
-	private List<MonsterFeatures> features;
+	@OneToMany(mappedBy = "monster",cascade = CascadeType.ALL,fetch =  FetchType.EAGER, orphanRemoval = true)
+	private Set<MonsterFeature> features;
 	
 	
 	
@@ -72,12 +74,15 @@ public class Monster extends Creature{
 	}
 
 
-	public List<MonsterFeatures> getFeatures() {
+	
+
+
+	public Set<MonsterFeature> getFeatures() {
 		return features;
 	}
 
 
-	public void setFeatures(List<MonsterFeatures> features) {
+	public void setFeatures(Set<MonsterFeature> features) {
 		this.features = features;
 	}
 
@@ -99,6 +104,30 @@ public class Monster extends Creature{
 
 	public void setSize(MonsterSize size) {
 		this.size = size;
+	}
+
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + this.getId().intValue();
+		return result;
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Monster other = (Monster) obj;
+		if (this.getId() != other.getId())
+			return false;
+		return true;
 	}
 
 

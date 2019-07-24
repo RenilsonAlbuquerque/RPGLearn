@@ -18,7 +18,7 @@ import com.shakal.rpg.api.model.relation.CharacterRole;
 
 @Entity
 @Table(name= "tb_role")
-@Inheritance( strategy = InheritanceType.JOINED)
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Role {
 
 	

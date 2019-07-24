@@ -17,6 +17,8 @@ public class MonsterChallengeLevel {
 	private int value;
 	
 	private int experiencePoints;
+	
+	private int proeficiencyBonus;
 
 	public long getId() {
 		return id;
@@ -40,6 +42,14 @@ public class MonsterChallengeLevel {
 
 	public void setExperiencePoints(int experiencePoints) {
 		this.experiencePoints = experiencePoints;
+	}
+
+	public int getProeficiencyBonus() {
+		return proeficiencyBonus;
+	}
+
+	public void setProeficiencyBonus(int proeficiencyBonus) {
+		this.proeficiencyBonus = proeficiencyBonus;
 	}
 
 	
