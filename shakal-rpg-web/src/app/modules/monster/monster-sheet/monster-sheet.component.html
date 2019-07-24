@@ -1,66 +1,84 @@
-<div class="row">   
+ 
     <div class="card">
         <div class="card-header">
             <h5 class="card-title">{{ monster?.name }}</h5>
             <h6 class="card-subtitle mb-2 text-muted"> {{ monster?.size }}, {{ monster?.alignment }}</h6>
         </div>
         <div class="card-body">
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">
-                    <p><strong>Classe de armadura: </strong> {{ monster?.armorClass }}</p>
-                    <p><strong>Pontos de vida: </strong> {{ monster?.lifePoints }}</p>
-                    <p><strong>Deslocamento: </strong> --</p>
-                </li>
-                <li class="list-group-item">
-                    <div class="row">
-                        <div class="col-2" *ngFor="let atribute of monster?.atributes">
-                            <p><strong>{{ atribute.name}}</strong></p>
-                            <p>{{ atribute.value}} ({{(atribute?.modfier) >= 0 ? "+": ""}}{{atribute?.modfier}})</p>
-                        </div>
-                    </div>  
-                </li>
-                <li class="list-group-item">
-                    <div class="row">
-                        <p><strong>Testes de resistência:</strong> </p>
-                            
-                        <div class="d-inline-block" *ngFor="let resistency of monster?.savingThrows">
-                            <span class="badge badge-pill badge-danger">{{ resistency.name}} {{(resistency?.value) >= 0 ? "+": ""}} {{resistency.value}}</span>
-                        </div>
-                    </div>
-                    <div class="row">
-                            <p><strong>Reisistência a dano:</strong> </p>
-                            
-                            <div class="d-inline-block" *ngFor="let resistency of monster?.damageResistence">
-                                <span class="badge badge-pill badge-primary">{{ resistency }}</span>
-                            </div>
-                            
-                    </div>
-                    <div class="row">
-                            <p><strong>Imunidade a dano:</strong> </p>
-                            <div class="d-inline-block" *ngFor="let imunity of monster?.damageImunity">
-                                <span class="badge badge-pill badge-danger">{{ imunity }}</span>
-                            </div>
-                    </div>  
-                    <div class="row">
-                            <p><strong>Idiomas: </strong> </p>
-                            <div class="d-inline-block" *ngFor="let language of monster?.languages">
-                                <span class="badge badge-pill badge-warning">{{ language }}</span>
-                            </div>
-                           
-                    </div>
-                    <div class="row">
-                            <p><strong>Nível de desafio: </strong> </p>
-                            <p> {{ monster.challengeLevel}} </p>
-                    </div>
-                       
-                </li>
-                <li class="list-group-item">
-                        <div class="row" *ngFor="let feature of monster?.features">
-                                <p><strong>{{feature.name}}</strong> </p>
-                                <p>{{feature.description}}</p>
-                        </div>
-                </li>
-            </ul>
+            <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <ul class="list-group list-group-flush">
+                
+                        <li class="list-group-item">
+                                <div class="row">
+                                        <p><strong>Classe de armadura: </strong> {{ monster?.armorClass }}</p>
+                                </div>
+                                <div class="row">
+                                        <p><strong>Pontos de vida: </strong> {{ monster?.lifePoints }}</p>
+                                </div>
+                                <div class="row">
+                                        <p><strong>Deslocamento: </strong> --</p>
+                                </div>
+                               
+                                
+                            </li>
+                            <li class="list-group-item">
+                                <div class="row">
+                                    <div class="col-2" *ngFor="let atribute of monster?.atributes">
+                                        <p><strong>{{ atribute.name}}</strong></p>
+                                        <p>{{ atribute.value}} ({{(atribute?.modfier) >= 0 ? "+": ""}}{{atribute?.modfier}})</p>
+                                    </div>
+                                </div>  
+                            </li>
+                            <li class="list-group-item">
+                                <div class="row">
+                                    <p><strong>Testes de resistência:</strong> </p>
+                                        
+                                    <div class="d-inline-block" *ngFor="let resistency of monster?.savingThrows">
+                                        <span class="badge badge-pill badge-danger">{{ resistency.name}} {{(resistency?.value) >= 0 ? "+": ""}} {{resistency.value}}</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                        <p><strong>Reisistência a dano:</strong> </p>
+                                        
+                                        <div class="d-inline-block" *ngFor="let resistency of monster?.damageResistence">
+                                            <span class="badge badge-pill badge-primary">{{ resistency }}</span>
+                                        </div>
+                                        
+                                </div>
+                                <div class="row">
+                                        <p><strong>Imunidade a dano:</strong> </p>
+                                        <div class="d-inline-block" *ngFor="let imunity of monster?.damageImunity">
+                                            <span class="badge badge-pill badge-danger">{{ imunity }}</span>
+                                        </div>
+                                </div>  
+                                <div class="row">
+                                        <p><strong>Idiomas: </strong> </p>
+                                        <div class="d-inline-block" *ngFor="let language of monster?.languages">
+                                            <span class="badge badge-pill badge-warning">{{ language }}</span>
+                                        </div>
+                                       
+                                </div>
+                                <div class="row">
+                                        <p><strong>Nível de desafio: </strong> </p>
+                                        <p> {{ monster.challengeLevel}} </p>
+                                </div>
+                                   
+                            </li>
+                        </ul>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                        <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                                <div class="row" *ngFor="let feature of monster?.features">
+                                        <p><strong>{{feature.name}}</strong> </p>
+                                        <p>{{feature.description}}</p>
+                                </div>
+                        </li>
+                    </ul>
+                </div>
+                
+            </div>
         </div>
     </div>
-</div>
+

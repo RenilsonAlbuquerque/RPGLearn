@@ -1,22 +1,24 @@
 <div class="row">
     
-      <div class="card w-100 h-50">
+      <div class="card">
           <div class="card-header">
             <h5 class="card-title">{{ monster?.race }}</h5>  
             <h6 class="card-subtitle mb-2 text-muted">{{ monster?.type }}</h6>
-              
-            
- 
           </div>
-          <img class="card-img" src="{{ monster?.profilePicturePath }}" alt="">
+          <div class="card-body row">
+
+              <div class="col-md-6 col-sm-12 w-50 h-100">
+                  <img class="card-img" src="{{ monster?.profilePicturePath }}" alt="">
+              </div>
+              <div class="col-md-6 col-sm-12 w-50 h-100">
+                  <p class="card-title text-justify">{{ monster?.description }}</p>
+              </div>    
+              
+          </div>
+          
+          
       </div>
 
-      <div class="card w-100 h-100">
-       
-        <div class="card-body">
-          <p class="card-title text-justify">{{ monster?.description }}</p>
-          <br/><br/>
-        </div>
-      </div>
+      
    
   </div>

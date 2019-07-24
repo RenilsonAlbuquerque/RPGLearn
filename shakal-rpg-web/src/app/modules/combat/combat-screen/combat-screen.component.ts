@@ -28,14 +28,14 @@ export class CombatScreenComponent implements OnInit {
   ngOnInit() {
   }
   open(content) {
-    this.modalReference = this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+    this.modalReference = this.modalService.open(content, {size: 'xl'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Closed with: ${reason}`;
     });
   }
   openSheet(content) {
-    this.modalReference = this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+    this.modalReference = this.modalService.open(content, {size: 'xl'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Closed with: ${reason}`;

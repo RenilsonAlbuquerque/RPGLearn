@@ -59,8 +59,8 @@ export class MonsterCreateComponent implements OnInit {
       charisma: [0, Validators.required],
       proeficientCharisma: [false],
       level:[{}, Validators.required],
-      damageResistence:[[],Validators.required],
-      damageImunity:[[],Validators.required],
+      damageResistence:[[]],
+      damageImunity:[[]],
       languages:[[],Validators.required]
     });
     this.featuresFormGroup = this._formBuilder.group({

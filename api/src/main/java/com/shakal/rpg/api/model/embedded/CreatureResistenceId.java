@@ -13,6 +13,9 @@ public class CreatureResistenceId implements Serializable{
 
     @Column(name = "damage_type_id")
     private Long damageTypeId;
+    
+    
+    
 
     public CreatureResistenceId() {
     	
