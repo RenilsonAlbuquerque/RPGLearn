@@ -10,6 +10,29 @@ public class MonsterOverviewDTO {
 	
 	
 	
+	public MonsterOverviewDTO() {
+		super();
+	}
+	
+	
+	public MonsterOverviewDTO(long id, int challengeLevel, String race, String type, int lifePoints) {
+		super();
+		this.id = id;
+		this.challengeLevel = challengeLevel;
+		this.race = race;
+		this.type = type;
+		this.lifePoints = lifePoints;
+	}
+
+
+	public MonsterOverviewDTO(long id, int challengeLevel, String race) {
+		super();
+		this.id = id;
+		this.challengeLevel = challengeLevel;
+		this.race = race;
+	}
+
+
 	public long getId() {
 		return id;
 	}
