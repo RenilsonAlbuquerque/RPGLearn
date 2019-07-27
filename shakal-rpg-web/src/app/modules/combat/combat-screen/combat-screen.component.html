@@ -5,8 +5,10 @@
         </div>
         <div class="card-body">
             <div class="row">
-                <div class="col-lg-2 col-md-4 col-sm-12" *ngFor="let monster of monsters; index as i" (click)="open(sheet)" >
-                    <app-monster-card [monster]="monster" ></app-monster-card>
+                <div class="col-lg-2 col-md-4 col-sm-12" *ngFor="let monster of monsters; index as i"  >
+                       
+                    <app-monster-card [monster]="monster" (click)="open(sheet)"></app-monster-card>
+                    <button type="button" class="btn btn-secondary btn-lg btn-block" (click)="removeMonster(i)">Remover</button>
                     <ng-template #sheet let-modal>
                             <div class="modal-header">
                               <h4 class="modal-title">{{monster.name}} #{{i +1}}</h4>
@@ -18,7 +20,7 @@
                               <app-monster-sheet [monsterId]="monster.id"
                                [currentLifePoints]="monster.lifePoints" [monsterIndex]="i"></app-monster-sheet>
                             </div>
-                        </ng-template>
+                    </ng-template>
                 </div>
                 
             </div>

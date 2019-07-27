@@ -41,6 +41,10 @@ export class CombatScreenComponent implements OnInit {
   disposeModalAddMonster(result: boolean){
     this.modalReference.close();
   }
+  removeMonster(index: number){
+    
+    this.combatRoomService.removeMonster(index);
+  }
   
 
 }
