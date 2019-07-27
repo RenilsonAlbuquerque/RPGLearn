@@ -32,7 +32,7 @@ export class MonsterSheetComponent implements OnInit {
    
   }
   addLifePoints(){
-    this.currentLifePoints = +this.currentLifePoints + this.amount;
+    this.currentLifePoints = parseInt(this.currentLifePoints.toString()) + parseInt(this.amount.toString());
     this.combatRoomService.updateMonsterLifePoints(this.monsterIndex,this.currentLifePoints);
   }
   

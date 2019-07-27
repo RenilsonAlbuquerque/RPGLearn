@@ -21,7 +21,6 @@ export class CombatRoomService {
   }
   public updateMonsterLifePoints(index: number,value: number){
       this.monsters[index].lifePoints = value;
-      console.log(this.monsters)
   }
 
 }
