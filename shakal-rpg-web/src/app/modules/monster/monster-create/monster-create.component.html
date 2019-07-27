@@ -80,21 +80,21 @@
                         <div class="row">
                             <mat-form-field class="form-group col-4" appearance="outline">
                                 <mat-label>Classe de armadura</mat-label>
-                                <input matInput placeholder="Classe de armadura" formControlName="armorClass">
+                                <input numbersOnly matInput placeholder="Classe de armadura" formControlName="armorClass">
                                 <mat-error *ngIf="!habilitiesFormGroup.controls['armorClass'].valid && habilitiesFormGroup.controls['armorClass'].touched">
                                         Campo obrigatório
                                 </mat-error>
                             </mat-form-field>
                             <mat-form-field class="form-group col-4" appearance="outline">
                                 <mat-label>Pontos de vida</mat-label>
-                                <input matInput placeholder="Pontos de vida" formControlName="lifePoints">
+                                <input numbersOnly matInput placeholder="Pontos de vida" formControlName="lifePoints">
                                 <mat-error *ngIf="!habilitiesFormGroup.controls['lifePoints'].valid && habilitiesFormGroup.controls['lifePoints'].touched">
                                         Campo obrigatório
                                 </mat-error>
                             </mat-form-field>
                             <mat-form-field class="form-group col-4" appearance="outline">
                                 <mat-label>Deslocamento</mat-label>
-                                <input matInput placeholder="Deslocamento" formControlName="moviment">
+                                <input numbersOnly matInput placeholder="Deslocamento" formControlName="moviment">
                                 <mat-error *ngIf="!habilitiesFormGroup.controls['moviment'].valid && habilitiesFormGroup.controls['moviment'].touched">
                                         Campo obrigatório
                                 </mat-error>
@@ -106,7 +106,7 @@
                             <div class="col-md-2 col-sm-4">
                                     <mat-form-field class="col-md-12" appearance="outline">
                                             <mat-label>Força</mat-label>
-                                            <input  matInput formControlName="force" placeholder="Força">
+                                            <input numbersOnly matInput formControlName="force" placeholder="Força">
                                             <mat-error *ngIf="!habilitiesFormGroup.controls['force'].valid && habilitiesFormGroup.controls['force'].touched">
                                                     Campo obrigatório
                                             </mat-error>
@@ -119,7 +119,7 @@
                             <div class="col-md-2 col-sm-4">
                                     <mat-form-field class="col-12" appearance="outline">
                                             <mat-label>Destreza</mat-label>
-                                            <input matInput formControlName="dexterity" placeholder="Destreza">
+                                            <input numbersOnly matInput formControlName="dexterity" placeholder="Destreza">
                                             <mat-error *ngIf="!habilitiesFormGroup.controls['dexterity'].valid && habilitiesFormGroup.controls['dexterity'].touched">
                                                     Campo obrigatório
                                             </mat-error>
@@ -131,7 +131,7 @@
                             <div class="col-md-2 col-sm-4">
                                     <mat-form-field class="col-12" appearance="outline">
                                             <mat-label>Constituição</mat-label>
-                                            <input matInput formControlName="constitution" placeholder="Constituição">
+                                            <input numbersOnly matInput formControlName="constitution" placeholder="Constituição">
                                             <mat-error *ngIf="!habilitiesFormGroup.controls['constitution'].valid && habilitiesFormGroup.controls['constitution'].touched">
                                                     Campo obrigatório
                                             </mat-error>
@@ -143,7 +143,7 @@
                             <div class="col-md-2 col-sm-4">
                                     <mat-form-field class="col-12" appearance="outline">
                                             <mat-label>Inteligência</mat-label>
-                                            <input matInput formControlName="inteligence" placeholder="Inteligência">
+                                            <input numbersOnly matInput formControlName="inteligence" placeholder="Inteligência">
                                             <mat-error *ngIf="!habilitiesFormGroup.controls['inteligence'].valid && habilitiesFormGroup.controls['inteligence'].touched">
                                                     Campo obrigatório
                                             </mat-error>
@@ -155,7 +155,7 @@
                             <div class="col-md-2 col-sm-4">
                                     <mat-form-field class="col-12" appearance="outline">
                                             <mat-label>Sabedoria</mat-label>
-                                            <input matInput formControlName="wisdom" placeholder="Sabedoria">
+                                            <input numbersOnly matInput formControlName="wisdom" placeholder="Sabedoria">
                                             <mat-error *ngIf="!habilitiesFormGroup.controls['wisdom'].valid && habilitiesFormGroup.controls['wisdom'].touched">
                                                     Campo obrigatório
                                             </mat-error>
@@ -167,7 +167,7 @@
                             <div class="col-md-2 col-sm-4">
                                     <mat-form-field class="col-12" appearance="outline">
                                             <mat-label>carisma</mat-label>
-                                            <input matInput formControlName="charisma" placeholder="Carisma">
+                                            <input numbersOnly matInput formControlName="charisma" placeholder="Carisma">
                                             <mat-error *ngIf="!habilitiesFormGroup.controls['charisma'].valid && habilitiesFormGroup.controls['charisma'].touched">
                                                     Campo obrigatório
                                             </mat-error>

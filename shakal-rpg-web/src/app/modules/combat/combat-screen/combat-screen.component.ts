@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MonsterCard } from 'src/app/domain/models/monster/monster.card';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { CombatRoomService } from '../services/combat-room.service';
 
 
 @Component({
@@ -9,7 +10,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./combat-screen.component.scss']
 })
 export class CombatScreenComponent implements OnInit {
-
+  
   public monsters: MonsterCard[];
   public players: MonsterCard[];
   
@@ -17,12 +18,8 @@ export class CombatScreenComponent implements OnInit {
   closeResult: string;
   
 
-  constructor(private modalService: NgbModal) { 
-    this.monsters = [];
-    this.players = [];
-
-   
-    
+  constructor(private modalService: NgbModal, private combatRoomService: CombatRoomService) { 
+    this.monsters = this.combatRoomService.getMonsters();
   }
 
   ngOnInit() {
@@ -41,12 +38,9 @@ export class CombatScreenComponent implements OnInit {
       this.closeResult = `Closed with: ${reason}`;
     });
   }
-
-  addMonster(monster: MonsterCard){
-    this.monsters.push(monster);
-  }
   disposeModalAddMonster(result: boolean){
     this.modalReference.close();
   }
+  
 
 }

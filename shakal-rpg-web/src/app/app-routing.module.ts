@@ -20,7 +20,12 @@ const routes: Routes = [
       {
         path: 'combat',
         loadChildren: './modules/combat/combat.module#CombatModule'
+      },
+      {
+        path: 'story',
+        loadChildren: './modules/story/story.module#StoryModule'
       }
+
     ]
   }
   

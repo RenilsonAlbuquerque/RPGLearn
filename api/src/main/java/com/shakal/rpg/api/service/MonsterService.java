@@ -22,6 +22,7 @@ import com.shakal.rpg.api.dto.create.MonsterCreateInputDTO;
 import com.shakal.rpg.api.dto.filter.CustomPage;
 import com.shakal.rpg.api.dto.filter.PaginationFilter;
 import com.shakal.rpg.api.dto.info.MonsterInfoDTO;
+import com.shakal.rpg.api.dto.overview.MonsterCardDTO;
 import com.shakal.rpg.api.dto.overview.MonsterOverviewDTO;
 import com.shakal.rpg.api.model.Alignment;
 import com.shakal.rpg.api.model.Attack;
@@ -147,11 +148,18 @@ public class MonsterService implements IMonsterService {
 
 	@Override
 	public CustomPage<MonsterOverviewDTO> listsMonsterPaged(PaginationFilter filter) {
+		
 		Page<Monster> page = this.monsterDao.findAll(PageRequest.of(filter.getPage() -1, 
 				filter.getSize()));
-    	return (CustomPage<MonsterOverviewDTO>) PaginationGenerator.convertPage(page,page
+		return (CustomPage<MonsterOverviewDTO>) PaginationGenerator.convertPage(page,page
         		.stream().map( monster -> MonsterMapper.entityToOverview(monster))
                 .collect(Collectors.toList()));
+				
+		/*
+		Page<MonsterOverviewDTO> page = this.monsterDao.retrieveMonstersAsDTO(PageRequest.of(filter.getPage() -1, 
+				filter.getSize()));
+    	return (CustomPage<MonsterOverviewDTO>) PaginationGenerator.convertPage(page,page.getContent());
+    	*/
 	}
 
 	@Override
@@ -250,7 +258,7 @@ public class MonsterService implements IMonsterService {
 			dex.setAtribute(this.atributeDao.getOne(2L));
 			dex.setCreature(monster);
 			dex.setValue(inputDto.getDexterity());
-			dex.setModfier(AtributeHelper.calculateAtributeBonus(inputDto.getForce()));
+			dex.setModfier(AtributeHelper.calculateAtributeBonus(inputDto.getDexterity()));
 			dex.setProeficiency(inputDto.isProeficientDexterity());
 		result.add(dex);
 		this.creatureAtributeDao.save(dex);
@@ -295,6 +303,20 @@ public class MonsterService implements IMonsterService {
 		result.add(charisma);
 		this.creatureAtributeDao.save(charisma);
 		
+		return result;
+	}
+
+	@Override
+	public MonsterCardDTO getMonsterCardById(Long id) throws ResourceNotFoundException {
+		Monster search = this.monsterDao.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException(Messages.MONSTER_NOT_FOUND));
+		
+		MonsterCardDTO result = new MonsterCardDTO();
+		result.setId(search.getId());
+		result.setLevel(search.getChallengeLevel().getValue());
+		result.setLifePoints(search.getBaseLifeDice());
+		result.setName(search.getRace().getName());
+		result.setImagePath(search.getImagePath());
 		return result;
 	}
 	

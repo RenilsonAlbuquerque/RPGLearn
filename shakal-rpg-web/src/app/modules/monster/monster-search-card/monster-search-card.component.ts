@@ -4,7 +4,7 @@ import { MonsterOverview } from 'src/app/domain/models/monster.overview';
 import { MonsterService } from '../monster.module.service';
 import { Router } from '@angular/router';
 import { EventEmitter } from '@angular/core';
-import { MonsterCard } from 'src/app/domain/models/monster/monster.card';
+import { CombatRoomService } from '../../combat/services/combat-room.service';
 
 @Component({
   selector: 'app-monster-search-card',
@@ -20,7 +20,7 @@ export class MonsterSearchCardComponent implements OnInit {
   @Output() fecharModal = new EventEmitter();
 
 
-  constructor(private monsterService: MonsterService, private router: Router) { }
+  constructor(private monsterService: MonsterService, private router: Router,private combatRoomService: CombatRoomService) { }
 
   ngOnInit() {
     this.search = "";
@@ -39,7 +39,11 @@ export class MonsterSearchCardComponent implements OnInit {
     )
   }
   selectMonster(monster: MonsterOverview){
-    this.adcionarMonstro.emit(
+    this.monsterService.getMonsterCardById(monster.id).subscribe(
+      response => ( this.combatRoomService.addMonster(response))
+    )
+    /*
+    this.combatRoomService.addMonster(
       {
         id: monster.id,
         name: monster.race,
@@ -47,7 +51,8 @@ export class MonsterSearchCardComponent implements OnInit {
         lifePoints: monster.lifePoints,
         imagePath: "https://media-waterdeep.cursecdn.com/avatars/thumbnails/0/303/1000/1000/636252771762002496.jpeg"
       } as MonsterCard);
-      this.fecharModal.emit(false);
+      */
+      //this.fecharModal.emit(false);
   }
 
 }

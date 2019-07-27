@@ -15,7 +15,8 @@
                               </button>
                             </div>
                             <div class="modal-body">
-                              <app-monster-sheet [monsterId]="monster.id"></app-monster-sheet>
+                              <app-monster-sheet [monsterId]="monster.id"
+                               [currentLifePoints]="monster.lifePoints" [monsterIndex]="i"></app-monster-sheet>
                             </div>
                         </ng-template>
                 </div>

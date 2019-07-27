@@ -15,12 +15,16 @@ import { MonsterCreateComponent } from './monster-create/monster-create.componen
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material-design/material.module';
 import { BasecomponentsModule } from '../basecomponents/basecomponents.module';
+import { CombatRoomService } from '../combat/services/combat-room.service';
+import { OnlynumberDirective } from 'src/app/infra/directives/only-number.directive';
 
 
 
 
 @NgModule({
-  declarations: [MonsterListComponent, MonsterDetailComponent, MonsterInfoComponent, MonsterSheetComponent, MonsterCardComponent, MonsterSearchCardComponent, MonsterCreateComponent],
+  declarations: [MonsterListComponent, MonsterDetailComponent, MonsterInfoComponent,
+     MonsterSheetComponent, MonsterCardComponent, MonsterSearchCardComponent, 
+     MonsterCreateComponent,OnlynumberDirective],
   imports: [
     NgbModalModule,
     CommonModule,
@@ -32,7 +36,7 @@ import { BasecomponentsModule } from '../basecomponents/basecomponents.module';
     BasecomponentsModule
   ],
   providers:[
-    MonsterService,FormBuilder
+    MonsterService,FormBuilder,CombatRoomService
   ],
   exports: [MonsterCardComponent,MonsterSearchCardComponent, MonsterSheetComponent] 
 })

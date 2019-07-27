@@ -23,6 +23,7 @@ import com.shakal.rpg.api.dto.create.MonsterCreateInputDTO;
 import com.shakal.rpg.api.dto.filter.CustomPage;
 import com.shakal.rpg.api.dto.filter.PaginationFilter;
 import com.shakal.rpg.api.dto.info.MonsterInfoDTO;
+import com.shakal.rpg.api.dto.overview.MonsterCardDTO;
 import com.shakal.rpg.api.dto.overview.MonsterOverviewDTO;
 import com.shakal.rpg.api.exception.ResourceNotFoundException;
 
@@ -51,7 +52,11 @@ public class MonsterController {
     	
         return new ResponseEntity<MonsterSheetDTO>(monsterService.getMonsterSheetById(id), HttpStatus.OK);
     }
-	
+	@GetMapping("/card/{id}")
+    public ResponseEntity<MonsterCardDTO> getMonsterCardById(@PathVariable Long id) throws ResourceNotFoundException {
+    	
+        return new ResponseEntity<MonsterCardDTO>(monsterService.getMonsterCardById(id), HttpStatus.OK);
+    }
 	 @PostMapping(value = "/filter",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	 public ResponseEntity<CustomPage<MonsterOverviewDTO>> filter(@RequestBody PaginationFilter filter,
 	    													@RequestParam(required = false) String name

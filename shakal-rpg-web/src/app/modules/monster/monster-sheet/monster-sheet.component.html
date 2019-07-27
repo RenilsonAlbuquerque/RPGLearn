@@ -14,8 +14,21 @@
                                         <p><strong>Classe de armadura: </strong> {{ monster?.armorClass }}</p>
                                 </div>
                                 <div class="row">
-                                        <p><strong>Pontos de vida: </strong> {{ monster?.lifePoints }}</p>
+                                    
+                                        <p><strong>Pontos de vida: </strong> {{(currentLifePoints && currentLifePoints > 0)? currentLifePoints:  monster?.lifePoints }}</p>
+                                        
+                                        
+                                        <div class="input-group mb-3 col-4" *ngIf="currentLifePoints">
+                                                <div class="input-group-prepend">
+                                                    <button  type="button" class="btn btn-primary" (click)="subtractLifePoints()">-</button>
+                                                </div>
+                                                <input [(ngModel)]="amount" type="text" numbersOnly class="form-control" >
+                                                <div class="input-group-prepend">
+                                                    <button  type="button" class="btn btn-primary" (click)="addLifePoints()">+</button>
+                                                </div>
+                                        </div>
                                 </div>
+                                
                                 <div class="row">
                                         <p><strong>Deslocamento: </strong> --</p>
                                 </div>

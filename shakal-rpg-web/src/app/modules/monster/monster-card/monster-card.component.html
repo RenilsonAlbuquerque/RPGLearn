@@ -1,9 +1,22 @@
-<div class="card bg-dark text-white">
-        <img class="card-img"
+<div class="card bg-dark text-white" >
+        <img class="card-img" height="150" width="100"
         src="{{monster?.imagePath}}" alt="_blank" />
         <div class="card-body">
-          <p class="card-text"><small class="text">{{monster.name }}</small></p>
-          <p class="card-text"><small class="text">{{"Nv: " +  monster.level }}</small></p>
-          <p class="card-text"><small class="text">Pontos de vida: {{monster.lifePoints}}</small></p>
+          <strong class="text">{{monster.name }}</strong><br>
+          <small class="text">{{"Nível: " +  monster.level }}</small><br>
+          <small class="text">Pontos de vida: {{monster.lifePoints}}</small>
         </div>
 </div>
+<!-- <mat-card class="example-card">
+    <img mat-card-image src="{{monster?.imagePath}}" height="150" width="100" alt="Photo of a Shiba Inu">
+    <mat-card-content>
+      <mat-card-title>{{monster.name }}</mat-card-title>
+      <small>{{"Nv: " +  monster.level }}</small>
+      <br>
+      <small>Pontos de vida: {{monster.lifePoints}}</small>
+      
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button color="warn">Remover</button>
+      </mat-card-actions>
+  </mat-card> -->

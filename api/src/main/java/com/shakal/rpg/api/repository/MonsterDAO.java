@@ -15,7 +15,7 @@ public interface MonsterDAO extends JpaRepository<Monster,Long>, JpaSpecificatio
 
 	@Query("SELECT new com.shakal.rpg.api.dto.overview.MonsterOverviewDTO(m.id, m.challengeLevel.value"
 	  		+ ",m.race.name) FROM Monster m FETCH ALL PROPERTIES")
-	  Page<MonsterOverviewDTO> retrieveMonsterAsDTO(Pageable pageable);
+	  Page<MonsterOverviewDTO> retrieveMonstersAsDTO(Pageable pageable);
 	
 	
 }
