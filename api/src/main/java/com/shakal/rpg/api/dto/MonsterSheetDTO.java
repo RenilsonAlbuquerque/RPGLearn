@@ -12,6 +12,7 @@ public class MonsterSheetDTO {
 	private String size;
 	private int armorClass;
 	private int lifePoints;
+	private int speed;
 	private String challengeLevel;
 	private List<AtributeDTO> atributes;
 	private List<SavingThrowDTO> savingThrows;
@@ -106,6 +107,12 @@ public class MonsterSheetDTO {
 	}
 	public void setActions(List<MonsterActionDTO> actions) {
 		this.actions = actions;
+	}
+	public int getSpeed() {
+		return speed;
+	}
+	public void setSpeed(int speed) {
+		this.speed = speed;
 	}
 	
 	

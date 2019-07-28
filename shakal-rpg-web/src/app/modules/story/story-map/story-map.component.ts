@@ -19,7 +19,6 @@ export class StoryMapComponent implements OnInit {
   private image = new Image();
   public markers : PlaceMarker[];
   
-  private modalReference;
   closeResult: string;
 
   constructor(private modalService: NgbModal) { 
@@ -45,22 +44,17 @@ export class StoryMapComponent implements OnInit {
     } as PlaceMarker);
     this.ctx.drawImage(this.marker,event.clientX,event.clientY,15,20);
   }
-  selectPlace(event: MouseEvent,content){
-    var overPoint = false;
+  selectPlace(event: MouseEvent,content): PlaceMarker{
+    var overMark = null;
     this.markers.forEach(function (marker: PlaceMarker){
       var distance = Math.sqrt( Math.pow((event.clientX - marker.cordX),2) + Math.pow((event.clientY - marker.cordY),2)   )
-      console.log(distance)
       if(distance < 100){
-        overPoint = true;
+        overMark = marker;
       }
     });
-    if(overPoint){
-        
-      this.modalReference = this.modalService.open(content, {size: 'xl'}).result.then((result) => {
-        this.closeResult = `Closed with: ${result}`;
-        }, (reason) => {
-        this.closeResult = `Closed with: ${reason}`;
-      });
-    }  
+    if(overMark){
+      this.modalService.open(content, {size: 'xl'});
+    } 
+    return overMark; 
   }
 }

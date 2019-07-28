@@ -110,6 +110,7 @@ public class MonsterService implements IMonsterService {
 		result.setSize(search.getSize().getName());
 		result.setArmorClass(search.getArmorClass());
 		result.setLifePoints(search.getBaseLifeDice());
+		result.setSpeed(search.getSpeed());
 		result.setChallengeLevel(search.getChallengeLevel().getValue() + " " 
 								+ "(" + search.getChallengeLevel().getExperiencePoints() + " XP)");
 		result.setAtributes( search.getAtributes().stream().map(
@@ -225,6 +226,7 @@ public class MonsterService implements IMonsterService {
 		entity.setAlignment(alignmentSearch);
 		entity.setArmorClass(inputDto.getArmorClass());
 		entity.setBaseLifeDice(inputDto.getLifePoints());
+		entity.setSpeed(inputDto.getSpeed());
 		entity.setChallengeLevel(levelSearch);
 		entity.setLanguages(inputDto.getLanguages().stream()
 				.map(language -> this.languageDao.getOne(language.getId()))

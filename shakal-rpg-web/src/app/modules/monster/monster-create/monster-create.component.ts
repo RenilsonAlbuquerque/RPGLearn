@@ -49,17 +49,17 @@ export class MonsterCreateComponent implements OnInit {
       armorClass: ['', Validators.required],
       lifePoints: ['', Validators.required],
       moviment: ['', Validators.required],
-      force: [0, Validators.required],
+      force: [, Validators.required],
       proeficientForce: [false],
-      dexterity: [0, Validators.required],
+      dexterity: [, Validators.required],
       proeficientDexterity: [false],
-      constitution: [0, Validators.required],
+      constitution: [, Validators.required],
       proeficientConstitution: [false],
-      inteligence: [0, Validators.required],
+      inteligence: [, Validators.required],
       proeficientInteligence: [false],
-      wisdom: [0, Validators.required],
+      wisdom: [, Validators.required],
       proeficientWisdom: [false],
-      charisma: [0, Validators.required],
+      charisma: [, Validators.required],
       proeficientCharisma: [false],
       level:[{}, Validators.required],
       damageResistence:[[]],
@@ -73,7 +73,8 @@ export class MonsterCreateComponent implements OnInit {
   }
   public onSubmit(){
     this.monsterService.createMonster(this.mapFormToDTO()).subscribe(
-      response => (this.toastr.success("Monstro cadastrado com sucesso")),
+      response => (this.toastr.success("Monstro cadastrado com sucesso"),
+                  this.router.navigate(['home/monster/all'])),
       error => (this.toastr.error(error)) 
     )
   }

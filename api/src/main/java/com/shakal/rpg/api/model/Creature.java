@@ -34,6 +34,8 @@ public abstract class Creature implements ICreature{
 	@Column(length = 500)
 	private String imagePath;
 	
+	private int speed;
+	
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
 	@JoinColumn(name ="alignment_id")
 	private Alignment alignment;
@@ -118,6 +120,15 @@ public abstract class Creature implements ICreature{
 
 	public void setAlignment(Alignment alignment) {
 		this.alignment = alignment;
+	}
+	
+
+	public int getSpeed() {
+		return speed;
+	}
+
+	public void setSpeed(int speed) {
+		this.speed = speed;
 	}
 
 	@Override

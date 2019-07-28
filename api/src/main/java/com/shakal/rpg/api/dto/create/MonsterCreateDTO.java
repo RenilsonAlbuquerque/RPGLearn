@@ -16,6 +16,7 @@ public class MonsterCreateDTO {
 	private long type;
 	private int armorClass;
 	private int lifePoints;
+	private int speed;
 	private int force;
 	private boolean proeficientForce;
 	private int dexterity;
@@ -75,6 +76,13 @@ public class MonsterCreateDTO {
 	}
 	public void setArmorClass(int armorClass) {
 		this.armorClass = armorClass;
+	}
+	
+	public int getSpeed() {
+		return speed;
+	}
+	public void setSpeed(int speed) {
+		this.speed = speed;
 	}
 	public int getLifePoints() {
 		return lifePoints;

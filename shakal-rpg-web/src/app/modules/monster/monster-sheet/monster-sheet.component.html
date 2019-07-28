@@ -30,7 +30,7 @@
                                 </div>
                                 
                                 <div class="row">
-                                        <p><strong>Deslocamento: </strong> --</p>
+                                        <p><strong>Deslocamento: </strong> {{ monster?.armorClass }}</p>
                                 </div>
                                
                                 
@@ -94,4 +94,18 @@
             </div>
         </div>
     </div>
-
+    <!-- <mat-card>
+        <mat-card-title>{{ monster?.name }}</mat-card-title>
+        <mat-card-subtitle>{{ monster?.size }}, {{ monster?.alignment }}</mat-card-subtitle>
+        <mat-card-content>
+                <mat-list>    
+                    <mat-list-item>
+                        <p mat-line><strong>Classe de armadura: </strong> {{ monster?.armorClass }}</p> 
+                    </mat-list-item>
+                    <mat-list-item>
+                        <p mat-line><strong>Pontos de vida: </strong> {{(currentLifePoints && currentLifePoints > 0)? currentLifePoints:  monster?.lifePoints }}</p> 
+                    </mat-list-item>
+                        
+                </mat-list>
+        </mat-card-content>
+    </mat-card> -->
