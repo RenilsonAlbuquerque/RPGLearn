@@ -42,7 +42,6 @@ export class CombatScreenComponent implements OnInit {
     this.modalReference.close();
   }
   removeMonster(index: number){
-    
     this.combatRoomService.removeMonster(index);
   }
   

@@ -4,6 +4,8 @@ import { MonsterCreate } from 'src/app/domain/models/monster/monster.create';
 import { MonsterCreateInput } from 'src/app/domain/models/monster/monster.create.input';
 import { MonsterService } from '../monster.module.service';
 import { KeyValue } from 'src/app/domain/models/comon/key.value';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -26,7 +28,8 @@ export class MonsterCreateComponent implements OnInit {
   public features: FormArray;
   profilePicture: string;
 
-  constructor(private _formBuilder: FormBuilder,private monsterService: MonsterService) { }
+  constructor(private _formBuilder: FormBuilder,private monsterService: MonsterService,
+    private router: Router,private toastr: ToastrService) { }
 
   ngOnInit() {
     this.monsterService.getMonsterCreateInput().subscribe(
@@ -69,9 +72,9 @@ export class MonsterCreateComponent implements OnInit {
     this.features = this.featuresFormGroup.get('features') as FormArray;
   }
   public onSubmit(){
-    console.log(this.mapFormToDTO());
     this.monsterService.createMonster(this.mapFormToDTO()).subscribe(
-      response => (console.log(response))   
+      response => (this.toastr.success("Monstro cadastrado com sucesso")),
+      error => (this.toastr.error(error)) 
     )
   }
   private mapFormToDTO(): MonsterCreate {
@@ -84,6 +87,7 @@ export class MonsterCreateComponent implements OnInit {
       type: this.informacoesFormGroup.controls['type'].value,
       armorClass:Number(this.habilitiesFormGroup.controls['armorClass'].value),
       lifePoints:Number(this.habilitiesFormGroup.controls['lifePoints'].value),
+      speed: Number(this.habilitiesFormGroup.controls['moviment'].value),
       force:Number(this.habilitiesFormGroup.get('force').value),
       proeficientForce : this.habilitiesFormGroup.controls['proeficientForce'].value,
       dexterity:Number(this.habilitiesFormGroup.controls['dexterity'].value),

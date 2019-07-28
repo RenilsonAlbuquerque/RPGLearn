@@ -8,7 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { LayoutModule } from './modules/layout/layout.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     AppRoutingModule,
     HttpClientModule,
     NgbModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
     
   ],
   providers: [],

@@ -10,6 +10,7 @@ export interface MonsterCreate{
     type: number,
     armorClass: number,
     lifePoints: number,
+    speed: number,
     force:number,
     proeficientForce: boolean,
     dexterity:number,

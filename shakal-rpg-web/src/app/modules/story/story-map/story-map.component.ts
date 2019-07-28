@@ -30,6 +30,7 @@ export class StoryMapComponent implements OnInit {
 
   
   ngOnInit(): void {
+  
     this.ctx = this.canvas.nativeElement.getContext('2d');
     this.ctx.drawImage(this.image,0,0,this.image.width,this.image.height,0,0,1200,800);
   }
@@ -47,9 +48,11 @@ export class StoryMapComponent implements OnInit {
   selectPlace(event: MouseEvent,content){
     var overPoint = false;
     this.markers.forEach(function (marker: PlaceMarker){
-        if(Math.sqrt( Math.pow((event.clientX - marker.cordX),2) + Math.pow((event.clientY - marker.cordY),2)   ) < 30){
-          overPoint = true;
-        }
+      var distance = Math.sqrt( Math.pow((event.clientX - marker.cordX),2) + Math.pow((event.clientY - marker.cordY),2)   )
+      console.log(distance)
+      if(distance < 100){
+        overPoint = true;
+      }
     });
     if(overPoint){
         
