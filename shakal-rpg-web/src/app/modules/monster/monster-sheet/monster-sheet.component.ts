@@ -22,6 +22,7 @@ export class MonsterSheetComponent implements OnInit {
     private combatRoomService: CombatRoomService) { }
 
   ngOnInit() {
+    this.amount = 0;
     this._activatedRoute.params.subscribe(params => {
       let id = params['id'];
       id = id ? id : this.monsterId
@@ -33,12 +34,15 @@ export class MonsterSheetComponent implements OnInit {
   }
   addLifePoints(){
     this.currentLifePoints = parseInt(this.currentLifePoints.toString()) + parseInt(this.amount.toString());
+    this.amount = 0;
     this.combatRoomService.updateMonsterLifePoints(this.monsterIndex,this.currentLifePoints);
   }
   
   subtractLifePoints(){
     this.currentLifePoints -= this.amount;
+    this.amount = 0;
     this.combatRoomService.updateMonsterLifePoints(this.monsterIndex,this.currentLifePoints);
+    
   }
 
 }

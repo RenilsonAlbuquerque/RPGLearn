@@ -17,11 +17,11 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <p><strong>Tem certeza que deseja remover <span class="text-danger">{{monster.name}}</span> do combate?</strong></p>
+                            <p><strong>Tem certeza que deseja remover <span class="text-danger">{{monster.name}} #{{i +1}}</span> do combate?</strong></p>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">Cancel</button>
-                            <button type="button" class="btn btn-danger" (click)="removeMonster(i)">Ok</button>
+                            <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">Cancelar</button>
+                            <button type="button" class="btn btn-danger" (click)="removeMonster(i)">Confirmar</button>
                           </div>
                     </ng-template>
                     

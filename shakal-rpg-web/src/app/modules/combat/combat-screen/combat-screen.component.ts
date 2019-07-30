@@ -15,7 +15,7 @@ export class CombatScreenComponent implements OnInit {
   public players: MonsterCard[];
   
   private modalReference;
-  closeResult: string;
+  
   
 
   constructor(private modalService: NgbModal, private combatRoomService: CombatRoomService) { 
@@ -28,7 +28,7 @@ export class CombatScreenComponent implements OnInit {
     this.modalReference = this.modalService.open(content, {size: 'xl'});
   }
   openConfirmDeleteModal(reference){
-    this.modalReference = this.modalService.open(reference);
+    this.modalReference = this.modalService.open(reference,{ centered: true });
   }
   openSheet(content) {
     this.modalReference = this.modalService.open(content, {size: 'xl'});
