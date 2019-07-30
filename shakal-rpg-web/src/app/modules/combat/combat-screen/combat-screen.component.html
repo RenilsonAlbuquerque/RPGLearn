@@ -8,7 +8,23 @@
                 <div class="col-lg-2 col-md-4 col-sm-12" *ngFor="let monster of monsters; index as i"  >
                        
                     <app-monster-card [monster]="monster" (click)="open(sheet)"></app-monster-card>
-                    <button type="button" class="btn btn-secondary btn-lg btn-block" (click)="removeMonster(i)">Remover</button>
+                    <button type="button" class="btn btn-secondary btn-lg btn-block" (click)="openConfirmDeleteModal(confirmDelete)">Remover</button>
+                    <ng-template #confirmDelete let-modal>
+                        <div class="modal-header">
+                            <h4 class="modal-title">Remover o monstro do combate</h4>
+                            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p><strong>Tem certeza que deseja remover <span class="text-danger">{{monster.name}}</span> do combate?</strong></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">Cancel</button>
+                            <button type="button" class="btn btn-danger" (click)="removeMonster(i)">Ok</button>
+                          </div>
+                    </ng-template>
+                    
                     <ng-template #sheet let-modal>
                             <div class="modal-header">
                               <h4 class="modal-title">{{monster.name}} #{{i +1}}</h4>
@@ -29,20 +45,21 @@
               
         <div class="card-footer text-muted">
             <button type="button" focus-index="1" class="btn btn-dark" (click)="open(content)" >Adcionar</button>
-           
+            
         </div>
+        <ng-template #content let-modal>
+            <div class="modal-header">
+              <h4 class="modal-title" id="modal-basic-title">Selecione o monstro</h4>
+              <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <app-monster-search-card (adcionarMonstro)="addMonster($event)" (fecharModal)="disposeModalAddMonster($event)" ></app-monster-search-card>
+            </div>
+        </ng-template>
     </div>
-    <ng-template #content let-modal>
-        <div class="modal-header">
-          <h4 class="modal-title" id="modal-basic-title">Selecione o monstro</h4>
-          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <app-monster-search-card (adcionarMonstro)="addMonster($event)" (fecharModal)="disposeModalAddMonster($event)"></app-monster-search-card>
-        </div>
-    </ng-template>
+    
     <br>
 
 

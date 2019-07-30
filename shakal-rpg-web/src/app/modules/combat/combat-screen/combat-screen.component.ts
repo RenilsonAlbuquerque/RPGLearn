@@ -25,24 +25,20 @@ export class CombatScreenComponent implements OnInit {
   ngOnInit() {
   }
   open(content) {
-    this.modalReference = this.modalService.open(content, {size: 'xl'}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Closed with: ${reason}`;
-    });
+    this.modalReference = this.modalService.open(content, {size: 'xl'});
+  }
+  openConfirmDeleteModal(reference){
+    this.modalReference = this.modalService.open(reference);
   }
   openSheet(content) {
-    this.modalReference = this.modalService.open(content, {size: 'xl'}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Closed with: ${reason}`;
-    });
+    this.modalReference = this.modalService.open(content, {size: 'xl'});
   }
   disposeModalAddMonster(result: boolean){
-    this.modalReference.close();
+    this.modalReference.dismiss();
   }
   removeMonster(index: number){
     this.combatRoomService.removeMonster(index);
+    this.modalReference.dismiss();
   }
   
 

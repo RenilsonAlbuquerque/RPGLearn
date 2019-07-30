@@ -7,6 +7,7 @@ public class MonsterActionDTO {
 	private String name;
 	private String description;
 	private List<String> damage;
+	
 	public String getName() {
 		return name;
 	}

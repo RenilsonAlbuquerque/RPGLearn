@@ -22,10 +22,12 @@ export class MonsterCreateComponent implements OnInit {
   public informacoesFormGroup: FormGroup;
   public habilitiesFormGroup: FormGroup;
   public featuresFormGroup: FormGroup;
+  public actionsFormGroup: FormGroup;
   
 
   //Items of the component
   public features: FormArray;
+  public actions: FormArray;
   profilePicture: string;
 
   constructor(private _formBuilder: FormBuilder,private monsterService: MonsterService,
@@ -69,7 +71,11 @@ export class MonsterCreateComponent implements OnInit {
     this.featuresFormGroup = this._formBuilder.group({
       features: this._formBuilder.array([  ])
     });
+    this.actionsFormGroup = this._formBuilder.group({
+      actions: this._formBuilder.array([  ])
+    });
     this.features = this.featuresFormGroup.get('features') as FormArray;
+    this.actions = this.actionsFormGroup.get('actions') as FormArray;
   }
   public onSubmit(){
     this.monsterService.createMonster(this.mapFormToDTO()).subscribe(
@@ -123,10 +129,23 @@ export class MonsterCreateComponent implements OnInit {
   removeFeature(index) {
     this.features.removeAt(index);
   }
+  addAction(){
+    this.actions.push(this.createActionItem());
+  }
+  removeAction(index) {
+    this.actions.removeAt(index);
+  }
   createNameDescriptionItem(): FormGroup {
     return this._formBuilder.group({
       name: ['',Validators.required],
       description: ['',Validators.required],
+    });
+  }
+  createActionItem(): FormGroup {
+    return this._formBuilder.group({
+      name: ['',Validators.required],
+      description: ['',Validators.required],
+      damage:[]
     });
   }
 

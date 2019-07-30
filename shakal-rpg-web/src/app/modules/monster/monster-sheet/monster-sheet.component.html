@@ -1,13 +1,13 @@
  
-    <div class="card">
+    <div class="card" >
         <div class="card-header">
             <h5 class="card-title">{{ monster?.name }}</h5>
             <h6 class="card-subtitle mb-2 text-muted"> {{ monster?.size }}, {{ monster?.alignment }}</h6>
         </div>
         <div class="card-body">
-            <div class="row">
-            <div class="col-md-6 col-sm-12">
-                <ul class="list-group list-group-flush">
+            <div class="row" style="height: 500px"  >
+                <div class="col-md-6 col-sm-12">
+                    <ul class="list-group list-group-flush">
                 
                         <li class="list-group-item">
                                 <div class="row">
@@ -78,18 +78,22 @@
                                 </div>
                                    
                             </li>
-                        </ul>
+                    </ul>
                 </div>
-                <div class="col-md-6 col-sm-12">
-                        <ul class="list-group list-group-flush">
+                
+                <div class="overflow-auto col-md-6 col-sm-12 h-100">
+                    <ul class="list-group list-group-flush">
                         <li class="list-group-item">
-                                <div class="row" *ngFor="let feature of monster?.features">
-                                        <p><strong>{{feature.name}}</strong> </p>
-                                        <p>{{feature.description}}</p>
-                                </div>
+                            <div class="row" *ngFor="let feature of monster?.features">
+                                <p><strong>{{feature.name}}</strong> </p>
+                                <p>{{feature.description}}</p>
+                            </div>
                         </li>
                     </ul>
                 </div>
+                
+            </div>
+            <div class="row h-50">
                 
             </div>
         </div>
@@ -98,14 +102,33 @@
         <mat-card-title>{{ monster?.name }}</mat-card-title>
         <mat-card-subtitle>{{ monster?.size }}, {{ monster?.alignment }}</mat-card-subtitle>
         <mat-card-content>
-                <mat-list>    
-                    <mat-list-item>
-                        <p mat-line><strong>Classe de armadura: </strong> {{ monster?.armorClass }}</p> 
-                    </mat-list-item>
-                    <mat-list-item>
-                        <p mat-line><strong>Pontos de vida: </strong> {{(currentLifePoints && currentLifePoints > 0)? currentLifePoints:  monster?.lifePoints }}</p> 
-                    </mat-list-item>
-                        
-                </mat-list>
+                <mat-grid-list cols="2" rowHeight="2:1">
+                        <mat-grid-tile>
+                                <mat-list>    
+                                        <mat-list-item>
+                                            <p mat-line><strong>Classe de armadura: </strong> {{ monster?.armorClass }}</p> 
+                                        </mat-list-item>
+                                        <mat-list-item>
+                                            <p mat-line><strong>Pontos de vida: </strong> {{(currentLifePoints && currentLifePoints > 0)? currentLifePoints:  monster?.lifePoints }}</p> 
+                                        </mat-list-item>
+                                        <mat-list-item>
+                                            <p mat-line><strong>Deslocamento: </strong> {{ monster?.armorClass }}</p> 
+                                        </mat-list-item>
+                                        <mat-divider></mat-divider>
+                                        
+                                </mat-list>
+                                <mat-grid-list cols="6" rowHeight="2:1" >
+                                            <mat-grid-tile [colspan]="1" [rowspan]="1" *ngFor="let atribute of monster?.atributes">
+                                                <p><strong>{{ atribute.name}}</strong></p>
+                                                <p>{{ atribute.value}} ({{(atribute?.modfier) >= 0 ? "+": ""}}{{atribute?.modfier}})</p>
+                                            </mat-grid-tile>
+                                    </mat-grid-list>
+                        </mat-grid-tile>
+                        <mat-grid-tile>2</mat-grid-tile>
+                        <mat-grid-tile>3</mat-grid-tile>
+                        <mat-grid-tile>4</mat-grid-tile>
+                      </mat-grid-list>
+                
+                
         </mat-card-content>
     </mat-card> -->

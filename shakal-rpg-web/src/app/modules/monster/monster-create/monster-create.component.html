@@ -1,4 +1,4 @@
-<mat-horizontal-stepper linear #stepper>
+<mat-horizontal-stepper labelPosition="bottom" linear #stepper>
     <mat-step [stepControl]="informacoesFormGroup">
         <form [formGroup]="informacoesFormGroup">
             <ng-template  matStepLabel>Informações</ng-template>
@@ -258,19 +258,63 @@
                     </div>
                     
                 </form>
-        </mat-step>        
+        </mat-step>
+        <mat-step [stepControl]="actionsFormGroup">
+                <ng-template matStepLabel>Ações</ng-template>
+                <form [formGroup]="actionsFormGroup">
+                    <div formArrayName="actions">
+                        <div *ngFor="let action of actionsFormGroup.get('actions').controls;  let i = index;">
+                            <div [formGroupName]="i">
+                                <mat-card>
+                                    <mat-card-header>
+                                        <mat-card-title>Ação {{i + 1}}</mat-card-title>
+                                    </mat-card-header>
+                                   
+                                    <mat-card-content>
+                                        
+                                        <mat-form-field class="col-md-12" appearance="outline">
+                                            <mat-label>Nome</mat-label>
+                                            <input matInput formControlName="name" placeholder="Nome">
+                                        </mat-form-field>
+                                        <mat-form-field class="col-md-12" appearance="outline">
+                                            <mat-label>Descrição</mat-label>
+                                            <textarea matInput formControlName="description"  matInput ></textarea>
+                                        </mat-form-field>
+                                    </mat-card-content>
+                                    <mat-card-actions>
+                                            <button mat-raised-button color="warn" (click)="removeAction(i)">remover</button>
+                                    </mat-card-actions>
+                                </mat-card>
+                            </div>
+                                
+                        </div>    
+                        
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-6">
+                            <button mat-raised-button color="primary" (click)="addAction()">Adcionar </button>
+                        </div> 
+                        <div class="col-6 example-button-row bottom-div float-right">           
+                            <button mat-raised-button color="primary" matStepperPrevious>Anterior</button>
+                            <button class="bottom-div float-right" mat-raised-button color="primary" matStepperNext>Próximo</button>
+                        </div>
+                    </div>
+                    
+                </form>
+        </mat-step>           
         <mat-step>
           <ng-template  matStepLabel>Finalizar</ng-template>
-          <div>
+          <mat-card>
               <div class="row">
                 <h3>Tem certeza?</h3>
               </div>
-            <div class="row align-items-end">
+              <div class="row align-items-end">
                 <button type="button" class="btn btn-success pull-right" matStepperPrevious>Back</button>
                 <button type="button" class="btn btn-success pull-right" (click)="stepper.reset()">Reset</button>
                 <button type="button" class="btn btn-success pull-right" (click)="onSubmit()">Finalizar</button>
-            </div>                                  
-          </div>
+              </div>                                  
+            </mat-card>
          
          
         </mat-step>

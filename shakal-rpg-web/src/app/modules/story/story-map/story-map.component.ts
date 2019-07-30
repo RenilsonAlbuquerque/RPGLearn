@@ -53,7 +53,7 @@ export class StoryMapComponent implements OnInit {
       }
     });
     if(overMark){
-      this.modalService.open(content, {size: 'xl'});
+      this.modalService.open('<app-place-detail [place]="overMark"></app-place-detail>', {size: 'xl'});
     } 
     return overMark; 
   }

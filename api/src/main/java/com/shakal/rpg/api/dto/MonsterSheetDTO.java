@@ -21,6 +21,7 @@ public class MonsterSheetDTO {
 	private List<String> languages;
 	private List<NameDescriptionDTO> features;
 	private List<MonsterActionDTO> actions;
+
 	
 	
 	public long getId() {
