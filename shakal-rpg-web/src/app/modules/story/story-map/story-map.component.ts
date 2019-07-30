@@ -19,10 +19,11 @@ export class StoryMapComponent implements OnInit {
   private image = new Image();
   public markers : PlaceMarker[];
   
-  closeResult: string;
+  public currentMark: PlaceMarker;
+  
 
   constructor(private modalService: NgbModal) { 
-    this.marker.src = "http://www.clker.com/cliparts/w/O/e/P/x/i/map-marker-hi.png"
+    this.marker.src = '../../../../assets/img/map-marker-hi.png'
     this.image.src = "https://vignette.wikia.nocookie.net/travelogue/images/d/de/Barovia.png/revision/latest?cb=20170601222710"
     this.markers = [];
   }
@@ -53,7 +54,8 @@ export class StoryMapComponent implements OnInit {
       }
     });
     if(overMark){
-      this.modalService.open('<app-place-detail [place]="overMark"></app-place-detail>', {size: 'xl'});
+      this.currentMark = overMark;
+      this.modalService.open(content, {size: 'xl'});
     } 
     return overMark; 
   }
