@@ -38,6 +38,7 @@ import com.shakal.rpg.api.repository.AlignmentDAO;
 import com.shakal.rpg.api.repository.AtributeDAO;
 import com.shakal.rpg.api.repository.CreatureAtributeDAO;
 import com.shakal.rpg.api.repository.DamageTypeDAO;
+import com.shakal.rpg.api.repository.DiceDAO;
 import com.shakal.rpg.api.repository.LanguageDAO;
 import com.shakal.rpg.api.repository.MonsterChallengeLevelDAO;
 import com.shakal.rpg.api.repository.MonsterDAO;
@@ -51,6 +52,7 @@ import com.shakal.rpg.api.mappers.AtributeMapper;
 import com.shakal.rpg.api.mappers.AttackMapper;
 import com.shakal.rpg.api.mappers.CreatureMapper;
 import com.shakal.rpg.api.mappers.DamageMapper;
+import com.shakal.rpg.api.mappers.DiceMapper;
 import com.shakal.rpg.api.mappers.FeatureMapper;
 import com.shakal.rpg.api.mappers.LanguageMappers;
 import com.shakal.rpg.api.mappers.LevelMapper;
@@ -78,6 +80,7 @@ public class MonsterService implements IMonsterService {
 	private CreatureAtributeDAO creatureAtributeDao;
 	private CreatureResistenceService cretureResisteceService;
 	private MonsterFeatureDAO monsterFeatureDAO;
+	private DiceDAO diceDao;
 	
 	@Autowired
 	public MonsterService(MonsterDAO monsterDao,LanguageDAO languageDao, 
@@ -85,7 +88,7 @@ public class MonsterService implements IMonsterService {
 			MonsterTypeDAO monsterTypeDao, MonsterSizeDAO monsterSizeDao,
 			AlignmentDAO alignmentDao, AtributeDAO atributeDao,
 			CreatureAtributeDAO creatureAtributeDao, CreatureResistenceService creatureResistenceService,
-			MonsterFeatureDAO monsterFeatureDao) {
+			MonsterFeatureDAO monsterFeatureDao, DiceDAO diceDao) {
 		this.monsterDao = monsterDao;
 		this.languageDao = languageDao;
 		this.challengeLevelDao = monsterChallengeDao;
@@ -96,6 +99,7 @@ public class MonsterService implements IMonsterService {
 		this.atributeDao = atributeDao;
 		this.creatureAtributeDao = creatureAtributeDao;
 		this.cretureResisteceService = creatureResistenceService;
+		this.diceDao = diceDao;
 	}
 
 	@Override
@@ -191,6 +195,9 @@ public class MonsterService implements IMonsterService {
 				.collect(Collectors.toList()));
 		result.setDamageType(this.damageTypeDao.findAll().stream()
 				.map(damage -> DamageMapper.entityTODTO(damage))
+				.collect(Collectors.toList()));
+		result.setDices(this.diceDao.findAll().stream()
+				.map(dice -> DiceMapper.diceEntityToDTO(dice))
 				.collect(Collectors.toList()));
 		return result;
 	}

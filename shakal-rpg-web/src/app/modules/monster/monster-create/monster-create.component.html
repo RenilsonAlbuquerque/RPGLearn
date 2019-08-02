@@ -1,4 +1,87 @@
 <mat-horizontal-stepper labelPosition="bottom" linear #stepper>
+        <mat-step [stepControl]="actionsFormGroup">
+                <ng-template matStepLabel>Ações</ng-template>
+                <form [formGroup]="actionsFormGroup">
+                    <div formArrayName="actions">
+                        <div *ngFor="let action of actionsFormGroup.get('actions').controls;  let i = index;">
+                            <div [formGroupName]="i">
+                                <mat-card>
+                                    <mat-card-header>
+                                        <mat-card-title>Ação {{i + 1}}</mat-card-title>
+                                    </mat-card-header>
+                                   
+                                    <mat-card-content>
+                                        
+                                        <mat-form-field class="col-md-12" appearance="outline">
+                                            <mat-label>Nome</mat-label>
+                                            <input matInput formControlName="name" placeholder="Nome">
+                                        </mat-form-field>
+                                        <mat-form-field class="col-md-12" appearance="outline">
+                                            <mat-label>Descrição</mat-label>
+                                            <textarea matInput formControlName="description"  matInput ></textarea>
+                                        </mat-form-field>
+                                        
+                                        <h6 mat-subheader>Danos da ação</h6>
+                                        <mat-list>
+                                                <mat-list-item *ngFor="let damage of action.controls['damages'].controls;  let j = index;" formArrayName="damages">
+                                                    <div [formGroupName]="j">
+                                                                
+                                                                <div class="row">
+                                                                        <mat-form-field class="form-group col-4" appearance="outline">
+                                                                                <mat-label>Quantidade</mat-label>
+                                                                                <input numbersOnly matInput placeholder="Quantidade" formControlName="quantity">
+                                                                        </mat-form-field>
+                                                                        <mat-form-field class="form-group col-4" appearance="outline">
+                                                                                <mat-label>Número do dado</mat-label>
+                                                                                <mat-select formControlName="dice">
+                                                                                        <mat-option *ngFor="let dice of inputValues?.dices" [value]="dice.id">
+                                                                                            {{dice.value}}
+                                                                                        </mat-option>
+                                                                                    </mat-select>
+                                                                        </mat-form-field>
+                                                                        <mat-form-field class="form-group col-4" appearance="outline">
+                                                                                <mat-label>Tipo de dano</mat-label>
+                                                                                <mat-select formControlName="damageType">
+                                                                                        <mat-option *ngFor="let damage of inputValues?.damageType" [value]="damage.id">
+                                                                                            {{damage.value}}
+                                                                                        </mat-option>
+                                                                                    </mat-select>
+                                                                        </mat-form-field>
+                                                                         
+                                                                    </div>
+                                                                
+                                                    </div>
+                                                </mat-list-item>      
+                                        </mat-list>
+                                       
+                                            
+                                           
+                                               
+                                          
+                                        
+                                    </mat-card-content>
+                                    <mat-card-actions>
+                                            <button mat-raised-button color="warn" (click)="removeAction(i)">remover</button>
+                                    </mat-card-actions>
+                                </mat-card>
+                            </div>
+                                
+                        </div>    
+                        
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-6">
+                            <button mat-raised-button color="primary" (click)="addAction()">Adcionar </button>
+                        </div> 
+                        <div class="col-6 example-button-row bottom-div float-right">           
+                            <button mat-raised-button color="primary" matStepperPrevious>Anterior</button>
+                            <button class="bottom-div float-right" mat-raised-button color="primary" matStepperNext>Próximo</button>
+                        </div>
+                    </div>
+                    
+                </form>
+        </mat-step>
     <mat-step [stepControl]="informacoesFormGroup">
         <form [formGroup]="informacoesFormGroup">
             <ng-template  matStepLabel>Informações</ng-template>
@@ -259,50 +342,7 @@
                     
                 </form>
         </mat-step>
-        <mat-step [stepControl]="actionsFormGroup">
-                <ng-template matStepLabel>Ações</ng-template>
-                <form [formGroup]="actionsFormGroup">
-                    <div formArrayName="actions">
-                        <div *ngFor="let action of actionsFormGroup.get('actions').controls;  let i = index;">
-                            <div [formGroupName]="i">
-                                <mat-card>
-                                    <mat-card-header>
-                                        <mat-card-title>Ação {{i + 1}}</mat-card-title>
-                                    </mat-card-header>
-                                   
-                                    <mat-card-content>
-                                        
-                                        <mat-form-field class="col-md-12" appearance="outline">
-                                            <mat-label>Nome</mat-label>
-                                            <input matInput formControlName="name" placeholder="Nome">
-                                        </mat-form-field>
-                                        <mat-form-field class="col-md-12" appearance="outline">
-                                            <mat-label>Descrição</mat-label>
-                                            <textarea matInput formControlName="description"  matInput ></textarea>
-                                        </mat-form-field>
-                                    </mat-card-content>
-                                    <mat-card-actions>
-                                            <button mat-raised-button color="warn" (click)="removeAction(i)">remover</button>
-                                    </mat-card-actions>
-                                </mat-card>
-                            </div>
-                                
-                        </div>    
-                        
-                    </div>
-                    <br>
-                    <div class="row">
-                        <div class="col-6">
-                            <button mat-raised-button color="primary" (click)="addAction()">Adcionar </button>
-                        </div> 
-                        <div class="col-6 example-button-row bottom-div float-right">           
-                            <button mat-raised-button color="primary" matStepperPrevious>Anterior</button>
-                            <button class="bottom-div float-right" mat-raised-button color="primary" matStepperNext>Próximo</button>
-                        </div>
-                    </div>
-                    
-                </form>
-        </mat-step>           
+                   
         <mat-step>
           <ng-template  matStepLabel>Finalizar</ng-template>
           <mat-card>

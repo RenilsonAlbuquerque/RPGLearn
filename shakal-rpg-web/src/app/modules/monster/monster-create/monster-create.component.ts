@@ -27,7 +27,7 @@ export class MonsterCreateComponent implements OnInit {
 
   //Items of the component
   public features: FormArray;
-  public actions: FormArray;
+  //public actions: FormArray;
   profilePicture: string;
 
   constructor(private _formBuilder: FormBuilder,private monsterService: MonsterService,
@@ -35,10 +35,8 @@ export class MonsterCreateComponent implements OnInit {
 
   ngOnInit() {
     this.monsterService.getMonsterCreateInput().subscribe(
-      response => (this.inputValues = response, console.log(response))   
+      response => (this.inputValues = response)   
     )
-    //this.inputValues.alignments[0].id
-    //this.inputValues.sizes[0].id
     this.informacoesFormGroup = this._formBuilder.group({
       alignment:[{},Validators.required],
       size:[{}, Validators.required],
@@ -75,7 +73,7 @@ export class MonsterCreateComponent implements OnInit {
       actions: this._formBuilder.array([  ])
     });
     this.features = this.featuresFormGroup.get('features') as FormArray;
-    this.actions = this.actionsFormGroup.get('actions') as FormArray;
+    //this.actions = this.actionsFormGroup.get('actions') as FormArray;
   }
   public onSubmit(){
     this.monsterService.createMonster(this.mapFormToDTO()).subscribe(
@@ -129,11 +127,13 @@ export class MonsterCreateComponent implements OnInit {
   removeFeature(index) {
     this.features.removeAt(index);
   }
-  addAction(){
-    this.actions.push(this.createActionItem());
+  addAction() {
+    const control = <FormArray>this.actionsFormGroup.get('actions');
+    control.push(this.createActionItem());
   }
   removeAction(index) {
-    this.actions.removeAt(index);
+    const control = <FormArray>this.actionsFormGroup.get('actions');
+    control.removeAt(index);
   }
   createNameDescriptionItem(): FormGroup {
     return this._formBuilder.group({
@@ -142,10 +142,20 @@ export class MonsterCreateComponent implements OnInit {
     });
   }
   createActionItem(): FormGroup {
+    
     return this._formBuilder.group({
       name: ['',Validators.required],
       description: ['',Validators.required],
-      damage:[]
+      damages:this._formBuilder.array([ 
+        this.createDamageItem()
+       ])
+    });
+  }
+  createDamageItem(): FormGroup {
+    return this._formBuilder.group({
+      quantity: ['',Validators.required],
+      dice: [{},Validators.required],
+      damageType: [{},Validators.required],
     });
   }
 

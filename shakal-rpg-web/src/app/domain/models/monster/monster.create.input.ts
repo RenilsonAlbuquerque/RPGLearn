@@ -7,5 +7,6 @@ export interface MonsterCreateInput{
     types: KeyNameDescription[]
     languages: KeyValue[],
     levels: KeyValue[],
-    damageType: KeyValue[]
+    damageType: KeyValue[],
+    dices:KeyValue[]
 }

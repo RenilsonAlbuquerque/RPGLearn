@@ -9,10 +9,10 @@ import { Router } from '@angular/router';
   templateUrl: './monster-list.component.html',
   styleUrls: ['./monster-list.component.scss']
 })
-export class MonsterListComponent implements OnInit,OnChanges {
+export class MonsterListComponent implements OnInit{
  
 
-  @Input() public page: Page<MonsterOverview>;
+  public page: Page<MonsterOverview>;
   public search: String;
   
   
@@ -28,9 +28,7 @@ export class MonsterListComponent implements OnInit,OnChanges {
 
     } as Page<MonsterOverview>;
   }
-  ngOnChanges(): void {
-    console.log("changes")
-  }
+
   ngOnInit() {
     this.search = "";
     this.monsterService.getOverview(1).subscribe(
@@ -38,7 +36,6 @@ export class MonsterListComponent implements OnInit,OnChanges {
     )
   }
   pageChange(pageNumber: number){
-    console.log(pageNumber + " "+ this.page.currentPageNumber)
     this.monsterService.getOverview(pageNumber).subscribe(
       response => (this.page = response)  
     )

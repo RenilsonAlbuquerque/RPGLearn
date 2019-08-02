@@ -13,6 +13,8 @@ public class MonsterCreateInputDTO {
 	private List<KeyValueDTO> damageType;
 	private List<KeyValueDTO> languages;
 	private List<KeyValueDTO> levels;
+	private List<KeyValueDTO> dices;
+	
 
 	
 	
@@ -62,6 +64,14 @@ public class MonsterCreateInputDTO {
 
 	public void setDamageType(List<KeyValueDTO> damageType) {
 		this.damageType = damageType;
+	}
+
+	public List<KeyValueDTO> getDices() {
+		return dices;
+	}
+
+	public void setDices(List<KeyValueDTO> dices) {
+		this.dices = dices;
 	}
 	
 	
