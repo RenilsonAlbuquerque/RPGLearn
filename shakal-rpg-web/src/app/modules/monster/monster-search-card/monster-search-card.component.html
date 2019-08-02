@@ -21,13 +21,23 @@
                 </tbody>
               </table>
         </div>
-    <ngb-pagination class="d-flex justify-content-center" 
-        [collectionSize]="page.totalOfPages" 
-        [(page)]="page.currentPageNumber" 
-        [pageSize]="page.size" 
-        [maxSize]="10" 
-        [rotate]="true" 
-        [ellipses]="false" 
-        (pageChange)="pageChange()">
-    </ngb-pagination>
+        <div class="d-flex justify-content-center">
+            <ul  class="pagination"  *ngIf="page?.elements" >
+              <li class="page-item" 
+                  [ngClass]="{'disabled': page?.first }"  
+                  (click)="pageChange(page.currentPageNumber -1)">
+                  <a class="page-link" href="javascript:;">Anterior</a>
+              </li>
+              <li *ngFor="let page of ' '.repeat(page.totalOfPages).split(''), let i = index " 
+                (click)="pageChange(i +1)"  
+                class="page-item"
+                [ngClass]="{'page-item active': (page.currentPageNumber - 1) === i }">
+                <a class="page-link" href="javascript:;">{{i + 1}}</a>
+              </li>
+              <li class="page-item" [ngClass]="{'disabled': page?.last }" 
+                  (click)="pageChange(page.currentPageNumber +1)">
+                  <a class="page-link" href="javascript:;">Próxima</a>
+              </li>
+            </ul>
+        </div>
 </div>

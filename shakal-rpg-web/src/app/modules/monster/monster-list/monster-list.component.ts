@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { MonsterOverview } from 'src/app/domain/models/monster.overview';
 import { Page } from 'src/app/infra/models/page';
 import { MonsterService } from '../monster.module.service';
@@ -9,21 +9,37 @@ import { Router } from '@angular/router';
   templateUrl: './monster-list.component.html',
   styleUrls: ['./monster-list.component.scss']
 })
-export class MonsterListComponent implements OnInit {
+export class MonsterListComponent implements OnInit,OnChanges {
+ 
 
-  public page: Page<MonsterOverview>;
+  @Input() public page: Page<MonsterOverview>;
   public search: String;
   
-  constructor(private monsterService: MonsterService, private router: Router) { }
+  
+  constructor(private monsterService: MonsterService, private router: Router) { 
+    this.page = {
+      elements: [],
+      currentPageNumber: 1,
+      totalElements: 1,
+      totalOfPages: 1,
+      size: 1,
+      firts: true,
+      last: true
 
+    } as Page<MonsterOverview>;
+  }
+  ngOnChanges(): void {
+    console.log("changes")
+  }
   ngOnInit() {
     this.search = "";
     this.monsterService.getOverview(1).subscribe(
-        response => (this.page = response,console.log(response))   
+        response => {this.page = response}   
     )
   }
-  pageChange(){
-    this.monsterService.getOverview(this.page.currentPageNumber).subscribe(
+  pageChange(pageNumber: number){
+    console.log(pageNumber + " "+ this.page.currentPageNumber)
+    this.monsterService.getOverview(pageNumber).subscribe(
       response => (this.page = response)  
     )
   }

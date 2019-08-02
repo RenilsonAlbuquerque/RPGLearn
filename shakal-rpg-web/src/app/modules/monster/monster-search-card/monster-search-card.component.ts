@@ -22,7 +22,18 @@ export class MonsterSearchCardComponent implements OnInit {
   
 
 
-  constructor(private monsterService: MonsterService, private router: Router,private combatRoomService: CombatRoomService) { }
+  constructor(private monsterService: MonsterService, private router: Router,private combatRoomService: CombatRoomService) { 
+    this.page = {
+      elements: [],
+      currentPageNumber: 1,
+      totalElements: 1,
+      totalOfPages: 1,
+      size: 1,
+      firts: true,
+      last: true
+
+    } as Page<MonsterOverview>;
+  }
 
   ngOnInit() {
     this.search = "";
@@ -30,8 +41,9 @@ export class MonsterSearchCardComponent implements OnInit {
         response => (this.page = response)   
     )
   }
-  pageChange(){
-    this.monsterService.getOverview(this.page.currentPageNumber).subscribe(
+  pageChange(pageNumber: number){
+    console.log(pageNumber + " "+ this.page.currentPageNumber)
+    this.monsterService.getOverview(pageNumber).subscribe(
       response => (this.page = response)  
     )
   }
