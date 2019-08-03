@@ -34,6 +34,7 @@ public class MonsterCreateDTO {
 	private List<KeyValueDTO> damageResistence;
 	private List<KeyValueDTO> languages;
 	private List<NameDescriptionDTO> features;
+	private List<ActionCreateDTO> actions;
 	
 	public String getRaceName() {
 		return raceName;
@@ -191,6 +192,12 @@ public class MonsterCreateDTO {
 	}
 	public void setProeficientCharisma(boolean proeficientCharisma) {
 		this.proeficientCharisma = proeficientCharisma;
+	}
+	public List<ActionCreateDTO> getActions() {
+		return actions;
+	}
+	public void setActions(List<ActionCreateDTO> actions) {
+		this.actions = actions;
 	}
 	
 	

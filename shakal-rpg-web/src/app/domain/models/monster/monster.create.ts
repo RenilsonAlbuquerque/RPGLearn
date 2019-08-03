@@ -1,5 +1,6 @@
 import { KeyValue } from '../comon/key.value';
 import { NameDescription } from '../comon/name-description';
+import { Attack } from '../comon/attack';
 
 export interface MonsterCreate{
     raceName: string,
@@ -27,7 +28,6 @@ export interface MonsterCreate{
     damageImunity: KeyValue[],
     damageResistence: KeyValue[]
     languages: KeyValue[],
-    features: NameDescription[]
-
-
+    features: NameDescription[],
+    actions: Attack[]
 }

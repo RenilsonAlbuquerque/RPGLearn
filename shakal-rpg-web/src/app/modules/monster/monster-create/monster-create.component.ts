@@ -6,6 +6,7 @@ import { MonsterService } from '../monster.module.service';
 import { KeyValue } from 'src/app/domain/models/comon/key.value';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import mapFormToDTO from 'src/app/domain/mappers/monster.mapper';
 
 
 @Component({
@@ -27,7 +28,6 @@ export class MonsterCreateComponent implements OnInit {
 
   //Items of the component
   public features: FormArray;
-  //public actions: FormArray;
   profilePicture: string;
 
   constructor(private _formBuilder: FormBuilder,private monsterService: MonsterService,
@@ -73,44 +73,16 @@ export class MonsterCreateComponent implements OnInit {
       actions: this._formBuilder.array([  ])
     });
     this.features = this.featuresFormGroup.get('features') as FormArray;
-    //this.actions = this.actionsFormGroup.get('actions') as FormArray;
   }
   public onSubmit(){
-    this.monsterService.createMonster(this.mapFormToDTO()).subscribe(
+    var monsterDTO: MonsterCreate = mapFormToDTO(this.informacoesFormGroup,this.habilitiesFormGroup,
+      this.featuresFormGroup, this.actionsFormGroup)
+      console.log(monsterDTO)
+    this.monsterService.createMonster(monsterDTO).subscribe(
       response => (this.toastr.success("Monstro cadastrado com sucesso"),
                   this.router.navigate(['home/monster/all'])),
       error => (this.toastr.error(error)) 
     )
-  }
-  private mapFormToDTO(): MonsterCreate {
-    return {
-      raceName: this.informacoesFormGroup.controls['name'].value,
-      raceDescription: this.informacoesFormGroup.controls['description'].value,
-      imagePath: this.informacoesFormGroup.controls['profilePicture'].value,
-      size: this.informacoesFormGroup.controls['size'].value,
-      alignment: this.informacoesFormGroup.controls['alignment'].value,
-      type: this.informacoesFormGroup.controls['type'].value,
-      armorClass:Number(this.habilitiesFormGroup.controls['armorClass'].value),
-      lifePoints:Number(this.habilitiesFormGroup.controls['lifePoints'].value),
-      speed: Number(this.habilitiesFormGroup.controls['moviment'].value),
-      force:Number(this.habilitiesFormGroup.get('force').value),
-      proeficientForce : this.habilitiesFormGroup.controls['proeficientForce'].value,
-      dexterity:Number(this.habilitiesFormGroup.controls['dexterity'].value),
-      proeficientDexterity : this.habilitiesFormGroup.controls['proeficientDexterity'].value,
-      constitution:Number(this.habilitiesFormGroup.controls['constitution'].value),
-      proeficientConstitution: this.habilitiesFormGroup.controls['proeficientConstitution'].value,
-      inteligence: Number(this.habilitiesFormGroup.controls['inteligence'].value),
-      proeficientInteligence: this.habilitiesFormGroup.controls['proeficientInteligence'].value,
-      wisdom:Number(this.habilitiesFormGroup.controls['wisdom'].value),
-      proeficientWisdom: this.habilitiesFormGroup.controls['proeficientWisdom'].value,
-      charisma: Number(this.habilitiesFormGroup.controls['charisma'].value),
-      proeficientCharisma: this.habilitiesFormGroup.controls['proeficientCharisma'].value,
-      level: this.habilitiesFormGroup.controls['level'].value,
-      damageImunity: this.habilitiesFormGroup.controls['damageImunity'].value,
-      damageResistence: this.habilitiesFormGroup.controls['damageResistence'].value,
-      languages: this.habilitiesFormGroup.controls['languages'].value,
-      features: this.featuresFormGroup.controls['features'].value
-    } as MonsterCreate;
   }
   changeLanguages(elements: KeyValue[]){
     this.habilitiesFormGroup.controls['languages'].setValue(elements);
@@ -124,14 +96,14 @@ export class MonsterCreateComponent implements OnInit {
   addFeature(){
     this.features.push(this.createNameDescriptionItem());
   }
-  removeFeature(index) {
+  removeFeature(index: number) {
     this.features.removeAt(index);
   }
   addAction() {
     const control = <FormArray>this.actionsFormGroup.get('actions');
     control.push(this.createActionItem());
   }
-  removeAction(index) {
+  removeAction(index: number) {
     const control = <FormArray>this.actionsFormGroup.get('actions');
     control.removeAt(index);
   }
