@@ -48,6 +48,7 @@ import com.shakal.rpg.api.repository.MonsterTypeDAO;
 import com.shakal.rpg.api.specification.MonsterSpecification;
 import com.shakal.rpg.api.exception.*;
 import com.shakal.rpg.api.helpers.AtributeHelper;
+import com.shakal.rpg.api.mappers.ActionMapper;
 import com.shakal.rpg.api.mappers.AtributeMapper;
 import com.shakal.rpg.api.mappers.AttackMapper;
 import com.shakal.rpg.api.mappers.CreatureMapper;
@@ -238,7 +239,9 @@ public class MonsterService implements IMonsterService {
 		entity.setLanguages(inputDto.getLanguages().stream()
 				.map(language -> this.languageDao.getOne(language.getId()))
 				.collect(Collectors.toList()));
-		
+		entity.setActions(inputDto.getActions().stream()
+				.map(action -> ActionMapper.dtoToGenericEntity(action))
+				.collect(Collectors.toList()));
 		
 		
 		entity = this.monsterDao.save(entity);

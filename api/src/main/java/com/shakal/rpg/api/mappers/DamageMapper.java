@@ -1,15 +1,31 @@
 package com.shakal.rpg.api.mappers;
 
 import com.shakal.rpg.api.dto.commons.KeyValueDTO;
+import com.shakal.rpg.api.dto.create.DamageDiceDTO;
 import com.shakal.rpg.api.model.DamageType;
+import com.shakal.rpg.api.model.Dice;
 import com.shakal.rpg.api.model.enums.DamageTypeEnum;
 import com.shakal.rpg.api.model.relation.AttackDice;
 
 public class DamageMapper {
 
 	
-	public static String  entityTOStringDTO(AttackDice entity) {
+	public static String entityTOStringDTO(AttackDice entity) {
 		return entity.getQuantity()+ entity.getDice().getValue().toString() + " + " +entity.getBonusDamage();
+	}
+	
+	
+	public static AttackDice damageDiceDtoToEntity(DamageDiceDTO inputDto) {
+		Dice dice = new Dice();
+				dice.setId(inputDto.getDice());
+		DamageType damage = new DamageType();
+				damage.setId(inputDto.getDamageType());
+		AttackDice result = new AttackDice();
+		result.setDice(dice);
+		result.setQuantity(inputDto.getQuantity());
+		result.setDamageType(damage);
+		return result;
+		
 	}
 	
 	public static KeyValueDTO  entityTODTO(DamageType entity) {
