@@ -33,13 +33,24 @@ export class MonsterSheetComponent implements OnInit {
    
   }
   addLifePoints(){
-    this.currentLifePoints = parseInt(this.currentLifePoints.toString()) + parseInt(this.amount.toString());
+    var newLifePoints: number = parseInt(this.currentLifePoints.toString()) + parseInt(this.amount.toString()); 
+    
+    if(newLifePoints > this.monster.lifePoints){
+      this.currentLifePoints = this.monster.lifePoints;
+    }else{
+      this.currentLifePoints = parseInt(this.currentLifePoints.toString()) + parseInt(this.amount.toString());
+    }
     this.amount = 0;
     this.combatRoomService.updateMonsterLifePoints(this.monsterIndex,this.currentLifePoints);
   }
   
   subtractLifePoints(){
-    this.currentLifePoints -= this.amount;
+    var newLifePoints: number = this.currentLifePoints - this.amount;
+    if(newLifePoints < 0){
+      this.currentLifePoints = 0;
+    }else{
+      this.currentLifePoints = newLifePoints;
+    }
     this.amount = 0;
     this.combatRoomService.updateMonsterLifePoints(this.monsterIndex,this.currentLifePoints);
     

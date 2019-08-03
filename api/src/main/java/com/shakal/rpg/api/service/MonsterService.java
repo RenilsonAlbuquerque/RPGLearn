@@ -324,6 +324,7 @@ public class MonsterService implements IMonsterService {
 		result.setId(search.getId());
 		result.setLevel(search.getChallengeLevel().getValue());
 		result.setLifePoints(search.getBaseLifeDice());
+		result.setTotalLifePoints(search.getBaseLifeDice());
 		result.setName(search.getRace().getName());
 		result.setImagePath(search.getImagePath());
 		return result;

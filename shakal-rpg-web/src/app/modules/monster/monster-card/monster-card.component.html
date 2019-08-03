@@ -1,4 +1,4 @@
-<div class="card bg-dark text-white" >
+<div class="card text-white" [ngClass]="{'bg-dark':monster.lifePoints > 0, 'bg-danger': monster.lifePoints == 0}">
         <img class="card-img" height="150" width="100"
         src="{{monster?.imagePath}}" alt="_blank" />
         <div class="card-body">

@@ -3,5 +3,6 @@ export interface MonsterCard{
     name: String,
     level: number,
     lifePoints: number,
+    totalLifePoints: number,
     imagePath: string
 }

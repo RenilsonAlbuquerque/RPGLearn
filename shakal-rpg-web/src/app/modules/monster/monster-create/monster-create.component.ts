@@ -135,6 +135,14 @@ export class MonsterCreateComponent implements OnInit {
     const control = <FormArray>this.actionsFormGroup.get('actions');
     control.removeAt(index);
   }
+  addActionDamge(formIndex){
+    const control = (<FormArray> (<FormArray> this.actionsFormGroup.get('actions')).controls[formIndex].get('damages')).controls;
+    control.push(this.createDamageItem());
+  }
+  removeActionDamge(formIndex,damageIndex){
+    const control = (<FormArray> (<FormArray> this.actionsFormGroup.get('actions')).controls[formIndex].get('damages'));
+    control.removeAt(damageIndex);
+  }
   createNameDescriptionItem(): FormGroup {
     return this._formBuilder.group({
       name: ['',Validators.required],

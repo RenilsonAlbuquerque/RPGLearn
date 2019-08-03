@@ -6,6 +6,7 @@ public class MonsterCardDTO {
 	 private String name;
 	 private int level;
 	 private int lifePoints;
+	 private int totalLifePoints;
 	 private String imagePath;
 	 
 	 
@@ -39,6 +40,13 @@ public class MonsterCardDTO {
 	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;
 	}
+	public int getTotalLifePoints() {
+		return totalLifePoints;
+	}
+	public void setTotalLifePoints(int totalLifePoints) {
+		this.totalLifePoints = totalLifePoints;
+	}
+	
 	 
 	 
 }

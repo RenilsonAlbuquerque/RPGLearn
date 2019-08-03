@@ -20,7 +20,15 @@ export class CombatRoomService {
       return this.monsters;
   }
   public updateMonsterLifePoints(index: number,value: number){
-      this.monsters[index].lifePoints = value;
+    if(value < 0){
+      this.monsters[index].lifePoints = 0; 
+    }
+    else if(value > this.monsters[index].totalLifePoints){
+      this.monsters[index].lifePoints = this.monsters[index].totalLifePoints;
+    }else{
+      this.monsters[index].lifePoints = value; 
+    }
+      
   }
   public removeMonster(index: number){
     this.monsters.splice(index,1);
