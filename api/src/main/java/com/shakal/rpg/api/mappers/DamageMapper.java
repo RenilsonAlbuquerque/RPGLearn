@@ -15,15 +15,12 @@ public class DamageMapper {
 	}
 	
 	
-	public static AttackDice damageDiceDtoToEntity(DamageDiceDTO inputDto) {
-		Dice dice = new Dice();
-				dice.setId(inputDto.getDice());
-		DamageType damage = new DamageType();
-				damage.setId(inputDto.getDamageType());
+	public static AttackDice damageDiceDtoToEntity(DamageDiceDTO inputDto, Dice dice, DamageType damageType) {
+		
 		AttackDice result = new AttackDice();
 		result.setDice(dice);
 		result.setQuantity(inputDto.getQuantity());
-		result.setDamageType(damage);
+		result.setDamageType(damageType);
 		return result;
 		
 	}

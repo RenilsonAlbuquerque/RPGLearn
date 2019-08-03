@@ -80,6 +80,7 @@ public class MonsterService implements IMonsterService {
 	private AtributeDAO atributeDao;
 	private CreatureAtributeDAO creatureAtributeDao;
 	private CreatureResistenceService cretureResisteceService;
+	private AttackService attackService;
 	private MonsterFeatureDAO monsterFeatureDAO;
 	private DiceDAO diceDao;
 	
@@ -89,7 +90,7 @@ public class MonsterService implements IMonsterService {
 			MonsterTypeDAO monsterTypeDao, MonsterSizeDAO monsterSizeDao,
 			AlignmentDAO alignmentDao, AtributeDAO atributeDao,
 			CreatureAtributeDAO creatureAtributeDao, CreatureResistenceService creatureResistenceService,
-			MonsterFeatureDAO monsterFeatureDao, DiceDAO diceDao) {
+			MonsterFeatureDAO monsterFeatureDao, DiceDAO diceDao,AttackService attackService) {
 		this.monsterDao = monsterDao;
 		this.languageDao = languageDao;
 		this.challengeLevelDao = monsterChallengeDao;
@@ -101,6 +102,7 @@ public class MonsterService implements IMonsterService {
 		this.creatureAtributeDao = creatureAtributeDao;
 		this.cretureResisteceService = creatureResistenceService;
 		this.diceDao = diceDao;
+		this.attackService = attackService;
 	}
 
 	@Override
@@ -239,16 +241,18 @@ public class MonsterService implements IMonsterService {
 		entity.setLanguages(inputDto.getLanguages().stream()
 				.map(language -> this.languageDao.getOne(language.getId()))
 				.collect(Collectors.toList()));
+		/*
 		entity.setActions(inputDto.getActions().stream()
 				.map(action -> ActionMapper.dtoToGenericEntity(action))
 				.collect(Collectors.toList()));
-		
+		*/
 		
 		entity = this.monsterDao.save(entity);
 		
 		entity.setAtributes(this.mountAtributes(inputDto, entity));
 		entity.setResistences(this.cretureResisteceService.mountResistence(inputDto, entity));
 		entity = FeatureMapper.saveFeatures(inputDto.getFeatures(),entity);
+		entity.setActions(this.attackService.mountAttack(inputDto, entity));
 		
 		this.monsterDao.save(entity);
 		return inputDto;

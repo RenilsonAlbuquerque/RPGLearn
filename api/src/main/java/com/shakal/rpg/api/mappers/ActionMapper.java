@@ -9,6 +9,7 @@ import com.shakal.rpg.api.model.Attack;
 
 public class ActionMapper {
 
+	/*
 	public static Action dtoToGenericEntity(ActionCreateDTO dto) {
 		Action result = null;
 		if(dto.getDamages().isEmpty()) {
@@ -27,4 +28,5 @@ public class ActionMapper {
 		
 		return result;
 	}
+	*/
 }
