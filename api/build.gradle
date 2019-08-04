@@ -42,4 +42,7 @@ dependencies {
 	//Mongo
 	compile("org.springframework.boot:spring-boot-starter-data-mongodb")
 	
+	// https://mvnrepository.com/artifact/org.springframework.data/spring-data-commons-core
+	compile group: 'org.springframework.data', name: 'spring-data-commons-core', version: '1.1.0.RELEASE'
+	
 }

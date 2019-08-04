@@ -3,6 +3,8 @@ package com.shakal.rpg.api.model.mongo;
 
 
 
+import java.util.List;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -21,26 +23,22 @@ public abstract class Creature implements ICreature{
 	
 	private int speed;
 	
-	@DBRef
+	@DBRef(lazy = true)
 	private Alignment alignment;
 
-	/*
-	@OneToMany(mappedBy = "creature",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	
 	private List<CreatureAtribute> atributes;
 	
-	@OneToMany(mappedBy = "creature",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	
 	private List<CreatureResistence> resistences;
 	
 	
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinTable(name = "mtm_creature_language",
-            joinColumns = @JoinColumn(name = "creature_id", referencedColumnName = "id"),
-            inverseJoinColumns =  @JoinColumn(name = "language_id", referencedColumnName = "id"))
+	@DBRef(lazy = true)
     private List<Language> languages;
 	
-	@OneToMany(mappedBy = "creature",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	@DBRef(lazy = true)
 	private List<Action> actions;
-	*/
+	
 
 
 	
