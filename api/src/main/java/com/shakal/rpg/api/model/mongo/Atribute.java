@@ -2,24 +2,22 @@ package com.shakal.rpg.api.model.mongo;
 
 
 
-import javax.persistence.Entity;
+
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 
 import com.shakal.rpg.api.model.enums.AtributeEnum;
 
-@Entity
-@Table(name= "tb_atribute")
+@Document(collection = "atribute")
 public class Atribute {
 	
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	private String id;
 	
 	
 	@Enumerated(EnumType.ORDINAL)
@@ -29,16 +27,16 @@ public class Atribute {
 		super();
 	}
 
-	public long getId() {
+	
+	public String getId() {
 		return id;
 	}
 
-	
 
-	public void setId(long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
-	
+
 
 	public AtributeEnum getValue() {
 		return value;
