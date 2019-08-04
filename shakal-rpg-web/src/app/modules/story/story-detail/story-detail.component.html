@@ -1,0 +1,34 @@
+
+<mat-tab-group>
+    <mat-tab label="Mapa">
+        <app-story-map></app-story-map>
+    </mat-tab>
+    <mat-tab label="Detalhes">
+      <app-place-overview [place]="currentPlace"></app-place-overview>
+    </mat-tab>
+</mat-tab-group>
+<!-- <div class="example-container" >
+    <mat-toolbar color="primary" >
+      <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+      <h1 class="example-app-name">{{story.name}}</h1>
+    </mat-toolbar>
+    <mat-sidenav-container  style="height:570px" >
+        <mat-sidenav #snav mode="side" [(opened)]="opened" (opened)="events.push('open!')"
+        (closed)="events.push('close!')">
+            <mat-list role="list">
+                <mat-list-item role="listitem">
+                    <button mat-button color="primary">Mapa</button>
+                </mat-list-item>
+                <mat-list-item role="listitem">
+                    <button mat-button color="primary">Detalhes</button>
+                </mat-list-item>
+            </mat-list>
+        </mat-sidenav>
+        <mat-sidenav-content>
+            <router-outlet></router-outlet>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div> -->
+    
+
+

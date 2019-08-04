@@ -1,0 +1,17 @@
+<div>
+    <div class="input-group mb-3">
+      <input type="text" class="form-control" placeholder="Procurar" (input)="search = $event.target.value" (keyup)="onSearch()" aria-label="Username" aria-describedby="basic-addon1">
+    </div>
+    <div class="col-12">
+      <div class="card-columns">
+        <div class="card bg-dark text-white" (click)="goEdit(story)" *ngFor="let story of page.elements">
+         <img class="card-img"
+              src="{{ story.folderImage }}" alt="_blank" />
+          <div class="card-img-overlay">
+            <p class="card-title">{{ story.name }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>

@@ -7,6 +7,7 @@ public class Messages {
     public static final String INVALID_TOKEN = "Token inválido.";
     public static final String INVALID_TOKEN_FORMAT = "Formato do token inválido";
     public static final String MONSTER_NOT_FOUND = "O monstro não existe";
+    public static final String STORY_NOT_FOUND = "A história não existe";
     
     public static final String INVALID_MONSTER_TYPE = "O tipo do monstro não é válido";
     public static final String INVALID_MONSTER_SIZE = "O tamanho do monstro não é válido";
