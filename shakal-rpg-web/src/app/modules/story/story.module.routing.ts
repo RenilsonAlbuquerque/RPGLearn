@@ -3,6 +3,7 @@ import { StoryMapComponent } from './story-map/story-map.component';
 import { NgModule } from '@angular/core';
 import { StoryListComponent } from './story-list/story-list.component';
 import { StoryDetailComponent } from './story-detail/story-detail.component';
+import { PlaceDetailComponent } from './place-detail/place-detail.component';
 
 const routes: Routes = [
     {
@@ -22,16 +23,12 @@ const routes: Routes = [
         {
           path: 'datail/:id',
           component: StoryDetailComponent,
-          children:[
-            {
-              path: '',
-              redirectTo: 'map'
-            },
-            {
-              path: 'map',
-              component: StoryMapComponent
-            }
-          ]
+          
+        },
+        {
+              
+          path: 'place/:id',
+          component: PlaceDetailComponent
         }
       ]
     }

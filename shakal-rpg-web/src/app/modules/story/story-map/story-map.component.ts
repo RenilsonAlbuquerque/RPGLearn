@@ -1,7 +1,8 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
 import { PlaceMarker } from 'src/app/domain/models/comon/place-marker';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AttributeMarker } from '@angular/compiler/src/core';
+import { PlaceDetail } from 'src/app/domain/models/story/place-detail';
 
 @Component({
   selector: 'app-story-map',
@@ -13,6 +14,7 @@ export class StoryMapComponent implements OnInit {
   @ViewChild('canvas', { static: true })
   canvas: ElementRef<HTMLCanvasElement>;
 
+  @Input() private place: PlaceDetail;
   private ctx: CanvasRenderingContext2D;
   
   private marker = new Image();
@@ -23,14 +25,14 @@ export class StoryMapComponent implements OnInit {
   
 
   constructor(private modalService: NgbModal) { 
-    this.marker.src = '../../../../assets/img/map-marker-hi.png'
-    this.image.src = "https://vignette.wikia.nocookie.net/travelogue/images/d/de/Barovia.png/revision/latest?cb=20170601222710"
-    this.markers = [];
+    
   }
 
   
   ngOnInit(): void {
-  
+    this.marker.src = '../../../../assets/img/map-marker-hi.png'
+    this.image.src = this.place.map
+    this.markers = [];
     this.ctx = this.canvas.nativeElement.getContext('2d');
     this.ctx.drawImage(this.image,0,0,this.image.width,this.image.height,0,0,1200,800);
   }

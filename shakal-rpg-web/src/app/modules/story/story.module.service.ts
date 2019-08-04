@@ -5,6 +5,7 @@ import { Page } from 'src/app/infra/models/page';
 import { StoryOverview } from 'src/app/domain/models/story/story-overview';
 import { environment } from 'src/environments/environment';
 import { StoryDetail } from 'src/app/domain/models/story/story-detail';
+import { PlaceDetail } from 'src/app/domain/models/story/place-detail';
 
 @Injectable()
 export class StoryService {
@@ -20,5 +21,8 @@ export class StoryService {
     }
     getStoryInfoById(id): Observable<StoryDetail>{
         return this.httpClient.get<StoryDetail>(`${environment.BASE_URL}story/info/${id}`);
-      }
+    }
+    getPlaceInfoById(id): Observable<PlaceDetail>{
+        return this.httpClient.get<PlaceDetail>(`${environment.BASE_URL}place/info/${id}`);
+    }
 }

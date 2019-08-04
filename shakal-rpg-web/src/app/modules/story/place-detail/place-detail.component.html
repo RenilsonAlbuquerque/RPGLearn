@@ -1,4 +1,14 @@
 <mat-card>
+    <mat-card-header>
         <mat-card-title>{{place?.name}}</mat-card-title>
-        <mat-card-content>{{place?.description}}</mat-card-content>
+    </mat-card-header>
+    <mat-tab-group>
+        <mat-tab label="Mapa">
+            <app-story-map [place]="place"></app-story-map>
+        </mat-tab>
+        <mat-tab label="Detalhes">
+          <app-place-overview [place]="place"></app-place-overview>
+        </mat-tab>
+    </mat-tab-group>
+
 </mat-card>

@@ -1,12 +1,38 @@
 
-<mat-tab-group>
-    <mat-tab label="Mapa">
-        <app-story-map></app-story-map>
-    </mat-tab>
-    <mat-tab label="Detalhes">
-      <app-place-overview [place]="currentPlace"></app-place-overview>
-    </mat-tab>
-</mat-tab-group>
+  <mat-card class="example-card">
+          <mat-card-header>
+            <mat-card-title>{{ story?.name }}</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+              <div class="card-body row">
+
+                  <div class="col-md-6 col-sm-12 w-50 h-100">
+                      <img  mat-card-image src="{{ story?.folderImage }}" alt="">
+                  </div>
+                  <div class="col-md-6 col-sm-12 w-50 h-100">
+                      <p >{{ story?.background }}</p>
+                  </div>    
+                  
+              </div>
+
+          </mat-card-content>
+            <div class="col-12">
+                <h6>Lugares</h6>
+                <div class="card-columns">
+                    <div class="card bg-dark text-white" (click)="goView(place)" *ngFor="let place of story?.places">
+                    <img class="card-img"
+                            src="{{ place?.map }}" alt="_blank" />
+                        <div class="card-img-overlay">
+                            <p class="card-title">{{ place?.name }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+</mat-card>
+      
+   
+
+
 <!-- <div class="example-container" >
     <mat-toolbar color="primary" >
       <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>

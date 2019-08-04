@@ -1,5 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { PlaceMarker } from 'src/app/domain/models/comon/place-marker';
+import { PlaceDetail } from 'src/app/domain/models/story/place-detail';
+import { Router, ActivatedRoute } from '@angular/router';
+import { StoryService } from '../story.module.service';
 
 @Component({
   selector: 'app-place-detail',
@@ -8,10 +11,16 @@ import { PlaceMarker } from 'src/app/domain/models/comon/place-marker';
 })
 export class PlaceDetailComponent implements OnInit {
 
-  @Input() public place: PlaceMarker;
-  constructor() { }
+  public place: PlaceDetail;
+  constructor(private _activatedRoute: ActivatedRoute, private storyService: StoryService,
+    private router: Router) { }
 
   ngOnInit() {
+    this._activatedRoute.params.subscribe(params => {
+      let id = params['id'];
+      this.storyService.getPlaceInfoById(id).subscribe(
+        response => (this.place = response)  
+      )
+    });
   }
-
 }

@@ -27,6 +27,7 @@ public class StoryMapper {
 	}
 	public static PlaceInfoDTO placeEntityToDto(Place entity) {
 		PlaceInfoDTO dto = new PlaceInfoDTO();
+		dto.setId(entity.getId());
 		dto.setName(entity.getName());
 		dto.setMap(entity.getMap());
 		dto.setBackground(entity.getBackground());
@@ -37,6 +38,7 @@ public class StoryMapper {
 		dto.setId(entity.getId());
 		dto.setName(entity.getName());
 		dto.setFolderImage(entity.getFolderImage());
+		dto.setBackground(entity.getBackground());
 		dto.setPlaces(entity.getPlaces().stream()
 					.map(place -> placeEntityToDto(place))
 					.collect(Collectors.toList()));
