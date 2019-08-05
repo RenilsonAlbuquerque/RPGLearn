@@ -30,6 +30,7 @@ public class StoryMapper {
 		Place entity = new Place();
 		entity.setName(inputDto.getName());
 		entity.setMap(inputDto.getMap());
+		entity.setBackground(inputDto.getBackground());
 		return entity;
 	}
 	public static PlaceInfoDTO placeEntityToDto(Place entity) {

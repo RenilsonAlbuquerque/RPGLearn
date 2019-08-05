@@ -19,8 +19,7 @@ public class Place {
 	
 	private String map;
 	
-	@DBRef(lazy = true)
-	private Story story;
+	
 
 	
 
@@ -40,13 +39,7 @@ public class Place {
 		this.name = name;
 	}
 
-	public Story getStory() {
-		return story;
-	}
-
-	public void setStory(Story story) {
-		this.story = story;
-	}
+	
 
 	public String getBackground() {
 		return background;

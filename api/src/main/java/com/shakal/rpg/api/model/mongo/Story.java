@@ -7,6 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 
+
 import com.shakal.rpg.api.model.mongo.Place;
 
 @Document(collection = "story")
@@ -21,7 +22,7 @@ public class Story {
 	
 	private String folderImage;
 
-	@DBRef(lazy = true)
+	
 	private List<Place> places;
 	
 	

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.shakal.rpg.api.contracts.service.IPlaceService;
+import com.shakal.rpg.api.dto.create.PlaceCreateDTO;
 import com.shakal.rpg.api.dto.info.PlaceInfoDTO;
 import com.shakal.rpg.api.exception.ResourceNotFoundException;
 import com.shakal.rpg.api.mappers.StoryMapper;
@@ -27,6 +28,10 @@ public class PlaceService implements IPlaceService{
 		Place place = this.placeDao.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException(Messages.STORY_NOT_FOUND));
 		return StoryMapper.placeEntityToDto(place);
+	}
+	@Override
+	public Place savePlace(PlaceCreateDTO inputDto) {
+		return this.placeDao.insert(StoryMapper.placeDtoToEntity(inputDto));
 	}
 
 }

@@ -9,6 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.google.common.base.Optional;
+import com.shakal.rpg.api.contracts.service.IPlaceService;
 import com.shakal.rpg.api.contracts.service.IStoryService;
 import com.shakal.rpg.api.dto.create.StoryCreateDTO;
 import com.shakal.rpg.api.dto.filter.CustomPage;
@@ -37,10 +38,12 @@ public class StoryService implements IStoryService {
 	
 
 	private StoryRepository storyRepository;
+	private IPlaceService placeService;
 	
 	@Autowired
-	public StoryService(StoryRepository storyRepository) {
+	public StoryService(StoryRepository storyRepository,IPlaceService placeService) {
 		this.storyRepository = storyRepository;
+		this.placeService = placeService;
 	}
 	
 	
