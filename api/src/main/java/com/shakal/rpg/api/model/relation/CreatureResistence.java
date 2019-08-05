@@ -25,11 +25,11 @@ public class CreatureResistence {
 	private CreatureResistenceId id;
 	
 	
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL )
+	@ManyToOne(fetch = FetchType.EAGER, cascade ={CascadeType.PERSIST, CascadeType.MERGE}  )
 	@MapsId("creatureId")
 	private Creature creature;
 	
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL )
+	@ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE} )
 	@MapsId("damageTypeId")
 	private DamageType damageType;
 	
@@ -71,6 +71,46 @@ public class CreatureResistence {
 
 	public void setType(ResistenceTypeEnum type) {
 		this.type = type;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((creature == null) ? 0 : creature.hashCode());
+		result = prime * result + ((damageType == null) ? 0 : damageType.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((type == null) ? 0 : type.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		CreatureResistence other = (CreatureResistence) obj;
+		if (creature == null) {
+			if (other.creature != null)
+				return false;
+		} else if (!creature.equals(other.creature))
+			return false;
+		if (damageType == null) {
+			if (other.damageType != null)
+				return false;
+		} else if (!damageType.equals(other.damageType))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (type != other.type)
+			return false;
+		return true;
 	}
 	
 	

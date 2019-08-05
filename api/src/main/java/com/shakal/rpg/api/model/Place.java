@@ -26,8 +26,8 @@ public class Place {
 	
 	private String map;
 	
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name ="story_id")
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, targetEntity = History.class)
+	@JoinColumn(name ="story_id", referencedColumnName = "id")
 	private History story;
 
 	public long getId() {

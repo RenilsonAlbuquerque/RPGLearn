@@ -37,6 +37,35 @@ public class CreatureAtributeId implements Serializable {
 	public void setAtributeId(Long atributeId) {
 		this.atributeId = atributeId;
 	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((atributeId == null) ? 0 : atributeId.hashCode());
+		result = prime * result + ((creatureId == null) ? 0 : creatureId.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		CreatureAtributeId other = (CreatureAtributeId) obj;
+		if (atributeId == null) {
+			if (other.atributeId != null)
+				return false;
+		} else if (!atributeId.equals(other.atributeId))
+			return false;
+		if (creatureId == null) {
+			if (other.creatureId != null)
+				return false;
+		} else if (!creatureId.equals(other.creatureId))
+			return false;
+		return true;
+	}
     
     
 }

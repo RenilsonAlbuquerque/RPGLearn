@@ -20,6 +20,7 @@ export class CombatScreenComponent implements OnInit {
 
   constructor(private modalService: NgbModal, private combatRoomService: CombatRoomService) { 
     this.monsters = this.combatRoomService.getMonsters();
+    this.players = this.combatRoomService.getPlayers();
   }
 
   ngOnInit() {
@@ -36,10 +37,21 @@ export class CombatScreenComponent implements OnInit {
   disposeModalAddMonster(result: boolean){
     this.modalReference.dismiss();
   }
-  removeMonster(index: number){
-    this.combatRoomService.removeMonster(index);
+  removeEnemy(index: number){
+    this.combatRoomService.removeEnemy(index);
     this.modalReference.dismiss();
   }
+  removeAlly(index: number){
+    this.combatRoomService.removeAlly(index);
+    this.modalReference.dismiss();
+  }
+  addCreatureEnemy(monster: MonsterCard){
   
+    this.combatRoomService.addMonsterEnemy(monster);
+  }
+  addCreatureAlly(monster: MonsterCard){
+    
+    this.combatRoomService.addMonsterAlly(monster);
+  }
 
 }

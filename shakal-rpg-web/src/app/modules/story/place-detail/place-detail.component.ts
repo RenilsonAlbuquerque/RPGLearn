@@ -13,14 +13,16 @@ export class PlaceDetailComponent implements OnInit {
 
   public place: PlaceDetail;
   constructor(private _activatedRoute: ActivatedRoute, private storyService: StoryService,
-    private router: Router) { }
+    private router: Router) { 
+      this._activatedRoute.params.subscribe(params => {
+        let id = params['id'];
+        this.storyService.getPlaceInfoById(id).subscribe(
+          response => (this.place = response)  
+        )
+      });
+    }
 
   ngOnInit() {
-    this._activatedRoute.params.subscribe(params => {
-      let id = params['id'];
-      this.storyService.getPlaceInfoById(id).subscribe(
-        response => (this.place = response)  
-      )
-    });
+   
   }
 }

@@ -39,11 +39,13 @@ public class StoryService implements IStoryService {
 		entity.setName(inputDto.getName());
 		entity.setBackground(inputDto.getBackground());
 		entity.setFolderImage(inputDto.getFolderImage());
+		
+		
+		
+		entity = this.storyRepository.save(entity);
 		entity.setPlaces(inputDto.getPlaces().stream()
 				.map(place -> StoryMapper.placeDtoToEntity(place))
 				.collect(Collectors.toList()));
-		
-		
 		this.storyRepository.save(entity);
 		return inputDto;
 	}

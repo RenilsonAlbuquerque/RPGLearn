@@ -26,7 +26,7 @@ public class History {
 	
 	private String folderImage;
 
-	@OneToMany(mappedBy = "story",cascade = CascadeType.PERSIST,fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "story",cascade = CascadeType.PERSIST,fetch = FetchType.LAZY, targetEntity = Place.class)
 	private List<Place> places;
 	
 	public long getId() {

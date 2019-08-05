@@ -14,7 +14,7 @@ export class StoryMapComponent implements OnInit {
   @ViewChild('canvas', { static: true })
   canvas: ElementRef<HTMLCanvasElement>;
 
-  @Input() private place: PlaceDetail;
+  @Input() public place: PlaceDetail;
   private ctx: CanvasRenderingContext2D;
   
   private marker = new Image();
@@ -30,6 +30,7 @@ export class StoryMapComponent implements OnInit {
 
   
   ngOnInit(): void {
+    console.log(this.place)
     this.marker.src = '../../../../assets/img/map-marker-hi.png'
     this.image.src = this.place.map
     this.markers = [];

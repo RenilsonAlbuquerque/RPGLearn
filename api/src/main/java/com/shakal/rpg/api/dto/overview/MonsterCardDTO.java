@@ -1,10 +1,13 @@
 package com.shakal.rpg.api.dto.overview;
 
+
+import com.shakal.rpg.api.dto.info.LevelDTO;
+
 public class MonsterCardDTO {
 
 	 private long id;
 	 private String name;
-	 private int level;
+	 private LevelDTO level;
 	 private int lifePoints;
 	 private int totalLifePoints;
 	 private String imagePath;
@@ -22,10 +25,12 @@ public class MonsterCardDTO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getLevel() {
+	
+	
+	public LevelDTO getLevel() {
 		return level;
 	}
-	public void setLevel(int level) {
+	public void setLevel(LevelDTO level) {
 		this.level = level;
 	}
 	public int getLifePoints() {

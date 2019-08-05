@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { EventEmitter } from '@angular/core';
 import { CombatRoomService } from '../../combat/services/combat-room.service';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { MonsterCard } from 'src/app/domain/models/monster/monster.card';
 
 @Component({
   selector: 'app-monster-search-card',
@@ -17,7 +18,7 @@ export class MonsterSearchCardComponent implements OnInit {
   public page: Page<MonsterOverview>;
   public search: String;
 
-  @Output() adcionarMonstro = new EventEmitter();
+  @Output() adcionarMonstro = new EventEmitter<MonsterCard>();
   @Output() fecharModal = new EventEmitter();
   
 
@@ -42,7 +43,6 @@ export class MonsterSearchCardComponent implements OnInit {
     )
   }
   pageChange(pageNumber: number){
-    console.log(pageNumber + " "+ this.page.currentPageNumber)
     this.monsterService.getOverview(pageNumber).subscribe(
       response => (this.page = response)  
     )
@@ -54,7 +54,7 @@ export class MonsterSearchCardComponent implements OnInit {
   }
   selectMonster(monster: MonsterOverview){
     this.monsterService.getMonsterCardById(monster.id).subscribe(
-      response => ( this.combatRoomService.addMonster(response),
+      response => ( this.adcionarMonstro.emit(response),
                     this.fecharModal.emit(true)
     ));
   }
