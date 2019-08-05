@@ -1,0 +1,60 @@
+
+  <mat-card class="example-card">
+          <mat-card-header>
+            <mat-card-title>{{ story?.name }}</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+              <div class="card-body row">
+
+                  <div class="col-md-6 col-sm-12 w-50 h-100">
+                      <img  mat-card-image src="{{ story?.folderImage }}" alt="">
+                  </div>
+                  <div class="col-md-6 col-sm-12 w-50 h-100">
+                      <p >{{ story?.background }}</p>
+                  </div>    
+                  
+              </div>
+
+          </mat-card-content>
+            <div class="col-12">
+                <h6>Lugares</h6>
+                <div class="card-columns">
+                    <div class="card bg-dark text-white" (click)="goView(place)" *ngFor="let place of story?.places">
+                    <img class="card-img"
+                            src="{{ place?.map }}" alt="_blank" />
+                        <div class="card-img-overlay">
+                            <p class="card-title">{{ place?.name }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+</mat-card>
+      
+   
+
+
+<!-- <div class="example-container" >
+    <mat-toolbar color="primary" >
+      <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+      <h1 class="example-app-name">{{story.name}}</h1>
+    </mat-toolbar>
+    <mat-sidenav-container  style="height:570px" >
+        <mat-sidenav #snav mode="side" [(opened)]="opened" (opened)="events.push('open!')"
+        (closed)="events.push('close!')">
+            <mat-list role="list">
+                <mat-list-item role="listitem">
+                    <button mat-button color="primary">Mapa</button>
+                </mat-list-item>
+                <mat-list-item role="listitem">
+                    <button mat-button color="primary">Detalhes</button>
+                </mat-list-item>
+            </mat-list>
+        </mat-sidenav>
+        <mat-sidenav-content>
+            <router-outlet></router-outlet>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div> -->
+    
+
+

@@ -1,5 +1,9 @@
 package com.shakal.rpg.api.dto.create;
 
+
+import java.util.List;
+
+
 public class StoryCreateDTO {
 
 	private String name;
@@ -7,6 +11,9 @@ public class StoryCreateDTO {
 	private String background;
 	
 	private String folderImage;
+	
+	private List<PlaceCreateDTO> places;
+
 
 	public String getName() {
 		return name;
@@ -30,6 +37,15 @@ public class StoryCreateDTO {
 
 	public void setFolderImage(String folderImage) {
 		this.folderImage = folderImage;
+	}
+
+
+	public List<PlaceCreateDTO> getPlaces() {
+		return places;
+	}
+
+	public void setPlaces(List<PlaceCreateDTO> places) {
+		this.places = places;
 	}
 	
 	

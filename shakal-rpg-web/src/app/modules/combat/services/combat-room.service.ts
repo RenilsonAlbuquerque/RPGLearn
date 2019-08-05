@@ -13,11 +13,17 @@ export class CombatRoomService {
       this.players = [];
   }
 
-  public addMonster(monster: MonsterCard){
+  public addMonsterEnemy(monster: MonsterCard){
     this.monsters.push(monster);
+  }
+  public addMonsterAlly(monster: MonsterCard){
+    this.players.push(monster);
   }
   public getMonsters():MonsterCard[]{
       return this.monsters;
+  }
+  public getPlayers():MonsterCard[]{
+    return this.players;
   }
   public updateMonsterLifePoints(index: number,value: number){
     if(value < 0){
@@ -30,8 +36,11 @@ export class CombatRoomService {
     }
       
   }
-  public removeMonster(index: number){
+  public removeEnemy(index: number){
     this.monsters.splice(index,1);
   }
-
+  
+  public removeAlly(index: number){
+    this.players.splice(index,1);
+  }
 }
