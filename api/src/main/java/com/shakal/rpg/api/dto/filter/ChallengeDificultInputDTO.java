@@ -1,21 +1,28 @@
 package com.shakal.rpg.api.dto.filter;
 
+import java.util.List;
+
+import com.shakal.rpg.api.dto.commons.DoubleInt;
+
 public class ChallengeDificultInputDTO {
-	private int monster;
-	private int player;
+	private List<DoubleInt> monsters;
+	private List<DoubleInt> players;
 	
-	public int getMonster() {
-		return monster;
+	
+	public List<DoubleInt> getMonsters() {
+		return monsters;
 	}
-	public void setMonster(int monster) {
-		this.monster = monster;
+	public void setMonsters(List<DoubleInt> monsters) {
+		this.monsters = monsters;
 	}
-	public int getPlayer() {
-		return player;
+	public List<DoubleInt> getPlayers() {
+		return players;
 	}
-	public void setPlayer(int player) {
-		this.player = player;
+	public void setPlayers(List<DoubleInt> players) {
+		this.players = players;
 	}
+	
+	
 	
 	
 

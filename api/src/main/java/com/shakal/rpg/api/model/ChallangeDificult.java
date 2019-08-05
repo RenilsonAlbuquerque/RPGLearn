@@ -14,6 +14,8 @@ public class ChallangeDificult {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
+	private int level;
+	
 	private int easy;
 	
 	private int medium;
@@ -28,6 +30,14 @@ public class ChallangeDificult {
 
 	public void setId(long id) {
 		this.id = id;
+	}
+
+	public int getLevel() {
+		return level;
+	}
+
+	public void setLevel(int level) {
+		this.level = level;
 	}
 
 	public int getEasy() {
