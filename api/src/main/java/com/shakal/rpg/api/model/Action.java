@@ -27,8 +27,8 @@ public class Action {
 	@Column(length = 4000)
 	private String description;
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
-	@JoinColumn(name ="creature_id")
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST )
+	@JoinColumn(name ="creature_id", referencedColumnName ="id")
 	private Creature creature;
 	
 	public long getId() {

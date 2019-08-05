@@ -27,7 +27,7 @@ export class MonsterSheetComponent implements OnInit {
       let id = params['id'];
       id = id ? id : this.monsterId
       this.monsterService.getMonsterSheetById(id).subscribe(
-        response => (this.monster = response)  
+        response => (this.monster = response, console.log(response))  
       )
     });
    

@@ -251,9 +251,10 @@ public class MonsterService implements IMonsterService {
 		entity.setAtributes(this.mountAtributes(inputDto, entity));
 		entity.setResistences(this.cretureResisteceService.mountResistence(inputDto, entity));
 		entity = FeatureMapper.saveFeatures(inputDto.getFeatures(),entity);
-		//entity.setActions(this.attackService.mountAttack(inputDto, entity));
-		
 		this.monsterDao.save(entity);
+		this.attackService.mountAttack(inputDto, entity);
+		
+		
 		return inputDto;
 	}
 	private List<CreatureAtribute> mountAtributes(MonsterCreateDTO inputDto, Monster monster){

@@ -65,7 +65,7 @@ public class AttackService {
 				actionEntity = new Attack();
 				actionEntity.setName(action.getName());
 				actionEntity.setDescription(action.getDescription());
-				
+				actionEntity.setCreature(monster);
 				Attack attack = this.attackDAO.save((Attack)actionEntity);
 				
 				for (DamageDiceDTO damage : action.getDamages()) {

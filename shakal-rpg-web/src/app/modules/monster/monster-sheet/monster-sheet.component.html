@@ -94,7 +94,19 @@
                 
             </div>
             <div class="row h-50">
-                
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <div class="row" *ngFor="let action of monster?.actions">
+                            <p><strong>{{action.name}}</strong> </p>
+                            <p>{{action.description}}</p>
+                           
+                            <div *ngFor="let damage of action?.damage">
+                                <span class="badge badge-pill badge-danger">{{ damage}}</span>
+                            </div>
+                           
+                        </div>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>

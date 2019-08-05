@@ -1,6 +1,7 @@
 import { Atribute } from '../comon/atribute';
 import { SavingThrow } from '../comon/saving-throw';
 import { NameDescription } from '../comon/name-description';
+import { AttackDto } from '../comon/attack-dto';
 
 export interface MonsterSheet{
     id: number,
@@ -15,5 +16,6 @@ export interface MonsterSheet{
     damageResistence: String[],
     damageImunity: String[],
     languages: String[],
-    features: NameDescription[]
+    features: NameDescription[],
+    actions: AttackDto[]
 }

@@ -49,7 +49,7 @@ public class MonsterController {
 	
 	@GetMapping("/sheet/{id}")
     public ResponseEntity<MonsterSheetDTO> getMonsterById(@PathVariable Long id) throws ResourceNotFoundException {
-    	
+		MonsterSheetDTO monster = monsterService.getMonsterSheetById(id);
         return new ResponseEntity<MonsterSheetDTO>(monsterService.getMonsterSheetById(id), HttpStatus.OK);
     }
 	@GetMapping("/card/{id}")
