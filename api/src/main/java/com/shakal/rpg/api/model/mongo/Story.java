@@ -1,28 +1,19 @@
-package com.shakal.rpg.api.model;
+package com.shakal.rpg.api.model.mongo;
 
 
-
-
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import com.shakal.rpg.api.model.mongo.Place;
 
-
-@Entity
-@Table(name= "tb_history")
+@Document(collection = "story")
 public class Story {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	private String id;
 	
 	private String name;
 	
@@ -30,14 +21,16 @@ public class Story {
 	
 	private String folderImage;
 
-	@OneToMany(mappedBy = "story",cascade = CascadeType.PERSIST,fetch = FetchType.LAZY, targetEntity = Place.class)
+	@DBRef(lazy = true)
 	private List<Place> places;
 	
-	public long getId() {
+	
+
+	public String getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -69,9 +62,12 @@ public class Story {
 		return places;
 	}
 
-	public void setPlaces(List<Place> places) {
-		this.places = places;
+	public void setPlaces(List<Place> collect) {
+		this.places = collect;
+		
 	}
+
+
 	
 	
 	

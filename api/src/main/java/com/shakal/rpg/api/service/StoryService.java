@@ -20,14 +20,14 @@ import com.shakal.rpg.api.exception.ResourceNotFoundException;
 import com.shakal.rpg.api.mappers.MonsterMapper;
 import com.shakal.rpg.api.mappers.StoryMapper;
 import com.shakal.rpg.api.model.Monster;
-import com.shakal.rpg.api.model.Story;
+import com.shakal.rpg.api.model.mongo.Story;
 import com.shakal.rpg.api.repository.mongo.StoryRepository;
 
 import com.shakal.rpg.api.dto.info.StoryInfoDTO;
 
 
 
-import com.shakal.rpg.api.repository.StoryDAO;
+
 import com.shakal.rpg.api.utils.Messages;
 import com.shakal.rpg.api.utils.PaginationGenerator;
 
@@ -48,6 +48,9 @@ public class StoryService implements IStoryService {
 	public StoryCreateDTO insertStory(StoryCreateDTO inputDto) throws ResourceNotFoundException {
 
 		Story entity = new Story();
+		entity.setName(inputDto.getName());
+		entity.setBackground(inputDto.getBackground());
+		entity.setFolderImage(inputDto.getFolderImage());
 		entity.setPlaces(inputDto.getPlaces().stream()
 				.map(place -> StoryMapper.placeDtoToEntity(place))
 				.collect(Collectors.toList()));

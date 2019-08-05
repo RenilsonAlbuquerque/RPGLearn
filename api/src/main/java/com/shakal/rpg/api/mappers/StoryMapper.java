@@ -11,8 +11,8 @@ import com.shakal.rpg.api.dto.info.PlaceInfoDTO;
 import com.shakal.rpg.api.dto.info.StoryInfoDTO;
 
 
-import com.shakal.rpg.api.model.Place;
-import com.shakal.rpg.api.model.Story;
+import com.shakal.rpg.api.model.mongo.Place;
+import com.shakal.rpg.api.model.mongo.Story;
 
 public class StoryMapper {
 

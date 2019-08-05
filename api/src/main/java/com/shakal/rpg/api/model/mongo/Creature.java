@@ -26,12 +26,12 @@ public abstract class Creature implements ICreature{
 	@DBRef(lazy = true)
 	private Alignment alignment;
 
-	
+	/*
 	private List<CreatureAtribute> atributes;
 	
 	
 	private List<CreatureResistence> resistences;
-	
+	*/
 	
 	@DBRef(lazy = true)
     private List<Language> languages;

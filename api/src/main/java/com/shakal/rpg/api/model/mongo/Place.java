@@ -1,18 +1,29 @@
-package com.shakal.rpg.api.dto.info;
+package com.shakal.rpg.api.model.mongo;
 
 
 
-public class PlaceInfoDTO {
-	
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "place")
+public class Place {
+
+	@Id
 	private String id;
 	
 	private String name;
 	
+
 	private String background;
 	
 	private String map;
+	
+	@DBRef(lazy = true)
+	private Story story;
 
 	
+
 	public String getId() {
 		return id;
 	}
@@ -27,6 +38,14 @@ public class PlaceInfoDTO {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public Story getStory() {
+		return story;
+	}
+
+	public void setStory(Story story) {
+		this.story = story;
 	}
 
 	public String getBackground() {
@@ -46,5 +65,4 @@ public class PlaceInfoDTO {
 	}
 	
 	
-
 }
