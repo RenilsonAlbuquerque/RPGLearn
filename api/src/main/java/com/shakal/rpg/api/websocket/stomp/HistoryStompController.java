@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class HistoryStompController {
 
 	
-	  @MessageMapping("/hello")
-	  @SendTo("/topic/greetings")
+	  @MessageMapping("/chat")
+	  @SendTo("/room")
 	  public String greeting(String message) throws Exception {
 	        Thread.sleep(1000); // simulated delay
 	        String hello = "Hello how long";

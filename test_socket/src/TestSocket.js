@@ -13,7 +13,7 @@ export class SampleComponent extends React.Component {
   render() {
     return (
       <div>
-        <SockJsClient url='http://localhost:8080/ws' topics={['/topic/greetings']}
+        <SockJsClient url='http://localhost:8080/combat' topics={['/room']}
             onMessage={(msg) => { console.log("We did it"); }}
             ref={ (client) => { this.clientRef = client }} />
             <a href="#" onClick={this.sendMessage}>Motherfucker</a>

@@ -124,5 +124,7 @@
                   <app-monster-search-card (adcionarMonstro)="addCreatureAlly($event)" (fecharModal)="disposeModalAddMonster($event)" ></app-monster-search-card>
                 </div>
             </ng-template>
-    
+            <ul>
+              <li *ngFor="let message of messageHistory">{{message}}</li>
+            </ul>
 </div>

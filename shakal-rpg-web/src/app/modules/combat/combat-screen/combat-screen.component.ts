@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { MonsterCard } from 'src/app/domain/models/monster/monster.card';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CombatRoomService } from '../services/combat-room.service';
+import * as SockJS from 'sockjs-client';
+import * as Stomp from 'stompjs'
+import { Message } from '@angular/compiler/src/i18n/i18n_ast';
+import { IMessage } from '@stomp/stompjs';
 
 
 @Component({
@@ -16,13 +20,19 @@ export class CombatScreenComponent implements OnInit {
   
   private modalReference;
   
-  
+
+  messageHistory = [];
 
   constructor(private modalService: NgbModal, private combatRoomService: CombatRoomService) { 
     this.monsters = this.combatRoomService.getMonsters();
     this.players = this.combatRoomService.getPlayers();
+    this.combatRoomService.stream().subscribe((message: IMessage) => {
+      this.messageHistory.unshift(message.body);
+      console.log(message + "Fudeu");
+    });
+    
   }
-
+ 
   ngOnInit() {
   }
   open(content) {
