@@ -71,8 +71,8 @@
                 <button mat-raised-button color="primary" matStepperNext>Próximo</button>
             </div>
         </form>
-        </mat-step>
-        <mat-step [stepControl]="habilitiesFormGroup">
+    </mat-step>
+    <mat-step [stepControl]="habilitiesFormGroup">
             <form [formGroup]="habilitiesFormGroup">
                 <ng-template  matStepLabel>Habilidades</ng-template>
                 <ul class="list-group list-group-flush">
@@ -214,8 +214,8 @@
                    
                 </ul>
             </form>
-        </mat-step>
-        <mat-step [stepControl]="featuresFormGroup">
+    </mat-step>
+    <mat-step [stepControl]="featuresFormGroup">
                 <ng-template matStepLabel>Características</ng-template>
                 <form [formGroup]="featuresFormGroup">
                     <div formArrayName="features">
@@ -258,8 +258,8 @@
                     </div>
                     
                 </form>
-        </mat-step>
-        <mat-step [stepControl]="actionsFormGroup">
+    </mat-step>
+    <mat-step [stepControl]="actionsFormGroup">
                 <ng-template matStepLabel>Ações</ng-template>
                 <form [formGroup]="actionsFormGroup">
                     <div formArrayName="actions">
@@ -346,9 +346,91 @@
                     </div>
                     
                 </form>
-        </mat-step>           
-        <mat-step>
-          <ng-template  matStepLabel>Finalizar</ng-template>
+    </mat-step>
+    <mat-step [stepControl]="legendaryActionsFormGroup">
+        <ng-template matStepLabel>Ações Lendárias</ng-template>
+        <form [formGroup]="legendaryActionsFormGroup">
+            <div formArrayName="legendaryActions">
+                <div *ngFor="let legendaryAction of legendaryActionsFormGroup.get('legendaryActions').controls;  let i = index;">
+                    <div [formGroupName]="i">
+                        <mat-card>
+                            <mat-card-header>
+                                <mat-card-title>Ação {{i + 1}}</mat-card-title>
+                            </mat-card-header>
+                               
+                            <mat-card-content>
+                                    
+                                    <mat-form-field class="col-md-12" appearance="outline">
+                                        <mat-label>Nome</mat-label>
+                                        <input matInput formControlName="name" placeholder="Nome">
+                                    </mat-form-field>
+                                    <mat-form-field class="col-md-12" appearance="outline">
+                                        <mat-label>Descrição</mat-label>
+                                        <textarea matInput formControlName="description"  matInput ></textarea>
+                                    </mat-form-field>
+                                    
+                                    
+                                    <mat-card>
+                                            <mat-card-header>
+                                                    <mat-card-title mat-subheader>Danos da ação</mat-card-title>
+                                            </mat-card-header>
+                                            <mat-card-content *ngFor="let damage of legendaryAction.controls['damages'].controls;  let j = index;" formArrayName="damages">
+                                                <div [formGroupName]="j" class="row">
+                                                    <mat-form-field class="form-group col-2" appearance="outline">
+                                                        <mat-label>Quantidade</mat-label>
+                                                        <input numbersOnly matInput placeholder="Quantidade" formControlName="quantity">
+                                                    </mat-form-field>
+                                                    <mat-form-field class="form-group col-4" appearance="outline">
+                                                        <mat-label>Número do dado</mat-label>
+                                                        <mat-select formControlName="dice">
+                                                                <mat-option *ngFor="let dice of inputValues?.dices" [value]="dice.id">
+                                                                    {{dice.value}}
+                                                                </mat-option>
+                                                            </mat-select>
+                                                    </mat-form-field>
+                                                    <mat-form-field class="form-group col-4" appearance="outline">
+                                                        <mat-label>Tipo de dano</mat-label>
+                                                        <mat-select formControlName="damageType">
+                                                                <mat-option *ngFor="let damage of inputValues?.damageType" [value]="damage.id">
+                                                                    {{damage.value}}
+                                                                </mat-option>
+                                                            </mat-select>
+                                                    </mat-form-field>
+                                                    <div class="form-group col-2">
+                                                        <button mat-mini-fab color="warn" (click)="removeLegendaryActionDamge(i,j)">X</button>
+                                                    </div>             
+                                                </div>
+                                                
+                                            </mat-card-content>
+                                            <div>
+                                                <button mat-flat-button color="primary" (click)="addLegendaryActionDamge(i)">Adcionar dano</button>
+                                            </div>      
+                                    </mat-card> 
+                                </mat-card-content>
+                                <mat-card-actions>
+                                        <button mat-raised-button color="warn" (click)="removeLegendaryAction(i)">remover ação</button>
+                                </mat-card-actions>
+                            </mat-card>
+                        </div>
+                            
+                    </div>    
+                    
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-6">
+                        <button mat-raised-button color="primary" (click)="addLegendaryAction()">Adcionar ação lendária </button>
+                    </div> 
+                    <div class="col-6 example-button-row bottom-div float-right">           
+                        <button mat-raised-button color="primary" matStepperPrevious>Anterior</button>
+                        <button class="bottom-div float-right" mat-raised-button color="primary" matStepperNext>Próximo</button>
+                    </div>
+                </div>
+                
+            </form>
+</mat-step>           
+    <mat-step>
+        <ng-template  matStepLabel>Finalizar</ng-template>
           <mat-card>
               <div class="row">
                 <h3>Tem certeza?</h3>
@@ -359,7 +441,5 @@
                 <button type="button" class="btn btn-success pull-right" (click)="onSubmit()">Finalizar</button>
               </div>                                  
             </mat-card>
-         
-         
-        </mat-step>
-      </mat-horizontal-stepper>
+    </mat-step>
+</mat-horizontal-stepper>

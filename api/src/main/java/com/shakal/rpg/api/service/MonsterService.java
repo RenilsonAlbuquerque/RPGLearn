@@ -138,6 +138,10 @@ public class MonsterService implements IMonsterService {
 				.map(attack -> AttackMapper.entityToDTO((Attack)attack))
 				.collect(Collectors.toList()));
 		
+		result.setLegendaryActions(search.getLegendaryActions().stream().filter(attack -> attack instanceof Attack)
+				.map(attack -> AttackMapper.entityToDTO((Attack)attack))
+				.collect(Collectors.toList()));
+		
 		return result;
 	}
 
@@ -252,8 +256,8 @@ public class MonsterService implements IMonsterService {
 		entity.setResistences(this.cretureResisteceService.mountResistence(inputDto, entity));
 		entity = FeatureMapper.saveFeatures(inputDto.getFeatures(),entity);
 		this.monsterDao.save(entity);
-		this.attackService.mountAttack(inputDto, entity);
-		
+		this.attackService.mountActions(inputDto.getActions(), entity, false);
+		this.attackService.mountActions(inputDto.getLegendaryActions(), entity, true);
 		
 		return inputDto;
 	}

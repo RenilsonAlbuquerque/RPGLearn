@@ -24,6 +24,7 @@ export class MonsterCreateComponent implements OnInit {
   public habilitiesFormGroup: FormGroup;
   public featuresFormGroup: FormGroup;
   public actionsFormGroup: FormGroup;
+  public legendaryActionsFormGroup: FormGroup;
   
 
   //Items of the component
@@ -72,12 +73,15 @@ export class MonsterCreateComponent implements OnInit {
     this.actionsFormGroup = this._formBuilder.group({
       actions: this._formBuilder.array([  ])
     });
+    this.legendaryActionsFormGroup = this._formBuilder.group({
+      legendaryActions: this._formBuilder.array([  ])
+    });
     this.features = this.featuresFormGroup.get('features') as FormArray;
   }
   public onSubmit(){
     var monsterDTO: MonsterCreate = mapFormToDTO(this.informacoesFormGroup,this.habilitiesFormGroup,
-      this.featuresFormGroup, this.actionsFormGroup)
-      console.log(monsterDTO)
+    this.featuresFormGroup, this.actionsFormGroup, this.legendaryActionsFormGroup)
+    console.log(monsterDTO)
     this.monsterService.createMonster(monsterDTO).subscribe(
       response => (this.toastr.success("Monstro cadastrado com sucesso"),
                   this.router.navigate(['home/monster/all'])),
@@ -103,16 +107,32 @@ export class MonsterCreateComponent implements OnInit {
     const control = <FormArray>this.actionsFormGroup.get('actions');
     control.push(this.createActionItem());
   }
+  addLegendaryAction() {
+    const control = <FormArray>this.legendaryActionsFormGroup.get('legendaryActions');
+    control.push(this.createActionItem());
+  }
   removeAction(index: number) {
     const control = <FormArray>this.actionsFormGroup.get('actions');
+    control.removeAt(index);
+  }
+  removeLegendaryAction(index: number) {
+    const control = <FormArray>this.legendaryActionsFormGroup.get('legendaryActions');
     control.removeAt(index);
   }
   addActionDamge(formIndex){
     const control = (<FormArray> (<FormArray> this.actionsFormGroup.get('actions')).controls[formIndex].get('damages')).controls;
     control.push(this.createDamageItem());
   }
+  addLegendaryActionDamge(formIndex){
+    const control = (<FormArray> (<FormArray> this.legendaryActionsFormGroup.get('legendaryActions')).controls[formIndex].get('damages')).controls;
+    control.push(this.createDamageItem());
+  }
   removeActionDamge(formIndex,damageIndex){
     const control = (<FormArray> (<FormArray> this.actionsFormGroup.get('actions')).controls[formIndex].get('damages'));
+    control.removeAt(damageIndex);
+  }
+  removeLegendaryActionDamge(formIndex,damageIndex){
+    const control = (<FormArray> (<FormArray> this.legendaryActionsFormGroup.get('legendaryActions')).controls[formIndex].get('damages'));
     control.removeAt(damageIndex);
   }
   createNameDescriptionItem(): FormGroup {

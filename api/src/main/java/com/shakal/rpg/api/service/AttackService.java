@@ -1,29 +1,24 @@
 package com.shakal.rpg.api.service;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.forwardedUrl;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.shakal.rpg.api.dto.commons.KeyValueDTO;
+
 import com.shakal.rpg.api.dto.create.ActionCreateDTO;
 import com.shakal.rpg.api.dto.create.DamageDiceDTO;
 import com.shakal.rpg.api.dto.create.MonsterCreateDTO;
-import com.shakal.rpg.api.mappers.DamageMapper;
 import com.shakal.rpg.api.model.Action;
 import com.shakal.rpg.api.model.Attack;
 import com.shakal.rpg.api.model.Dice;
 import com.shakal.rpg.api.model.Monster;
 import com.shakal.rpg.api.model.embedded.AttackDiceId;
-import com.shakal.rpg.api.model.embedded.CreatureResistenceId;
-import com.shakal.rpg.api.model.enums.ResistenceTypeEnum;
 import com.shakal.rpg.api.model.relation.AttackDice;
-import com.shakal.rpg.api.model.relation.CreatureResistence;
 import com.shakal.rpg.api.repository.ActionDAO;
 import com.shakal.rpg.api.repository.AttackDAO;
 import com.shakal.rpg.api.repository.AttackDiceDAO;
@@ -49,16 +44,19 @@ public class AttackService {
 		this.attackDAO = attackDao;
 	}
 	@Transactional
-	public List<Action> mountAttack(MonsterCreateDTO inputDto, Monster monster){
+	public List<Action> mountActions(List<ActionCreateDTO> actions, Monster monster, boolean legendary){
 		List<Action> result = new ArrayList<Action>();
 		
-		for(ActionCreateDTO action: inputDto.getActions()) {
+		for(ActionCreateDTO action: actions) {
 			Action actionEntity = null; 
 			if(action.getDamages().isEmpty()) {
 				actionEntity = new Action();
 				actionEntity.setName(action.getName());
 				actionEntity.setDescription(action.getDescription());
 				actionEntity.setCreature(monster);
+				if(legendary) {
+					actionEntity.setMonster(monster);
+				}
 				this.actionDAO.save(actionEntity);
 				
 			}else {
@@ -66,6 +64,9 @@ public class AttackService {
 				actionEntity.setName(action.getName());
 				actionEntity.setDescription(action.getDescription());
 				actionEntity.setCreature(monster);
+				if(legendary) {
+					actionEntity.setMonster(monster);
+				}
 				Attack attack = this.attackDAO.save((Attack)actionEntity);
 				
 				for (DamageDiceDTO damage : action.getDamages()) {

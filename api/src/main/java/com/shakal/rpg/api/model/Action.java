@@ -31,6 +31,11 @@ public class Action {
 	@JoinColumn(name ="creature_id", referencedColumnName ="id")
 	private Creature creature;
 	
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST )
+	@JoinColumn(name ="legendary_action_monster_id", referencedColumnName ="creature_id")
+	private Monster monster;
+	
+	
 	public long getId() {
 		return id;
 	}
@@ -61,6 +66,14 @@ public class Action {
 
 	public void setCreature(Creature creature) {
 		this.creature = creature;
+	}
+
+	public Monster getMonster() {
+		return monster;
+	}
+
+	public void setMonster(Monster monster) {
+		this.monster = monster;
 	}
 	
 	

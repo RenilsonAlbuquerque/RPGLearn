@@ -29,5 +29,6 @@ export interface MonsterCreate{
     damageResistence: KeyValue[]
     languages: KeyValue[],
     features: NameDescription[],
-    actions: Attack[]
+    actions: Attack[],
+    legendaryActions: Attack[]
 }

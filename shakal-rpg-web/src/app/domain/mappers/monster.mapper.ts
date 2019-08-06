@@ -2,7 +2,7 @@ import { MonsterCreate } from '../models/monster/monster.create'
 import { FormGroup } from '@angular/forms';
 
 export default function mapFormToDTO(informacoesFormGroup: FormGroup,habilitiesFormGroup : FormGroup,
-    featuresFormGroup: FormGroup, actionsFormGroup: FormGroup): MonsterCreate {
+    featuresFormGroup: FormGroup, actionsFormGroup: FormGroup, legendaryActionsFormGroup: FormGroup): MonsterCreate {
     return {
       raceName: informacoesFormGroup.controls['name'].value,
       raceDescription: informacoesFormGroup.controls['description'].value,
@@ -30,6 +30,7 @@ export default function mapFormToDTO(informacoesFormGroup: FormGroup,habilitiesF
       damageResistence: habilitiesFormGroup.controls['damageResistence'].value,
       languages: habilitiesFormGroup.controls['languages'].value,
       features: featuresFormGroup.controls['features'].value,
-      actions: actionsFormGroup.controls['actions'].value
+      actions: actionsFormGroup.controls['actions'].value,
+      legendaryActions: legendaryActionsFormGroup.controls['legendaryActions'].value
     } as MonsterCreate;
   }

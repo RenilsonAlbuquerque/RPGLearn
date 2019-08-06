@@ -17,5 +17,6 @@ export interface MonsterSheet{
     damageImunity: String[],
     languages: String[],
     features: NameDescription[],
-    actions: AttackDto[]
+    actions: AttackDto[],
+    legendaryActions: AttackDto[]
 }

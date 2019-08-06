@@ -3,6 +3,7 @@ package com.shakal.rpg.api.model;
 
 
 
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -40,7 +41,8 @@ public class Monster extends Creature{
 	@OneToMany(mappedBy = "monster",cascade = CascadeType.ALL,fetch =  FetchType.EAGER, orphanRemoval = true)
 	private Set<MonsterFeature> features;
 	
-	
+	@OneToMany(mappedBy = "creature",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	private List<Action> legendaryActions;
 	
 
 
@@ -103,6 +105,16 @@ public class Monster extends Creature{
 
 	public void setSize(MonsterSize size) {
 		this.size = size;
+	}
+
+
+	public List<Action> getLegendaryActions() {
+		return legendaryActions;
+	}
+
+
+	public void setLegendaryActions(List<Action> legendaryActions) {
+		this.legendaryActions = legendaryActions;
 	}
 
 

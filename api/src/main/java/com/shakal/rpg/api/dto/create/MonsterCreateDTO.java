@@ -35,6 +35,7 @@ public class MonsterCreateDTO {
 	private List<KeyValueDTO> languages;
 	private List<NameDescriptionDTO> features;
 	private List<ActionCreateDTO> actions;
+	private List<ActionCreateDTO> legendaryActions;
 	
 	public String getRaceName() {
 		return raceName;
@@ -198,6 +199,12 @@ public class MonsterCreateDTO {
 	}
 	public void setActions(List<ActionCreateDTO> actions) {
 		this.actions = actions;
+	}
+	public List<ActionCreateDTO> getLegendaryActions() {
+		return legendaryActions;
+	}
+	public void setLegendaryActions(List<ActionCreateDTO> legendaryActions) {
+		this.legendaryActions = legendaryActions;
 	}
 	
 	

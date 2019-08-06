@@ -21,7 +21,7 @@ public class MonsterSheetDTO {
 	private List<String> languages;
 	private List<NameDescriptionDTO> features;
 	private List<MonsterActionDTO> actions;
-
+	private List<MonsterActionDTO> legendaryActions;
 	
 	
 	public long getId() {
@@ -114,6 +114,12 @@ public class MonsterSheetDTO {
 	}
 	public void setSpeed(int speed) {
 		this.speed = speed;
+	}
+	public List<MonsterActionDTO> getLegendaryActions() {
+		return legendaryActions;
+	}
+	public void setLegendaryActions(List<MonsterActionDTO> legendaryActions) {
+		this.legendaryActions = legendaryActions;
 	}
 	
 	

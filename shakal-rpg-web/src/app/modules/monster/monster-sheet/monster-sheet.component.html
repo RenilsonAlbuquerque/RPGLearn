@@ -5,8 +5,8 @@
             <h6 class="card-subtitle mb-2 text-muted"> {{ monster?.size }}, {{ monster?.alignment }}</h6>
         </div>
         <div class="card-body">
-            <div class="row" style="height: 500px"  >
-                <div class="col-md-6 col-sm-12">
+            <div class="row" >
+                <div class="overflow-auto col-md-6 col-sm-12" style="height: 500px">
                     <ul class="list-group list-group-flush">
                 
                         <li class="list-group-item">
@@ -81,7 +81,7 @@
                     </ul>
                 </div>
                 
-                <div class="overflow-auto col-md-6 col-sm-12 h-100">
+                <div class="overflow-auto col-md-6 col-sm-12" style="height: 500px">
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
                             <div class="row" *ngFor="let feature of monster?.features">
@@ -93,21 +93,42 @@
                 </div>
                 
             </div>
-            <div class="row h-50">
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">
-                        <div class="row" *ngFor="let action of monster?.actions">
-                            <p><strong>{{action.name}}</strong> </p>
-                            <p>{{action.description}}</p>
-                           
-                            <div *ngFor="let damage of action?.damage">
-                                <span class="badge badge-pill badge-danger">{{ damage}}</span>
+            <div class="row" >
+                <div class="overflow-auto col-md-6 col-sm-12" style="height: 500px">
+                    <mat-divider></mat-divider>
+                    <h6><strong>Ações</strong></h6>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <div class="col" *ngFor="let action of monster?.actions">
+                                <div class="row"><strong>{{action.name}}</strong> </div>
+                                <div class="row">{{action.description}}</div>
+                                <div class="row" *ngFor="let damage of action?.damage">
+                                    <span class="badge badge-pill badge-danger">{{ damage}}</span>
+                                </div>
+                                       
                             </div>
-                           
-                        </div>
-                    </li>
-                </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="overflow-auto col-md-6 col-sm-12" style="height: 500px">
+                        <mat-divider></mat-divider>
+                        <h6><strong>Ações Lendárias</strong></h6>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <div class="col" *ngFor="let action of monster?.legendaryActions">
+                                    <div class="row"><strong>{{action.name}}</strong> </div>
+                                    <div class="row">{{action.description}}</div>
+                                    <div class="row" *ngFor="let damage of action?.damage">
+                                        <span class="badge badge-pill badge-danger">{{ damage}}</span>
+                                    </div>
+                                           
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
             </div>
+           
+            
         </div>
     </div>
     <!-- <mat-card>
