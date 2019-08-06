@@ -54,9 +54,7 @@ public class AttackService {
 				actionEntity.setName(action.getName());
 				actionEntity.setDescription(action.getDescription());
 				actionEntity.setCreature(monster);
-				if(legendary) {
-					actionEntity.setMonster(monster);
-				}
+				
 				this.actionDAO.save(actionEntity);
 				
 			}else {
@@ -64,9 +62,11 @@ public class AttackService {
 				actionEntity.setName(action.getName());
 				actionEntity.setDescription(action.getDescription());
 				actionEntity.setCreature(monster);
+				/*
 				if(legendary) {
 					actionEntity.setMonster(monster);
 				}
+				*/
 				Attack attack = this.attackDAO.save((Attack)actionEntity);
 				
 				for (DamageDiceDTO damage : action.getDamages()) {

@@ -7,6 +7,8 @@ import com.shakal.rpg.api.dto.commons.DoubleInt;
 public class ChallengeDificultInputDTO {
 	private List<DoubleInt> monsters;
 	private List<DoubleInt> players;
+	private int challengeLevel;
+	
 	
 	
 	public List<DoubleInt> getMonsters() {
@@ -20,6 +22,12 @@ public class ChallengeDificultInputDTO {
 	}
 	public void setPlayers(List<DoubleInt> players) {
 		this.players = players;
+	}
+	public int getChallengeLevel() {
+		return challengeLevel;
+	}
+	public void setChallengeLevel(int challengeLevel) {
+		this.challengeLevel = challengeLevel;
 	}
 	
 	

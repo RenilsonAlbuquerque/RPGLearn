@@ -49,7 +49,7 @@ public class CombatController {
     public String onSubscribe() {
         return "SUBSCRIBED";
     }
-	@Scheduled(fixedRate = 1000)
+	//@Scheduled(fixedRate = 1000)
     public void sendMessage() {
         template.convertAndSend(SENDING_URL, "Mail motherfucker");
     }
