@@ -26,8 +26,8 @@ export class SampleComponent extends React.Component {
           //this.setState({serverTime: message.body});
         });
 
-        this.client.subscribe('/topic/combat', message => {
-          console.log(message.body)
+        this.client.subscribe('/topic/combat/1', message => {
+          console.log(JSON.parse(message.body))
         });
       },
       // Helps during debugging, remove in production
@@ -39,7 +39,7 @@ export class SampleComponent extends React.Component {
     this.client.activate();
   }
   clickHandler = () => {
-    this.client.publish({destination: '/app/combat', body: 'Hello world'});
+    this.client.publish({destination: '/app/combat/1', body: 'Hello world'});
   }
  
   render() {

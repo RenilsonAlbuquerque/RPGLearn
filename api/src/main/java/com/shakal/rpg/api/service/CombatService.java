@@ -4,7 +4,8 @@ import org.springframework.stereotype.Service;
 
 import com.shakal.rpg.api.contracts.service.ICombatService;
 import com.shakal.rpg.api.dto.commons.DoubleInt;
-import com.shakal.rpg.api.dto.filter.ChallengeDificultInputDTO;
+import com.shakal.rpg.api.dto.filter.CombatStateDTO;
+import com.shakal.rpg.api.dto.overview.MonsterCardDTO;
 import com.shakal.rpg.api.repository.ChallengeDificultDAO;
 
 @Service
@@ -17,14 +18,15 @@ public class CombatService implements ICombatService{
 	}
 
 	@Override
-	public String calculateChallengeDeficult(ChallengeDificultInputDTO input) {
+	public String calculateChallengeDeficult(CombatStateDTO input) {
 		String result = "Fácil";
 		int maxLevel = 0;
 		int xpSum = 0;
-		for(DoubleInt player: input.getPlayers()) {
-			xpSum += player.getXp();
-			if(player.getLevel() > maxLevel) {
-				maxLevel = player.getLevel();
+
+		for(MonsterCardDTO player: input.getPlayers()) {
+			xpSum += player.getLevel().getXp();
+			if(player.getLevel().getValue() > maxLevel) {
+				maxLevel = player.getLevel().getValue();
 			}
 		}
 		return result;

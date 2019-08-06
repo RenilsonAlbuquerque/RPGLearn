@@ -3,69 +3,69 @@ import { Injectable } from '@angular/core';
 import { MonsterCard } from 'src/app/domain/models/monster/monster.card';
 
 import { environment } from 'src/environments/environment';
-import { StompService, StompConfig, StompState } from "@stomp/ng2-stompjs";
+import { StompService, StompConfig, StompState, RxStompService } from "@stomp/ng2-stompjs";
 import { Observable } from 'rxjs';
 import { IMessage } from '@stomp/stompjs';
+import { CombatState } from 'src/app/domain/models/combat/combat.state';
 
 @Injectable()
 export class CombatRoomService {
 
-  private monsters: MonsterCard[];
-  private players: MonsterCard[];
+ 
 
   private stompService: StompService;
-  private messages: Observable<IMessage>;
+  private combatState: CombatState;
   
-  constructor(private httpClient: HttpClient) {
-      this.monsters = [];
-      this.players = [];
-      let stompConfig: StompConfig = {
-        url: `${environment.BASE_SOCKET_URL}combat`,
-        headers: {
-          login: "",
-          passcode: ""
-        },
-        heartbeat_in: 0,
-        heartbeat_out: 20000,
-        reconnect_delay: 5000,
-        debug: true
-      };
-      this.stompService = new StompService(stompConfig);
-      this.messages = this.stompService.subscribe(environment + "/topic/room");
-  }
-  public stream(): Observable<IMessage> {
-    return this.messages;
+  constructor(private httpClient: HttpClient,private rxStompService: RxStompService) {
+      this.combatState = {
+        monsters : [],
+        players: [],
+        dificult: 1
+      } as CombatState;
+
+      this.rxStompService.watch('/topic/combat/1').subscribe((message: IMessage) => {
+        this.combatState = JSON.parse(message.body) as CombatState;
+      });
   }
 
 
   public addMonsterEnemy(monster: MonsterCard){
-    this.monsters.push(monster);
+    this.combatState.monsters.push(monster);
+    this.onSendMessage();
   }
   public addMonsterAlly(monster: MonsterCard){
-    this.players.push(monster);
+    this.combatState.players.push(monster);
+    this.onSendMessage();
   }
   public getMonsters():MonsterCard[]{
-      return this.monsters;
+      return this.combatState.monsters;
   }
   public getPlayers():MonsterCard[]{
-    return this.players;
+    return this.combatState.players;
   }
   public updateMonsterLifePoints(index: number,value: number){
     if(value < 0){
-      this.monsters[index].lifePoints = 0; 
+      this.combatState.monsters[index].lifePoints = 0; 
     }
-    else if(value > this.monsters[index].totalLifePoints){
-      this.monsters[index].lifePoints = this.monsters[index].totalLifePoints;
+    else if(value > this.combatState.monsters[index].totalLifePoints){
+      this.combatState.monsters[index].lifePoints = this.combatState.monsters[index].totalLifePoints;
     }else{
-      this.monsters[index].lifePoints = value; 
+      this.combatState.monsters[index].lifePoints = value; 
     }
+    this.onSendMessage();
       
   }
   public removeEnemy(index: number){
-    this.monsters.splice(index,1);
+    this.combatState.monsters.splice(index,1);
+    this.onSendMessage();
   }
   
   public removeAlly(index: number){
-    this.players.splice(index,1);
+    this.combatState.players.splice(index,1);
+    this.onSendMessage();
+  }
+
+  private onSendMessage() {
+    this.rxStompService.publish({destination: '/app/combat/1', body: JSON.stringify(this.combatState)});
   }
 }

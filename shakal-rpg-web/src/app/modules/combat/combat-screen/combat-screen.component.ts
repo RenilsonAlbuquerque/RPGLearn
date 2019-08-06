@@ -26,10 +26,6 @@ export class CombatScreenComponent implements OnInit {
   constructor(private modalService: NgbModal, private combatRoomService: CombatRoomService) { 
     this.monsters = this.combatRoomService.getMonsters();
     this.players = this.combatRoomService.getPlayers();
-    this.combatRoomService.stream().subscribe((message: IMessage) => {
-      this.messageHistory.unshift(message.body);
-      console.log(message + "Fudeu");
-    });
     
   }
  

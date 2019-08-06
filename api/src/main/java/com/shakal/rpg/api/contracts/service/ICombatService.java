@@ -1,8 +1,8 @@
 package com.shakal.rpg.api.contracts.service;
 
-import com.shakal.rpg.api.dto.filter.ChallengeDificultInputDTO;
+import com.shakal.rpg.api.dto.filter.CombatStateDTO;
 
 public interface ICombatService {
 
-	String calculateChallengeDeficult(ChallengeDificultInputDTO input);
+	String calculateChallengeDeficult(CombatStateDTO input);
 }

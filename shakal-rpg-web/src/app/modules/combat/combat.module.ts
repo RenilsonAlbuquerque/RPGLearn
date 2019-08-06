@@ -8,6 +8,8 @@ import { NgbModalModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MonsterService } from '../monster/monster.module.service';
 import { MaterialModule } from '../material-design/material.module';
 import { CombatRoomService } from './services/combat-room.service';
+import { InjectableRxStompConfig, RxStompService, rxStompServiceFactory } from '@stomp/ng2-stompjs';
+import { myRxStompConfig } from 'src/app/infra/config/my-rx-stomp.config';
 
 
 
@@ -24,7 +26,16 @@ import { CombatRoomService } from './services/combat-room.service';
   ],
   providers:[
     MonsterService,
-    CombatRoomService
+    CombatRoomService,
+    {
+      provide: InjectableRxStompConfig,
+      useValue: myRxStompConfig
+    },
+    {
+      provide: RxStompService,
+      useFactory: rxStompServiceFactory,
+      deps: [InjectableRxStompConfig]
+    }
   ]
 })
 export class CombatModule { }
