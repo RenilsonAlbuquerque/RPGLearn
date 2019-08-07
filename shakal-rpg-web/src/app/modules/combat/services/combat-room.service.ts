@@ -2,18 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MonsterCard } from 'src/app/domain/models/monster/monster.card';
 
-import { environment } from 'src/environments/environment';
-import { StompService, StompConfig, StompState, RxStompService } from "@stomp/ng2-stompjs";
-import { Observable } from 'rxjs';
+import {  RxStompService } from "@stomp/ng2-stompjs";
 import { IMessage } from '@stomp/stompjs';
 import { CombatState } from 'src/app/domain/models/combat/combat.state';
 
 @Injectable()
 export class CombatRoomService {
 
- 
 
-  private stompService: StompService;
   private combatState: CombatState;
   
   constructor(private httpClient: HttpClient,private rxStompService: RxStompService) {

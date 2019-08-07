@@ -4,5 +4,6 @@ import com.shakal.rpg.api.dto.filter.CombatStateDTO;
 
 public interface ICombatService {
 
-	String calculateChallengeDeficult(CombatStateDTO input);
+	int calculateChallengeDeficult(CombatStateDTO input);
+	CombatStateDTO updateMonstersConditions(CombatStateDTO input);
 }

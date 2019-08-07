@@ -7,5 +7,6 @@ export interface MonsterCard{
     level: Level,
     lifePoints: number,
     totalLifePoints: number,
-    imagePath: string
+    imagePath: string,
+    lifePercent: number
 }

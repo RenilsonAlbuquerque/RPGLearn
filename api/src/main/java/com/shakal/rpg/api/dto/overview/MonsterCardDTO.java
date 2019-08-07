@@ -11,6 +11,7 @@ public class MonsterCardDTO {
 	 private int lifePoints;
 	 private int totalLifePoints;
 	 private String imagePath;
+	 private int lifePercent;
 	 
 	 
 	public long getId() {
@@ -25,7 +26,6 @@ public class MonsterCardDTO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
 	
 	public LevelDTO getLevel() {
 		return level;
@@ -50,6 +50,12 @@ public class MonsterCardDTO {
 	}
 	public void setTotalLifePoints(int totalLifePoints) {
 		this.totalLifePoints = totalLifePoints;
+	}
+	public int getLifePercent() {
+		return lifePercent;
+	}
+	public void setLifePercent(int lifePercent) {
+		this.lifePercent = lifePercent;
 	}
 	
 	 

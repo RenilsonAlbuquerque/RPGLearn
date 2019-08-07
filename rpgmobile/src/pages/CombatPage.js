@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import { StyleSheet, Image, View,Text} from 'react-native';
 
-import SockJsClient from 'react-stomp';
-import { Client } from '@stomp/stompjs';
+
 import StompWS from 'react-native-stomp-websocket';
+import changeColor from '../helpers/Combat-helper';
 
 class CombatPage extends Component {
     
@@ -11,10 +11,8 @@ class CombatPage extends Component {
     componentDidMount() {
         const client = StompWS.client("ws://192.168.0.112:8080/stomp");
         client.connect({}, (frame) => {
-          console.log("OK")
           client.subscribe('/topic/combat/1', (message) => {
-            //this.setState(combatState = JSON.parse(message.body));
-            this.setState({combatState: JSON.parse(message.body)} );
+            //this.setState({combatState: JSON.parse(message.body)} );
           });
         }, (err) => console.log(err))
     }
@@ -32,20 +30,18 @@ class CombatPage extends Component {
         return (
             <View style={avatarStyle.creatureContaier}>
                  {this.state.combatState.monsters.map((monster, index) => 
+                  
                     <Image key={index} style={{
-                        height:150,
-                        width: 150,
-                        borderRadius: 100,
-                        borderWidth: 5,
-                        borderColor: monster.color
-                        
+                            height:150,
+                            width: 150,
+                            borderRadius: 100,
+                            borderWidth: 5,
+                            borderColor: changeColor(monster.lifePercent),          
                     }} 
-                            source={{uri: monster.imagePath}} />
+                        source={{uri: monster.imagePath}} />
                  )}
+                 
             </View>
-           
-           
-            
         )
     }
 }
@@ -63,7 +59,7 @@ const avatarStyle = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'center',
-        alignItems: 'stretch',
+        alignItems: 'stretch'
     }
 
 })
