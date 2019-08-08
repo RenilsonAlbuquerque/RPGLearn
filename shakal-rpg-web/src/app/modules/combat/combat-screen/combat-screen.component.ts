@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MonsterCard } from 'src/app/domain/models/monster/monster.card';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CombatRoomService } from '../services/combat-room.service';
+import { CombatState } from 'src/app/domain/models/combat/combat.state';
 
 
 
@@ -11,18 +12,21 @@ import { CombatRoomService } from '../services/combat-room.service';
   styleUrls: ['./combat-screen.component.scss']
 })
 export class CombatScreenComponent implements OnInit {
-  
+  /*
   public monsters: MonsterCard[];
   public players: MonsterCard[];
-  
+  */
+  private combatState: CombatState;
   private modalReference;
   
 
   messageHistory = [];
 
   constructor(private modalService: NgbModal, private combatRoomService: CombatRoomService) { 
-    this.monsters = this.combatRoomService.getMonsters();
-    this.players = this.combatRoomService.getPlayers();
+    this.combatRoomService.getCombatState().subscribe(
+       state => this.combatState = state
+    );
+   
     
   }
  

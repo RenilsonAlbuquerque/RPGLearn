@@ -6,7 +6,7 @@
         </div>
         <div class="card-body">
             <div class="row">
-                <div class="col-lg-2 col-md-4 col-sm-12" *ngFor="let monster of monsters; index as i"  >
+                <div class="col-lg-2 col-md-4 col-sm-12" *ngFor="let monster of combatState.monsters; index as i"  >
                        
                     <app-monster-card [monster]="monster" (click)="open(sheet)"></app-monster-card>
                     <button type="button" class="btn btn-secondary btn-lg btn-block" (click)="openConfirmDeleteModal(confirmDelete)">Remover</button>
@@ -73,7 +73,7 @@
                 </div>
             <div class="card-body">
                 <div class="row">
-                  <div class="col-lg-2 col-md-4 col-sm-12" *ngFor="let player of players; index as j"  >
+                  <div class="col-lg-2 col-md-4 col-sm-12" *ngFor="let player of combatState.players; index as j"  >
                     <app-monster-card [monster]="player" (click)="open(sheetAlly)"></app-monster-card>
                     <button type="button" class="btn btn-secondary btn-lg btn-block" (click)="openConfirmDeleteModal(confirmDeleteAlly)">Remover</button>
                     <ng-template #confirmDeleteAlly let-modal>
