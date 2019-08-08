@@ -17,6 +17,8 @@ import { MaterialModule } from '../material-design/material.module';
 import { BasecomponentsModule } from '../basecomponents/basecomponents.module';
 import { CombatRoomService } from '../combat/services/combat-room.service';
 import { OnlynumberDirective } from 'src/app/infra/directives/only-number.directive';
+import { InjectableRxStompConfig, RxStompService, rxStompServiceFactory } from '@stomp/ng2-stompjs';
+import { myRxStompConfig } from 'src/app/infra/config/my-rx-stomp.config';
 
 
 
@@ -36,7 +38,16 @@ import { OnlynumberDirective } from 'src/app/infra/directives/only-number.direct
     BasecomponentsModule
   ],
   providers:[
-    MonsterService,FormBuilder,CombatRoomService
+    MonsterService,FormBuilder,CombatRoomService,
+    {
+      provide: InjectableRxStompConfig,
+      useValue: myRxStompConfig
+    },
+    {
+      provide: RxStompService,
+      useFactory: rxStompServiceFactory,
+      deps: [InjectableRxStompConfig]
+    }
   ],
   exports: [MonsterCardComponent,MonsterSearchCardComponent, MonsterSheetComponent] 
 })

@@ -1,10 +1,12 @@
-import { createStore } from 'redux'
+import { createStore, compose, applyMiddleware } from 'redux'
 import { combineReducers } from 'redux';
-import UserReducer from '../reducers/userreducer'
-
+import UserReducer from '../reducers/UserReducer'
+import StoryReducer from '../reducers/StoryReducer'
+import thunk from 'redux-thunk';
 
 const rootReducer = combineReducers({
-    UserReducer
+    UserReducer,
+    StoryReducer
 })
 
-export default createStore(rootReducer);
+export default createStore(rootReducer, applyMiddleware(thunk));

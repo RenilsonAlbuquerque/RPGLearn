@@ -1,9 +1,12 @@
 import React, {Component} from 'react';
 import { Provider } from 'react-redux'
-import store from './src/store/store';
 import Sidebar from './src/router/SideBarRouter';
 
 import CombatPage from './src/pages/CombatPage';
+import LoginPage from './src/pages/LoginPage';
+import ShakalStackNavigator from './src/router/ShakalStackNavigator';
+import store  from './src/store/store'
+import NavigationService from './src/service/NavigationService';
 
 
 export default class App extends React.Component {
@@ -13,7 +16,7 @@ export default class App extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        <CombatPage></CombatPage>
+        <ShakalStackNavigator ref={navigatorRef => {NavigationService.setTopLevelNavigator(navigatorRef)}}></ShakalStackNavigator>
       </Provider>
       
     );

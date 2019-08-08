@@ -5,7 +5,6 @@ import { MonsterCard } from 'src/app/domain/models/monster/monster.card';
 import {  RxStompService } from "@stomp/ng2-stompjs";
 import { IMessage } from '@stomp/stompjs';
 import { CombatState } from 'src/app/domain/models/combat/combat.state';
-import { concat } from 'rxjs/operators';
 import { Observable, BehaviorSubject } from 'rxjs';
 
 @Injectable()
@@ -41,15 +40,8 @@ export class CombatRoomService {
   }
   public getCombatState():Observable<CombatState>{
     return this.combatState.asObservable();
-}
-  /*
-  public getMonsters():MonsterCard[]{
-      return this.combatState.monsters;
   }
-  public getPlayers():MonsterCard[]{
-    return this.combatState.players;
-  }
-  */
+
   public updateMonsterLifePoints(index: number,value: number){
     var combatState: CombatState = this.combatState.getValue();
     if(value < 0){
