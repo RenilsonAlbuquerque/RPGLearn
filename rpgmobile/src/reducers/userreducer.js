@@ -1,5 +1,5 @@
 import { USER_FETCHED, LOGIN_ERROR } from "../actions/UserAction";
-
+import AsyncStorage from '@react-native-community/async-storage';
 
 
 const INITIAL_STATE = {
@@ -16,14 +16,16 @@ const INITIAL_STATE = {
 export default function (state = INITIAL_STATE, action = {}) {
     switch (action.type) {
         case USER_FETCHED:
+            //AsyncStorage.setItem('@user', action.payload)
             return {
             ...state,
-            currentUser : action.payload
+            currentUser : action.payload   
         }
+        
         case LOGIN_ERROR:
             return {
             ...state,
-            error : 'fudeu'
+            error : action.payload.message
         }
         default:
             return state

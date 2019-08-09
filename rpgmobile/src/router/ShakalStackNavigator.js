@@ -14,7 +14,17 @@ const ShakalStackNavigator = createStackNavigator({
 });
 
 function navigatorOptions(){
-  header: null
+  return {
+    title: 'Aedes War',
+    
+    headerStyle: {
+      backgroundColor: '#D32F2F',
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+    }
+  }
 }
 
 export default createAppContainer(ShakalStackNavigator);

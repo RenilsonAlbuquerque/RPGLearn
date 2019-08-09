@@ -24,8 +24,9 @@ class LoginPage extends Component{
         const {
           errorMessage
         } = this.props;
+
         return (
-          <Container >
+          <Container style={loginStyle.container}>
           <Content padder >
             <Form>
               <Item floatingLabel>
@@ -38,10 +39,10 @@ class LoginPage extends Component{
               </Item>
             </Form>
             <View style={{width: 20, height: 40}} />
-            <Button onPress={() => this.props.loginAction('asdasd','asdasdasd')} title="Login"/>
+            <Button style={loginStyle.customButton} onPress={() => this.props.loginAction('asdasd','asdasdasd')} title="Login"/>
                   
             <View style={{width: 20, height: 30}} />
-            <Text>Felix</Text>
+            <Text>{errorMessage}</Text>
           </Content>
         </Container>
       );
@@ -57,3 +58,17 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 }, dispatch);
 
 export default connect(mapStateToProps,mapDispatchToProps)(LoginPage)
+
+const loginStyle = StyleSheet.create({
+  container: {
+    flex: 2,
+    justifyContent: "center",
+    // alignItems: "center",
+    backgroundColor: "#F5FCFF"
+  },
+  customButton:{
+    borderRadius: 50
+  }
+
+
+})

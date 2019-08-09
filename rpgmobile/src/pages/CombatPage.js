@@ -16,7 +16,6 @@ class CombatPage extends Component {
         client.connect({}, (frame) => {
           client.subscribe('/topic/combat/1', (message) => {
             this.props.setCombatStatus(JSON.parse(message.body))
-            //this.setState({combatState: JSON.parse(message.body)} );
           });
         }, (err) => console.log(err))
     }

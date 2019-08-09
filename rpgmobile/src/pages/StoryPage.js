@@ -26,8 +26,8 @@ class StoryPage extends Component{
                 data={storyData.elements}
                 extraData={this.state}
                 keyExtractor={item => item.name}
-                renderItem={({ item }) => (
-                    <TouchableOpacity key={item.id} onPress={() => NavigationService.navigate('Combat')}>
+                renderItem={({ item, idenx }) => (
+                    <TouchableOpacity key={idenx} onPress={() => NavigationService.navigate('Combat')}>
                         <Card 
                        featuredTitle={item.name}
                        image={{ uri: item.folderImage }}
