@@ -8,6 +8,7 @@ import { bindActionCreators } from "redux";
 import { getStories} from '../actions/StoryAction'
 import { Text,Card, CardItem, Right} from 'native-base';
 import { FlatList } from 'react-native-gesture-handler';
+import NavigationService from '../service/NavigationService';
 
 class StoryPage extends Component{
 
@@ -26,7 +27,8 @@ class StoryPage extends Component{
                 extraData={this.state}
                 keyExtractor={item => item.name}
                 renderItem={({ item }) => (
-                    <Card key={item.id}
+                    <TouchableOpacity key={item.id} onPress={() => NavigationService.navigate('Combat')}>
+                        <Card 
                        featuredTitle={item.name}
                        image={{ uri: item.folderImage }}
                        >
@@ -40,6 +42,8 @@ class StoryPage extends Component{
                             </Right>
                         </CardItem>
                      </Card>
+                    </TouchableOpacity>
+                    
                   )}
             />
              

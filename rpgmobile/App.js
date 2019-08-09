@@ -7,6 +7,7 @@ import LoginPage from './src/pages/LoginPage';
 import ShakalStackNavigator from './src/router/ShakalStackNavigator';
 import store  from './src/store/store'
 import NavigationService from './src/service/NavigationService';
+import CombatMonsters from './src/components/story/CombatMonsters';
 
 
 export default class App extends React.Component {
@@ -16,7 +17,7 @@ export default class App extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        <ShakalStackNavigator ref={navigatorRef => {NavigationService.setTopLevelNavigator(navigatorRef)}}></ShakalStackNavigator>
+         <ShakalStackNavigator ref={navigatorRef => {NavigationService.setTopLevelNavigator(navigatorRef)}}></ShakalStackNavigator>
       </Provider>
       
     );

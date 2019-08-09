@@ -11,7 +11,11 @@ const INITIAL_STATE = {
         size:1,
         first:true,
         last: true
+    },
+    selectedStory:{
+        
     }
+    
 }
 
 export default function (state = INITIAL_STATE, action = {}) {

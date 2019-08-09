@@ -2,6 +2,8 @@ package com.shakal.rpg.api.control;
 
 
 
+import java.util.HashMap;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
@@ -16,7 +18,7 @@ import com.shakal.rpg.api.dto.filter.CombatStateDTO;
 @Controller
 public class CombatStompController {
 
-	
+	private HashMap<Long,CombatStateDTO> combats;
 	private final SimpMessagingTemplate template;
 	private ICombatService combatService;
 	
@@ -25,11 +27,15 @@ public class CombatStompController {
 			ICombatService combatService) {
 	        this.template = simpMessagingTemplate;
 	        this.combatService = combatService;
+	        this.combats = new HashMap<Long, CombatStateDTO>();
 	}
 	
 	@MessageMapping("/combat/{id}")
-	public void recieveDTO(@DestinationVariable String id,CombatStateDTO state) throws Exception {
-		state.setDificult(combatService.calculateChallengeDeficult(state));
+	public void recieveDTO(@DestinationVariable Long id,CombatStateDTO state) throws Exception {
+		//state.setDificult(combatService.calculateChallengeDeficult(state));
+		if(combats.get(id) != null) {
+			combats.put(Long.valueOf(id), this.combatService.updateMonstersConditions(state));
+		}
 		state = this.combatService.updateMonstersConditions(state);
 		this.template.convertAndSend("/topic/combat/"+ id, state);
 	     
