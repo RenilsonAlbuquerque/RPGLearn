@@ -6,7 +6,7 @@ import { bindActionCreators } from "redux";
 
 import changeColor from '../../helpers/Combat-helper';
 
-class CombatMonsters extends Component {
+class CombatAllies extends Component {
     
       
    
@@ -25,16 +25,16 @@ class CombatMonsters extends Component {
         } = this.props;
         return (
             <View style={avatarStyle.creatureContaier}>
-                 {combatStatusData.monsters.map((monster, index) => 
+                 {combatStatusData.players.map((player, index) => 
                   
                     <Image key={index} style={{
                             height:150,
                             width: 150,
                             borderRadius: 100,
                             borderWidth: 5,
-                            borderColor: changeColor(monster.lifePercent),          
+                            borderColor: changeColor(player.lifePercent),          
                     }} 
-                        source={{uri: monster.imagePath}} />
+                        source={{uri: player.imagePath}} />
                  )}
                  
             </View>
@@ -46,7 +46,7 @@ const mapStateToProps = state => ({
 })  
   
 
-export default connect(mapStateToProps,null)(CombatMonsters);
+export default connect(mapStateToProps,null)(CombatAllies);
 
 const avatarStyle = StyleSheet.create({
     imageStyle:{
