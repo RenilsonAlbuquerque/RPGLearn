@@ -1,4 +1,4 @@
-import { USER_FETCHED } from "../actions/UserAction";
+import { USER_FETCHED, LOGIN_ERROR } from "../actions/UserAction";
 
 
 
@@ -9,7 +9,8 @@ const INITIAL_STATE = {
         email:'',
         token:'',
         atuhenticated: false
-    }
+    },
+    error:""
 }
 
 export default function (state = INITIAL_STATE, action = {}) {
@@ -18,6 +19,11 @@ export default function (state = INITIAL_STATE, action = {}) {
             return {
             ...state,
             currentUser : action.payload
+        }
+        case LOGIN_ERROR:
+            return {
+            ...state,
+            error : 'fudeu'
         }
         default:
             return state

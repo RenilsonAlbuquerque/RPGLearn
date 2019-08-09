@@ -6,7 +6,6 @@ import { Container,  Content, Form, Item, Input, Label  ,Text } from 'native-bas
 import { connect } from 'react-redux';
 import { bindActionCreators } from "redux";
 import { loginAction } from '../actions/UserAction'
-import NavigationService from '../service/NavigationService';
 
 
 class LoginPage extends Component{
@@ -22,6 +21,9 @@ class LoginPage extends Component{
     
     
     render() {
+        const {
+          errorMessage
+        } = this.props;
         return (
           <Container >
           <Content padder >
@@ -39,16 +41,17 @@ class LoginPage extends Component{
             <Button onPress={() => this.props.loginAction('asdasd','asdasdasd')} title="Login"/>
                   
             <View style={{width: 20, height: 30}} />
-           
+            <Text>Felix</Text>
           </Content>
         </Container>
       );
       }
 }
-function mapStateToProps(state){
-    return state.UserReducer;
-}
-  
+
+const mapStateToProps = state => ({ 
+  errorMessage: state.UserReducer.error
+})  
+
 const mapDispatchToProps = dispatch => bindActionCreators({
   loginAction
 }, dispatch);

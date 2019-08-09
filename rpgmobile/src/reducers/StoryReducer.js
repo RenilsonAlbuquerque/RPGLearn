@@ -4,7 +4,14 @@ import { STORY_FETCHED } from "../actions/StoryAction";
 
 
 const INITIAL_STATE = {
-    stories:[]
+    stories:{
+        elements:[],
+        currentPageNumber: 1,
+        totalOfPages: 0,
+        size:1,
+        first:true,
+        last: true
+    }
 }
 
 export default function (state = INITIAL_STATE, action = {}) {

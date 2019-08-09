@@ -1,28 +1,23 @@
 import axios from "axios";
+import CustomAxios from "../service/AxiosConfig";
+
 
 export const STORY_FETCHED = 'STORY_FETCHED';
 
-const STORY_API =
-    "http://";
+const STORY_API ="/story";
 
-export function getStories(){
-    
+export function getStories(pageConfig){
+
     return (dispatch) => {
-        return axios
-        .post(`${STORY_API}/login`,newUser)
+        return CustomAxios
+        .post(`${STORY_API}/list`,pageConfig)
         .then(result =>
             dispatch(
                 {
                     type:STORY_FETCHED,
-                    payload: 
-                       [
-                           {
-                            id:1,name:'Curse of strahd'
-                           }
-                       ]
-                    
-
+                    payload: result.data
                 }
             ))
+        
     };
 }

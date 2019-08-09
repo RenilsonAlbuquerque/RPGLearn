@@ -1,10 +1,11 @@
 import axios from "axios";
 import NavigationSevice from '../service/NavigationService'
+import CustomAxios from "../service/AxiosConfig";
 
 export const USER_FETCHED = 'USER_FETCHED';
-
+export const LOGIN_ERROR = 'LOGIN_ERROR';
 //const USER_API =process.env.REACT_APP_URL_API + process.env.REACT_APP_PATH_PRESTADORA_API;
-const USER_API = "http://192.168.0.112:8080/user"
+const USER_API = "/user"
 
 
 
@@ -13,7 +14,7 @@ export function loginAction(username, password){
    
 
     return (dispatch) => {
-        return axios
+        return CustomAxios
             .get(`${USER_API}/detail`)
             .then(result =>
                 dispatch([
@@ -28,9 +29,16 @@ export function loginAction(username, password){
                         }
                     },
                     navigateToMenu()
-
                 ])
-            );
+            ).catch(error => 
+                dispatch(
+                    {
+                        type:LOGIN_ERROR,
+                        payload: error
+                    },
+                    
+                )
+            )
     }
 }
 function navigateToMenu(){
