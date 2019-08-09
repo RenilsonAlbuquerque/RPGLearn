@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
-import { Image ,View, StyleSheet } from 'react-native';
+import { Image ,View, StyleSheet,Button } from 'react-native';
 
 
-import { Container,  Content, Form, Item, Input, Label , Button ,Text } from 'native-base';
+import { Container,  Content, Form, Item, Input, Label  ,Text } from 'native-base';
 import { connect } from 'react-redux';
 import { bindActionCreators } from "redux";
 import { loginAction } from '../actions/UserAction'
+import NavigationService from '../service/NavigationService';
 
 
 class LoginPage extends Component{
@@ -35,13 +36,10 @@ class LoginPage extends Component{
               </Item>
             </Form>
             <View style={{width: 20, height: 40}} />
-            <Button danger block >
-                  <Text>Entrar</Text>
-            </Button>
+            <Button onPress={() => this.props.loginAction('asdasd','asdasdasd')} title="Login"/>
+                  
             <View style={{width: 20, height: 30}} />
-            <Button block>
-                  <Text>Entrar com Facebook</Text>
-            </Button>
+           
           </Content>
         </Container>
       );
