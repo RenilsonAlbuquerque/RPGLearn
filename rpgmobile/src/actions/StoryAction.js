@@ -3,6 +3,7 @@ import CustomAxios from "../service/AxiosConfig";
 
 
 export const STORY_FETCHED = 'STORY_FETCHED';
+export const CURRENT_STORY = 'CURRENT_STORY';
 
 const STORY_API ="/story";
 
@@ -20,4 +21,10 @@ export function getStories(pageConfig){
             ))
         
     };
+}
+export function setCurrentStory(story){
+    return {
+        type:CURRENT_STORY,
+        payload: story
+    }
 }

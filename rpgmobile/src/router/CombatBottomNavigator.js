@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { Platform } from 'react-native';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs'
-import CombatMonsters from '../components/story/CombatMonsters';
+import CombatMonsters from '../components/combat/CombatMonsters';
 import { Icon } from 'native-base';
 import { createAppContainer } from 'react-navigation';
 import CombatAllies from '../components/combat/CombatAllies';

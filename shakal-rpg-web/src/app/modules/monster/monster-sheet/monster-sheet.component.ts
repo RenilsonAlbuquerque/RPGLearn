@@ -14,6 +14,7 @@ export class MonsterSheetComponent implements OnInit {
   @Input() monsterId: number;
   @Input() currentLifePoints: number;
   @Input() monsterIndex: number;
+  @Input() storyId: number
 
   public amount: number;
   public monster: MonsterSheet;

@@ -3,6 +3,7 @@ import { MonsterCard } from 'src/app/domain/models/monster/monster.card';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CombatRoomService } from '../services/combat-room.service';
 import { CombatState } from 'src/app/domain/models/combat/combat.state';
+import { ActivatedRoute } from '@angular/router';
 
 
 
@@ -21,8 +22,9 @@ export class CombatScreenComponent implements OnInit {
   
 
   messageHistory = [];
+  storyid: number;
 
-  constructor(private modalService: NgbModal, private combatRoomService: CombatRoomService) { 
+  constructor(private _activatedRoute: ActivatedRoute,private modalService: NgbModal, private combatRoomService: CombatRoomService) { 
     this.combatRoomService.getCombatState().subscribe(
        state => this.combatState = state
     );
@@ -31,6 +33,10 @@ export class CombatScreenComponent implements OnInit {
   }
  
   ngOnInit() {
+    this._activatedRoute.params.subscribe(params => {
+      this.storyid = params['id'];
+      this.combatRoomService.initializeCombat(this.storyid);
+    });
   }
   open(content) {
     this.modalReference = this.modalService.open(content, {size: 'xl'});

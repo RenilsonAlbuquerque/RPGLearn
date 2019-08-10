@@ -19,7 +19,7 @@ const routes: Routes = [
             component: CombatMenuComponent
         },
         {
-            path: 'screen',
+            path: 'screen/:id',
             component: CombatScreenComponent
         }
       ]

@@ -7,14 +7,16 @@ import changeColor from '../helpers/Combat-helper';
 import CombatBottomNavigator from '../router/CombatBottomNavigator';
 import { bindActionCreators } from "redux";
 import {setCombatStatus} from '../actions/CombatAction'
+import NavigationService from '../service/NavigationService';
 
 class CombatPage extends Component {
     
       
     componentDidMount() {
+      const storyId = this.props.currentCombat.id;
         const client = StompWS.client("ws://192.168.0.112:8080/stomp");
         client.connect({}, (frame) => {
-          client.subscribe('/topic/combat/1', (message) => {
+          client.subscribe('/topic/combat/' + storyId, (message) => {
             this.props.setCombatStatus(JSON.parse(message.body))
           });
         }, (err) => console.log(err))
@@ -35,8 +37,9 @@ class CombatPage extends Component {
     }
 }
 const mapStateToProps = state => ({ 
-    errorMessage: state.CombatReducer.combatState
-  })  
+    errorMessage: state.CombatReducer.combatState,
+    currentCombat: state.StoryReducer.selectedStory
+})  
   
   const mapDispatchToProps = dispatch => bindActionCreators({
     setCombatStatus

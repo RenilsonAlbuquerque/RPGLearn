@@ -5,12 +5,12 @@ export default function changeColor(percent){
     }
     else{
         if(percent >= 90){
-            result = 'green'
+            result = '#4CAF50'
         }else{
             if(percent <= 10){
-                result =  'red'
+                result =  '#F44336'
             }else{
-                result = 'yellow'
+                result = '#FFEB3B'
             }
         }
     }

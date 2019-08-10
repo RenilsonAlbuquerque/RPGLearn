@@ -6,7 +6,7 @@ import { FlatGrid } from 'react-native-super-grid';
 
 import changeColor from '../../helpers/Combat-helper';
 
-class CombatAllies extends Component {
+class CombatMonsters extends Component {
     
       
    
@@ -26,7 +26,7 @@ class CombatAllies extends Component {
         return (
             <FlatGrid
                 itemDimension={130}
-                items={combatStatusData.players}
+                items={combatStatusData.monsters}
                 style={avatarStyle.gridView}
                 // staticDimension={300}
                 // fixed
@@ -42,6 +42,7 @@ class CombatAllies extends Component {
                 )}
             />
             
+            
         )
     }
 }
@@ -50,7 +51,7 @@ const mapStateToProps = state => ({
 })  
   
 
-export default connect(mapStateToProps,null)(CombatAllies);
+export default connect(mapStateToProps,null)(CombatMonsters);
 
 const avatarStyle = StyleSheet.create({
     gridView: {

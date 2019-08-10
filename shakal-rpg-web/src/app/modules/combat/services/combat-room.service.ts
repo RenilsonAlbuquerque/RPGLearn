@@ -10,7 +10,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 @Injectable()
 export class CombatRoomService {
 
-
+  private storyId: number;
   private combatState: BehaviorSubject<CombatState>;
   
   constructor(private httpClient: HttpClient,private rxStompService: RxStompService) {
@@ -22,11 +22,15 @@ export class CombatRoomService {
       
       
 
-      this.rxStompService.watch('/topic/combat/1').subscribe((message: IMessage) => {
-        this.combatState.next(JSON.parse(message.body) as CombatState);
-      });
+     
   }
 
+  public initializeCombat(storyId: number){
+    this.storyId = storyId;
+    this.rxStompService.watch('/topic/combat/'+ storyId).subscribe((message: IMessage) => {
+      this.combatState.next(JSON.parse(message.body) as CombatState);
+    });
+  }
 
   public addMonsterEnemy(monster: MonsterCard){
     var combatState: CombatState = this.combatState.getValue();
@@ -68,6 +72,6 @@ export class CombatRoomService {
   }
 
   private onSendMessage(combatState: CombatState) {
-    this.rxStompService.publish({destination: '/app/combat/1', body: JSON.stringify(combatState)});
+    this.rxStompService.publish({destination: '/app/combat/' + this.storyId, body: JSON.stringify(combatState)});
   }
 }

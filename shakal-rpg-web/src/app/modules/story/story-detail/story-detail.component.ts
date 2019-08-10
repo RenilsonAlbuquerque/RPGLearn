@@ -30,5 +30,8 @@ export class StoryDetailComponent implements OnInit {
     console.log(place)
     this.router.navigate(['home/story/place', place.id])
   }
+  goToCombat(){
+    this.router.navigate(['home/combat/screen/', this.storyid])
+  }
 
 }

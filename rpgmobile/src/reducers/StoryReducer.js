@@ -1,5 +1,5 @@
 
-import { STORY_FETCHED } from "../actions/StoryAction";
+import { STORY_FETCHED, CURRENT_STORY } from "../actions/StoryAction";
 
 
 
@@ -13,7 +13,7 @@ const INITIAL_STATE = {
         last: true
     },
     selectedStory:{
-        
+        id:0,
     }
     
 }
@@ -24,6 +24,11 @@ export default function (state = INITIAL_STATE, action = {}) {
             return {
             ...state,
             stories : action.payload
+        }
+        case CURRENT_STORY:
+            return {
+            ...state,
+            selectedStory : action.payload
         }
         default:
             return state
