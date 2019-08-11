@@ -26,9 +26,9 @@ public class Place {
 	
 	private String map;
 	
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, targetEntity = History.class)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, targetEntity = Story.class)
 	@JoinColumn(name ="story_id", referencedColumnName = "id")
-	private History story;
+	private Story story;
 
 	public long getId() {
 		return id;
@@ -46,11 +46,11 @@ public class Place {
 		this.name = name;
 	}
 
-	public History getStory() {
+	public Story getStory() {
 		return story;
 	}
 
-	public void setStory(History story) {
+	public void setStory(Story story) {
 		this.story = story;
 	}
 

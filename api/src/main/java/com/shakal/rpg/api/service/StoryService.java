@@ -16,7 +16,7 @@ import com.shakal.rpg.api.dto.info.StoryInfoDTO;
 import com.shakal.rpg.api.dto.overview.StoryOverviewDTO;
 import com.shakal.rpg.api.exception.ResourceNotFoundException;
 import com.shakal.rpg.api.mappers.StoryMapper;
-import com.shakal.rpg.api.model.History;
+import com.shakal.rpg.api.model.Story;
 
 import com.shakal.rpg.api.repository.StoryDAO;
 import com.shakal.rpg.api.utils.Messages;
@@ -35,7 +35,7 @@ public class StoryService implements IStoryService {
 	
 	@Override
 	public StoryCreateDTO insertStory(StoryCreateDTO inputDto) throws ResourceNotFoundException {
-		History entity = new History();
+		Story entity = new Story();
 		entity.setName(inputDto.getName());
 		entity.setBackground(inputDto.getBackground());
 		entity.setFolderImage(inputDto.getFolderImage());
@@ -52,7 +52,7 @@ public class StoryService implements IStoryService {
 
 	@Override
 	public CustomPage<StoryOverviewDTO> listsStoriesPaged(PaginationFilter filter) {
-		Page<History> page = this.storyRepository.findAll(PageRequest.of(filter.getPage() -1, 
+		Page<Story> page = this.storyRepository.findAll(PageRequest.of(filter.getPage() -1, 
 				filter.getSize()));
 		return (CustomPage<StoryOverviewDTO>) PaginationGenerator.convertPage(page,page
         		.stream().map( story -> StoryMapper.entityTOOverview(story))
@@ -62,7 +62,7 @@ public class StoryService implements IStoryService {
 
 	@Override
 	public StoryInfoDTO getStoryById(long id) throws ResourceNotFoundException {
-		History story = this.storyRepository.findById(id)
+		Story story = this.storyRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException(Messages.STORY_NOT_FOUND));
 		return StoryMapper.entityToInfo(story);
 	}

@@ -15,7 +15,7 @@ import javax.persistence.Table;
 
 import com.shakal.rpg.api.model.enums.SexEnum;
 import com.shakal.rpg.api.model.relation.CharacterClass;
-import com.shakal.rpg.api.model.relation.CharacterRole;
+import com.shakal.rpg.api.model.relation.UserStory;
 import com.shakal.rpg.api.model.relation.CharacterWeapon;
 
 @Entity
@@ -31,7 +31,7 @@ public class Character {
 	
 	
 	
-	private SexEnum sexo;
+	private SexEnum sex;
 	
 	private int height;
 	
@@ -53,8 +53,8 @@ public class Character {
 	
 	
 	@OneToMany(mappedBy = "character",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-	private List<CharacterRole> character;
-
+	private List<UserStory> userStory;
+	
 	public long getId() {
 		return id;
 	}
@@ -79,12 +79,13 @@ public class Character {
 		this.background = background;
 	}
 
-	public SexEnum getSexo() {
-		return sexo;
+	
+	public SexEnum getSex() {
+		return sex;
 	}
 
-	public void setSexo(SexEnum sexo) {
-		this.sexo = sexo;
+	public void setSex(SexEnum sex) {
+		this.sex = sex;
 	}
 
 	public int getHeight() {
@@ -135,13 +136,15 @@ public class Character {
 		this.weapons = weapons;
 	}
 
-	public List<CharacterRole> getCharacter() {
-		return character;
+	public List<UserStory> getUserStory() {
+		return userStory;
 	}
 
-	public void setCharacter(List<CharacterRole> character) {
-		this.character = character;
+	public void setUserStory(List<UserStory> userStory) {
+		this.userStory = userStory;
 	}
+
+	
 	
 	
 	

@@ -6,12 +6,12 @@ import com.shakal.rpg.api.dto.create.PlaceCreateDTO;
 import com.shakal.rpg.api.dto.info.PlaceInfoDTO;
 import com.shakal.rpg.api.dto.info.StoryInfoDTO;
 import com.shakal.rpg.api.dto.overview.StoryOverviewDTO;
-import com.shakal.rpg.api.model.History;
+import com.shakal.rpg.api.model.Story;
 import com.shakal.rpg.api.model.Place;
 
 public class StoryMapper {
 
-	public static StoryOverviewDTO entityTOOverview(History entity) {
+	public static StoryOverviewDTO entityTOOverview(Story entity) {
 		StoryOverviewDTO dto = new StoryOverviewDTO();
 		dto.setId(entity.getId());
 		dto.setName(entity.getName());
@@ -33,7 +33,7 @@ public class StoryMapper {
 		dto.setBackground(entity.getBackground());
 		return dto;
 	}
-	public static StoryInfoDTO entityToInfo(History entity) {
+	public static StoryInfoDTO entityToInfo(Story entity) {
 		StoryInfoDTO dto = new StoryInfoDTO();
 		dto.setId(entity.getId());
 		dto.setName(entity.getName());
