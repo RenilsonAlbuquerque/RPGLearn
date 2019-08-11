@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import { Provider } from 'react-redux'
-import Sidebar from './src/router/SideBarRouter';
 
 
 import ShakalStackNavigator from './src/router/ShakalStackNavigator';

@@ -28,7 +28,9 @@ class LoginPage extends Component{
         return (
           <Container style={loginStyle.container}>
           <Content padder >
+         
             <Form>
+              <Image style={loginStyle.logoImage} source = {require('../resources/img/shakal.png')}/>
               <Item floatingLabel>
                 <Label>Email</Label>
                 <Input value={this.props.username} onChangeText={(text) => this.setState({username: text}) }/>
@@ -39,10 +41,10 @@ class LoginPage extends Component{
               </Item>
             </Form>
             <View style={{width: 20, height: 40}} />
-            <Button style={loginStyle.customButton} onPress={() => this.props.loginAction('asdasd','asdasdasd')} title="Login"/>
+            <Button style={loginStyle.customButton} onPress={() => this.props.loginAction('asdasd','asdasdasd')} title="Entrar"/>
                   
             <View style={{width: 20, height: 30}} />
-            <Text>{errorMessage}</Text>
+            <Text style={{textAlign:'center',color:'red'}}>{errorMessage}</Text>
           </Content>
         </Container>
       );
@@ -61,13 +63,13 @@ export default connect(mapStateToProps,mapDispatchToProps)(LoginPage)
 
 const loginStyle = StyleSheet.create({
   container: {
-    flex: 2,
-    justifyContent: "center",
-    // alignItems: "center",
     backgroundColor: "#F5FCFF"
   },
   customButton:{
     borderRadius: 50
+  },
+  logoImage:{
+    height: 200
   }
 
 
