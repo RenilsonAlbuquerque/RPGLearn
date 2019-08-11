@@ -21,12 +21,12 @@ public class AttackDice {
 	@EmbeddedId
 	private AttackDiceId id;
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "attack_id",referencedColumnName = "action_id")
 	@MapsId("attackId")
 	private Attack attack;
 	
-	@ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE} )
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL )
 	@MapsId("diceId")
 	private Dice dice;
 	

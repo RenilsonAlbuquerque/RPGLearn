@@ -9,7 +9,12 @@ import javax.persistence.Embeddable;
 public class CharacterWeaponId implements Serializable {
 
 
-    @Column(name = "character_id")
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Column(name = "character_id")
     private Long characterId;
     
 	@Column(name = "weapon_id")

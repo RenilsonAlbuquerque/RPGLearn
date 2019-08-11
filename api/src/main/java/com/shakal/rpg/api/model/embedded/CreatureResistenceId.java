@@ -8,6 +8,11 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class CreatureResistenceId implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Column(name = "creature_id")
     private Long creatureId;
 

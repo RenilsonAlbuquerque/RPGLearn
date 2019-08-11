@@ -9,10 +9,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { LayoutModule } from './modules/layout/layout.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { LoginPageComponent } from './pages/login-page/login-page.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginPageComponent
   ],
   imports: [
     LayoutModule,

@@ -9,6 +9,11 @@ import javax.persistence.Embeddable;
 public class CreatureAtributeId implements Serializable {
 	
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Column(name = "creature_id")
     private Long creatureId;
 

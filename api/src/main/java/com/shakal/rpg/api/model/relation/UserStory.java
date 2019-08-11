@@ -37,6 +37,7 @@ public class UserStory {
 	@JoinColumn(name="character_id")
 	private Character character;
 	
+	private boolean master;
 	/*
 	@Enumerated(EnumType.STRING)
 	private LifeStatusEnum status;
@@ -72,6 +73,14 @@ public class UserStory {
 
 	public void setCharacter(Character character) {
 		this.character = character;
+	}
+
+	public boolean isMaster() {
+		return master;
+	}
+
+	public void setMaster(boolean master) {
+		this.master = master;
 	}
 
 	

@@ -7,7 +7,12 @@ import javax.persistence.Column;
 public class UserStoryId implements Serializable {
 
 
-    @Column(name = "user_id")
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Column(name = "user_id")
     private Long userId;
     
 	@Column(name = "story_id")
