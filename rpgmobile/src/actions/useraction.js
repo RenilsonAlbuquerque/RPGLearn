@@ -7,40 +7,39 @@ import CustomAxios from "../service/AxiosConfig";
 export const USER_FETCHED = 'USER_FETCHED';
 export const LOGIN_ERROR = 'LOGIN_ERROR';
 //const USER_API =process.env.REACT_APP_URL_API + process.env.REACT_APP_PATH_PRESTADORA_API;
-const USER_API = "/user"
+const USER_API = "/login"
 
 
 
 
-export function loginAction(username, password){
-   
+export function loginAction(nome, senha){
+   var user = { username: nome,
+                password: senha}
 
     return (dispatch) => {
         return CustomAxios
-            .get(`${USER_API}/detail`)
-            .then(result =>
+            .post(`${USER_API}`,user)
+            .then(result => {
+                console.log(result.data)
                 dispatch(
                     {
                         type: USER_FETCHED,
-                        payload: {
-                            id: 1,
-                            nome: 'Renilson',
-                            email: 'renilsonalbuquerque@gmail.com',
-                            token: 'asdjoie93j08f2j3j8fas',
-                            atuhenticated: true
-                        }
+                        payload: result.data
                     },
                     navigateToMenu()
-                )
-            ).catch(error => 
+                )} 
+            )
+            
+            .catch(error => 
                 dispatch(
                     {
                         type:LOGIN_ERROR,
-                        payload: error
-                    }
+                        payload: (error.response.data.detail) ? error.response.data.detail : error.message
+                    },
                     
                 )
             ).finally(o => console.log(o))
+            
     }
 }
 function navigateToMenu(){

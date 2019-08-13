@@ -41,7 +41,7 @@ class LoginPage extends Component{
               </Item>
             </Form>
             <View style={{width: 20, height: 40}} />
-            <Button style={loginStyle.customButton} onPress={() => this.props.loginAction('asdasd','asdasdasd')} title="Entrar"/>
+            <Button style={loginStyle.customButton} onPress={() => this.props.loginAction(this.state.username,this.state.password)} title="Entrar"/>
                   
             <View style={{width: 20, height: 30}} />
             <Text style={{textAlign:'center',color:'red'}}>{errorMessage}</Text>

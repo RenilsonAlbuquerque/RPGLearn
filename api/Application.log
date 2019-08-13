@@ -448,3 +448,389 @@
 2019-08-12 07:13:27.228 TRACE 11124 --- [http-nio-8080-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{timestamp=Mon Aug 12 07:13:27 BRT 2019, status=403, error=Forbidden, message=Access Denied, path=/monster/list}]
 2019-08-12 07:13:27.229 TRACE 11124 --- [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : No view rendering, null ModelAndView returned.
 2019-08-12 07:13:27.229 DEBUG 11124 --- [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : Exiting from "ERROR" dispatch, status 403, headers={masked}
+2019-08-12 07:38:11.168  INFO 11124 --- [MessageBroker-2] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 3, active threads = 1, queued tasks = 0, completed tasks = 2]
+2019-08-12 08:02:01.463  INFO 11124 --- [RMI TCP Connection(212)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2019-08-12 08:02:01.463  INFO 11124 --- [RMI TCP Connection(200)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2019-08-12 08:02:01.463  INFO 11124 --- [RMI TCP Connection(204)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2019-08-12 08:02:01.463  INFO 11124 --- [RMI TCP Connection(215)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2019-08-12 08:02:01.463  INFO 11124 --- [RMI TCP Connection(197)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2019-08-12 08:02:01.463  INFO 11124 --- [RMI TCP Connection(207)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2019-08-12 08:02:01.463  INFO 11124 --- [RMI TCP Connection(211)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2019-08-12 08:02:01.463  INFO 11124 --- [RMI TCP Connection(199)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2019-08-12 08:02:01.463  INFO 11124 --- [RMI TCP Connection(198)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2019-08-12 08:02:01.463  INFO 11124 --- [RMI TCP Connection(203)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2019-08-12 08:02:01.463  INFO 11124 --- [RMI TCP Connection(206)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2019-08-12 08:02:01.463  INFO 11124 --- [RMI TCP Connection(210)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2019-08-12 08:02:01.463  INFO 11124 --- [RMI TCP Connection(202)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2019-08-12 08:02:01.463  INFO 11124 --- [RMI TCP Connection(205)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2019-08-12 08:02:01.464  INFO 11124 --- [RMI TCP Connection(214)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2019-08-12 08:02:01.464  INFO 11124 --- [RMI TCP Connection(208)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2019-08-12 08:02:01.463  INFO 11124 --- [RMI TCP Connection(213)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2019-08-12 08:02:01.464  INFO 11124 --- [RMI TCP Connection(201)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2019-08-12 08:02:01.464  INFO 11124 --- [RMI TCP Connection(209)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2019-08-12 08:02:05.553 DEBUG 11124 --- [RMI TCP Connection(207)-127.0.0.1] org.springframework.web.SimpLogging      : clientOutboundChannel removed SubProtocolWebSocketHandler[StompSubProtocolHandler[v10.stomp, v11.stomp, v12.stomp]]
+2019-08-12 08:02:05.587 DEBUG 11124 --- [RMI TCP Connection(207)-127.0.0.1] org.springframework.web.SimpLogging      : clientInboundChannel removed WebSocketAnnotationMethodMessageHandler[prefixes=[/app/]]
+2019-08-12 08:02:05.587  INFO 11124 --- [RMI TCP Connection(207)-127.0.0.1] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopping...
+2019-08-12 08:02:05.588  INFO 11124 --- [RMI TCP Connection(207)-127.0.0.1] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2019-08-12 08:02:05.588 DEBUG 11124 --- [RMI TCP Connection(207)-127.0.0.1] org.springframework.web.SimpLogging      : clientInboundChannel removed SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]
+2019-08-12 08:02:05.590 DEBUG 11124 --- [RMI TCP Connection(207)-127.0.0.1] org.springframework.web.SimpLogging      : brokerChannel removed SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]
+2019-08-12 08:02:05.591  INFO 11124 --- [RMI TCP Connection(207)-127.0.0.1] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopped.
+2019-08-12 08:02:05.591 DEBUG 11124 --- [RMI TCP Connection(207)-127.0.0.1] org.springframework.web.SimpLogging      : clientInboundChannel removed UserDestinationMessageHandler[DefaultUserDestinationResolver[prefix=/user/]]
+2019-08-12 08:02:05.591 DEBUG 11124 --- [RMI TCP Connection(207)-127.0.0.1] org.springframework.web.SimpLogging      : brokerChannel removed UserDestinationMessageHandler[DefaultUserDestinationResolver[prefix=/user/]]
+2019-08-12 08:02:05.802  INFO 11124 --- [RMI TCP Connection(207)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'brokerChannelExecutor'
+2019-08-12 08:02:05.803  INFO 11124 --- [RMI TCP Connection(207)-127.0.0.1] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'messageBrokerTaskScheduler'
+2019-08-12 08:02:05.810  INFO 11124 --- [RMI TCP Connection(207)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientOutboundChannelExecutor'
+2019-08-12 08:02:05.810  INFO 11124 --- [RMI TCP Connection(207)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientInboundChannelExecutor'
+2019-08-12 08:02:05.910  INFO 11124 --- [RMI TCP Connection(207)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2019-08-12 08:02:07.404  INFO 11124 --- [RMI TCP Connection(207)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2019-08-12 08:02:07.637  INFO 11124 --- [RMI TCP Connection(207)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2019-08-12 20:41:32.257  INFO 12720 --- [main] com.shakal.rpg.api.ApiApplication        : Starting ApiApplication on DESKTOP-AR43FA1 with PID 12720 (C:\Users\renil\Downloads\Projeto\RPGLearn\api\bin\main started by renil in C:\Users\renil\Downloads\Projeto\RPGLearn\api)
+2019-08-12 20:41:32.276  INFO 12720 --- [main] com.shakal.rpg.api.ApiApplication        : No active profile set, falling back to default profiles: default
+2019-08-12 20:41:35.672  INFO 12720 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-08-12 20:41:35.825  INFO 12720 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 147ms. Found 20 repository interfaces.
+2019-08-12 20:41:36.837  INFO 12720 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$6cd3ea40] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-08-12 20:41:36.883  INFO 12720 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration$$EnhancerBySpringCGLIB$$581b27a] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-08-12 20:41:36.891  INFO 12720 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-08-12 20:41:36.894  INFO 12720 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@6c8f60f3' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-08-12 20:41:36.899  INFO 12720 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration$$EnhancerBySpringCGLIB$$2a56552c] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-08-12 20:41:36.905  INFO 12720 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-08-12 20:41:38.212  INFO 12720 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-08-12 20:41:38.246  INFO 12720 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-08-12 20:41:38.247  INFO 12720 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.19]
+2019-08-12 20:41:39.156  INFO 12720 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-08-12 20:41:39.159 DEBUG 12720 --- [main] o.s.web.context.ContextLoader            : Published root WebApplicationContext as ServletContext attribute with name [org.springframework.web.context.WebApplicationContext.ROOT]
+2019-08-12 20:41:39.159  INFO 12720 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 6765 ms
+2019-08-12 20:41:39.177 TRACE 12720 --- [main] o.s.b.w.s.ServletContextInitializerBeans : Added existing Filter initializer bean 'securityFilterChainRegistration'; order=-100, resource=class path resource [org/springframework/boot/autoconfigure/security/servlet/SecurityFilterAutoConfiguration.class]
+2019-08-12 20:41:39.177 TRACE 12720 --- [main] o.s.b.w.s.ServletContextInitializerBeans : Added existing Servlet initializer bean 'dispatcherServletRegistration'; order=2147483647, resource=class path resource [org/springframework/boot/autoconfigure/web/servlet/DispatcherServletAutoConfiguration$DispatcherServletRegistrationConfiguration.class]
+2019-08-12 20:41:39.199 TRACE 12720 --- [main] o.s.b.w.s.ServletContextInitializerBeans : Created Filter initializer for bean 'characterEncodingFilter'; order=-2147483648, resource=class path resource [org/springframework/boot/autoconfigure/web/servlet/HttpEncodingAutoConfiguration.class]
+2019-08-12 20:41:39.199 TRACE 12720 --- [main] o.s.b.w.s.ServletContextInitializerBeans : Created Filter initializer for bean 'hiddenHttpMethodFilter'; order=-10000, resource=class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration.class]
+2019-08-12 20:41:39.204 TRACE 12720 --- [main] o.s.b.w.s.ServletContextInitializerBeans : Created Filter initializer for bean 'formContentFilter'; order=-9900, resource=class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration.class]
+2019-08-12 20:41:39.205 TRACE 12720 --- [main] o.s.b.w.s.ServletContextInitializerBeans : Created Filter initializer for bean 'requestContextFilter'; order=-105, resource=class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$WebMvcAutoConfigurationAdapter.class]
+2019-08-12 20:41:39.217 DEBUG 12720 --- [main] o.s.b.w.s.ServletContextInitializerBeans : Mapping filters: springSecurityFilterChain urls=[/*], characterEncodingFilter urls=[/*], hiddenHttpMethodFilter urls=[/*], formContentFilter urls=[/*], requestContextFilter urls=[/*]
+2019-08-12 20:41:39.218 DEBUG 12720 --- [main] o.s.b.w.s.ServletContextInitializerBeans : Mapping servlets: dispatcherServlet urls=[/]
+2019-08-12 20:41:39.821  INFO 12720 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-08-12 20:41:43.286  INFO 12720 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-08-12 20:41:43.472  INFO 12720 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2019-08-12 20:41:44.444  INFO 12720 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.10.Final}
+2019-08-12 20:41:44.447  INFO 12720 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2019-08-12 20:41:45.661  INFO 12720 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2019-08-12 20:41:46.080  INFO 12720 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2019-08-12 20:41:47.417  WARN 12720 --- [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.shakal.rpg.api.model.embedded.UserStoryId
+2019-08-12 20:41:47.419  WARN 12720 --- [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.shakal.rpg.api.model.embedded.UserStoryId
+2019-08-12 20:41:47.421  WARN 12720 --- [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.shakal.rpg.api.model.embedded.CharacterWeaponId
+2019-08-12 20:41:47.423  WARN 12720 --- [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.shakal.rpg.api.model.embedded.CharacterWeaponId
+2019-08-12 20:41:47.424  WARN 12720 --- [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.shakal.rpg.api.model.embedded.WeaponDiceId
+2019-08-12 20:41:47.428  WARN 12720 --- [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.shakal.rpg.api.model.embedded.WeaponDiceId
+2019-08-12 20:41:49.540  INFO 12720 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-08-12 20:41:49.936  INFO 12720 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientInboundChannelExecutor'
+2019-08-12 20:41:49.967  INFO 12720 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientOutboundChannelExecutor'
+2019-08-12 20:41:51.045  INFO 12720 --- [main] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2019-08-12 20:41:52.218  INFO 12720 --- [main] f.a.AutowiredAnnotationBeanPostProcessor : Autowired annotation is not supported on static fields: static java.lang.String com.shakal.rpg.api.security.KeyService.SECRET_KEY
+2019-08-12 20:41:52.219  INFO 12720 --- [main] f.a.AutowiredAnnotationBeanPostProcessor : Autowired annotation is not supported on static fields: static long com.shakal.rpg.api.security.KeyService.EXPIRATION_TIME
+2019-08-12 20:41:52.605  WARN 12720 --- [main] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2019-08-12 20:41:52.779 TRACE 12720 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.r.a.c.CombatController:
+	{POST /combat/dificuldade, produces [application/json;charset=UTF-8]}: calculateChallengeDeficult(CombatStateDTO)
+2019-08-12 20:41:52.782 TRACE 12720 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.r.a.c.CombatStompController:
+	
+2019-08-12 20:41:52.785 TRACE 12720 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.r.a.c.MonsterController:
+	{POST /monster/filter, produces [application/json;charset=UTF-8]}: filter(PaginationFilter,String)
+	{GET /monster/input}: getMonsterValuesToCreate()
+	{POST /monster, produces [application/json;charset=UTF-8]}: createMoster(MonsterCreateDTO)
+	{POST /monster/list, produces [application/json;charset=UTF-8]}: listAllOverview(PaginationFilter)
+	{GET /monster/card/{id}}: getMonsterCardById(Long)
+	{GET /monster/sheet/{id}}: getMonsterById(Long)
+	{GET /monster/info/{id}}: getMonsterInfoById(Long)
+2019-08-12 20:41:52.787 TRACE 12720 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.r.a.c.PlaceController:
+	{GET /place/info/{id}}: getMonsterInfoById(Long)
+2019-08-12 20:41:52.789 TRACE 12720 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.r.a.c.StoryController:
+	{POST /story/list, produces [application/json;charset=UTF-8]}: listAllOverview(PaginationFilter)
+	{GET /story/info/{id}}: getMonsterInfoById(Long)
+	{POST /story, produces [application/json;charset=UTF-8]}: createStory(StoryCreateDTO)
+2019-08-12 20:41:52.790 TRACE 12720 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.r.a.c.UserController:
+	{GET /user/detail}: getUserDetail()
+2019-08-12 20:41:52.792 TRACE 12720 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	s.d.s.w.ApiResourceController:
+	{ /swagger-resources/configuration/security}: securityConfiguration()
+	{ /swagger-resources/configuration/ui}: uiConfiguration()
+	{ /swagger-resources}: swaggerResources()
+2019-08-12 20:41:52.797 TRACE 12720 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	o.s.b.a.w.s.e.BasicErrorController:
+	{ /error}: error(HttpServletRequest)
+	{ /error, produces [text/html]}: errorHtml(HttpServletRequest,HttpServletResponse)
+2019-08-12 20:41:52.801 DEBUG 12720 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 18 mappings in 'requestMappingHandlerMapping'
+2019-08-12 20:41:53.016  INFO 12720 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6ca9ec77, org.springframework.security.web.context.SecurityContextPersistenceFilter@7d816d32, org.springframework.security.web.header.HeaderWriterFilter@6c37c36, org.springframework.web.filter.CorsFilter@360432d3, org.springframework.security.web.authentication.logout.LogoutFilter@5b9c74a, com.shakal.rpg.api.security.JwtAuthenticationFilter@6c2a7c73, com.shakal.rpg.api.security.JwtAuthorizationFilter@3ade99bb, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5069a91b, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@73ba3c4b, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@193710c3, org.springframework.security.web.session.SessionManagementFilter@5e38329d, org.springframework.security.web.access.ExceptionTranslationFilter@308d8de8, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@145ce025]
+2019-08-12 20:41:53.042  INFO 12720 --- [main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)]
+2019-08-12 20:41:53.066 TRACE 12720 --- [main] o.s.w.s.s.s.WebSocketHandlerMapping      : No patterns in 'webSocketHandlerMapping'
+2019-08-12 20:41:53.106  INFO 12720 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'messageBrokerTaskScheduler'
+2019-08-12 20:41:53.124 TRACE 12720 --- [main] o.s.w.s.s.s.WebSocketHandlerMapping      : Mapped [/stomp] onto org.springframework.web.socket.server.support.WebSocketHttpRequestHandler@4b19ee18
+2019-08-12 20:41:53.125 DEBUG 12720 --- [main] o.s.w.s.s.s.WebSocketHandlerMapping      : Patterns [/stomp] in 'stompWebSocketHandlerMapping'
+2019-08-12 20:41:53.129  INFO 12720 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'brokerChannelExecutor'
+2019-08-12 20:41:53.152 TRACE 12720 --- [main] .WebSocketAnnotationMethodMessageHandler : Looking for @MessageExceptionHandler mappings: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@5b38c1ec, started on Mon Aug 12 20:41:32 BRT 2019
+2019-08-12 20:41:53.170 DEBUG 12720 --- [main] .WebSocketAnnotationMethodMessageHandler : 2 message handler methods found on class com.shakal.rpg.api.control.CombatController: {public void com.shakal.rpg.api.control.CombatController.onReceivedMessage(java.lang.String)={[/server-receiver],messageType=[MESSAGE]}, public java.lang.String com.shakal.rpg.api.control.CombatController.onSubscribe()={[/topic/room],messageType=[SUBSCRIBE]}}
+2019-08-12 20:41:53.171 TRACE 12720 --- [main] .WebSocketAnnotationMethodMessageHandler : Mapped "{[/server-receiver],messageType=[MESSAGE]}" onto public void com.shakal.rpg.api.control.CombatController.onReceivedMessage(java.lang.String)
+2019-08-12 20:41:53.171 TRACE 12720 --- [main] .WebSocketAnnotationMethodMessageHandler : Mapped "{[/topic/room],messageType=[SUBSCRIBE]}" onto public java.lang.String com.shakal.rpg.api.control.CombatController.onSubscribe()
+2019-08-12 20:41:53.172 DEBUG 12720 --- [main] .WebSocketAnnotationMethodMessageHandler : 1 message handler methods found on class com.shakal.rpg.api.control.CombatStompController: {public void com.shakal.rpg.api.control.CombatStompController.recieveDTO(java.lang.Long,com.shakal.rpg.api.dto.filter.CombatStateDTO) throws java.lang.Exception={[/combat/{id}],messageType=[MESSAGE]}}
+2019-08-12 20:41:53.173 TRACE 12720 --- [main] .WebSocketAnnotationMethodMessageHandler : Mapped "{[/combat/{id}],messageType=[MESSAGE]}" onto public void com.shakal.rpg.api.control.CombatStompController.recieveDTO(java.lang.Long,com.shakal.rpg.api.dto.filter.CombatStateDTO) throws java.lang.Exception
+2019-08-12 20:41:53.173 DEBUG 12720 --- [main] .WebSocketAnnotationMethodMessageHandler : 0 message handler methods found on class com.shakal.rpg.api.control.MonsterController: {}
+2019-08-12 20:41:53.173 DEBUG 12720 --- [main] .WebSocketAnnotationMethodMessageHandler : 0 message handler methods found on class com.shakal.rpg.api.control.PlaceController: {}
+2019-08-12 20:41:53.173 DEBUG 12720 --- [main] .WebSocketAnnotationMethodMessageHandler : 0 message handler methods found on class com.shakal.rpg.api.control.StoryController: {}
+2019-08-12 20:41:53.173 DEBUG 12720 --- [main] .WebSocketAnnotationMethodMessageHandler : 0 message handler methods found on class com.shakal.rpg.api.control.UserController: {}
+2019-08-12 20:41:53.174 DEBUG 12720 --- [main] .WebSocketAnnotationMethodMessageHandler : 0 message handler methods found on class springfox.documentation.swagger.web.ApiResourceController: {}
+2019-08-12 20:41:53.174 DEBUG 12720 --- [main] .WebSocketAnnotationMethodMessageHandler : 0 message handler methods found on class org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController: {}
+2019-08-12 20:41:53.248 TRACE 12720 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped [/**/favicon.ico] onto ResourceHttpRequestHandler [class path resource [META-INF/resources/], class path resource [resources/], class path resource [static/], class path resource [public/], ServletContext resource [/], class path resource []]
+2019-08-12 20:41:53.248 DEBUG 12720 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/**/favicon.ico] in 'faviconHandlerMapping'
+2019-08-12 20:41:53.889 DEBUG 12720 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2019-08-12 20:41:54.276 DEBUG 12720 --- [main] o.s.w.s.h.BeanNameUrlHandlerMapping      : Detected 0 mappings in 'beanNameHandlerMapping'
+2019-08-12 20:41:54.619 TRACE 12720 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped [/webjars/**] onto ResourceHttpRequestHandler ["classpath:/META-INF/resources/webjars/"]
+2019-08-12 20:41:54.620 TRACE 12720 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped [/**] onto ResourceHttpRequestHandler ["classpath:/META-INF/resources/", "classpath:/resources/", "classpath:/static/", "classpath:/public/", "/"]
+2019-08-12 20:41:54.620 DEBUG 12720 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2019-08-12 20:41:54.640 DEBUG 12720 --- [main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
+2019-08-12 20:41:55.624  INFO 12720 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2019-08-12 20:41:55.638  INFO 12720 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2019-08-12 20:41:55.668  INFO 12720 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2019-08-12 20:41:56.107  INFO 12720 --- [main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getMonsterInfoByIdUsingGET_1
+2019-08-12 20:41:56.123  INFO 12720 --- [main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getMonsterInfoByIdUsingGET_2
+2019-08-12 20:41:56.128  INFO 12720 --- [main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: listAllOverviewUsingPOST_1
+2019-08-12 20:41:56.143 DEBUG 12720 --- [main] org.springframework.web.SimpLogging      : clientOutboundChannel added SubProtocolWebSocketHandler[StompSubProtocolHandler[v10.stomp, v11.stomp, v12.stomp]]
+2019-08-12 20:41:56.143 DEBUG 12720 --- [main] org.springframework.web.SimpLogging      : clientInboundChannel added WebSocketAnnotationMethodMessageHandler[prefixes=[/app/]]
+2019-08-12 20:41:56.145  INFO 12720 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
+2019-08-12 20:41:56.146 DEBUG 12720 --- [main] org.springframework.web.SimpLogging      : clientInboundChannel added SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]
+2019-08-12 20:41:56.146 DEBUG 12720 --- [main] org.springframework.web.SimpLogging      : brokerChannel added SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]
+2019-08-12 20:41:56.146  INFO 12720 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2019-08-12 20:41:56.146  INFO 12720 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
+2019-08-12 20:41:56.147 DEBUG 12720 --- [main] org.springframework.web.SimpLogging      : clientInboundChannel added UserDestinationMessageHandler[DefaultUserDestinationResolver[prefix=/user/]]
+2019-08-12 20:41:56.147 DEBUG 12720 --- [main] org.springframework.web.SimpLogging      : brokerChannel added UserDestinationMessageHandler[DefaultUserDestinationResolver[prefix=/user/]]
+2019-08-12 20:41:56.324  INFO 12720 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-08-12 20:41:56.328  INFO 12720 --- [main] com.shakal.rpg.api.ApiApplication        : Started ApiApplication in 25.002 seconds (JVM running for 26.938)
+2019-08-12 20:42:53.129  INFO 12720 --- [MessageBroker-1] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 1, active threads = 1, queued tasks = 0, completed tasks = 0]
+2019-08-12 20:45:52.040  INFO 12720 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-08-12 20:45:52.041  INFO 12720 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-08-12 20:45:52.042 TRACE 12720 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.multipart.support.StandardServletMultipartResolver@272de8ab
+2019-08-12 20:45:52.044 TRACE 12720 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : No LocaleResolver 'localeResolver': using default [AcceptHeaderLocaleResolver]
+2019-08-12 20:45:52.046 TRACE 12720 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : No ThemeResolver 'themeResolver': using default [FixedThemeResolver]
+2019-08-12 20:45:52.050 TRACE 12720 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : No RequestToViewNameTranslator 'viewNameTranslator': using default [DefaultRequestToViewNameTranslator]
+2019-08-12 20:45:52.079 TRACE 12720 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : No FlashMapManager 'flashMapManager': using default [SessionFlashMapManager]
+2019-08-12 20:45:52.079 DEBUG 12720 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2019-08-12 20:45:52.079  INFO 12720 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 37 ms
+2019-08-12 20:45:52.191 TRACE 12720 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : "ERROR" dispatch for GET "/error", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-08-12 20:45:52.268 TRACE 12720 --- [http-nio-8080-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : 2 matching mappings: [{ /error}, { /error, produces [text/html]}]
+2019-08-12 20:45:52.272 TRACE 12720 --- [http-nio-8080-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2019-08-12 20:45:52.371 TRACE 12720 --- [http-nio-8080-exec-1] .w.s.m.m.a.ServletInvocableHandlerMethod : Arguments: [SecurityContextHolderAwareRequestWrapper[ FirewalledRequest[ org.apache.catalina.core.ApplicationHttpRequest@1028fdcb]]]
+2019-08-12 20:45:52.592 DEBUG 12720 --- [http-nio-8080-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-08-12 20:45:52.594 TRACE 12720 --- [http-nio-8080-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{timestamp=Mon Aug 12 20:45:52 BRT 2019, status=403, error=Forbidden, message=Access Denied, path=/user/detail}]
+2019-08-12 20:45:52.701 TRACE 12720 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : No view rendering, null ModelAndView returned.
+2019-08-12 20:45:52.702 DEBUG 12720 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Exiting from "ERROR" dispatch, status 403, headers={masked}
+2019-08-12 20:47:27.450 TRACE 12720 --- [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : "ERROR" dispatch for GET "/error", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-08-12 20:47:27.454 TRACE 12720 --- [http-nio-8080-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : 2 matching mappings: [{ /error}, { /error, produces [text/html]}]
+2019-08-12 20:47:27.454 TRACE 12720 --- [http-nio-8080-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2019-08-12 20:47:27.457 TRACE 12720 --- [http-nio-8080-exec-3] .w.s.m.m.a.ServletInvocableHandlerMethod : Arguments: [SecurityContextHolderAwareRequestWrapper[ FirewalledRequest[ org.apache.catalina.core.ApplicationHttpRequest@66924d68]]]
+2019-08-12 20:47:27.458 DEBUG 12720 --- [http-nio-8080-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-08-12 20:47:27.460 TRACE 12720 --- [http-nio-8080-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{timestamp=Mon Aug 12 20:47:27 BRT 2019, status=403, error=Forbidden, message=Access Denied, path=/user/detail}]
+2019-08-12 20:47:27.462 TRACE 12720 --- [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : No view rendering, null ModelAndView returned.
+2019-08-12 20:47:27.463 DEBUG 12720 --- [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Exiting from "ERROR" dispatch, status 403, headers={masked}
+2019-08-12 20:49:21.321 TRACE 12720 --- [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : "ERROR" dispatch for GET "/error", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-08-12 20:49:21.325 TRACE 12720 --- [http-nio-8080-exec-5] s.w.s.m.m.a.RequestMappingHandlerMapping : 2 matching mappings: [{ /error}, { /error, produces [text/html]}]
+2019-08-12 20:49:21.325 TRACE 12720 --- [http-nio-8080-exec-5] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2019-08-12 20:49:21.336 TRACE 12720 --- [http-nio-8080-exec-5] .w.s.m.m.a.ServletInvocableHandlerMethod : Arguments: [SecurityContextHolderAwareRequestWrapper[ FirewalledRequest[ org.apache.catalina.core.ApplicationHttpRequest@c8a0551]]]
+2019-08-12 20:49:21.336 DEBUG 12720 --- [http-nio-8080-exec-5] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-08-12 20:49:21.340 TRACE 12720 --- [http-nio-8080-exec-5] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{timestamp=Mon Aug 12 20:49:21 BRT 2019, status=403, error=Forbidden, message=Access Denied, path=/user/detail}]
+2019-08-12 20:49:21.341 TRACE 12720 --- [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : No view rendering, null ModelAndView returned.
+2019-08-12 20:49:21.341 DEBUG 12720 --- [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : Exiting from "ERROR" dispatch, status 403, headers={masked}
+2019-08-12 20:50:34.818 TRACE 12720 --- [http-nio-8080-exec-7] o.s.web.servlet.DispatcherServlet        : "ERROR" dispatch for GET "/error", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-08-12 20:50:34.820 TRACE 12720 --- [http-nio-8080-exec-7] s.w.s.m.m.a.RequestMappingHandlerMapping : 2 matching mappings: [{ /error}, { /error, produces [text/html]}]
+2019-08-12 20:50:34.820 TRACE 12720 --- [http-nio-8080-exec-7] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2019-08-12 20:50:34.821 TRACE 12720 --- [http-nio-8080-exec-7] .w.s.m.m.a.ServletInvocableHandlerMethod : Arguments: [SecurityContextHolderAwareRequestWrapper[ FirewalledRequest[ org.apache.catalina.core.ApplicationHttpRequest@30b796c2]]]
+2019-08-12 20:50:34.821 DEBUG 12720 --- [http-nio-8080-exec-7] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-08-12 20:50:34.822 TRACE 12720 --- [http-nio-8080-exec-7] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{timestamp=Mon Aug 12 20:50:34 BRT 2019, status=403, error=Forbidden, message=Access Denied, path=/user/detail}]
+2019-08-12 20:50:34.823 TRACE 12720 --- [http-nio-8080-exec-7] o.s.web.servlet.DispatcherServlet        : No view rendering, null ModelAndView returned.
+2019-08-12 20:50:34.823 DEBUG 12720 --- [http-nio-8080-exec-7] o.s.web.servlet.DispatcherServlet        : Exiting from "ERROR" dispatch, status 403, headers={masked}
+2019-08-12 20:52:04.121 TRACE 12720 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : "ERROR" dispatch for GET "/error", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-08-12 20:52:04.123 TRACE 12720 --- [http-nio-8080-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : 2 matching mappings: [{ /error}, { /error, produces [text/html]}]
+2019-08-12 20:52:04.123 TRACE 12720 --- [http-nio-8080-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2019-08-12 20:52:04.124 TRACE 12720 --- [http-nio-8080-exec-2] .w.s.m.m.a.ServletInvocableHandlerMethod : Arguments: [SecurityContextHolderAwareRequestWrapper[ FirewalledRequest[ org.apache.catalina.core.ApplicationHttpRequest@44f4ef]]]
+2019-08-12 20:52:04.125 DEBUG 12720 --- [http-nio-8080-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-08-12 20:52:04.126 TRACE 12720 --- [http-nio-8080-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{timestamp=Mon Aug 12 20:52:04 BRT 2019, status=403, error=Forbidden, message=Access Denied, path=/user/detail}]
+2019-08-12 20:52:04.127 TRACE 12720 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : No view rendering, null ModelAndView returned.
+2019-08-12 20:52:04.127 DEBUG 12720 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Exiting from "ERROR" dispatch, status 403, headers={masked}
+2019-08-12 20:53:28.253 TRACE 12720 --- [http-nio-8080-exec-7] o.s.web.servlet.DispatcherServlet        : "ERROR" dispatch for POST "/error", parameters={masked}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-08-12 20:53:28.257 TRACE 12720 --- [http-nio-8080-exec-7] s.w.s.m.m.a.RequestMappingHandlerMapping : 2 matching mappings: [{ /error}, { /error, produces [text/html]}]
+2019-08-12 20:53:28.257 TRACE 12720 --- [http-nio-8080-exec-7] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2019-08-12 20:53:28.260 TRACE 12720 --- [http-nio-8080-exec-7] .w.s.m.m.a.ServletInvocableHandlerMethod : Arguments: [SecurityContextHolderAwareRequestWrapper[ FirewalledRequest[ org.apache.catalina.core.ApplicationHttpRequest@3e707ea4]]]
+2019-08-12 20:53:28.261 DEBUG 12720 --- [http-nio-8080-exec-7] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-08-12 20:53:28.262 TRACE 12720 --- [http-nio-8080-exec-7] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{timestamp=Mon Aug 12 20:53:28 BRT 2019, status=403, error=Forbidden, message=Access Denied, path=/user/login}]
+2019-08-12 20:53:28.264 TRACE 12720 --- [http-nio-8080-exec-7] o.s.web.servlet.DispatcherServlet        : No view rendering, null ModelAndView returned.
+2019-08-12 20:53:28.264 DEBUG 12720 --- [http-nio-8080-exec-7] o.s.web.servlet.DispatcherServlet        : Exiting from "ERROR" dispatch, status 403, headers={masked}
+2019-08-12 20:53:34.336 TRACE 12720 --- [http-nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : "ERROR" dispatch for POST "/error", parameters={masked}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-08-12 20:53:34.338 TRACE 12720 --- [http-nio-8080-exec-8] s.w.s.m.m.a.RequestMappingHandlerMapping : 2 matching mappings: [{ /error}, { /error, produces [text/html]}]
+2019-08-12 20:53:34.338 TRACE 12720 --- [http-nio-8080-exec-8] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2019-08-12 20:53:34.339 TRACE 12720 --- [http-nio-8080-exec-8] .w.s.m.m.a.ServletInvocableHandlerMethod : Arguments: [SecurityContextHolderAwareRequestWrapper[ FirewalledRequest[ org.apache.catalina.core.ApplicationHttpRequest@6cca9091]]]
+2019-08-12 20:53:34.340 DEBUG 12720 --- [http-nio-8080-exec-8] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-08-12 20:53:34.341 TRACE 12720 --- [http-nio-8080-exec-8] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{timestamp=Mon Aug 12 20:53:34 BRT 2019, status=403, error=Forbidden, message=Access Denied, path=/user/login}]
+2019-08-12 20:53:34.342 TRACE 12720 --- [http-nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : No view rendering, null ModelAndView returned.
+2019-08-12 20:53:34.342 DEBUG 12720 --- [http-nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : Exiting from "ERROR" dispatch, status 403, headers={masked}
+2019-08-12 20:54:15.803 TRACE 12720 --- [http-nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : "ERROR" dispatch for POST "/error", parameters={masked}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-08-12 20:54:15.805 TRACE 12720 --- [http-nio-8080-exec-9] s.w.s.m.m.a.RequestMappingHandlerMapping : 2 matching mappings: [{ /error}, { /error, produces [text/html]}]
+2019-08-12 20:54:15.805 TRACE 12720 --- [http-nio-8080-exec-9] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2019-08-12 20:54:15.806 TRACE 12720 --- [http-nio-8080-exec-9] .w.s.m.m.a.ServletInvocableHandlerMethod : Arguments: [SecurityContextHolderAwareRequestWrapper[ FirewalledRequest[ org.apache.catalina.core.ApplicationHttpRequest@35a44932]]]
+2019-08-12 20:54:15.807 DEBUG 12720 --- [http-nio-8080-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-08-12 20:54:15.808 TRACE 12720 --- [http-nio-8080-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{timestamp=Mon Aug 12 20:54:15 BRT 2019, status=403, error=Forbidden, message=Access Denied, path=/user/login}]
+2019-08-12 20:54:15.809 TRACE 12720 --- [http-nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : No view rendering, null ModelAndView returned.
+2019-08-12 20:54:15.809 DEBUG 12720 --- [http-nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : Exiting from "ERROR" dispatch, status 403, headers={masked}
+2019-08-12 20:54:24.612 TRACE 12720 --- [http-nio-8080-exec-10] o.s.web.servlet.DispatcherServlet        : "ERROR" dispatch for POST "/error", parameters={masked}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-08-12 20:54:24.615 TRACE 12720 --- [http-nio-8080-exec-10] s.w.s.m.m.a.RequestMappingHandlerMapping : 2 matching mappings: [{ /error}, { /error, produces [text/html]}]
+2019-08-12 20:54:24.616 TRACE 12720 --- [http-nio-8080-exec-10] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2019-08-12 20:54:24.618 TRACE 12720 --- [http-nio-8080-exec-10] .w.s.m.m.a.ServletInvocableHandlerMethod : Arguments: [SecurityContextHolderAwareRequestWrapper[ FirewalledRequest[ org.apache.catalina.core.ApplicationHttpRequest@4428bd83]]]
+2019-08-12 20:54:24.619 DEBUG 12720 --- [http-nio-8080-exec-10] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-08-12 20:54:24.620 TRACE 12720 --- [http-nio-8080-exec-10] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{timestamp=Mon Aug 12 20:54:24 BRT 2019, status=403, error=Forbidden, message=Access Denied, path=/user/login}]
+2019-08-12 20:54:24.623 TRACE 12720 --- [http-nio-8080-exec-10] o.s.web.servlet.DispatcherServlet        : No view rendering, null ModelAndView returned.
+2019-08-12 20:54:24.623 DEBUG 12720 --- [http-nio-8080-exec-10] o.s.web.servlet.DispatcherServlet        : Exiting from "ERROR" dispatch, status 403, headers={masked}
+2019-08-12 21:12:53.224  INFO 12720 --- [MessageBroker-1] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 2, active threads = 1, queued tasks = 0, completed tasks = 1]
+2019-08-12 21:19:53.122 ERROR 12720 --- [http-nio-8080-exec-4] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+
+java.lang.NullPointerException: null
+	at com.shakal.rpg.api.security.CustomAuthenticationProvider.authenticate(CustomAuthenticationProvider.java:32) ~[main/:na]
+	at org.springframework.security.authentication.ProviderManager.authenticate(ProviderManager.java:175) ~[spring-security-core-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at com.shakal.rpg.api.security.JwtAuthenticationFilter.attemptAuthentication(JwtAuthenticationFilter.java:42) ~[main/:na]
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:212) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:96) ~[spring-web-5.1.7.RELEASE.jar:5.1.7.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.1.7.RELEASE.jar:5.1.7.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:74) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.1.7.RELEASE.jar:5.1.7.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.1.7.RELEASE.jar:5.1.7.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:357) ~[spring-web-5.1.7.RELEASE.jar:5.1.7.RELEASE]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:270) ~[spring-web-5.1.7.RELEASE.jar:5.1.7.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.19.jar:9.0.19]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.19.jar:9.0.19]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99) ~[spring-web-5.1.7.RELEASE.jar:5.1.7.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.1.7.RELEASE.jar:5.1.7.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.19.jar:9.0.19]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.19.jar:9.0.19]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:92) ~[spring-web-5.1.7.RELEASE.jar:5.1.7.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.1.7.RELEASE.jar:5.1.7.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.19.jar:9.0.19]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.19.jar:9.0.19]
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:93) ~[spring-web-5.1.7.RELEASE.jar:5.1.7.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.1.7.RELEASE.jar:5.1.7.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.19.jar:9.0.19]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.19.jar:9.0.19]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200) ~[spring-web-5.1.7.RELEASE.jar:5.1.7.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.1.7.RELEASE.jar:5.1.7.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.19.jar:9.0.19]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.19.jar:9.0.19]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:200) ~[tomcat-embed-core-9.0.19.jar:9.0.19]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) ~[tomcat-embed-core-9.0.19.jar:9.0.19]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490) ~[tomcat-embed-core-9.0.19.jar:9.0.19]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139) ~[tomcat-embed-core-9.0.19.jar:9.0.19]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) ~[tomcat-embed-core-9.0.19.jar:9.0.19]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-9.0.19.jar:9.0.19]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) ~[tomcat-embed-core-9.0.19.jar:9.0.19]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408) ~[tomcat-embed-core-9.0.19.jar:9.0.19]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66) ~[tomcat-embed-core-9.0.19.jar:9.0.19]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:836) ~[tomcat-embed-core-9.0.19.jar:9.0.19]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1747) ~[tomcat-embed-core-9.0.19.jar:9.0.19]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.19.jar:9.0.19]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.19.jar:9.0.19]
+	at java.base/java.lang.Thread.run(Thread.java:835) ~[na:na]
+
+2019-08-12 21:20:46.577 ERROR 12720 --- [http-nio-8080-exec-5] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+
+java.lang.NullPointerException: null
+	at com.shakal.rpg.api.security.CustomAuthenticationProvider.authenticate(CustomAuthenticationProvider.java:32) ~[main/:na]
+	at org.springframework.security.authentication.ProviderManager.authenticate(ProviderManager.java:175) ~[spring-security-core-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at com.shakal.rpg.api.security.JwtAuthenticationFilter.attemptAuthentication(JwtAuthenticationFilter.java:42) ~[main/:na]
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:212) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:96) ~[spring-web-5.1.7.RELEASE.jar:5.1.7.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.1.7.RELEASE.jar:5.1.7.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:74) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.1.7.RELEASE.jar:5.1.7.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.1.7.RELEASE.jar:5.1.7.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178) ~[spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:357) ~[spring-web-5.1.7.RELEASE.jar:5.1.7.RELEASE]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:270) ~[spring-web-5.1.7.RELEASE.jar:5.1.7.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.19.jar:9.0.19]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.19.jar:9.0.19]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99) ~[spring-web-5.1.7.RELEASE.jar:5.1.7.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.1.7.RELEASE.jar:5.1.7.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.19.jar:9.0.19]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.19.jar:9.0.19]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:92) ~[spring-web-5.1.7.RELEASE.jar:5.1.7.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.1.7.RELEASE.jar:5.1.7.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.19.jar:9.0.19]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.19.jar:9.0.19]
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:93) ~[spring-web-5.1.7.RELEASE.jar:5.1.7.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.1.7.RELEASE.jar:5.1.7.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.19.jar:9.0.19]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.19.jar:9.0.19]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200) ~[spring-web-5.1.7.RELEASE.jar:5.1.7.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.1.7.RELEASE.jar:5.1.7.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.19.jar:9.0.19]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.19.jar:9.0.19]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:200) ~[tomcat-embed-core-9.0.19.jar:9.0.19]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) ~[tomcat-embed-core-9.0.19.jar:9.0.19]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490) ~[tomcat-embed-core-9.0.19.jar:9.0.19]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139) ~[tomcat-embed-core-9.0.19.jar:9.0.19]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) ~[tomcat-embed-core-9.0.19.jar:9.0.19]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-9.0.19.jar:9.0.19]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) ~[tomcat-embed-core-9.0.19.jar:9.0.19]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408) ~[tomcat-embed-core-9.0.19.jar:9.0.19]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66) ~[tomcat-embed-core-9.0.19.jar:9.0.19]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:836) ~[tomcat-embed-core-9.0.19.jar:9.0.19]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1747) ~[tomcat-embed-core-9.0.19.jar:9.0.19]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.19.jar:9.0.19]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.19.jar:9.0.19]
+	at java.base/java.lang.Thread.run(Thread.java:835) ~[na:na]
+
+2019-08-12 21:23:22.222 TRACE 12720 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : "ERROR" dispatch for POST "/error", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-08-12 21:23:22.389 TRACE 12720 --- [http-nio-8080-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : 2 matching mappings: [{ /error}, { /error, produces [text/html]}]
+2019-08-12 21:23:22.391 TRACE 12720 --- [http-nio-8080-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2019-08-12 21:23:22.424 TRACE 12720 --- [http-nio-8080-exec-1] .w.s.m.m.a.ServletInvocableHandlerMethod : Arguments: [SecurityContextHolderAwareRequestWrapper[ FirewalledRequest[ org.apache.catalina.core.ApplicationHttpRequest@555ca95e]]]
+2019-08-12 21:23:22.459 DEBUG 12720 --- [http-nio-8080-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-08-12 21:23:22.460 TRACE 12720 --- [http-nio-8080-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{timestamp=Mon Aug 12 21:23:22 BRT 2019, status=403, error=Forbidden, message=Access Denied, path=/story/list}]
+2019-08-12 21:23:22.462 TRACE 12720 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : No view rendering, null ModelAndView returned.
+2019-08-12 21:23:22.462 DEBUG 12720 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Exiting from "ERROR" dispatch, status 403, headers={masked}
+2019-08-12 21:25:28.598 TRACE 12720 --- [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : "ERROR" dispatch for POST "/error", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-08-12 21:25:28.600 TRACE 12720 --- [http-nio-8080-exec-4] s.w.s.m.m.a.RequestMappingHandlerMapping : 2 matching mappings: [{ /error}, { /error, produces [text/html]}]
+2019-08-12 21:25:28.601 TRACE 12720 --- [http-nio-8080-exec-4] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2019-08-12 21:25:28.601 TRACE 12720 --- [http-nio-8080-exec-4] .w.s.m.m.a.ServletInvocableHandlerMethod : Arguments: [SecurityContextHolderAwareRequestWrapper[ FirewalledRequest[ org.apache.catalina.core.ApplicationHttpRequest@29970ee4]]]
+2019-08-12 21:25:28.602 DEBUG 12720 --- [http-nio-8080-exec-4] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-08-12 21:25:28.602 TRACE 12720 --- [http-nio-8080-exec-4] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{timestamp=Mon Aug 12 21:25:28 BRT 2019, status=403, error=Forbidden, message=Access Denied, path=/story/list}]
+2019-08-12 21:25:28.604 TRACE 12720 --- [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : No view rendering, null ModelAndView returned.
+2019-08-12 21:25:28.604 DEBUG 12720 --- [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : Exiting from "ERROR" dispatch, status 403, headers={masked}
+2019-08-12 21:26:18.443 TRACE 12720 --- [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : "ERROR" dispatch for POST "/error", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-08-12 21:26:18.448 TRACE 12720 --- [http-nio-8080-exec-6] s.w.s.m.m.a.RequestMappingHandlerMapping : 2 matching mappings: [{ /error}, { /error, produces [text/html]}]
+2019-08-12 21:26:18.453 TRACE 12720 --- [http-nio-8080-exec-6] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2019-08-12 21:26:18.453 TRACE 12720 --- [http-nio-8080-exec-6] .w.s.m.m.a.ServletInvocableHandlerMethod : Arguments: [SecurityContextHolderAwareRequestWrapper[ FirewalledRequest[ org.apache.catalina.core.ApplicationHttpRequest@67201a28]]]
+2019-08-12 21:26:18.454 DEBUG 12720 --- [http-nio-8080-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]

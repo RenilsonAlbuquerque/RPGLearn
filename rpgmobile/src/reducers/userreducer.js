@@ -25,7 +25,7 @@ export default function (state = INITIAL_STATE, action = {}) {
         case LOGIN_ERROR:
             return {
             ...state,
-            error : action.payload.message
+            error : action.payload
         }
         default:
             return state
