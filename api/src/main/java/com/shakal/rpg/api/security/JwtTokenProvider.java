@@ -75,7 +75,7 @@ public class JwtTokenProvider {
             }
              */
             if (user != null) {
-                return new UsernamePasswordAuthenticationToken(user, null);
+                return new UsernamePasswordAuthenticationToken(user,null, new ArrayList<>());
             }
         }
         return null;

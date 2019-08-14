@@ -1,5 +1,6 @@
 package com.shakal.rpg.api.security;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import org.springframework.security.core.Authentication;
@@ -56,7 +57,7 @@ public class AuthenticationContext implements Authentication {
 	}
 	@Override
 	public Object getCredentials() {
-		return null;
+		return this.getPassword();
 	}
 	@Override
 	public Object getDetails() {
@@ -66,7 +67,7 @@ public class AuthenticationContext implements Authentication {
 	@Override
 	public Object getPrincipal() {
 		// TODO Auto-generated method stub
-		return null;
+		return this.email;
 	}
 	@Override
 	public boolean isAuthenticated() {
@@ -81,6 +82,6 @@ public class AuthenticationContext implements Authentication {
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		// TODO Auto-generated method stub
-		return null;
+		return new ArrayList<GrantedAuthority>();
 	}
 }

@@ -1,5 +1,7 @@
 package com.shakal.rpg.api.control;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -36,6 +38,8 @@ public class StoryController {
 	
 	@PostMapping(value="/list",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<CustomPage<StoryOverviewDTO>> listAllOverview(@RequestBody PaginationFilter filter){
+		StoryOverviewDTO l = new StoryOverviewDTO();
+		l.getId();
         return new ResponseEntity<CustomPage<StoryOverviewDTO>>(this.storyrService.listsStoriesPaged(filter), HttpStatus.OK);
     }
 	 @GetMapping("/info/{id}")

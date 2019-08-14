@@ -6,7 +6,6 @@ import CustomAxios from "../service/AxiosConfig";
 
 export const USER_FETCHED = 'USER_FETCHED';
 export const LOGIN_ERROR = 'LOGIN_ERROR';
-//const USER_API =process.env.REACT_APP_URL_API + process.env.REACT_APP_PATH_PRESTADORA_API;
 const USER_API = "/login"
 
 
@@ -20,7 +19,7 @@ export function loginAction(nome, senha){
         return CustomAxios
             .post(`${USER_API}`,user)
             .then(result => {
-                console.log(result.data)
+                
                 dispatch(
                     {
                         type: USER_FETCHED,
@@ -38,7 +37,7 @@ export function loginAction(nome, senha){
                     },
                     
                 )
-            ).finally(o => console.log(o))
+            )
             
     }
 }

@@ -39,6 +39,7 @@ public class JwtAuthorizationFilter extends GenericFilterBean {
         }catch (BadCredentialsException ex2) {
             SecurityHandlerExceptionBuilder.handleError(resp,HttpServletResponse.SC_UNAUTHORIZED,ex2);
         }catch (Exception ex3) {
+        	ex3.printStackTrace();
             SecurityHandlerExceptionBuilder.handleError(resp,HttpServletResponse.SC_INTERNAL_SERVER_ERROR,ex3);
         }
     }
