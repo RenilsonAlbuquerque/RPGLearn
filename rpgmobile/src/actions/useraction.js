@@ -1,6 +1,9 @@
 import axios from "axios";
 import NavigationSevice from '../service/NavigationService'
 import CustomAxios from "../service/AxiosConfig";
+import { USER_STORAGE } from "../reducers/UserReducer";
+import AsyncStorage from "@react-native-community/async-storage";
+
 
 
 
@@ -19,7 +22,8 @@ export function loginAction(nome, senha){
         return CustomAxios
             .post(`${USER_API}`,user)
             .then(result => {
-                
+                //AsyncStorage.setItem(USER_STORAGE, result.data)
+                //console.log(AsyncStorage.getItem(USER_STORAGE)['token'])
                 dispatch(
                     {
                         type: USER_FETCHED,
@@ -42,5 +46,8 @@ export function loginAction(nome, senha){
     }
 }
 function navigateToMenu(){
+    setTimeout(function(){
+        //do what you need here
+    }, 2000);
     NavigationSevice.navigate('StoryPage')
 }

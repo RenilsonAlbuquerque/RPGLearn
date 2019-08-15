@@ -9,10 +9,17 @@ import { getStories,setCurrentStory} from '../actions/StoryAction'
 import { Text,Card, CardItem, Right} from 'native-base';
 import { FlatList } from 'react-native-gesture-handler';
 import NavigationService from '../service/NavigationService';
+import AsyncStorage from '@react-native-community/async-storage';
+import { USER_STORAGE } from '../reducers/UserReducer';
+
 
 class StoryPage extends Component{
 
-    componentWillMount() { this.props.getStories({page:1, size:10}); };
+    componentWillMount() { 
+        //console.log( await AsyncStorage.getItem(USER_STORAGE))
+       
+        this.props.getStories({page:1, size:10});
+     };
 
     isCloseToBottom({ layoutMeasurement, contentOffset, contentSize }) {   return layoutMeasurement.height + contentOffset.y 
         >= contentSize.height - 50; }

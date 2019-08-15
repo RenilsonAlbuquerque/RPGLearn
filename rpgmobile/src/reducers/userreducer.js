@@ -17,9 +17,20 @@ const INITIAL_STATE = {
 export default function (state = INITIAL_STATE, action = {}) {
     switch (action.type) {
         case USER_FETCHED:
-            AsyncStorage.setItem(USER_STORAGE, action.payload);
+            //AsyncStorage.setItem(USER_STORAGE, action.payload);
             //var user = await AsyncStorage.getItem(USER_STORAGE)
             //console.log(user)
+            /*
+            _storeData = async () => {
+                try {
+                    await AsyncStorage.setItem(USER_STORAGE, action.payload);
+                } catch (error) {
+                    console.log(error)
+                }
+            }
+            */
+            //console.log(_storeData)
+            
             return {
             ...state,
             currentUser : action.payload   
