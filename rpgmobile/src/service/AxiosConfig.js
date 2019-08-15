@@ -11,19 +11,18 @@ var CustomAxios = axios.create({
 });
 CustomAxios.interceptors.request.use( 
       (reqConfig) => {
-        console.log(store.getState().UserReducer.currentUser)
         var token = store.getState().UserReducer.currentUser.token
         reqConfig.headers.authorization = token ? token : ""
-        //reqConfig.headers.authorization = "Bearer eyJhbGciOiJIUzUxMiJ9.eyJleHAiOjE1NjY2MDc4MDQsImlkIjoxLCJ1c2VybmFtZSI6InJlbmlsc29uIn0._IUl-W5p0nxDk0qVIls34YPVwECM65eKc5ys81ldZXivW_1NmIVpjWOpTtgcMkD-nht_SPVw9Qxb8rshKn67eg"
         return reqConfig;
       },
       (err) => Promise.reject(err),
     );
-//export default CustomAxios;
-
+export default CustomAxios;
+/*
 const mapStateToProps = state => ({ 
       user: state.UserReducer.currentUser
 })
   
   export default connect(mapStateToProps,null)(CustomAxios)
+  */
 //console.log(AsyncStorage.getItem(USER_STORAGE)['token']),

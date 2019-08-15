@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { StoryListComponent } from './story-list/story-list.component';
 import { StoryDetailComponent } from './story-detail/story-detail.component';
 import { PlaceDetailComponent } from './place-detail/place-detail.component';
+import { StoryCreateComponent } from './story-create/story-create.component';
 
 const routes: Routes = [
     {
@@ -29,6 +30,10 @@ const routes: Routes = [
               
           path: 'place/:id',
           component: PlaceDetailComponent
+        },
+        {
+          path: 'create',
+          component: StoryCreateComponent
         }
       ]
     }

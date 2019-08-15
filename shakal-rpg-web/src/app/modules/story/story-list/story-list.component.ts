@@ -36,5 +36,8 @@ export class StoryListComponent implements OnInit {
       response => (this.page = response)  
     )
   }
+  goCreateStory(){
+    this.router.navigate(['home/story/create'])
+  }
 
 }

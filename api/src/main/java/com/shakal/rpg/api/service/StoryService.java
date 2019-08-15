@@ -1,6 +1,7 @@
 package com.shakal.rpg.api.service;
 
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,16 +10,23 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.shakal.rpg.api.contracts.service.IStoryService;
+import com.shakal.rpg.api.dto.commons.KeyValueDTO;
 import com.shakal.rpg.api.dto.create.StoryCreateDTO;
+import com.shakal.rpg.api.dto.create.StoryCreateInputDTO;
 import com.shakal.rpg.api.dto.filter.CustomPage;
 import com.shakal.rpg.api.dto.filter.PaginationFilter;
 import com.shakal.rpg.api.dto.info.StoryInfoDTO;
 import com.shakal.rpg.api.dto.overview.StoryOverviewDTO;
 import com.shakal.rpg.api.exception.ResourceNotFoundException;
 import com.shakal.rpg.api.mappers.StoryMapper;
+import com.shakal.rpg.api.mappers.UserMapper;
 import com.shakal.rpg.api.model.Story;
-
+import com.shakal.rpg.api.model.User;
+import com.shakal.rpg.api.model.embedded.UserStoryId;
+import com.shakal.rpg.api.model.relation.UserStory;
 import com.shakal.rpg.api.repository.StoryDAO;
+import com.shakal.rpg.api.repository.UserDAO;
+import com.shakal.rpg.api.repository.UserStoryDAO;
 import com.shakal.rpg.api.utils.Messages;
 import com.shakal.rpg.api.utils.PaginationGenerator;
 
@@ -27,10 +35,14 @@ public class StoryService implements IStoryService {
 
 	
 	private StoryDAO storyRepository;
+	private UserDAO userDao;
+	private UserStoryDAO userStoryDao;
 	
 	@Autowired
-	public StoryService(StoryDAO storyRepository) {
+	public StoryService(StoryDAO storyRepository, UserDAO userDao,UserStoryDAO userStoryDao) {
 		this.storyRepository = storyRepository;
+		this.userDao = userDao;
+		this.userStoryDao = userStoryDao;
 	}
 	
 	@Override
@@ -46,6 +58,7 @@ public class StoryService implements IStoryService {
 		entity.setPlaces(inputDto.getPlaces().stream()
 				.map(place -> StoryMapper.placeDtoToEntity(place))
 				.collect(Collectors.toList()));
+		this.setUsersInStory(entity, inputDto.getUsers());
 		this.storyRepository.save(entity);
 		return inputDto;
 	}
@@ -65,6 +78,33 @@ public class StoryService implements IStoryService {
 		Story story = this.storyRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException(Messages.STORY_NOT_FOUND));
 		return StoryMapper.entityToInfo(story);
+	}
+
+	@Override
+	public StoryCreateInputDTO getStoryInfoToCreate() {
+		StoryCreateInputDTO result = new StoryCreateInputDTO();
+		result.setUsers(this.userDao.findAll().stream()
+				.map(user -> UserMapper.entityToKeyValue(user)).collect(Collectors.toList()));
+		return result;
+	}
+	private void setUsersInStory(Story story, List<KeyValueDTO> users) {
+		for(KeyValueDTO user: users) {
+			User userEntity = this.userDao.getOne(user.getId());
+			UserStory userStory = new UserStory();
+			userStory.setId(new UserStoryId(user.getId(),story.getId()));
+			userStory.setStory(story);
+			userStory.setUser(userEntity);
+			this.userStoryDao.save(userStory);
+		}
+	}
+
+	@Override
+	public CustomPage<StoryOverviewDTO> listsStoriesByUserIdPaged(PaginationFilter filter, long userId) {
+		Page<Story> page = this.storyRepository.findAll(PageRequest.of(filter.getPage() -1, 
+				filter.getSize()));
+		return (CustomPage<StoryOverviewDTO>) PaginationGenerator.convertPage(page,page
+        		.stream().map( story -> StoryMapper.entityTOOverview(story))
+                .collect(Collectors.toList()));
 	}
 
 }

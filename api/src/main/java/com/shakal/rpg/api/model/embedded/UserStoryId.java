@@ -18,6 +18,16 @@ public class UserStoryId implements Serializable {
 	@Column(name = "story_id")
     private Long storyId;
 
+	public UserStoryId() {
+		
+	}
+	
+	public UserStoryId(Long userId, Long storyId) {
+		super();
+		this.userId = userId;
+		this.storyId = storyId;
+	}
+
 	public Long getUserId() {
 		return userId;
 	}

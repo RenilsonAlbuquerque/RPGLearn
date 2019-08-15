@@ -2,6 +2,8 @@ package com.shakal.rpg.api.dto.create;
 
 import java.util.List;
 
+import com.shakal.rpg.api.dto.commons.KeyValueDTO;
+
 public class StoryCreateDTO {
 
 	private String name;
@@ -11,6 +13,8 @@ public class StoryCreateDTO {
 	private String folderImage;
 	
 	private List<PlaceCreateDTO> places;
+	
+	private List<KeyValueDTO> users;
 
 	public String getName() {
 		return name;
@@ -42,6 +46,14 @@ public class StoryCreateDTO {
 
 	public void setPlaces(List<PlaceCreateDTO> places) {
 		this.places = places;
+	}
+
+	public List<KeyValueDTO> getUsers() {
+		return users;
+	}
+
+	public void setUsers(List<KeyValueDTO> users) {
+		this.users = users;
 	}
 	
 	

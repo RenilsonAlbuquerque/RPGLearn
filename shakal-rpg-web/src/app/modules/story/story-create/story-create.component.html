@@ -1,0 +1,61 @@
+
+<mat-horizontal-stepper labelPosition="bottom" linear #stepper>
+    <mat-step [stepControl]="detailFormGroup">
+        <form [formGroup]="detailFormGroup">
+            <ng-template  matStepLabel>Informações</ng-template> 
+                <div class="row">
+                    <div class="col-md-6 col-sm-12 w-50 h-100">
+                        <img height="360" mat-card-image src="{{ profilePicture }}" alt="">
+                        <mat-form-field class="form-group col-12" appearance="outline">
+                            <input matInput placeholder="Url imagem" [(ngModel)]="profilePicture" formControlName="profilePicture">
+                        </mat-form-field>
+                        
+                    </div>
+                    <div class="col-md-6 col-sm-12 w-50 h-100">
+                        <mat-form-field class="form-group col-12" appearance="outline">
+                            <mat-label>Nome</mat-label>
+                            <input matInput placeholder="Descrição" formControlName="name">
+                            <mat-error *ngIf="!detailFormGroup.controls['name'].valid && detailFormGroup.controls['name'].touched">
+                                Campo obrigatório
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="form-group col-12" appearance="outline">
+                            <mat-label>Descrição</mat-label>
+                            <textarea matInput formControlName="description" matInput rows="13"></textarea>
+                            <mat-error *ngIf="!detailFormGroup.controls['description'].valid && detailFormGroup.controls['description'].touched">
+                                Campo obrigatório
+                            </mat-error>
+                        </mat-form-field>
+                    </div>    
+                                
+                </div>
+                <div class="example-button-row float-right">
+                        <button mat-raised-button color="primary" matStepperNext>Próximo</button>
+                </div>
+        </form>
+    </mat-step>
+    <mat-step [stepControl]="playersFormGroup">
+            <form [formGroup]="playersFormGroup">
+                <ng-template  matStepLabel>Jogadores</ng-template> 
+                    <div class="row">
+                
+                        <div class="form-group col-12">
+                            <app-input-chip [placeholderComponent]="'Jogadores'" (changeFunc)="changePlayersFormValues($event)" [allElements]="inputValues.users"></app-input-chip>  
+                        </div>             
+                    </div>
+                    <div class="example-button-row float-right">
+                            <button mat-raised-button color="primary" matStepperNext>Próximo</button>
+                    </div>
+            </form>
+    </mat-step>
+    <mat-step>
+        <ng-template  matStepLabel>Jogadores</ng-template> 
+        <div class="row">
+            <div class="example-button-row float-right">
+                    <button type="button" class="btn btn-success pull-right" matStepperPrevious>Back</button>
+                    <button type="button" class="btn btn-success pull-right" (click)="stepper.reset()">Reset</button>
+                    <button type="button" class="btn btn-success pull-right" (click)="onSubmit()">Finalizar</button>
+            </div>
+        </div>
+    </mat-step>
+</mat-horizontal-stepper>

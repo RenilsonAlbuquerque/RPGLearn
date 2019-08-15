@@ -16,8 +16,6 @@ import { USER_STORAGE } from '../reducers/UserReducer';
 class StoryPage extends Component{
 
     componentWillMount() { 
-        //console.log( await AsyncStorage.getItem(USER_STORAGE))
-       
         this.props.getStories({page:1, size:10});
      };
 

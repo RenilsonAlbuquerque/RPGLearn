@@ -47,7 +47,6 @@ export function loginAction(nome, senha){
 }
 function navigateToMenu(){
     setTimeout(function(){
-        //do what you need here
     }, 2000);
     NavigationSevice.navigate('StoryPage')
 }

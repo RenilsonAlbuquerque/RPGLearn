@@ -20,7 +20,7 @@ export default function (state = INITIAL_STATE, action = {}) {
             //AsyncStorage.setItem(USER_STORAGE, action.payload);
             //var user = await AsyncStorage.getItem(USER_STORAGE)
             //console.log(user)
-            /*
+            
             _storeData = async () => {
                 try {
                     await AsyncStorage.setItem(USER_STORAGE, action.payload);
@@ -28,12 +28,13 @@ export default function (state = INITIAL_STATE, action = {}) {
                     console.log(error)
                 }
             }
-            */
+            
             //console.log(_storeData)
             
             return {
             ...state,
-            currentUser : action.payload   
+            currentUser : action.payload,
+            error: ""   
         }
         
         case LOGIN_ERROR:
