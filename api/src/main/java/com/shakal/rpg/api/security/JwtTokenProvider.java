@@ -54,7 +54,7 @@ public class JwtTokenProvider {
         return  TOKEN_PREFIX + " " + JWT;
     }
 
-    static Authentication getAuthentication(HttpServletRequest request) throws SignatureException, BadCredentialsException {
+    static AuthenticationContext getAuthentication(HttpServletRequest request) throws SignatureException, BadCredentialsException {
         String token = request.getHeader(HEADER_STRING);
 
         Claims claims = null;
@@ -65,7 +65,7 @@ public class JwtTokenProvider {
                     .getBody();
 
             String user = (String) claims.get("username");
-
+            long id = (Integer) claims.get("id");
           
             /*
             ArrayList<String> claimsRoles = (ArrayList<String>) claims.get("roles");
@@ -75,7 +75,7 @@ public class JwtTokenProvider {
             }
              */
             if (user != null) {
-                return new UsernamePasswordAuthenticationToken(user,null, new ArrayList<>());
+                return new AuthenticationContext(id,user);
             }
         }
         return null;

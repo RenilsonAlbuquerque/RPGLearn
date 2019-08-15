@@ -40,11 +40,16 @@ public class StoryController {
 		return new ResponseEntity<StoryCreateDTO>(this.storyrService.insertStory(createDto), HttpStatus.OK);
     }
 	
-	@PostMapping(value="/list",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<CustomPage<StoryOverviewDTO>> listAllOverview(@RequestBody PaginationFilter filter){
+	@PostMapping(value="/player/list",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<CustomPage<StoryOverviewDTO>> listStoriesOfPlayer(@RequestBody PaginationFilter filter){
 	
 		long userId = ((AuthenticationContext) SecurityContextHolder.getContext().getAuthentication()).getId();
         return new ResponseEntity<CustomPage<StoryOverviewDTO>>(this.storyrService.listsStoriesByUserIdPaged(filter, userId), HttpStatus.OK);
+    }
+	@PostMapping(value="/list",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<CustomPage<StoryOverviewDTO>> listAllStories(@RequestBody PaginationFilter filter){
+	
+        return new ResponseEntity<CustomPage<StoryOverviewDTO>>(this.storyrService.listsStoriesPaged(filter), HttpStatus.OK);
     }
 	 @GetMapping("/info/{id}")
 	 public ResponseEntity<StoryInfoDTO> getMonsterInfoById(@PathVariable Long id) throws ResourceNotFoundException {

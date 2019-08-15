@@ -100,11 +100,9 @@ public class StoryService implements IStoryService {
 
 	@Override
 	public CustomPage<StoryOverviewDTO> listsStoriesByUserIdPaged(PaginationFilter filter, long userId) {
-		Page<Story> page = this.storyRepository.findAll(PageRequest.of(filter.getPage() -1, 
+		Page<StoryOverviewDTO> page = this.userStoryDao.retrieveStoriesAsDTO(PageRequest.of(filter.getPage() -1, 
 				filter.getSize()));
-		return (CustomPage<StoryOverviewDTO>) PaginationGenerator.convertPage(page,page
-        		.stream().map( story -> StoryMapper.entityTOOverview(story))
-                .collect(Collectors.toList()));
+		return (CustomPage<StoryOverviewDTO>) PaginationGenerator.convertPage(page);
 	}
 
 }

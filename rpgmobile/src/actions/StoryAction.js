@@ -13,7 +13,7 @@ export function getStories(pageConfig){
     return (dispatch) => {
         //await AsyncStorage.getItem(USER_STORAGE)['token']
         return CustomAxios
-        .post(`${STORY_API}/list`,pageConfig)
+        .post(`${STORY_API}/player/list`,pageConfig)
         .then(result =>
             dispatch(
                 {

@@ -7,6 +7,19 @@ public class StoryOverviewDTO {
 	private String name;
 	
 	private String folderImage;
+	
+	
+
+	public StoryOverviewDTO() {
+		super();
+	}
+
+	public StoryOverviewDTO(long id, String name, String folderImage) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.folderImage = folderImage;
+	}
 
 	public long getId() {
 		return id;

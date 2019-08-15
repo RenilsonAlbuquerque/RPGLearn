@@ -24,6 +24,13 @@ public class AuthenticationContext implements Authentication {
 		this.password = password;
 		
 	}
+    public AuthenticationContext(Long id, String email) {
+		super();
+		this.authenticated = true;
+		this.id = id;
+		this.email = email;
+		
+	}
 	public Boolean getAuthenticated() {
 		return authenticated;
 	}
