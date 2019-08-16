@@ -1,13 +1,9 @@
 import axios from 'axios';
-import AsyncStorage from '@react-native-community/async-storage';
-import { USER_STORAGE } from '../reducers/UserReducer';
-
-import React, {Component} from 'react';
-import { connect } from 'react-redux';
 import store from '../store/store'
+import { BASE_URL } from '../constants/constants';
 
 var CustomAxios = axios.create({
-      baseURL: 'http://192.168.0.111:8080'
+      baseURL: `http://${BASE_URL}`
 });
 CustomAxios.interceptors.request.use( 
       (reqConfig) => {

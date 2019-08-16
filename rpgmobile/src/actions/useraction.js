@@ -45,6 +45,12 @@ export function loginAction(nome, senha){
             
     }
 }
+export function setLoggedUser(user){
+    return {
+        type:USER_FETCHED,
+        payload: user
+    }
+}
 function navigateToMenu(){
     setTimeout(function(){
     }, 2000);

@@ -26,9 +26,7 @@ import com.shakal.rpg.api.exception.ResourceNotFoundException;
 
 
 @Controller
-@CrossOrigin
-@RestController
-@RequestMapping("/combat")
+
 public class CombatStompController {
 
 	private HashMap<Long,CombatStateDTO> combats;
@@ -52,16 +50,6 @@ public class CombatStompController {
 	     
 	}
 	
-	@GetMapping(value="/status/{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<CombatStateDTO> getInitalCombatStatus(@PathVariable Long id) throws ResourceNotFoundException{
-		CombatStateDTO result =this.combats.get(id);
-		if(this.combats.get(id) == null) {
-			result = new CombatStateDTO();
-			result.setMonsters(new ArrayList<>());
-			result.setPlayers(new ArrayList<>());
-			result.setDificult(1);
-		}
-		return new ResponseEntity<CombatStateDTO>(result, HttpStatus.OK);
-    }
+	
 	 
 }

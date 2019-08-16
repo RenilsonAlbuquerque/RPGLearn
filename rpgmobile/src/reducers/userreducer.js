@@ -1,6 +1,7 @@
 import { USER_FETCHED, LOGIN_ERROR } from "../actions/UserAction";
-import {AsyncStorage} from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-community/async-storage';
 
+//import {saveUser} from '../store/AsyncStorageService'
 
 export const USER_STORAGE = 'currentUser';
 const INITIAL_STATE = {
@@ -17,17 +18,13 @@ const INITIAL_STATE = {
 export default function (state = INITIAL_STATE, action = {}) {
     switch (action.type) {
         case USER_FETCHED:
-         
-            
-            _storeData = async () => {
-                try {
-                    await AsyncStorage.setItem(USER_STORAGE, action.payload);
-                } catch (error) {
-                    console.log(error)
-                }
+            try{
+                AsyncStorage.setItem(USER_STORAGE, action.payload)
+            }catch(error){
+                console.log(error)
             }
-
             
+            //saveUser()
             return {
             ...state,
             currentUser : action.payload,
