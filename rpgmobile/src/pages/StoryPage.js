@@ -1,20 +1,22 @@
 import React, {Component} from 'react';
 
-import { View,ScrollView,TouchableOpacity,Image  } from 'react-native';
+import { View,TouchableOpacity,Image,StyleSheet  } from 'react-native';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from "redux";
 
 import { getStories,setCurrentStory} from '../actions/StoryAction'
-import { Text,Card, CardItem, Right} from 'native-base';
+import { Text} from 'native-base';
 import { FlatList } from 'react-native-gesture-handler';
 import NavigationService from '../service/NavigationService';
-import AsyncStorage from '@react-native-community/async-storage';
-import { USER_STORAGE } from '../reducers/UserReducer';
+
 
 
 class StoryPage extends Component{
 
+    static navigationOptions = {
+        title: 'Histórias',
+    };
     componentWillMount() { 
         this.props.getStories({page:1, size:10});
      };
@@ -30,23 +32,25 @@ class StoryPage extends Component{
             <FlatList
                 data={storyData.elements}
                 extraData={this.state}
+                ItemSeparatorComponent={() => {
+                    return (
+                      <View style={styles.separator}/>
+                    )
+                  }}
                 keyExtractor={item => item.name}
                 renderItem={({ item, idenx }) => (
                     <TouchableOpacity key={idenx} onPress={() =>  {this.props.setCurrentStory(item), NavigationService.navigate('Combat')}}>
-                        <Card 
-                       featuredTitle={item.name}
-                       image={{ uri: item.folderImage }}
-                       >
-                        <CardItem cardBody>
+                      
+                     <View style={styles.card}>
+                        <Image style={styles.cardImage} source={{uri: item.folderImage}}/>
+                        <View style={styles.cardContent}>
+                            <View>
+                                <Text style={styles.title}>{item.name}</Text>
+                            </View>
+                        </View>
+                     </View>
+                     
                         
-                            <Image source={{uri: item.folderImage}} style={{height: 200, width: null, flex: 1}}/>
-                        </CardItem>
-                        <CardItem>
-                            <Right>
-                                <Text>{item.name}</Text>
-                            </Right>
-                        </CardItem>
-                     </Card>
                     </TouchableOpacity>
                     
                   )}
@@ -67,3 +71,50 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 }, dispatch);
 
 export default connect(mapStateToProps,mapDispatchToProps)(StoryPage)
+const styles = StyleSheet.create({
+    container:{
+      flex:1,
+      marginTop:20,
+    },
+    list: {
+      backgroundColor:"#E6E6E6",
+    },
+    separator: {
+      marginTop: 1,
+    },
+    /******** card **************/
+    card:{
+      margin: 0,
+      borderRadius: 2,
+      borderWidth: 1,
+      borderColor: "#DCDCDC",
+      backgroundColor: "#DCDCDC",
+    },
+    
+    cardContent: {
+      paddingVertical: 12.5,
+      paddingHorizontal: 16,
+      //overlay efect
+      flex: 1,
+      height: 200,
+      width: null,
+      position: 'absolute',
+      zIndex: 100,
+      left: 0,
+      right: 0,
+      backgroundColor: 'transparent'
+    },
+    cardImage:{
+      flex: 1,
+      height: 150,
+      width: null,
+    },
+    /******** card components **************/
+    title:{
+      fontSize:22,
+      color: "#ffffff",
+      marginTop: 10,
+      fontWeight:'bold'
+    },
+    
+  });

@@ -17,14 +17,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.shakal.rpg.api.dto.filter.CombatStateDTO;
 import com.shakal.rpg.api.exception.ResourceNotFoundException;
 
-@Controller
+
 @CrossOrigin
 @RestController
 @RequestMapping("/combat")
 public class CombatController {
 	
-	private static final String SENDING_URL = "/topic/room";
-    private static final String RECEIVING_URL = "/server-receiver";
+
 	
 	private final SimpMessagingTemplate template;
 	
@@ -34,22 +33,5 @@ public class CombatController {
     }
 	
 	
-	@PostMapping(value="/dificuldade",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<String> calculateChallengeDeficult(@RequestBody CombatStateDTO inputDto) throws ResourceNotFoundException{
-		return new ResponseEntity<String>("hard", HttpStatus.OK);
-    }
 	
-	@MessageMapping(RECEIVING_URL)
-    public void onReceivedMessage(String message) {
-        System.out.println("New message received : " + message);
-    }
-
-	@SubscribeMapping(SENDING_URL)
-    public String onSubscribe() {
-        return "SUBSCRIBED";
-    }
-	//@Scheduled(fixedRate = 1000)
-    public void sendMessage() {
-        template.convertAndSend(SENDING_URL, "Mail motherfucker");
-    }
 }

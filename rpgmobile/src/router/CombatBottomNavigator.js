@@ -5,6 +5,7 @@ import CombatMonsters from '../components/combat/CombatMonsters';
 import { Icon } from 'native-base';
 import { createAppContainer } from 'react-navigation';
 import CombatAllies from '../components/combat/CombatAllies';
+import Colors from '../styles/ColorsStyle';
 
 const CombatBottomNavigator = createMaterialBottomTabNavigator({
     Monsters: {screen: CombatMonsters,
@@ -29,6 +30,6 @@ const CombatBottomNavigator = createMaterialBottomTabNavigator({
   initialRouteName: 'Monsters',
   //activeTintColor: '#f0edf6',
   //inactiveTintColor: '#3e2465',
-  barStyle: { backgroundColor: '#212121' }
+  barStyle: { backgroundColor: Colors.DARK_PRIMARY_COLOR }
 })
 export default createAppContainer(CombatBottomNavigator);

@@ -4,27 +4,25 @@ import LoginPage from '../pages/LoginPage';
 import StoryPage from '../pages/StoryPage';
 import CombatBottomNavigator from './CombatBottomNavigator';
 import CombatPage from '../pages/CombatPage';
-
+import Colors from '../styles/ColorsStyle';
 
 
 const ShakalStackNavigator = createStackNavigator({
-    Login:{screen: LoginPage, navigatorOptions: navigatorOptions},
-    StoryPage: {screen: StoryPage, navigatorOptions: navigatorOptions},
-    Combat: {screen: CombatPage,navigatorOptions: navigatorOptions}
-});
-
-function navigatorOptions(){
-  return {
-    title: 'Aedes War',
-    
+    Login:{screen: LoginPage},
+    StoryPage: {screen: StoryPage},
+    Combat: {screen: CombatPage}
+},{
+ 
+  defaultNavigationOptions: {
     headerStyle: {
-      backgroundColor: '#D32F2F',
+      backgroundColor: Colors.DARK_PRIMARY_COLOR,
     },
     headerTintColor: '#fff',
     headerTitleStyle: {
       fontWeight: 'bold',
-    }
-  }
-}
+    },
+  },
+});
+
 
 export default createAppContainer(ShakalStackNavigator);

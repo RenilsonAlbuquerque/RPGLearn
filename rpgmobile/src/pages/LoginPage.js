@@ -6,6 +6,7 @@ import { Container,  Content, Form, Item, Input, Label  ,Text } from 'native-bas
 import { connect } from 'react-redux';
 import { bindActionCreators } from "redux";
 import { loginAction } from '../actions/UserAction'
+import Colors from '../styles/ColorsStyle';
 
 
 class LoginPage extends Component{
@@ -66,7 +67,8 @@ const loginStyle = StyleSheet.create({
     backgroundColor: "#F5FCFF"
   },
   customButton:{
-    borderRadius: 50
+    borderRadius: 50,
+    backgroundColor: Colors.DARK_PRIMARY_COLOR
   },
   logoImage:{
     height: 200
