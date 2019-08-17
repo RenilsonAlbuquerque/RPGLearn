@@ -37,8 +37,8 @@ export class StoryListComponent implements OnInit {
   goEdit(story){
     this.router.navigate(['home/story/datail', story.id])
   }
-  pageChange(){
-    this.storyService.getOverview(this.page.currentPageNumber).subscribe(
+  pageChange(pageNumber: number){
+    this.storyService.getOverview(pageNumber).subscribe(
       response => (this.page = response)  
     )
   }

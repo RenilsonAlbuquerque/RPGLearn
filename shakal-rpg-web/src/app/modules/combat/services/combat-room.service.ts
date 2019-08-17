@@ -25,15 +25,17 @@ export class CombatRoomService {
   public initializeCombat(storyId: number){
     this.storyId = storyId;
     console.log(`${environment.BASE_URL}combat/status/` + storyId)
+    
+    this.rxStompService.watch('/topic/combat/'+ storyId).subscribe((message: IMessage) => {
+      this.combatState.next(JSON.parse(message.body) as CombatState);
+    })
     this.httpClient.get<CombatState>(`${environment.BASE_URL}combat/status/${storyId}`).subscribe(
-        response => {
-          console.log(response)
-          this.combatState.next(response),
-          this.rxStompService.watch('/topic/combat/'+ storyId).subscribe((message: IMessage) => {
-            this.combatState.next(JSON.parse(message.body) as CombatState);
-          })
-        }
-        
+      response => {
+        console.log(response)
+        this.combatState.next(response)
+       
+      }
+      
     )
     
   }
