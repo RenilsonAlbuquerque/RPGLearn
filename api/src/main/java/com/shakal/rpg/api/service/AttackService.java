@@ -62,6 +62,7 @@ public class AttackService {
 				actionEntity.setName(action.getName());
 				actionEntity.setDescription(action.getDescription());
 				actionEntity.setCreature(monster);
+				actionEntity.setLegendary(legendary);
 				/*
 				if(legendary) {
 					actionEntity.setMonster(monster);

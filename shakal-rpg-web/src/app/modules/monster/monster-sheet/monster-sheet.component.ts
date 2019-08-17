@@ -20,13 +20,24 @@ export class MonsterSheetComponent implements OnInit {
   public monster: MonsterSheet;
 
   constructor(private _activatedRoute: ActivatedRoute, private monsterService: MonsterService,
-    private combatRoomService: CombatRoomService) { }
+    private combatRoomService: CombatRoomService) { 
+      this.monster = {
+        atributes: [],
+        savingThrows: [],
+        damageResistence: [],
+        damageImunity: [],
+        languages: [],
+        features: [],
+        actions: [],
+        legendaryActions: []
+      } as MonsterSheet;
+    }
 
   ngOnInit() {
     this.amount = 0;
     this._activatedRoute.params.subscribe(params => {
       let id = params['id'];
-      id = id ? id : this.monsterId
+      id = this.monsterId ? this.monsterId: id  
       this.monsterService.getMonsterSheetById(id).subscribe(
         response => (this.monster = response, console.log(response))  
       )

@@ -44,8 +44,8 @@ public class CombatStompController {
 	@MessageMapping("/combat/{id}")
 	public void recieveDTO(@DestinationVariable Long id,CombatStateDTO state) throws Exception {
 		//state.setDificult(combatService.calculateChallengeDeficult(state));
-		state = this.combatService.updateMonstersConditions(state);
-		combats.put(Long.valueOf(id), this.combatService.updateMonstersConditions(state));
+		state = this.combatService.updateCombatConditions(state);
+		combats.put(Long.valueOf(id), state);
 		this.template.convertAndSend("/topic/combat/"+ id, state);
 	     
 	}

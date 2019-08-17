@@ -14,7 +14,18 @@ export class StoryListComponent implements OnInit {
   public page: Page<StoryOverview>;
   public search: String;
   
-  constructor(private storyService: StoryService, private router: Router) { }
+  constructor(private storyService: StoryService, private router: Router) {
+    this.page = {
+      elements: [],
+      currentPageNumber: 1,
+      totalElements: 1,
+      totalOfPages: 1,
+      size: 1,
+      firts: true,
+      last: true
+
+    } as Page<StoryOverview>;
+  }
 
   ngOnInit() {
     

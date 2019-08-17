@@ -2,15 +2,18 @@
   <mat-card class="example-card">
           <mat-card-header>
             <mat-card-title>{{ story?.name }}</mat-card-title>
-            <button mat-flat-button color="primary" (click)="goToCombat()">Iniciar um combate</button>
+            <button mat-flat-button color="primary" (click)="goToCombat()">
+                    <mat-icon aria-hidden="false" aria-label="Example axe-battle icon">swords</mat-icon>
+                Iniciar um combate
+            </button>
           </mat-card-header>
           <mat-card-content>
               <div class="card-body row">
 
-                  <div class="col-md-6 col-sm-12 w-50 h-100">
+                  <div class="col-md-6 col-sm-12">
                       <img  mat-card-image src="{{ story?.folderImage }}" alt="">
                   </div>
-                  <div class="col-md-6 col-sm-12 w-50 h-100">
+                  <div class="col-md-6 col-sm-12">
                       <p >{{ story?.background }}</p>
                   </div>    
                   

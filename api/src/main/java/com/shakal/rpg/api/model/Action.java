@@ -31,7 +31,7 @@ public class Action {
 	@JoinColumn(name ="creature_id", referencedColumnName ="id")
 	private Creature creature;
 	
-	
+	private boolean legendary;
 	
 	
 	public long getId() {
@@ -64,6 +64,14 @@ public class Action {
 
 	public void setCreature(Creature creature) {
 		this.creature = creature;
+	}
+
+	public boolean isLegendary() {
+		return legendary;
+	}
+
+	public void setLegendary(boolean legendary) {
+		this.legendary = legendary;
 	}
 
 

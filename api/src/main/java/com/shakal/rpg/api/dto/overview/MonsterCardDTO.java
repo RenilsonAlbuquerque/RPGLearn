@@ -1,9 +1,11 @@
 package com.shakal.rpg.api.dto.overview;
 
 
+import java.util.Comparator;
+
 import com.shakal.rpg.api.dto.info.LevelDTO;
 
-public class MonsterCardDTO {
+public class MonsterCardDTO implements Comparable<MonsterCardDTO> {
 
 	 private long id;
 	 private String name;
@@ -56,6 +58,11 @@ public class MonsterCardDTO {
 	}
 	public void setLifePercent(int lifePercent) {
 		this.lifePercent = lifePercent;
+	}
+	@Override
+	public int compareTo(MonsterCardDTO o) {
+		// TODO Auto-generated method stub
+		return (this.getLifePercent() > o.getLifePercent()) ? 1: -1;
 	}
 	
 	 

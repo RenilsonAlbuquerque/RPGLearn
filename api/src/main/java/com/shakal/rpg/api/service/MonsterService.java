@@ -135,10 +135,12 @@ public class MonsterService implements IMonsterService {
 				saving -> SavingThrowMapper.entityToDTO(saving,search.getChallengeLevel().getProeficiencyBonus())).collect(Collectors.toList()));
 		
 		result.setActions(search.getActions().stream().filter(attack -> attack instanceof Attack)
+				.filter(legendary -> legendary.isLegendary() == false)
 				.map(attack -> AttackMapper.entityToDTO((Attack)attack))
 				.collect(Collectors.toList()));
 		
 		result.setLegendaryActions(search.getLegendaryActions().stream().filter(attack -> attack instanceof Attack)
+				.filter(legendary -> legendary.isLegendary())
 				.map(attack -> AttackMapper.entityToDTO((Attack)attack))
 				.collect(Collectors.toList()));
 		

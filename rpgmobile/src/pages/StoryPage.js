@@ -19,10 +19,31 @@ class StoryPage extends Component{
     };
     componentWillMount() { 
         this.props.getStories({page:1, size:10});
-     };
+    };
+    loadStories = async () =>{
+      if(this.props.storyData.last === false){
+        await this.props.getStories({page:this.props.storyData.currentPageNumber +1,size:10})
+      }
+      
+    }
+   
+    // isCloseToBottom({ layoutMeasurement, contentOffset, contentSize }) {   return layoutMeasurement.height + contentOffset.y 
+    //     >= contentSize.height - 50; }
 
-    isCloseToBottom({ layoutMeasurement, contentOffset, contentSize }) {   return layoutMeasurement.height + contentOffset.y 
-        >= contentSize.height - 50; }
+    renderItem = ({ item, idenx }) => (
+      <TouchableOpacity key={idenx} onPress={() =>  {this.props.setCurrentStory(item), NavigationService.navigate('Combat')}}>
+        
+       <View style={styles.card}>
+          <Image style={styles.cardImage} source={{uri: item.folderImage}}/>
+          <View style={styles.cardContent}>
+              <View>
+                  <Text style={styles.title}>{item.name}</Text>
+              </View>
+          </View>
+       </View>
+      </TouchableOpacity>
+      
+    );   
     render() {
         const {
             storyData
@@ -38,22 +59,10 @@ class StoryPage extends Component{
                     )
                   }}
                 keyExtractor={item => item.name}
-                renderItem={({ item, idenx }) => (
-                    <TouchableOpacity key={idenx} onPress={() =>  {this.props.setCurrentStory(item), NavigationService.navigate('Combat')}}>
-                      
-                     <View style={styles.card}>
-                        <Image style={styles.cardImage} source={{uri: item.folderImage}}/>
-                        <View style={styles.cardContent}>
-                            <View>
-                                <Text style={styles.title}>{item.name}</Text>
-                            </View>
-                        </View>
-                     </View>
-                     
-                        
-                    </TouchableOpacity>
-                    
-                  )}
+                renderItem={this.renderItem}
+                onEndReached={this.loadStories}
+                onEndReachedThreshold={0.1}
+                
             />
              
         )

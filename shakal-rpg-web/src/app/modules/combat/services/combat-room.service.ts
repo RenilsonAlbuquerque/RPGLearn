@@ -6,6 +6,7 @@ import {  RxStompService } from "@stomp/ng2-stompjs";
 import { IMessage } from '@stomp/stompjs';
 import { CombatState } from 'src/app/domain/models/combat/combat.state';
 import { Observable, BehaviorSubject } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class CombatRoomService {
@@ -18,18 +19,23 @@ export class CombatRoomService {
         monsters :[],
         players: [],
         dificult: 1
-      } as CombatState);
-      
-      
-
-     
+      } as CombatState); 
   }
 
   public initializeCombat(storyId: number){
     this.storyId = storyId;
-    this.rxStompService.watch('/topic/combat/'+ storyId).subscribe((message: IMessage) => {
-      this.combatState.next(JSON.parse(message.body) as CombatState);
-    });
+    console.log(`${environment.BASE_URL}combat/status/` + storyId)
+    this.httpClient.get<CombatState>(`${environment.BASE_URL}combat/status/${storyId}`).subscribe(
+        response => {
+          console.log(response)
+          this.combatState.next(response),
+          this.rxStompService.watch('/topic/combat/'+ storyId).subscribe((message: IMessage) => {
+            this.combatState.next(JSON.parse(message.body) as CombatState);
+          })
+        }
+        
+    )
+    
   }
 
   public addMonsterEnemy(monster: MonsterCard){
