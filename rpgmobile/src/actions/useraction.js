@@ -22,6 +22,14 @@ export function loginAction(nome, senha){
         return CustomAxios
             .post(`${USER_API}`,user)
             .then(result => {
+                _storeData = async () => {
+                    try {
+                      await AsyncStorage.setItem(USER_STORAGE, result.data);
+                    } catch (error) {
+                        console.log(error)
+                      // Error saving data
+                    }
+                  };
                 //AsyncStorage.setItem(USER_STORAGE, result.data)
                 //console.log(AsyncStorage.getItem(USER_STORAGE)['token'])
                 dispatch(

@@ -3,7 +3,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 
 //import {saveUser} from '../store/AsyncStorageService'
 
-export const USER_STORAGE = 'currentUser';
+export const USER_STORAGE = '@ShakalStore:user';
 const INITIAL_STATE = {
     currentUser :{
         id: 0,
