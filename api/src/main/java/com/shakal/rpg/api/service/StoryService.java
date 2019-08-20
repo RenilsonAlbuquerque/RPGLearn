@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.shakal.rpg.api.contracts.service.IStoryService;
 import com.shakal.rpg.api.dto.commons.KeyValueDTO;
+import com.shakal.rpg.api.dto.create.PlaceCreateDTO;
 import com.shakal.rpg.api.dto.create.StoryCreateDTO;
 import com.shakal.rpg.api.dto.create.StoryCreateInputDTO;
 import com.shakal.rpg.api.dto.filter.CustomPage;
@@ -20,10 +21,12 @@ import com.shakal.rpg.api.dto.overview.StoryOverviewDTO;
 import com.shakal.rpg.api.exception.ResourceNotFoundException;
 import com.shakal.rpg.api.mappers.StoryMapper;
 import com.shakal.rpg.api.mappers.UserMapper;
+import com.shakal.rpg.api.model.Place;
 import com.shakal.rpg.api.model.Story;
 import com.shakal.rpg.api.model.User;
 import com.shakal.rpg.api.model.embedded.UserStoryId;
 import com.shakal.rpg.api.model.relation.UserStory;
+import com.shakal.rpg.api.repository.PlaceDAO;
 import com.shakal.rpg.api.repository.StoryDAO;
 import com.shakal.rpg.api.repository.UserDAO;
 import com.shakal.rpg.api.repository.UserStoryDAO;
@@ -35,14 +38,17 @@ public class StoryService implements IStoryService {
 
 	
 	private StoryDAO storyRepository;
+	private PlaceDAO placeRepository;
 	private UserDAO userDao;
 	private UserStoryDAO userStoryDao;
 	
 	@Autowired
-	public StoryService(StoryDAO storyRepository, UserDAO userDao,UserStoryDAO userStoryDao) {
+	public StoryService(StoryDAO storyRepository, UserDAO userDao,
+			UserStoryDAO userStoryDao,PlaceDAO placeDAO) {
 		this.storyRepository = storyRepository;
 		this.userDao = userDao;
 		this.userStoryDao = userStoryDao;
+		this.placeRepository = placeDAO;
 	}
 	
 	@Override
@@ -55,9 +61,12 @@ public class StoryService implements IStoryService {
 		
 		
 		entity = this.storyRepository.save(entity);
+		/*
 		entity.setPlaces(inputDto.getPlaces().stream()
 				.map(place -> StoryMapper.placeDtoToEntity(place))
 				.collect(Collectors.toList()));
+				*/
+		this.setPlaces(entity, inputDto.getPlaces());
 		this.setUsersInStory(entity, inputDto.getUsers());
 		this.storyRepository.save(entity);
 		return inputDto;
@@ -103,6 +112,13 @@ public class StoryService implements IStoryService {
 		Page<StoryOverviewDTO> page = this.userStoryDao.retrieveStoriesAsDTO(PageRequest.of(filter.getPage() -1, 
 				filter.getSize()));
 		return (CustomPage<StoryOverviewDTO>) PaginationGenerator.convertPage(page);
+	}
+	private void setPlaces(Story story,List<PlaceCreateDTO> placeInput) {
+		for(PlaceCreateDTO placeDto: placeInput) {
+			Place entity = StoryMapper.placeDtoToEntity(placeDto);
+			entity.setStory(story);
+			this.placeRepository.save(entity);
+		} 
 	}
 
 }

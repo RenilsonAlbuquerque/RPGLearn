@@ -11,11 +11,12 @@ import { PlaceOverviewComponent } from './place-overview/place-overview.componen
 import { StoryCreateComponent } from './story-create/story-create.component';
 import { FormsModule, ReactiveFormsModule, FormBuilder } from '@angular/forms';
 import { BasecomponentsModule } from '../basecomponents/basecomponents.module';
+import { PlaceCreateComponent } from './place-create/place-create.component';
 
 
 
 @NgModule({
-  declarations: [StoryMapComponent, PlaceDetailComponent, StoryListComponent, StoryDetailComponent, PlaceOverviewComponent, StoryCreateComponent],
+  declarations: [StoryMapComponent, PlaceDetailComponent, StoryListComponent, StoryDetailComponent, PlaceOverviewComponent, StoryCreateComponent, PlaceCreateComponent],
   imports: [
     CommonModule,
     StoryRoutingModule,

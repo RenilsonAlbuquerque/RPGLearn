@@ -1,4 +1,4 @@
-use rpg;
+
 
 insert into tb_challange_dificult(id,level,easy, medium, hard, deadly) values (1,1,25,50,75,100);
 insert into tb_challange_dificult(id,level,easy, medium, hard, deadly) values (2,2,50,100,150,200);
