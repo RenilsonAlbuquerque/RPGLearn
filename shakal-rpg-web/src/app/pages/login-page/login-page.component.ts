@@ -48,9 +48,6 @@ export class LoginPageComponent implements OnInit {
                 
             },
             error => {
-              console.log(error.detail)
-                var message = error.response.detail
-                this.toastr.error(message);
                 this.loading = false;
             });
   }

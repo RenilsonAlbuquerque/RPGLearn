@@ -22,6 +22,7 @@ public class StoryMapper {
 	public static Place placeDtoToEntity(PlaceCreateDTO inputDto) {
 		Place entity = new Place();
 		entity.setName(inputDto.getName());
+		entity.setBackground(inputDto.getBackground());
 		entity.setMap(inputDto.getMap());
 		return entity;
 	}

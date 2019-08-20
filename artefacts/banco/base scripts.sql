@@ -1,6 +1,3 @@
-drop database rpg;
-create database rpg;
-use rpg;
 
 insert into tb_dice(id,value) values (1,0);
 insert into tb_dice(id,value) values (2,1);

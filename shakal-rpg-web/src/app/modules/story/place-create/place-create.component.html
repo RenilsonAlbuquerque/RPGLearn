@@ -1,0 +1,29 @@
+<div>
+    <form [formGroup]="placeForm" >
+        <div class="form-group">           
+            <div class="card w-100 h-100">
+                <img height="320"  class="card-img" src="{{ mapImagePath}}" alt="">
+            </div>
+            <mat-form-field class="form-group col-12" appearance="outline">
+                <mat-label>URL Foto</mat-label>
+                <input matInput placeholder="Url imagem" [(ngModel)]="mapImagePath" formControlName="map">            
+            </mat-form-field>
+        </div>
+        <mat-form-field class="form-group col-12" appearance="outline" >
+            <mat-label>Nome</mat-label>
+            <input class="input-sample" matInput placeholder="Nome" formControlName="name">
+            <mat-error *ngIf="!placeForm.controls['name'].valid && placeForm.controls['name'].touched">
+                    Campo obrigatório
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="form-group col-12" appearance="outline">
+            <mat-label>Background</mat-label>
+            <input  matInput type="text" placeholder="Background" formControlName="background">
+            <mat-error *ngIf="!placeForm.controls['background'].valid && placeForm.controls['background'].touched">
+                    Campo obrigatório
+            </mat-error>
+        </mat-form-field>
+        <button type="submit" (click)="onSubmit()" mat-raised-button color="primary">Adcionar</button>
+        
+    </form>
+</div>

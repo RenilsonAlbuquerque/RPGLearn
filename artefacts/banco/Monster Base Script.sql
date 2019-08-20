@@ -1,4 +1,4 @@
-use rpg;
+
 
 insert into tb_monster_type(id,name,description) values (1,"Aberração","são seres profundamente alienígenas. Muitas delas possuem habilidades mágicas inatas que vem da mente alienígena da criaturas e não das formas místicas do mundo. As aberrações quintessenciais são os aboletes, devoradores de mentes, observadores e slaads.");
 
@@ -29,44 +29,3 @@ insert into tb_monster_type(id,name,description) values (13,"Morto-Vivo", "foram
 insert into tb_monster_type(id,name,description) values (14,"Planta", " no contexto, são criaturas vegetais, não flora ordinária. Muitas delas são ambulantes e algumas são carnívoras. As plantas quintessenciais são o arbusto errante e a ente. Criaturas fúngicas como o esporo de gás e o miconide também fazem parte dessa categoria.");
 
 
-insert into tb_monster_race (id,type_id, name,description) values (1,3,"PLANETÁRIO","Os planetários agem como as armas dos deuses que
-servem, apresentando uma representação tangível da
-força de suas divindades. Um planetário pode evocar
-chuva para aliviar uma seca ou pode liberar uma praga
-de insetos para devorar colheitas. Os ouvidos celestiais de
-um planetário detectam cada falsidade e seus olhos
-radiantes veem através de toda enganação.
-Planetários são musculosos, carecas e possuem uma
-pele num tom verde opalescente e asas plumadas
-brancas. Eles são bem mais altos que a maioria dos
-humanoides, brandindo imensas espadas graciosamente.
-Às vezes, enviados para ajudar mortais poderosos em
-tarefas importantes do bem, os planetários gostam
-especialmente das missões que envolvam combater
-corruptores.");
-
-insert into tb_monster_race (id,type_id, name,description) values (2,3,"Deva","Devas são anjos que agem
-como mensageiros ou
-agentes divinos no Plano
-Material, na Umbra e em
-Faéria e que podem
-assumir uma forma
-apropriada ao reino para
-o qual foram enviados.
-Lendas contam sobre
-anjos que assumiram
-formas mortais por anos,
-trazendo ajuda, esperança
-e coragem ao povo de bom
-coração. Um deva pode
-assumir qualquer forma,
-apesar de preferirem se
-parecer com mortais como um
-humanoide ou animal inócuo.
-Quando as circunstância
-requerem que ele acabe com seu
-disfarce, um deva se mostra como uma
-bela criatura similar a um humanoide com
-pele prateada. Seus cabelos e olhos brilham com um
-esplendor sobrenatural e grandes asas plumadas
-brotam de suas escápulas.");
