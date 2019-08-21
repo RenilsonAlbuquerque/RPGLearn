@@ -7,10 +7,14 @@ import {setLoggedUser} from '../actions/UserAction';
 import NavigationService from "../service/NavigationService";
 import { View, StyleSheet} from 'react-native';
 import { ActivityIndicator } from "react-native-paper";
+import Colors from '../styles/ColorsStyle'
 
 
 class SplashScreenPage extends Component {
    
+    static navigationOptions = {
+        header: null,
+      };
     componentWillMount() { 
        
         this.retrieveUser()
@@ -24,11 +28,9 @@ class SplashScreenPage extends Component {
         AsyncStorage.getItem(USER_STORAGE).then(
           value => {
             if(value){
-             console.log(JSON.parse(value))
-             this.props.setLoggedUser(JSON.parse(value));
-             NavigationService.navigate('StoryPage')
+                this.props.setLoggedUser(JSON.parse(value));
+                NavigationService.navigate('StoryPage')
             }else{
-                console.log(value)
                 NavigationService.navigate('Login')
             }
           }
@@ -56,6 +58,8 @@ const splashStyle = StyleSheet.create({
     container: {
       flex:1,
       alignItems: 'center',
-      justifyContent:'center'
+      justifyContent:'center',
+      backgroundColor: Colors.PRIMARY_COLOR,
+      color: Colors.PRIMARY_COLOR
     }
 });

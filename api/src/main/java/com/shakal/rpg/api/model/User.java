@@ -17,6 +17,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 @Table(name= "tb_user")
 public class User implements UserDetails {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;

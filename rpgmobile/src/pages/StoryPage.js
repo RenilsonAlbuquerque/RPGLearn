@@ -9,6 +9,8 @@ import { getStories,setCurrentStory} from '../actions/StoryAction'
 import { Text} from 'native-base';
 import { FlatList } from 'react-native-gesture-handler';
 import NavigationService from '../service/NavigationService';
+import { USER_STORAGE } from '../reducers/UserReducer';
+import AsyncStorage from '@react-native-community/async-storage';
 
 
 
@@ -19,6 +21,18 @@ class StoryPage extends Component{
     };
     componentWillMount() { 
         this.props.getStories({page:1, size:10});
+        AsyncStorage.getItem(USER_STORAGE).then(
+          value => {
+            if(value){
+             console.log(JSON.parse(value))
+            
+             
+            }else{
+                console.log(value)
+               
+            }
+          }
+        );
     };
     loadStories = async () =>{
       if(this.props.storyData.last === false){
