@@ -5,31 +5,37 @@ import AsyncStorage from "@react-native-community/async-storage";
 import { USER_STORAGE } from "../reducers/UserReducer";
 import {setLoggedUser} from '../actions/UserAction';
 import NavigationService from "../service/NavigationService";
-import { View, StyleSheet} from 'react-native';
+import { View, StyleSheet,Image} from 'react-native';
 import { ActivityIndicator } from "react-native-paper";
 import Colors from '../styles/ColorsStyle'
+import { StackActions, NavigationActions } from 'react-navigation';
+
 
 
 class SplashScreenPage extends Component {
    
     static navigationOptions = {
         header: null,
-      };
+    };
+    constructor(props) {
+        super(props);
+        this.retrieveUser();
+    }
     componentWillMount() { 
        
-        this.retrieveUser()
+        //this.retrieveUser()
       
     };
     retrieveUser = () => {
-        AsyncStorage.getAllKeys().then(
-            value => {console.log(value)}
-        )
+      
         //function to get the value from AsyncStorage
         AsyncStorage.getItem(USER_STORAGE).then(
           value => {
+            setTimeout(function(){
+            }, 3000);
             if(value){
                 this.props.setLoggedUser(JSON.parse(value));
-                NavigationService.navigate('StoryPage')
+                NavigationService.navigate('Main')
             }else{
                 NavigationService.navigate('Login')
             }
@@ -39,6 +45,7 @@ class SplashScreenPage extends Component {
     render(){
         return (
             <View style={splashStyle.container}>
+                <Image style={splashStyle.logoImage} source = {require('../resources/img/redshakal.png')}/>
                 <ActivityIndicator size="large" color="white"></ActivityIndicator>
             </View>
         );
@@ -61,5 +68,10 @@ const splashStyle = StyleSheet.create({
       justifyContent:'center',
       backgroundColor: Colors.PRIMARY_COLOR,
       color: Colors.PRIMARY_COLOR
-    }
+    },
+    logoImage:{
+        alignContent:'center',
+        justifyContent:'center',
+        height: 240
+      }
 });

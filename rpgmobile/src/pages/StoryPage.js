@@ -21,18 +21,6 @@ class StoryPage extends Component{
     };
     componentWillMount() { 
         this.props.getStories({page:1, size:10});
-        AsyncStorage.getItem(USER_STORAGE).then(
-          value => {
-            if(value){
-             console.log(JSON.parse(value))
-            
-             
-            }else{
-                console.log(value)
-               
-            }
-          }
-        );
     };
     loadStories = async () =>{
       if(this.props.storyData.last === false){

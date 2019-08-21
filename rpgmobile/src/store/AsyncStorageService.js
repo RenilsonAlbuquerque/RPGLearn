@@ -8,3 +8,10 @@ export async function saveUser (content) {
         console.log(error)
     }
 };
+export async function removeUser () {
+  try {
+      await AsyncStorage.removeItem(USER_STORAGE);
+  } catch (error) {
+      console.log(error)
+  }
+};
