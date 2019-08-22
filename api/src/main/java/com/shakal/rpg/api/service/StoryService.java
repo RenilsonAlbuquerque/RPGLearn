@@ -10,6 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.shakal.rpg.api.contracts.service.IStoryService;
+import com.shakal.rpg.api.contracts.service.IUserService;
 import com.shakal.rpg.api.dto.commons.KeyValueDTO;
 import com.shakal.rpg.api.dto.create.PlaceCreateDTO;
 import com.shakal.rpg.api.dto.create.StoryCreateDTO;
@@ -40,15 +41,17 @@ public class StoryService implements IStoryService {
 	private StoryDAO storyRepository;
 	private PlaceDAO placeRepository;
 	private UserDAO userDao;
+	private IUserService userService;
 	private UserStoryDAO userStoryDao;
 	
 	@Autowired
 	public StoryService(StoryDAO storyRepository, UserDAO userDao,
-			UserStoryDAO userStoryDao,PlaceDAO placeDAO) {
+			UserStoryDAO userStoryDao,PlaceDAO placeDAO,IUserService userService) {
 		this.storyRepository = storyRepository;
 		this.userDao = userDao;
 		this.userStoryDao = userStoryDao;
 		this.placeRepository = placeDAO;
+		this.userService = userService;
 	}
 	
 	@Override
@@ -67,7 +70,7 @@ public class StoryService implements IStoryService {
 				.collect(Collectors.toList()));
 				*/
 		this.setPlaces(entity, inputDto.getPlaces());
-		this.setUsersInStory(entity, inputDto.getUsers());
+		this.setUsersInStory(entity, inputDto.getUsers(), this.userService.getCurrentUserId());
 		this.storyRepository.save(entity);
 		return inputDto;
 	}
@@ -96,7 +99,7 @@ public class StoryService implements IStoryService {
 				.map(user -> UserMapper.entityToKeyValue(user)).collect(Collectors.toList()));
 		return result;
 	}
-	private void setUsersInStory(Story story, List<KeyValueDTO> users) {
+	private void setUsersInStory(Story story, List<KeyValueDTO> users, long masterId) {
 		for(KeyValueDTO user: users) {
 			User userEntity = this.userDao.getOne(user.getId());
 			UserStory userStory = new UserStory();
@@ -105,6 +108,14 @@ public class StoryService implements IStoryService {
 			userStory.setUser(userEntity);
 			this.userStoryDao.save(userStory);
 		}
+		User masterEntity = this.userDao.getOne(masterId);
+		UserStory masterStory = new UserStory();
+		masterStory.setId(new UserStoryId(masterEntity.getId(),story.getId()));
+		masterStory.setStory(story);
+		masterStory.setUser(masterEntity);
+		masterStory.setMaster(true);
+		this.userStoryDao.save(masterStory);
+		
 	}
 
 	@Override

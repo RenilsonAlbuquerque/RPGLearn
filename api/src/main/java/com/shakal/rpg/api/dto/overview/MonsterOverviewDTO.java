@@ -3,7 +3,7 @@ package com.shakal.rpg.api.dto.overview;
 public class MonsterOverviewDTO {
 
 	private long id;
-	private int challengeLevel;
+	private double challengeLevel;
 	private String race;
 	private String type;
 	private int lifePoints;
@@ -15,7 +15,7 @@ public class MonsterOverviewDTO {
 	}
 	
 	
-	public MonsterOverviewDTO(long id, int challengeLevel, String race, String type, int lifePoints) {
+	public MonsterOverviewDTO(long id, double challengeLevel, String race, String type, int lifePoints) {
 		super();
 		this.id = id;
 		this.challengeLevel = challengeLevel;
@@ -25,7 +25,7 @@ public class MonsterOverviewDTO {
 	}
 
 
-	public MonsterOverviewDTO(long id, int challengeLevel, String race) {
+	public MonsterOverviewDTO(long id, double challengeLevel, String race) {
 		super();
 		this.id = id;
 		this.challengeLevel = challengeLevel;
@@ -52,10 +52,10 @@ public class MonsterOverviewDTO {
 	public void setType(String type) {
 		this.type = type;
 	}
-	public int getChallengeLevel() {
+	public double getChallengeLevel() {
 		return challengeLevel;
 	}
-	public void setChallengeLevel(int challengeLevel) {
+	public void setChallengeLevel(double challengeLevel) {
 		this.challengeLevel = challengeLevel;
 	}
 	public int getLifePoints() {

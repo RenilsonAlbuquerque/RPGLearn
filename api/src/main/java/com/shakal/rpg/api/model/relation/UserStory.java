@@ -13,7 +13,7 @@ import javax.persistence.Table;
 
 import com.shakal.rpg.api.model.Story;
 import com.shakal.rpg.api.model.User;
-import com.shakal.rpg.api.model.Character;
+import com.shakal.rpg.api.model.character.Character;
 import com.shakal.rpg.api.model.embedded.UserStoryId;
 
 

@@ -7,14 +7,14 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name= "tb_monster_challenge_level")
-public class MonsterChallengeLevel {
+@Table(name= "tb_creature_level")
+public class CreatureLevel {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
-	private int value;
+	private double value;
 	
 	private int experiencePoints;
 	
@@ -28,11 +28,11 @@ public class MonsterChallengeLevel {
 		this.id = id;
 	}
 
-	public int getValue() {
+	public double getValue() {
 		return value;
 	}
 
-	public void setValue(int value) {
+	public void setValue(double value) {
 		this.value = value;
 	}
 

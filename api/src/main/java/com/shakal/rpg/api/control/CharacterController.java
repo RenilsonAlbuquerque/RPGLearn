@@ -10,20 +10,20 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.shakal.rpg.api.contracts.service.IUserService;
-import com.shakal.rpg.api.dto.create.UserCreateDTO;
-
+import com.shakal.rpg.api.contracts.service.ICharacterService;
+import com.shakal.rpg.api.dto.create.CharacterCreateDTO;
+import com.shakal.rpg.api.exception.ResourceNotFoundException;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/user")
-public class UserController {
+@RequestMapping("/character")
+public class CharacterController {
 
 	@Autowired
-	private IUserService userService;
+	private ICharacterService characterService;
 	
 	@PostMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<UserCreateDTO> createStory(@RequestBody UserCreateDTO createDto) {
-		return new ResponseEntity<UserCreateDTO>(this.userService.insertUser(createDto), HttpStatus.OK);
+    public ResponseEntity<Boolean> createCharacter(@RequestBody CharacterCreateDTO createDto) throws ResourceNotFoundException{
+		return new ResponseEntity<Boolean>(this.characterService.createCharacterInStory(createDto), HttpStatus.OK);
     }
 }

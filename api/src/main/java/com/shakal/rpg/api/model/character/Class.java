@@ -1,4 +1,4 @@
-package com.shakal.rpg.api.model;
+package com.shakal.rpg.api.model.character;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

@@ -27,7 +27,7 @@ import com.shakal.rpg.api.dto.overview.MonsterOverviewDTO;
 import com.shakal.rpg.api.model.Alignment;
 import com.shakal.rpg.api.model.Attack;
 import com.shakal.rpg.api.model.Monster;
-import com.shakal.rpg.api.model.MonsterChallengeLevel;
+import com.shakal.rpg.api.model.CreatureLevel;
 import com.shakal.rpg.api.model.MonsterRace;
 import com.shakal.rpg.api.model.MonsterSize;
 import com.shakal.rpg.api.model.MonsterType;
@@ -222,7 +222,7 @@ public class MonsterService implements IMonsterService {
 		Alignment alignmentSearch = this.alignmentDao.findById(inputDto.getAlignment())
 				.orElseThrow(() -> new ResourceNotFoundException(Messages.INVALID_CREATURE_ALIGNMENT));
 		
-		MonsterChallengeLevel levelSearch = this.challengeLevelDao.findById(inputDto.getLevel())
+		CreatureLevel levelSearch = this.challengeLevelDao.findById(inputDto.getLevel())
 				.orElseThrow(() -> new ResourceNotFoundException(Messages.INVALID_MONSTER_CHALLENGE_LEVEL));
 		
 		

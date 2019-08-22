@@ -24,7 +24,7 @@ public class CombatService implements ICombatService{
 	
 	private int calculateChallengeDeficult(CombatStateDTO input) {
 		int result = 1;
-		int maxLevel = 0;
+		double maxLevel = 0;
 		double xpPlayersSum = 0;
 		double xpMonsterSum = 0;
 		int monsterMultiplierFactor = 1;
@@ -40,7 +40,7 @@ public class CombatService implements ICombatService{
 		}
 		xpMonsterSum = xpMonsterSum * this.multiplierFactor(input.getMonsters().size());
 		
-		ChallangeDificult currentChallenge = this.challengeDificultDAO.getOne(Long.valueOf(maxLevel));
+		ChallangeDificult currentChallenge = this.challengeDificultDAO.getOne(1L);
 		if(xpPlayersSum > currentChallenge.getEasy()) {
 			if(xpPlayersSum < currentChallenge.getMedium()) {
 				
