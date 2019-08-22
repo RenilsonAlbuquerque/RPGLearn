@@ -2,21 +2,22 @@ package com.shakal.rpg.api.utils;
 
 public class Messages {
 
-    public static final String USER_NOT_FOUND = "Usuário não encontrado";
+    public static final String USER_NOT_FOUND = "Usuï¿½rio nï¿½o encontrado";
     public static final String INVALID_PASSWORD = "Senha incorreta.";
     
-    public static final String INVALID_JSON_FORMAT = "Formato do Json inválido";
-    public static final String INVALID_TOKEN = "Token inválido.";
-    public static final String INVALID_TOKEN_FORMAT = "Formato do token inválido";
-    public static final String MONSTER_NOT_FOUND = "O monstro não existe";
-    public static final String STORY_NOT_FOUND = "A história não existe";
+    public static final String INVALID_JSON_FORMAT = "Formato do Json invï¿½lido";
+    public static final String INVALID_TOKEN = "Token invï¿½lido.";
+    public static final String INVALID_TOKEN_FORMAT = "Formato do token invï¿½lido";
+    public static final String MONSTER_NOT_FOUND = "O monstro nï¿½o existe";
+    public static final String CHARACTER_NOT_FOUND = "O personagem nÃ£o existe";
+    public static final String STORY_NOT_FOUND = "A histï¿½ria nï¿½o existe";
     
-    public static final String INVALID_MONSTER_TYPE = "O tipo do monstro não é válido";
-    public static final String INVALID_MONSTER_SIZE = "O tamanho do monstro não é válido";
+    public static final String INVALID_MONSTER_TYPE = "O tipo do monstro nï¿½o ï¿½ vï¿½lido";
+    public static final String INVALID_MONSTER_SIZE = "O tamanho do monstro nï¿½o ï¿½ vï¿½lido";
     
     
-    public static final String INVALID_CREATURE_ALIGNMENT = "O alinhamento da criatura não é válido";
-    public static final String INVALID_MONSTER_CHALLENGE_LEVEL = "O nível de desafio do monstro não é válido";
+    public static final String INVALID_CREATURE_ALIGNMENT = "O alinhamento da criatura nï¿½o ï¿½ vï¿½lido";
+    public static final String INVALID_MONSTER_CHALLENGE_LEVEL = "O nï¿½vel de desafio do monstro nï¿½o ï¿½ vï¿½lido";
     
     
 }

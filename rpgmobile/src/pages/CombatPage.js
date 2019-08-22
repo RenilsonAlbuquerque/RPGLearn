@@ -5,6 +5,7 @@ import StompWS from 'react-native-stomp-websocket';
 import CombatBottomNavigator from '../router/CombatBottomNavigator';
 import { bindActionCreators } from "redux";
 import {setCombatStatus,getCombatStatusState} from '../actions/CombatAction'
+import {getCurrentCaracterFromStory} from '../actions/CharacterAction'
 import { BASE_URL } from '../constants/constants';
 
 
@@ -22,6 +23,9 @@ class CombatPage extends Component {
             this.props.setCombatStatus(JSON.parse(message.body))
           });
       }, (err) => console.log(err))
+
+      this.props.getCurrentCaracterFromStory(this.props.currentUser.id,this.props.currentStory.id)
+      
     }
     
     constructor(props){
@@ -40,12 +44,15 @@ class CombatPage extends Component {
 }
 const mapStateToProps = state => ({ 
     errorMessage: state.CombatReducer.combatState,
-    currentCombat: state.StoryReducer.selectedStory
+    currentCombat: state.StoryReducer.selectedStory,
+    currentUser: state.UserReducer.currentUser,
+    currentStory: state.StoryReducer.selectedStory
 })  
   
   const mapDispatchToProps = dispatch => bindActionCreators({
     setCombatStatus,
-    getCombatStatusState
+    getCombatStatusState,
+    getCurrentCaracterFromStory
   }, dispatch);
 export default connect(mapStateToProps,mapDispatchToProps)(CombatPage);
 

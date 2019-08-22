@@ -121,7 +121,7 @@ public class StoryService implements IStoryService {
 	@Override
 	public CustomPage<StoryOverviewDTO> listsStoriesByUserIdPaged(PaginationFilter filter, long userId) {
 		Page<StoryOverviewDTO> page = this.userStoryDao.retrieveStoriesAsDTO(PageRequest.of(filter.getPage() -1, 
-				filter.getSize()));
+				filter.getSize()), userId);
 		return (CustomPage<StoryOverviewDTO>) PaginationGenerator.convertPage(page);
 	}
 	private void setPlaces(Story story,List<PlaceCreateDTO> placeInput) {

@@ -5,6 +5,7 @@ import CombatMonsters from '../components/combat/CombatMonsters';
 import { Icon } from 'native-base';
 import { createAppContainer } from 'react-navigation';
 import CombatAllies from '../components/combat/CombatAllies';
+import MonsterSheetTopNavigator from '../components/character/CharacterSheet'
 import Colors from '../styles/ColorsStyle';
 
 const CombatBottomNavigator = createMaterialBottomTabNavigator({
@@ -21,6 +22,14 @@ const CombatBottomNavigator = createMaterialBottomTabNavigator({
           tabBarLabel: 'Aliados',
           tabBarIcon: ({ tintColor, focused }) => (
             <Icon size={30} name={ Platform.OS === 'ios' ? (focused ? 'ios-contacts' : 'ios-home-outline') : 'md-contacts' } style={{ color: tintColor }} />
+          )
+        }
+    },
+    CharacterSheet: {screen: MonsterSheetTopNavigator,
+      navigationOptions: {
+          tabBarLabel: 'Ficha',
+          tabBarIcon: ({ tintColor, focused }) => (
+            <Icon size={30} name={ Platform.OS === 'ios' ? (focused ? 'ios-person' : 'ios-home-outline') : 'md-person' } style={{ color: tintColor }} />
           )
         }
     }
