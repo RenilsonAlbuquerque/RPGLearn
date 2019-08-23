@@ -5,26 +5,23 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 import com.shakal.rpg.api.model.CreatureLevel;
-import com.shakal.rpg.api.model.embedded.CharacterClassLevelId;
+import com.shakal.rpg.api.model.embedded.ClassLevelId;
+
 
 @Entity
-@Table(name= "mtm_character_class")
-public class CharacterClass {
+@Table(name= "mtm_class_level")
+public class ClassLevel {
 
+	
+	
 	@Id
 	@EmbeddedId
-	private CharacterClassLevelId id;
-	
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
-	@JoinColumn(name = "character_id",referencedColumnName = "creature_id")
-	@MapsId("characterId")
-	private Character character;
+	private ClassLevelId id;
 	
 	
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
@@ -34,22 +31,13 @@ public class CharacterClass {
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
 	@MapsId("levelId")
 	private CreatureLevel level;
-	
 
-	public CharacterClassLevelId getId() {
+	public ClassLevelId getId() {
 		return id;
 	}
 
-	public void setId(CharacterClassLevelId id) {
+	public void setId(ClassLevelId id) {
 		this.id = id;
-	}
-
-	public Character getCharacter() {
-		return character;
-	}
-
-	public void setCharacter(Character character) {
-		this.character = character;
 	}
 
 	public Class getClasS() {
@@ -67,6 +55,11 @@ public class CharacterClass {
 	public void setLevel(CreatureLevel level) {
 		this.level = level;
 	}
+	
+
+	
+
+	
 	
 	
 	

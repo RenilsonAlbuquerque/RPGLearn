@@ -6,30 +6,24 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class CharacterClassLevelId implements Serializable {
+public class ClassLevelId implements Serializable{
+
 	
+    
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@Column(name = "character_id")
-    private Long characterId;
-	
 	@Column(name = "class_id")
     private Long classId;
 	
 	@Column(name = "level_id")
     private Long levelId;
 	
+	
 
-	public Long getCharacterId() {
-		return characterId;
-	}
-
-	public void setCharacterId(Long characterId) {
-		this.characterId = characterId;
-	}
+	
 
 	public Long getClassId() {
 		return classId;
@@ -48,6 +42,4 @@ public class CharacterClassLevelId implements Serializable {
 	}
 	
 	
-	
-
 }
