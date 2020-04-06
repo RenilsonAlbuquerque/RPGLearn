@@ -1,0 +1,13 @@
+<div class="container">
+    <div class="rows" *ngFor="let squareRow of squares; index as j">
+        <app-grid-board-card *ngFor="let square of squareRow; index as k"></app-grid-board-card>
+    </div>
+    <!-- <app-grid-board-card *ngFor="let square of squares; index as j"></app-grid-board-card> -->
+</div>
+
+<!-- <div class="wrapper">
+    <app-grid-board-card *ngFor="let square of squares; index as j"></app-grid-board-card>
+</div> -->
+
+
+

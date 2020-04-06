@@ -10,11 +10,13 @@ import { MaterialModule } from '../material-design/material.module';
 import { CombatRoomService } from './services/combat-room.service';
 import { InjectableRxStompConfig, RxStompService, rxStompServiceFactory } from '@stomp/ng2-stompjs';
 import { myRxStompConfig } from 'src/app/infra/config/my-rx-stomp.config';
+import { GridBoardComponent } from './grid-board/grid-board.component';
+import { GridBoardCardComponent } from './grid-board-card/grid-board-card.component';
 
 
 
 @NgModule({
-  declarations: [CombatMenuComponent, CombatScreenComponent],
+  declarations: [CombatMenuComponent, CombatScreenComponent, GridBoardComponent, GridBoardCardComponent],
   imports: [
     CombatRoutingModule,
     CommonModule,
