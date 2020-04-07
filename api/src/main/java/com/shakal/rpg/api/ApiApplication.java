@@ -29,6 +29,8 @@ public class ApiApplication implements ApplicationRunner{
 		 if(userRepository.findAll().isEmpty()) {
 				String password = bCryptPasswordEncoder.encode("123456");
 				this.userRepository.save(new User("renilson",password));
+				String password2 = bCryptPasswordEncoder.encode("123456");
+				this.userRepository.save(new User("shakal",password2));
 			}
 	   }
 

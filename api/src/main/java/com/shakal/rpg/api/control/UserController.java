@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.shakal.rpg.api.contracts.service.IUserService;
 import com.shakal.rpg.api.dto.create.UserCreateDTO;
+import com.shakal.rpg.api.exception.DuplicatedResourceException;
 
 
 @CrossOrigin
@@ -23,7 +24,7 @@ public class UserController {
 	private IUserService userService;
 	
 	@PostMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<UserCreateDTO> createStory(@RequestBody UserCreateDTO createDto) {
+    public ResponseEntity<UserCreateDTO> createStory(@RequestBody UserCreateDTO createDto) throws DuplicatedResourceException {
 		return new ResponseEntity<UserCreateDTO>(this.userService.insertUser(createDto), HttpStatus.OK);
     }
 }

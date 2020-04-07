@@ -12,11 +12,12 @@ import { StoryCreateComponent } from './story-create/story-create.component';
 import { FormsModule, ReactiveFormsModule, FormBuilder } from '@angular/forms';
 import { BasecomponentsModule } from '../basecomponents/basecomponents.module';
 import { PlaceCreateComponent } from './place-create/place-create.component';
+import { StoryDetailPlayerComponent } from './story-detail-player/story-detail-player.component';
 
 
 
 @NgModule({
-  declarations: [StoryMapComponent, PlaceDetailComponent, StoryListComponent, StoryDetailComponent, PlaceOverviewComponent, StoryCreateComponent, PlaceCreateComponent],
+  declarations: [StoryMapComponent, PlaceDetailComponent, StoryListComponent, StoryDetailComponent, PlaceOverviewComponent, StoryCreateComponent, PlaceCreateComponent, StoryDetailPlayerComponent],
   imports: [
     CommonModule,
     StoryRoutingModule,

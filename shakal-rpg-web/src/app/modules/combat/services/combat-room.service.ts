@@ -12,7 +12,6 @@ import { environment } from 'src/environments/environment';
 export class CombatRoomService {
 
   private storyId: number;
-  private userType: UserRoleStory;
   private combatState: BehaviorSubject<CombatState>;
   
   constructor(private httpClient: HttpClient,private rxStompService: RxStompService) {
@@ -34,7 +33,6 @@ export class CombatRoomService {
       response => {
         console.log(response)
         this.combatState.next(response)
-        this.userType = response.userTypeInStory;
       } 
     )
   }

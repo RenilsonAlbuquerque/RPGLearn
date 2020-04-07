@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 import com.shakal.rpg.api.contracts.service.IUserService;
 import com.shakal.rpg.api.dto.commons.KeyValueDTO;
 import com.shakal.rpg.api.dto.create.UserCreateDTO;
+import com.shakal.rpg.api.exception.DuplicatedResourceException;
 import com.shakal.rpg.api.mappers.UserMapper;
 import com.shakal.rpg.api.model.Story;
 import com.shakal.rpg.api.model.User;
@@ -75,9 +76,14 @@ public class UserService implements UserDetailsService,IUserService {
 
 
 	@Override
-	public UserCreateDTO insertUser(UserCreateDTO createDto) {
+	public UserCreateDTO insertUser(UserCreateDTO createDto) throws DuplicatedResourceException{
+		User user = this.userDAO.findByUsername(createDto.getUsername()).get();
+		if(user != null) {
+			throw new DuplicatedResourceException(Messages.INVALID_USERNAME);
+		}
 		createDto.setPassword(this.bCryptPasswordEncoder.encode(createDto.getPassword()));
 		this.userDAO.save(UserMapper.createToEntity(createDto));
 		return createDto;
 	}
+
 }

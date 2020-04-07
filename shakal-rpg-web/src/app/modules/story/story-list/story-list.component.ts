@@ -3,6 +3,8 @@ import { StoryOverview } from 'src/app/domain/models/story/story-overview';
 import { Page } from 'src/app/infra/models/page';
 import { StoryService } from '../story.module.service';
 import { Router } from '@angular/router';
+import { UserRoleStory } from 'src/app/domain/models/story/user-role-story';
+//import { UserRoleStory } '../../../domain/models/story/user-role-story.ts';
 
 @Component({
   selector: 'app-story-list',
@@ -30,12 +32,18 @@ export class StoryListComponent implements OnInit {
   ngOnInit() {
     
     this.search = "";
-    this.storyService.getOverview(1).subscribe(
+    this.storyService.getOverviewsListOfUser(1).subscribe(
         response => (this.page = response)  
     )
   }
   goEdit(story){
-    this.router.navigate(['home/story/datail', story.id])
+    if(story.userRoleInStory == UserRoleStory.master){
+      this.router.navigate(['home/story/datail', story.id])
+    }
+    else{
+      this.router.navigate(['home/story/datail-player', story.id])
+    }
+    
   }
   pageChange(pageNumber: number){
     this.storyService.getOverview(pageNumber).subscribe(

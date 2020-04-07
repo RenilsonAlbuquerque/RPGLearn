@@ -18,6 +18,9 @@ export class StoryService {
     getOverview(pageNumber): Observable<Page<StoryOverview>>{
         return this.httpClient.post<Page<StoryOverview>>(`${environment.BASE_URL}story/list`,{page:pageNumber, size:9});
     }
+    getOverviewsListOfUser(pageNumber): Observable<Page<StoryOverview>>{
+        return this.httpClient.post<Page<StoryOverview>>(`${environment.BASE_URL}story/player/list`,{page:pageNumber, size:9});
+    }
     getSearchResult(searchString: String, pageNumber): Observable<Page<StoryOverview>>{
         return this.httpClient.post<Page<StoryOverview>>(`${environment.BASE_URL}monster/filter?name=${searchString}`,{page:pageNumber, size:9});
     }
@@ -33,4 +36,5 @@ export class StoryService {
     getPlaceInfoById(id): Observable<PlaceDetail>{
         return this.httpClient.get<PlaceDetail>(`${environment.BASE_URL}place/info/${id}`);
     }
+
 }

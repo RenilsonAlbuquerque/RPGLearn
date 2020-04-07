@@ -16,12 +16,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { CanActivateRouteGuard } from './interceptors/can.activate';
+import { RegisterPlayerComponent } from './pages/register-player/register-player.component';
+import { UserService } from './modules/user/user.module.service';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    RegisterPlayerComponent
   ],
   imports: [
     LayoutModule,
@@ -39,6 +42,7 @@ import { CanActivateRouteGuard } from './interceptors/can.activate';
   providers: [
     AuthService,
     CanActivateRouteGuard,
+    UserService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },],
   bootstrap: [AppComponent]

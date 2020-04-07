@@ -13,13 +13,12 @@ export class ErrorInterceptor implements HttpInterceptor {
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         return next.handle(request).pipe(catchError(err => {
-            console.log(err)
             if (err.status === 401 || err.status === 403  || err.status === 500) {
                 this.toastr.error(err.error.detail);
                 this.authenticationService.logout();
-                
+            }else{
+                this.toastr.error(err.error.detail);
             }
-            
             const error = err.error.message || err.statusText;
             return throwError(error);
         }))

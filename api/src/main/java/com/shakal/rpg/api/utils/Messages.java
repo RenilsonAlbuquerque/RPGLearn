@@ -4,6 +4,7 @@ public class Messages {
 
     public static final String USER_NOT_FOUND = "Usuï¿½rio nï¿½o encontrado";
     public static final String INVALID_PASSWORD = "Senha incorreta.";
+    public static final String INVALID_USERNAME = "Nome de usuário já existe";
     
     public static final String INVALID_JSON_FORMAT = "Formato do Json invï¿½lido";
     public static final String INVALID_TOKEN = "Token invï¿½lido.";

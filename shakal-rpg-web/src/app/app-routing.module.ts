@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { BaseComponent } from './modules/layout/base/base.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { CanActivateRouteGuard } from './interceptors/can.activate';
+import { RegisterPlayerComponent } from './pages/register-player/register-player.component';
 
 
 const routes: Routes = [
@@ -14,6 +15,10 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginPageComponent
+  },
+  {
+    path: 'register',
+    component: RegisterPlayerComponent
   },
   {
     path: 'home',

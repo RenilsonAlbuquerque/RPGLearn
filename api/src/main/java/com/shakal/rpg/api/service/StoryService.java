@@ -84,6 +84,8 @@ public class StoryService implements IStoryService {
         		.stream().map( story -> StoryMapper.entityTOOverview(story))
                 .collect(Collectors.toList()));
 		
+		
+		
 	}
 
 	@Override
@@ -123,7 +125,13 @@ public class StoryService implements IStoryService {
 	public CustomPage<StoryOverviewDTO> listsStoriesByUserIdPaged(PaginationFilter filter, long userId) {
 		Page<StoryOverviewDTO> page = this.userStoryDao.retrieveStoriesAsDTO(PageRequest.of(filter.getPage() -1, 
 				filter.getSize()), userId);
-		return (CustomPage<StoryOverviewDTO>) PaginationGenerator.convertPage(page);
+		CustomPage<StoryOverviewDTO> storyOverview =  (CustomPage<StoryOverviewDTO>) PaginationGenerator.convertPage(page);
+		
+		storyOverview.getElements().forEach( story -> {
+			story.setUserRoleInStory(this.getUserRoleInStory(story.getId(), userId));
+		});
+		
+		return storyOverview;
 	}
 	private void setPlaces(Story story,List<PlaceCreateDTO> placeInput) {
 		for(PlaceCreateDTO placeDto: placeInput) {
@@ -145,6 +153,16 @@ public class StoryService implements IStoryService {
 		}
 		return result;
 	
+	}
+	private int getUserRoleInStory(long storyId,long userId) {
+		int result = UserStoryRole.PLAYER.getValue();
+		List<UserStory> userStories = this.userStoryDao.retrieveRoleOfUserInStory(storyId).get();
+		for(UserStory userStory: userStories) {
+			if(userStory.getUser().getId() == userId && userStory.isMaster()) {
+				result = UserStoryRole.MASTER.getValue();
+			}
+		}
+		return result;
 	}
 
 }
