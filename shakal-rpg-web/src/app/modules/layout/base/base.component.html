@@ -21,10 +21,13 @@
         </li>
        
       </ul>
-      <div>
-          <span>{{userName}} </span>
-          <img src="https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png" class="rounded user-image" alt="Cinque Terre">
-      </div>
+      <button mat-button [matMenuTriggerFor]="menu">
+        <span>{{userName}} </span>
+        <img src="https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png" class="rounded user-image" alt="Cinque Terre">
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="callLogout()">Sair</button>
+      </mat-menu>
       
     
     </div>

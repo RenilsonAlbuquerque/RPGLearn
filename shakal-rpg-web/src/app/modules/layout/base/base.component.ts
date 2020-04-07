@@ -14,5 +14,8 @@ export class BaseComponent implements OnInit {
   ngOnInit() {
     this.userName = this.authService.getCurrentUser().name
   }
+  callLogout(){
+    this.authService.logout();
+  }
 
 }
