@@ -7,6 +7,8 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.jpa.domain.Specification;
+import org.springframework.messaging.support.ErrorMessage;
 import org.springframework.stereotype.Service;
 
 import com.shakal.rpg.api.contracts.service.IStoryService;
@@ -18,10 +20,14 @@ import com.shakal.rpg.api.dto.create.StoryCreateInputDTO;
 import com.shakal.rpg.api.dto.filter.CustomPage;
 import com.shakal.rpg.api.dto.filter.PaginationFilter;
 import com.shakal.rpg.api.dto.info.StoryInfoDTO;
+import com.shakal.rpg.api.dto.overview.MonsterOverviewDTO;
 import com.shakal.rpg.api.dto.overview.StoryOverviewDTO;
+import com.shakal.rpg.api.exception.BusinessException;
 import com.shakal.rpg.api.exception.ResourceNotFoundException;
+import com.shakal.rpg.api.mappers.MonsterMapper;
 import com.shakal.rpg.api.mappers.StoryMapper;
 import com.shakal.rpg.api.mappers.UserMapper;
+import com.shakal.rpg.api.model.Monster;
 import com.shakal.rpg.api.model.Place;
 import com.shakal.rpg.api.model.Story;
 import com.shakal.rpg.api.model.User;
@@ -32,8 +38,12 @@ import com.shakal.rpg.api.repository.PlaceDAO;
 import com.shakal.rpg.api.repository.StoryDAO;
 import com.shakal.rpg.api.repository.UserDAO;
 import com.shakal.rpg.api.repository.UserStoryDAO;
+import com.shakal.rpg.api.specification.MonsterSpecification;
+import com.shakal.rpg.api.specification.StorySpecification;
 import com.shakal.rpg.api.utils.Messages;
 import com.shakal.rpg.api.utils.PaginationGenerator;
+import com.shakal.rpg.api.validators.ErrorMessages;
+import com.shakal.rpg.api.validators.StoryValidator;
 
 @Service
 public class StoryService implements IStoryService {
@@ -56,7 +66,12 @@ public class StoryService implements IStoryService {
 	}
 	
 	@Override
-	public StoryCreateDTO insertStory(StoryCreateDTO inputDto) throws ResourceNotFoundException {
+	public StoryCreateDTO insertStory(StoryCreateDTO inputDto) throws ResourceNotFoundException,BusinessException {
+		ErrorMessages error = new ErrorMessages();
+		StoryValidator.ValidateDTO(inputDto, error);
+		if(error.hasError()) {
+			throw new BusinessException(error.getMessages().toString());
+		}
 		Story entity = new Story();
 		entity.setName(inputDto.getName());
 		entity.setBackground(inputDto.getBackground());
@@ -163,6 +178,21 @@ public class StoryService implements IStoryService {
 			}
 		}
 		return result;
+	}
+
+	@Override
+	public CustomPage<StoryOverviewDTO> searchUserStoriesPaged(long userId,String name, PaginationFilter filter) {
+		Specification<Story> specification = StorySpecification.searchStory(name);
+		Page<Story> page = this.storyRepository.findAll(specification,PageRequest.of(filter.getPage() -1, 
+				filter.getSize()));
+		CustomPage<StoryOverviewDTO> storyOverview =  (CustomPage<StoryOverviewDTO>) PaginationGenerator.convertPage(page);
+		//storyOverview.getElements().removeIf(value -> value.getId() != userId);
+		/*
+		storyOverview.getElements().forEach( story -> {
+			story.setUserRoleInStory(this.getUserRoleInStory(story.getId(), userId));
+		});*/
+		/*TO DO - */
+		return storyOverview;
 	}
 
 }

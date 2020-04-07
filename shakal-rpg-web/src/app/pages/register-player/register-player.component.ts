@@ -52,6 +52,7 @@ export class RegisterPlayerComponent implements OnInit {
         },
         err => {
           this.loading = false;
+          this.toastr.error(err);
         },
       );
   }

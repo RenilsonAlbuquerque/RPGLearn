@@ -3,6 +3,7 @@ package com.shakal.rpg.api.model;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -22,6 +23,7 @@ public class Story {
 	
 	private String name;
 	
+	@Column(length = 1200)
 	private String background;
 	
 	private String folderImage;

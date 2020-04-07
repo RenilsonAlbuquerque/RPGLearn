@@ -22,7 +22,7 @@ export class StoryService {
         return this.httpClient.post<Page<StoryOverview>>(`${environment.BASE_URL}story/player/list`,{page:pageNumber, size:9});
     }
     getSearchResult(searchString: String, pageNumber): Observable<Page<StoryOverview>>{
-        return this.httpClient.post<Page<StoryOverview>>(`${environment.BASE_URL}monster/filter?name=${searchString}`,{page:pageNumber, size:9});
+        return this.httpClient.post<Page<StoryOverview>>(`${environment.BASE_URL}story/filter?name=${searchString}`,{page:pageNumber, size:9});
     }
     createStory(story: StoryCreate): Observable<StoryCreate>{
         return this.httpClient.post<StoryCreate>(`${environment.BASE_URL}story`,story);

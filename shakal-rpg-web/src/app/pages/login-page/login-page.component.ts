@@ -49,6 +49,7 @@ export class LoginPageComponent implements OnInit {
             },
             error => {
                 this.loading = false;
+                this.toastr.error(error)
             });
   }
   goRegister(){
