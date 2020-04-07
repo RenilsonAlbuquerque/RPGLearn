@@ -7,9 +7,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StoryDetailPlayerComponent implements OnInit {
 
-  constructor() { }
+  private combatShown: boolean;
+  private mapShown: boolean;
+  constructor() {
+    this.combatShown = true;
+    this.mapShown = false;
+   }
 
   ngOnInit() {
+  }
+  onShowCombat(){
+    this.combatShown = true;
+    this.mapShown = false;
+  }
+  onShowMap(){
+    this.combatShown = false;
+    this.mapShown = true;
   }
 
 }

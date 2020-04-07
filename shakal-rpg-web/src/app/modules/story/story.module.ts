@@ -13,6 +13,7 @@ import { FormsModule, ReactiveFormsModule, FormBuilder } from '@angular/forms';
 import { BasecomponentsModule } from '../basecomponents/basecomponents.module';
 import { PlaceCreateComponent } from './place-create/place-create.component';
 import { StoryDetailPlayerComponent } from './story-detail-player/story-detail-player.component';
+import { CombatModule } from '../combat/combat.module';
 
 
 
@@ -24,7 +25,8 @@ import { StoryDetailPlayerComponent } from './story-detail-player/story-detail-p
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    BasecomponentsModule
+    BasecomponentsModule,
+    CombatModule
   ],
   providers:[StoryService,FormBuilder]
 })

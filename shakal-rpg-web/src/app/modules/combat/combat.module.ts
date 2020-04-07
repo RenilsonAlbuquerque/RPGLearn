@@ -38,6 +38,7 @@ import { GridBoardCardComponent } from './grid-board-card/grid-board-card.compon
       useFactory: rxStompServiceFactory,
       deps: [InjectableRxStompConfig]
     }
-  ]
+  ],
+  exports:[GridBoardComponent]
 })
 export class CombatModule { }
