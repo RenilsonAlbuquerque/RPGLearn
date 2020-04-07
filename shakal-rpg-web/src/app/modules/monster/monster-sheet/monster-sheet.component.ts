@@ -64,6 +64,7 @@ export class MonsterSheetComponent implements OnInit {
       this.currentLifePoints = newLifePoints;
     }
     this.amount = 0;
+    console.log(newLifePoints)
     this.combatRoomService.updateMonsterLifePoints(this.monsterIndex,this.currentLifePoints);
     
   }

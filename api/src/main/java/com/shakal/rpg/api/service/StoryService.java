@@ -26,6 +26,7 @@ import com.shakal.rpg.api.model.Place;
 import com.shakal.rpg.api.model.Story;
 import com.shakal.rpg.api.model.User;
 import com.shakal.rpg.api.model.embedded.UserStoryId;
+import com.shakal.rpg.api.model.enums.UserStoryRole;
 import com.shakal.rpg.api.model.relation.UserStory;
 import com.shakal.rpg.api.repository.PlaceDAO;
 import com.shakal.rpg.api.repository.StoryDAO;
@@ -130,6 +131,20 @@ public class StoryService implements IStoryService {
 			entity.setStory(story);
 			this.placeRepository.save(entity);
 		} 
+	}
+
+	@Override
+	public UserStoryRole checkUserRole(long storyId,long userId) throws ResourceNotFoundException {
+		UserStoryRole result = UserStoryRole.PLAYER;
+		List<UserStory> userStories = this.userStoryDao.retrieveRoleOfUserInStory(storyId)
+		.orElseThrow(() -> new ResourceNotFoundException(Messages.STORY_NOT_FOUND));
+		for(UserStory userStory: userStories) {
+			if(userStory.getUser().getId() == userId && userStory.isMaster()) {
+				result = UserStoryRole.MASTER;
+			}
+		}
+		return result;
+	
 	}
 
 }

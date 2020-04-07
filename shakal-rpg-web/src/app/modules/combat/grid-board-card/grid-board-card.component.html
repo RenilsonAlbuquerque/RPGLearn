@@ -1,2 +1,5 @@
 
-<div class="caixa"></div>
+<div class="caixa" (click)="initializeMonster()">
+    <img *ngIf="monster != null" class="card-img" 
+    src="{{monster?.imagePath}}" alt="_blank" />
+</div>

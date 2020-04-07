@@ -8,6 +8,7 @@ import { MonsterCard } from 'src/app/domain/models/monster/monster.card';
 })
 export class MonsterCardComponent implements OnInit {
 
+
   @Input() public monster: MonsterCard;
   constructor() { }
 

@@ -1,5 +1,6 @@
 package com.shakal.rpg.api.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
@@ -21,4 +22,7 @@ public interface UserStoryDAO  extends JpaRepository<UserStory,UserStoryId>{
 	
 	@Query("SELECT us FROM UserStory us FETCH ALL PROPERTIES where us.user.id = ?1 and us.story.id = ?2 ")
 	Optional<UserStory> retrieveCharacterOfUserInStory(long userId, long storyId);
+	
+	@Query("SELECT us FROM UserStory us FETCH ALL PROPERTIES where us.story.id = ?1")
+	Optional<List<UserStory>> retrieveRoleOfUserInStory(long storyId);
 }

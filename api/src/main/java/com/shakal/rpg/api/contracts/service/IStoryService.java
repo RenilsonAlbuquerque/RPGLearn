@@ -7,6 +7,7 @@ import com.shakal.rpg.api.dto.filter.PaginationFilter;
 import com.shakal.rpg.api.dto.info.StoryInfoDTO;
 import com.shakal.rpg.api.dto.overview.StoryOverviewDTO;
 import com.shakal.rpg.api.exception.ResourceNotFoundException;
+import com.shakal.rpg.api.model.enums.UserStoryRole;
 
 public interface IStoryService  {
 	
@@ -15,5 +16,6 @@ public interface IStoryService  {
 	CustomPage<StoryOverviewDTO> listsStoriesByUserIdPaged(PaginationFilter filter,long userId);
 	StoryInfoDTO getStoryById(long id) throws ResourceNotFoundException;
 	StoryCreateInputDTO getStoryInfoToCreate();
+	UserStoryRole checkUserRole(long storyId,long userId) throws ResourceNotFoundException;
 
 }

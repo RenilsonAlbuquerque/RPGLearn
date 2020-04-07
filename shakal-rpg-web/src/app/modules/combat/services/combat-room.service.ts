@@ -12,6 +12,7 @@ import { environment } from 'src/environments/environment';
 export class CombatRoomService {
 
   private storyId: number;
+  private userType: UserRoleStory;
   private combatState: BehaviorSubject<CombatState>;
   
   constructor(private httpClient: HttpClient,private rxStompService: RxStompService) {
@@ -33,28 +34,30 @@ export class CombatRoomService {
       response => {
         console.log(response)
         this.combatState.next(response)
-       
-      }
-      
+        this.userType = response.userTypeInStory;
+      } 
     )
-    
   }
 
   public addMonsterEnemy(monster: MonsterCard){
     var combatState: CombatState = this.combatState.getValue();
+    console.log(combatState)
     combatState.monsters.push(monster);
     this.onSendMessage(combatState);
   }
   public addMonsterAlly(monster: MonsterCard){
     var combatState: CombatState = this.combatState.getValue();
+    console.log(combatState)
     combatState.players.push(monster);
     this.onSendMessage(combatState);
+    console.log(combatState)
   }
   public getCombatState():Observable<CombatState>{
     return this.combatState.asObservable();
   }
 
   public updateMonsterLifePoints(index: number,value: number){
+    
     var combatState: CombatState = this.combatState.getValue();
     if(value < 0){
       combatState.monsters[index].lifePoints = 0; 

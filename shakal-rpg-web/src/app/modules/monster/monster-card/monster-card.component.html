@@ -1,14 +1,13 @@
-<div class="card text-white" [ngClass]="{'bg-dark':monster.lifePercent == 0, 
+<div class="monster-card text-white" [ngClass]="{'bg-dark':monster.lifePercent == 0, 
                                           'bg-danger': monster.lifePercent < 10 && monster.lifePercent > 0,
                                           'bg-warning': monster.lifePercent > 10 && monster.lifePercent < 50,
                                           'bg-success': monster.lifePercent > 50}">
-        <img class="card-img" height="150" width="100"
+        <img class="card-img" height="80" width="110"
         src="{{monster?.imagePath}}" alt="_blank" />
-        <div class="card-body">
-          <strong class="text">{{monster.name }}</strong><br>
-          <small class="text">{{"Nível: " +  monster.level.value }}</small><br>
-          <small class="text">Pontos de vida: {{monster.lifePoints}}</small>
-        </div>
+        <strong class="text">{{monster.name }}</strong><br>
+        <small class="text">{{"Nível: " +  monster.level.value }}</small><br>
+        <small class="text">Pontos de vida: {{monster.lifePoints}}</small>
+       
 </div>
 <!-- <mat-card class="example-card">
     <img mat-card-image src="{{monster?.imagePath}}" height="150" width="100" alt="Photo of a Shiba Inu">

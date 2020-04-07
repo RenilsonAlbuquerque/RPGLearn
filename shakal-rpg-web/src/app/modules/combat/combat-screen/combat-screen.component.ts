@@ -63,7 +63,6 @@ export class CombatScreenComponent implements OnInit {
     this.combatRoomService.addMonsterEnemy(monster);
   }
   addCreatureAlly(monster: MonsterCard){
-    
     this.combatRoomService.addMonsterAlly(monster);
   }
 

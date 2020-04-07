@@ -59,10 +59,6 @@ public class CharacterClassLevel {
 	public void setClassLevel(ClassLevel classLevel) {
 		this.classLevel = classLevel;
 	}
-	
 
-	
-	
-	
 	
 }

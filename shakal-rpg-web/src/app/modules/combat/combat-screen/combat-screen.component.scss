@@ -5,9 +5,32 @@
     left: 0;
     right: 0;
   }
+
   .players-container{
     position:fixed;
     bottom:0px;
     width:80%;
+    display: flex;
   }
   
+
+  .fab-add-player {
+    width: 70px;
+    height: 70px;
+    position: fixed;
+    right: 50px;
+    bottom: 50px;
+ }
+  
+ .fab-add-player:hover {
+    box-shadow: 0 6px 14px 0 #666;
+    transform: scale(1.05);
+ }
+ .remove-button{
+    background-color:#dc3545;
+    width: 2em;
+    height: 2em;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+ }

@@ -8,6 +8,7 @@ public class CombatStateDTO {
 	private List<MonsterCardDTO> monsters;
 	private List<MonsterCardDTO> players;
 	private int dificult;
+	private int userTypeInStory;
 	
 	
 	
@@ -29,6 +30,13 @@ public class CombatStateDTO {
 	public void setDificult(int dificult) {
 		this.dificult = dificult;
 	}
+	public int getUserTypeInStory() {
+		return userTypeInStory;
+	}
+	public void setUserTypeInStory(int userTypeInStory) {
+		this.userTypeInStory = userTypeInStory;
+	}
+	
 	
 	
 	

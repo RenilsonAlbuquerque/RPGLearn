@@ -4,4 +4,5 @@ export interface CombatState{
     monsters: MonsterCard[],
     players: MonsterCard[],
     dificult: number
+    userTypeInStory: number;
 }
