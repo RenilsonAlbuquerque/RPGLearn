@@ -47,13 +47,16 @@ export class RegisterPlayerComponent implements OnInit {
       this.userService.createUser(user).subscribe(
         data =>{
           this.loading = false;
-          this.toastr.error("Usuário cadastrado");
+          this.toastr.success("Usuário cadastrado");
           this.router.navigate(['/login'])
         },
         err => {
           this.loading = false;
         },
       );
+  }
+  goBack(){
+    this.router.navigate(['/login']);
   }
 
 }

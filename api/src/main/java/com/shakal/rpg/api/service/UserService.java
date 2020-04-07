@@ -77,8 +77,8 @@ public class UserService implements UserDetailsService,IUserService {
 
 	@Override
 	public UserCreateDTO insertUser(UserCreateDTO createDto) throws DuplicatedResourceException{
-		User user = this.userDAO.findByUsername(createDto.getUsername()).get();
-		if(user != null) {
+		boolean hasUser = this.userDAO.findByUsername(createDto.getUsername()).isPresent();
+		if(hasUser) {
 			throw new DuplicatedResourceException(Messages.INVALID_USERNAME);
 		}
 		createDto.setPassword(this.bCryptPasswordEncoder.encode(createDto.getPassword()));

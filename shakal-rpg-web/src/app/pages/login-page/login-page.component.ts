@@ -51,5 +51,8 @@ export class LoginPageComponent implements OnInit {
                 this.loading = false;
             });
   }
+  goRegister(){
+    this.router.navigate(['/register']);
+  }
 
 }

@@ -28,8 +28,10 @@
                                     Campo obrigatório
                             </mat-error>
                         </mat-form-field>
-                        <button [disabled]="loading" (click)="onSubmit()" mat-raised-button color="primary">Cadastrar</button>
-                        
+                        <div class="buttons-row">
+                            <button [disabled]="loading" (click)="goBack()" mat-raised-button color="secondary">Voltar</button>
+                            <button [disabled]="loading" (click)="onSubmit()" mat-raised-button color="primary">Cadastrar</button>
+                        </div>
                     </form>
                 </mat-card-content>
            </mat-card>
