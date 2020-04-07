@@ -15,6 +15,7 @@ import { AuthService } from './pages/auth.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
+import { CanActivateRouteGuard } from './interceptors/can.activate';
 
 
 @NgModule({
@@ -37,6 +38,7 @@ import { ErrorInterceptor } from './interceptors/error.interceptor';
   ],
   providers: [
     AuthService,
+    CanActivateRouteGuard,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },],
   bootstrap: [AppComponent]

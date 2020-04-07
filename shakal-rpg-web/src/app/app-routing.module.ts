@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { BaseComponent } from './modules/layout/base/base.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { CanActivateRouteGuard } from './interceptors/can.activate';
 
 
 const routes: Routes = [
@@ -16,6 +17,7 @@ const routes: Routes = [
   },
   {
     path: 'home',
+    canActivate:[CanActivateRouteGuard],
     component: BaseComponent,
     children:[
       {

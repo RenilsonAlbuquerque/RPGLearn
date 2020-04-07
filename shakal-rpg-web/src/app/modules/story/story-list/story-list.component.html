@@ -10,7 +10,7 @@
       <div class="card-columns">
         <div class="card bg-dark text-white" (click)="goEdit(story)" *ngFor="let story of page.elements">
          <img class="card-img"
-              src="{{ story.folderImage }}" alt="_blank" />
+              src="{{ story.folderImage ||  defaultImage }}" alt="_blank" />
           <div class="card-img-overlay">
             <p class="card-title">{{ story.name }}</p>
           </div>

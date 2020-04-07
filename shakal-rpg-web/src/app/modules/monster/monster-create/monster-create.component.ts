@@ -77,6 +77,7 @@ export class MonsterCreateComponent implements OnInit {
       legendaryActions: this._formBuilder.array([  ])
     });
     this.features = this.featuresFormGroup.get('features') as FormArray;
+    this.initializeDefaultValues();
   }
   public onSubmit(){
     var monsterDTO: MonsterCreate = mapFormToDTO(this.informacoesFormGroup,this.habilitiesFormGroup,
@@ -157,6 +158,10 @@ export class MonsterCreateComponent implements OnInit {
       dice: [{},Validators.required],
       damageType: [{},Validators.required],
     });
+  }
+  initializeDefaultValues(){
+    this.informacoesFormGroup.controls['profilePicture'].setValue('../../../../assets/img/default-monster.jpg');
+    this.profilePicture = '../../../../assets/img/default-monster.jpg';
   }
 
 }

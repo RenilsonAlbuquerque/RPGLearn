@@ -38,6 +38,7 @@ export class StoryCreateComponent implements OnInit {
     this.placesFormGroup = this._formBuilder.group({
       places: this._formBuilder.array([  ])
     });
+    this.initializeDefaultValues();
   }
 
   ngOnInit() {
@@ -72,6 +73,10 @@ export class StoryCreateComponent implements OnInit {
       map: [place.map,Validators.required],
     });
     
+  }
+  initializeDefaultValues(){
+    this.detailFormGroup.controls['profilePicture'].setValue('../../../../assets/img/default-story.jpg');
+    this.profilePicture = '../../../../assets/img/default-story.jpg';
   }
 
 }
