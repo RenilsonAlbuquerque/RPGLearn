@@ -4,10 +4,9 @@
                                           'bg-success': monster.lifePercent > 50}">
         <img class="card-img" height="80" width="110"
         src="{{monster?.imagePath}}" alt="_blank" />
-        <strong class="text">{{monster.name }}</strong><br>
-        <small class="text">{{"Nível: " +  monster.level.value }}</small><br>
-        <small class="text">Pontos de vida: {{monster.lifePoints}}</small>
-       
+        <small class="text">{{monster.name }}</small>
+        <small class="text-lp">{{"Nv: " +  monster.level.value }}</small>
+        <small class="text-level">{{ "Pv:" + monster.lifePoints}}</small>
 </div>
 <!-- <mat-card class="example-card">
     <img mat-card-image src="{{monster?.imagePath}}" height="150" width="100" alt="Photo of a Shiba Inu">

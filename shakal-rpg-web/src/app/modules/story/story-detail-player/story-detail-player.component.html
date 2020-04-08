@@ -3,6 +3,6 @@
         <div class="navitem" (click)="onShowCombat()">Combate</div>
         <div class="navitem" (click)="onShowMap()">fichas</div> 
     </div>
-    <app-grid-board *ngIf="combatShown"></app-grid-board>
+    <app-combat-screen-player *ngIf="combatShown"></app-combat-screen-player>
     <div *ngIf="mapShown" >Here I am, rock you like a hurricane</div>
 </div>

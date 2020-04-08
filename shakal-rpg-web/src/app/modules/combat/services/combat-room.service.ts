@@ -28,6 +28,7 @@ export class CombatRoomService {
     
     this.rxStompService.watch('/topic/combat/'+ storyId).subscribe((message: IMessage) => {
       this.combatState.next(JSON.parse(message.body) as CombatState);
+      console.log(message);
     })
     this.httpClient.get<CombatState>(`${environment.BASE_URL}combat/status/${storyId}`).subscribe(
       response => {

@@ -12,11 +12,12 @@ import { InjectableRxStompConfig, RxStompService, rxStompServiceFactory } from '
 import { myRxStompConfig } from 'src/app/infra/config/my-rx-stomp.config';
 import { GridBoardComponent } from './grid-board/grid-board.component';
 import { GridBoardCardComponent } from './grid-board-card/grid-board-card.component';
+import { CombatScreenPlayerComponent } from './combat-screen-player/combat-screen-player.component';
 
 
 
 @NgModule({
-  declarations: [CombatMenuComponent, CombatScreenComponent, GridBoardComponent, GridBoardCardComponent],
+  declarations: [CombatMenuComponent, CombatScreenComponent, GridBoardComponent, GridBoardCardComponent, CombatScreenPlayerComponent],
   imports: [
     CombatRoutingModule,
     CommonModule,
@@ -39,6 +40,6 @@ import { GridBoardCardComponent } from './grid-board-card/grid-board-card.compon
       deps: [InjectableRxStompConfig]
     }
   ],
-  exports:[GridBoardComponent]
+  exports:[GridBoardComponent, CombatScreenPlayerComponent]
 })
 export class CombatModule { }
