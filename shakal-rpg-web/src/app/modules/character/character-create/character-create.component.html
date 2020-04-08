@@ -1,0 +1,35 @@
+<mat-horizontal-stepper labelPosition="bottom" linear #stepper>
+    <mat-step [stepControl]="informacoesFormGroup">
+        <form [formGroup]="informacoesFormGroup">
+            <ng-template  matStepLabel>Informações</ng-template>
+            <div class="row">
+                    <mat-form-field class="form-group col-4" appearance="outline">    
+                        <mat-label>Classe</mat-label>
+                        <mat-select formControlName="class">
+                            <mat-option *ngFor="let class of inputValues?.classes" [value]="class.id">
+                                {{class.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class="form-group col-4" appearance="outline">
+                        <mat-label>Raça</mat-label>
+                        <mat-select formControlName="race">
+                            <mat-option *ngFor="let race of inputValues?.races" [value]="race.id">
+                                {{race.value}}
+                            </mat-option>
+                        </mat-select>        
+                    </mat-form-field>
+                    <mat-form-field class="form-group col-4" appearance="outline">
+                            
+                                    <mat-label>Alinhamento</mat-label>
+                                    <mat-select formControlName="alignment">
+                                        <mat-option *ngFor="let alignment of inputValues?.alignments" [value]="alignment.id">
+                                            {{alignment.value}}
+                                        </mat-option>
+                                    </mat-select>
+                                  
+                    </mat-form-field>
+            </div>
+        </form>
+    </mat-step>
+</mat-horizontal-stepper>

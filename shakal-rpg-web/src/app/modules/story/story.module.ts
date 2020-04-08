@@ -14,6 +14,7 @@ import { BasecomponentsModule } from '../basecomponents/basecomponents.module';
 import { PlaceCreateComponent } from './place-create/place-create.component';
 import { StoryDetailPlayerComponent } from './story-detail-player/story-detail-player.component';
 import { CombatModule } from '../combat/combat.module';
+import { CharacterService } from '../character/character.module.service';
 
 
 
@@ -28,6 +29,6 @@ import { CombatModule } from '../combat/combat.module';
     BasecomponentsModule,
     CombatModule
   ],
-  providers:[StoryService,FormBuilder]
+  providers:[StoryService,FormBuilder,CharacterService]
 })
 export class StoryModule { }

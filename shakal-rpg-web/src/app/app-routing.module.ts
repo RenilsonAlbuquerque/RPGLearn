@@ -36,6 +36,10 @@ const routes: Routes = [
       {
         path: 'story',
         loadChildren: './modules/story/story.module#StoryModule'
+      },
+      {
+        path: 'character',
+        loadChildren: './modules/character/character.module#CharacterModule'
       }
 
     ]
