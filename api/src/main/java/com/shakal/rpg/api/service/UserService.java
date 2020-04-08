@@ -1,9 +1,5 @@
 package com.shakal.rpg.api.service;
 
-
-
-
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,26 +26,19 @@ import com.shakal.rpg.api.repository.UserStoryDAO;
 import com.shakal.rpg.api.security.AuthenticationContext;
 import com.shakal.rpg.api.utils.Messages;
 
-
-
-
 @Service
-public class UserService implements UserDetailsService,IUserService {
-
-
+public class UserService implements UserDetailsService, IUserService {
 
 	private UserDAO userDAO;
 	private UserStoryDAO userStoryDao;
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	@Autowired
-	public UserService(UserDAO userDAO, BCryptPasswordEncoder bCryptPasswordEncoder,
-			UserStoryDAO userStoryDao){
+	public UserService(UserDAO userDAO, BCryptPasswordEncoder bCryptPasswordEncoder, UserStoryDAO userStoryDao) {
 		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
 		this.userDAO = userDAO;
 		this.userStoryDao = userStoryDao;
 	}
-
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -58,27 +47,24 @@ public class UserService implements UserDetailsService,IUserService {
 				.orElseThrow(() -> new BadCredentialsException(Messages.USER_NOT_FOUND));
 	}
 
-
-
 	@Override
 	public long getCurrentUserId() {
 		return ((AuthenticationContext) SecurityContextHolder.getContext().getAuthentication()).getId();
 	}
-	
+
 	public void setCharacterToUserInStory(long storyId, long userId, Character character) {
-			
+
 		UserStory userStory = new UserStory();
-		userStory.setId(new UserStoryId(userId,storyId));
+		userStory.setId(new UserStoryId(userId, storyId));
 		userStory.setCharacter(character);
 		this.userStoryDao.save(userStory);
-		
+
 	}
 
-
 	@Override
-	public UserCreateDTO insertUser(UserCreateDTO createDto) throws DuplicatedResourceException{
+	public UserCreateDTO insertUser(UserCreateDTO createDto) throws DuplicatedResourceException {
 		boolean hasUser = this.userDAO.findByUsername(createDto.getUsername()).isPresent();
-		if(hasUser) {
+		if (hasUser) {
 			throw new DuplicatedResourceException(Messages.INVALID_USERNAME);
 		}
 		createDto.setPassword(this.bCryptPasswordEncoder.encode(createDto.getPassword()));

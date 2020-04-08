@@ -2,6 +2,6 @@ insert into tb_class(id,name,description,lifedice) values (1,"Bárbaro","Um huma
 meio a uma nevasca, coberto por peles e empunhando seu
 machado. Ele gargalha à medida que avança em direção
 do gigante do gelo que ousou caçar os alces que o seu povo
-arrebanhava.",12);
+arrebanhava.",5);
 
 select * from tb_class;

@@ -1,5 +1,7 @@
 package com.shakal.rpg.api.validators;
 
+
+
 import com.shakal.rpg.api.dto.create.StoryCreateDTO;
 
 public abstract class StoryValidator {
@@ -16,5 +18,6 @@ public abstract class StoryValidator {
 		}
 		return errorMessages;
 	}
+	
 
 }

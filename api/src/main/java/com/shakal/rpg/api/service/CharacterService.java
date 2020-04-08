@@ -1,5 +1,6 @@
 package com.shakal.rpg.api.service;
 
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import com.shakal.rpg.api.dto.create.CharacterCreateDTO;
 import com.shakal.rpg.api.dto.create.CharacterCreateInputDTO;
 import com.shakal.rpg.api.dto.filter.UserSheetFIlterDTO;
 import com.shakal.rpg.api.dto.info.CharacterInfoDTO;
+import com.shakal.rpg.api.exception.BusinessException;
 import com.shakal.rpg.api.exception.ResourceNotFoundException;
 import com.shakal.rpg.api.mappers.CharacterMapper;
 import com.shakal.rpg.api.mappers.ClassMapper;
@@ -22,7 +24,10 @@ import com.shakal.rpg.api.repository.ClassDAO;
 import com.shakal.rpg.api.repository.RaceDAO;
 import com.shakal.rpg.api.repository.UserStoryDAO;
 import com.shakal.rpg.api.utils.Messages;
+import com.shakal.rpg.api.validators.CharacterValidator;
+import com.shakal.rpg.api.validators.ErrorMessages;
 import com.shakal.rpg.api.model.Alignment;
+import com.shakal.rpg.api.model.Race;
 import com.shakal.rpg.api.model.character.Character;
 import com.shakal.rpg.api.model.relation.UserStory;
 
@@ -49,16 +54,26 @@ public class CharacterService implements ICharacterService{
 	}
 	
 	@Override
-	public boolean createCharacterInStory(CharacterCreateDTO inputDto) throws ResourceNotFoundException {
-		Alignment alignmentSearch = this.alignmentDao.findById(inputDto.getAlignment())
-				.orElseThrow(() -> new ResourceNotFoundException(Messages.INVALID_CREATURE_ALIGNMENT));
+	public boolean createCharacterInStory(CharacterCreateDTO inputDto) throws BusinessException {
+		ErrorMessages error = new ErrorMessages();
+		CharacterValidator.ValidateDTO(inputDto, error);
+		
+		Optional<Alignment> alignmentSearch = this.alignmentDao.findById(inputDto.getAlignment());
+		Optional<Race> raceSearch = this.raceDao.findById(inputDto.getRace());
+		
+		CharacterValidator.ValidateRecoveryEntities(error, alignmentSearch, raceSearch);
+		
+		if(error.hasError()) {
+			throw new BusinessException(error.getMessages().toString());
+		}
 		
 		Character entity = new Character();
 		entity.setImagePath(inputDto.getImagePath());
 		entity.setName(inputDto.getName());
 		entity.setAge(inputDto.getAge());
 		entity.setHeight(inputDto.getHeight());
-		entity.setAlignment(alignmentSearch);
+		entity.setAlignment(alignmentSearch.get());
+		entity.setSpeed(raceSearch.get().getSpeed());
 		
 		this.characterDao.save(entity);
 		this.userService.setCharacterToUserInStory(inputDto.getStoryId(),

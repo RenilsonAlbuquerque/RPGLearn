@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { CharacterSheet } from 'src/app/domain/models/character/character.sheet';
 import { CharacterCreateInput } from 'src/app/domain/models/character/character.create.input';
+import { CharacterCreate } from 'src/app/domain/models/character/character.create';
 
 @Injectable()
 export class CharacterService {
@@ -17,6 +18,9 @@ export class CharacterService {
     }
     getCharacterCreationMetadata(): Observable<CharacterCreateInput>{
         return this.httpClient.get<CharacterCreateInput>(`${environment.BASE_URL}character/metadata`);
+    }
+    createCharacterOfPlayerInStory(characterCreate: CharacterCreate):Observable<boolean>{
+        return this.httpClient.post<boolean>(`${environment.BASE_URL}character`,characterCreate);
     }
 
 }

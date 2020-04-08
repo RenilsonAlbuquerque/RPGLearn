@@ -16,6 +16,7 @@ import com.shakal.rpg.api.dto.create.CharacterCreateDTO;
 import com.shakal.rpg.api.dto.create.CharacterCreateInputDTO;
 import com.shakal.rpg.api.dto.filter.UserSheetFIlterDTO;
 import com.shakal.rpg.api.dto.info.CharacterInfoDTO;
+import com.shakal.rpg.api.exception.BusinessException;
 import com.shakal.rpg.api.exception.ResourceNotFoundException;
 
 @CrossOrigin
@@ -27,7 +28,7 @@ public class CharacterController {
 	private ICharacterService characterService;
 	
 	@PostMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<Boolean> createCharacter(@RequestBody CharacterCreateDTO createDto) throws ResourceNotFoundException{
+    public ResponseEntity<Boolean> createCharacter(@RequestBody CharacterCreateDTO createDto) throws BusinessException{
 		return new ResponseEntity<Boolean>(this.characterService.createCharacterInStory(createDto), HttpStatus.OK);
     }
 	@PostMapping(value="/user-story",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)

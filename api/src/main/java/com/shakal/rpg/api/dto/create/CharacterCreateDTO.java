@@ -7,13 +7,14 @@ public class CharacterCreateDTO {
 	
 	private String imagePath;
 	private String name;
-	private String background;
+	private String publicBackground;
+	private String secretBackground;
 	private int age;
 	private int height;
 	private int weight;
 	private long alignment;
-	
-	
+	private long classs;
+	private long race;
 	public long getUserId() {
 		return userId;
 	}
@@ -26,7 +27,6 @@ public class CharacterCreateDTO {
 	public void setStoryId(long storyId) {
 		this.storyId = storyId;
 	}
-	
 	public String getImagePath() {
 		return imagePath;
 	}
@@ -39,11 +39,17 @@ public class CharacterCreateDTO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getBackground() {
-		return background;
+	public String getPublicBackground() {
+		return publicBackground;
 	}
-	public void setBackground(String background) {
-		this.background = background;
+	public void setPublicBackground(String publicBackground) {
+		this.publicBackground = publicBackground;
+	}
+	public String getSecretBackground() {
+		return secretBackground;
+	}
+	public void setSecretBackground(String secretBackground) {
+		this.secretBackground = secretBackground;
 	}
 	public int getAge() {
 		return age;
@@ -69,6 +75,21 @@ public class CharacterCreateDTO {
 	public void setAlignment(long alignment) {
 		this.alignment = alignment;
 	}
+	public long getClasss() {
+		return classs;
+	}
+	public void setClasss(long classs) {
+		this.classs = classs;
+	}
+	public long getRace() {
+		return race;
+	}
+	public void setRace(long race) {
+		this.race = race;
+	}
+	
+	
+	
 
 	
 	

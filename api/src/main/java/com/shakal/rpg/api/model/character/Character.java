@@ -37,6 +37,7 @@ public class Character extends Creature{
 	
 	private int armorClass;
 	
+	private int speed;
 	
 	@OneToMany(mappedBy = "character",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	private List<UserStory> userStory;
@@ -103,6 +104,14 @@ public class Character extends Creature{
 
 	public void setUserStory(List<UserStory> userStory) {
 		this.userStory = userStory;
+	}
+
+	public int getSpeed() {
+		return speed;
+	}
+
+	public void setSpeed(int speed) {
+		this.speed = speed;
 	}
 	
 	

@@ -1,6 +1,6 @@
-package com.shakal.rpg.api.model;
+package com.shakal.rpg.api.model.character;
 
-import java.util.List;
+
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -9,15 +9,18 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.shakal.rpg.api.model.character.SubRace;
+
+import com.shakal.rpg.api.model.Race;
+
 
 @Entity
-@Table(name= "tb_race")
-public class Race {
-
+@Table(name= "tb_sub_race")
+public class SubRace {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
@@ -27,64 +30,47 @@ public class Race {
 	@Column(length = 500)
 	private String description;
 	
-	private int speed;
-	
-	@OneToMany(mappedBy = "race",cascade = CascadeType.PERSIST,fetch = FetchType.LAZY, targetEntity = SubRace.class)
-	private List<SubRace> subRaces;
-	
-	public Race() {
-		
-	}
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, targetEntity = Race.class)
+	@JoinColumn(name ="race_id", referencedColumnName = "id")
+	private Race race;
 
+	
+	public SubRace() {
+		super();
+	}
 
 	public long getId() {
 		return id;
 	}
 
-
 	public void setId(long id) {
 		this.id = id;
 	}
-
 
 	public String getName() {
 		return name;
 	}
 
-
 	public void setName(String name) {
 		this.name = name;
 	}
-
 
 	public String getDescription() {
 		return description;
 	}
 
-
 	public void setDescription(String description) {
 		this.description = description;
 	}
 
-
-	public List<SubRace> getSubRaces() {
-		return subRaces;
+	public Race getRace() {
+		return race;
 	}
 
-
-	public void setSubRaces(List<SubRace> subRaces) {
-		this.subRaces = subRaces;
-	}
-
-
-	public int getSpeed() {
-		return speed;
-	}
-
-
-	public void setSpeed(int speed) {
-		this.speed = speed;
+	public void setRace(Race race) {
+		this.race = race;
 	}
 	
 	
+
 }

@@ -2,7 +2,6 @@ package com.shakal.rpg.api.dto.create;
 
 import java.util.List;
 
-import com.shakal.rpg.api.dto.commons.KeyNameDescriptionDto;
 import com.shakal.rpg.api.dto.commons.KeyValueDTO;
 
 public class CharacterCreateInputDTO {
