@@ -18,6 +18,7 @@ import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { CanActivateRouteGuard } from './interceptors/can.activate';
 import { RegisterPlayerComponent } from './pages/register-player/register-player.component';
 import { UserService } from './modules/user/user.module.service';
+import { SpinnerService } from './infra/services/spinner.service';
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import { UserService } from './modules/user/user.module.service';
     AuthService,
     CanActivateRouteGuard,
     UserService,
+    SpinnerService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },],
   bootstrap: [AppComponent]
