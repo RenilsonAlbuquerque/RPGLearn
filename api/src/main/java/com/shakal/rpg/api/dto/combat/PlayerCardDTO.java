@@ -14,7 +14,7 @@ public class PlayerCardDTO implements Comparable<PlayerCardDTO>{
 	 private int lifePercent;
 	 private int speed;
 	 private CardPositionDTO position;
-	 private int playerId;
+	 private long playerId;
 	 
 	public long getId() {
 		return id;
@@ -70,10 +70,10 @@ public class PlayerCardDTO implements Comparable<PlayerCardDTO>{
 	public void setPosition(CardPositionDTO position) {
 		this.position = position;
 	}
-	public int getPlayerId() {
+	public long getPlayerId() {
 		return playerId;
 	}
-	public void setPlayerId(int playerId) {
+	public void setPlayerId(long playerId) {
 		this.playerId = playerId;
 	}
 	@Override

@@ -11,4 +11,5 @@ export interface MonsterCard{
     imagePath: string,
     lifePercent: number,
     position: CardPosition
+    playerId: number;
 }

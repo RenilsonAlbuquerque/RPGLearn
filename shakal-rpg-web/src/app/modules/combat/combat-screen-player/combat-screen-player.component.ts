@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CombatRoomService } from '../services/combat-room.service';
 import { CombatState } from 'src/app/domain/models/combat/combat.state';
 import { ActivatedRoute } from '@angular/router';
+import { CombatRoomPlayerService } from '../services/combat-room.player.service';
 
 @Component({
   selector: 'app-combat-screen-player',
@@ -12,8 +12,8 @@ export class CombatScreenPlayerComponent implements OnInit {
 
   private combatState: CombatState;
   private storyId: number;
-  constructor(private combatRoomService: CombatRoomService,private _activatedRoute: ActivatedRoute) {  
-    this.combatRoomService.getCombatState().subscribe(
+  constructor(private combatRoomPlayerService: CombatRoomPlayerService,private _activatedRoute: ActivatedRoute) {  
+    this.combatRoomPlayerService.getCombatState().subscribe(
       state => {this.combatState = state;}
     );
   }
@@ -21,7 +21,7 @@ export class CombatScreenPlayerComponent implements OnInit {
   ngOnInit() {
     this._activatedRoute.params.subscribe(params => {
       this.storyId = params['id'];
-      this.combatRoomService.initializeCombat(this.storyId);
+      this.combatRoomPlayerService.initializeCombat(this.storyId);
     });
     
   }

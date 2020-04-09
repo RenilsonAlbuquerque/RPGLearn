@@ -12,9 +12,9 @@ import { environment } from 'src/environments/environment';
 export class CombatRoomService {
 
   private storyId: number;
-  private combatState: BehaviorSubject<CombatState>;
+  protected combatState: BehaviorSubject<CombatState>;
   
-  constructor(private httpClient: HttpClient,private rxStompService: RxStompService) {
+  constructor(protected httpClient: HttpClient,protected rxStompService: RxStompService) {
       this.combatState = new BehaviorSubject<CombatState>({
         monsters :[],
         players: [],
@@ -24,18 +24,16 @@ export class CombatRoomService {
 
   public initializeCombat(storyId: number){
     this.storyId = storyId;
-    console.log(`${environment.BASE_URL}combat/status/` + storyId)
     
+    // this.httpClient.get<CombatState>(`${environment.BASE_URL}combat/status/${storyId}`).subscribe(
+    //   response => {
+    //     this.combatState.next(response)
+    //   } 
+    // )
     this.rxStompService.watch('/topic/combat/'+ storyId).subscribe((message: IMessage) => {
       this.combatState.next(JSON.parse(message.body) as CombatState);
-      console.log(message);
     })
-    this.httpClient.get<CombatState>(`${environment.BASE_URL}combat/status/${storyId}`).subscribe(
-      response => {
-        console.log(response)
-        this.combatState.next(response)
-      } 
-    )
+    
   }
 
   public addMonsterEnemy(monster: MonsterCard){
@@ -81,7 +79,7 @@ export class CombatRoomService {
     this.onSendMessage(combatState);
   }
 
-  private onSendMessage(combatState: CombatState) {
+  protected onSendMessage(combatState: CombatState) {
     this.rxStompService.publish({destination: '/app/combat/' + this.storyId, body: JSON.stringify(combatState)});
   }
 }

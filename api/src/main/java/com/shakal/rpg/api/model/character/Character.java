@@ -39,6 +39,8 @@ public class Character extends Creature{
 	
 	private int speed;
 	
+	private int lifePoints;
+	
 	@OneToMany(mappedBy = "character",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	private List<UserStory> userStory;
 
@@ -112,6 +114,14 @@ public class Character extends Creature{
 
 	public void setSpeed(int speed) {
 		this.speed = speed;
+	}
+
+	public int getLifePoints() {
+		return lifePoints;
+	}
+
+	public void setLifePoints(int lifePoints) {
+		this.lifePoints = lifePoints;
 	}
 	
 	

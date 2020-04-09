@@ -15,7 +15,8 @@ import com.shakal.rpg.api.contracts.service.ICharacterService;
 import com.shakal.rpg.api.dto.create.CharacterCreateDTO;
 import com.shakal.rpg.api.dto.create.CharacterCreateInputDTO;
 import com.shakal.rpg.api.dto.filter.UserSheetFIlterDTO;
-import com.shakal.rpg.api.dto.info.CharacterInfoDTO;
+import com.shakal.rpg.api.dto.info.CharacterGeneralInfoDTO;
+import com.shakal.rpg.api.dto.info.CharacterSheetDTO;
 import com.shakal.rpg.api.exception.BusinessException;
 import com.shakal.rpg.api.exception.ResourceNotFoundException;
 
@@ -32,8 +33,8 @@ public class CharacterController {
 		return new ResponseEntity<Boolean>(this.characterService.createCharacterInStory(createDto), HttpStatus.OK);
     }
 	@PostMapping(value="/user-story",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<CharacterInfoDTO> getCharacterSheetOnStory(@RequestBody UserSheetFIlterDTO filterDto) throws ResourceNotFoundException{
-		return new ResponseEntity<CharacterInfoDTO>(this.characterService.getCharacterSheetByUserInStory(filterDto), HttpStatus.OK);
+    public ResponseEntity<CharacterGeneralInfoDTO> getCharacterSheetOnStory(@RequestBody UserSheetFIlterDTO filterDto) throws ResourceNotFoundException{
+		return new ResponseEntity<CharacterGeneralInfoDTO>(this.characterService.getCharacterSheetByUserInStory(filterDto), HttpStatus.OK);
     }
 	@GetMapping(value="/metadata",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<CharacterCreateInputDTO> getCharacterCreationMetadata(){

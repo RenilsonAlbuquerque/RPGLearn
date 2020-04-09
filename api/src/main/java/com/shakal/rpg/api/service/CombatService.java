@@ -9,6 +9,7 @@ import com.shakal.rpg.api.contracts.service.ICombatService;
 import com.shakal.rpg.api.dto.combat.CombatStateDTO;
 import com.shakal.rpg.api.dto.combat.CreatureCardDTO;
 import com.shakal.rpg.api.dto.combat.PlayerCardDTO;
+import com.shakal.rpg.api.dto.info.CharacterSheetDTO;
 import com.shakal.rpg.api.dto.overview.MonsterCardDTO;
 import com.shakal.rpg.api.model.ChallangeDificult;
 import com.shakal.rpg.api.repository.ChallengeDificultDAO;
@@ -86,4 +87,17 @@ public class CombatService implements ICombatService{
 		input = this.updateMonstersConditions(input);
 		return input;
 	}
+
+
+	@Override
+	public PlayerCardDTO initalizePlayerTokenInStory(long storyId, CharacterSheetDTO characterSheet) {
+		
+		PlayerCardDTO result = new PlayerCardDTO();
+		result.setId(characterSheet.getId());
+		result.setName(characterSheet.getName());
+		result.setImagePath(characterSheet.getImagePath());
+		result.setTotalLifePoints(characterSheet.getTotalLifePoints());
+		return result;
+	}
+	
 }

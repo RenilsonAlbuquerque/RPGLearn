@@ -4,6 +4,14 @@ public class CardPositionDTO {
 	
 	private int x;
 	private int y;
+	public CardPositionDTO() {
+		
+	}
+
+	public CardPositionDTO(int x, int y) {
+		this.setX(x);
+		this.setY(y);
+	}
 	
 	public int getX() {
 		return x;

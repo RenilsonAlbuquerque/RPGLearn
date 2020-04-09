@@ -13,6 +13,7 @@ import { myRxStompConfig } from 'src/app/infra/config/my-rx-stomp.config';
 import { GridBoardComponent } from './grid-board/grid-board.component';
 import { GridBoardCardComponent } from './grid-board-card/grid-board-card.component';
 import { CombatScreenPlayerComponent } from './combat-screen-player/combat-screen-player.component';
+import { CombatRoomPlayerService } from './services/combat-room.player.service';
 
 
 
@@ -30,6 +31,7 @@ import { CombatScreenPlayerComponent } from './combat-screen-player/combat-scree
   providers:[
     MonsterService,
     CombatRoomService,
+    CombatRoomPlayerService,
     {
       provide: InjectableRxStompConfig,
       useValue: myRxStompConfig

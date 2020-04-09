@@ -7,13 +7,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.shakal.rpg.api.contracts.service.ICharacterService;
+import com.shakal.rpg.api.contracts.service.ICombatService;
 import com.shakal.rpg.api.contracts.service.IUserService;
+import com.shakal.rpg.api.dto.combat.CardPositionDTO;
+import com.shakal.rpg.api.dto.combat.PlayerCardDTO;
 import com.shakal.rpg.api.dto.create.CharacterCreateDTO;
 import com.shakal.rpg.api.dto.create.CharacterCreateInputDTO;
 import com.shakal.rpg.api.dto.filter.UserSheetFIlterDTO;
-import com.shakal.rpg.api.dto.info.CharacterInfoDTO;
+import com.shakal.rpg.api.dto.info.CharacterGeneralInfoDTO;
+import com.shakal.rpg.api.dto.info.CharacterSheetDTO;
+import com.shakal.rpg.api.dto.info.LevelDTO;
 import com.shakal.rpg.api.exception.BusinessException;
 import com.shakal.rpg.api.exception.ResourceNotFoundException;
+import com.shakal.rpg.api.helpers.CombatHelper;
 import com.shakal.rpg.api.mappers.CharacterMapper;
 import com.shakal.rpg.api.mappers.ClassMapper;
 import com.shakal.rpg.api.mappers.CreatureMapper;
@@ -35,6 +41,7 @@ import com.shakal.rpg.api.model.relation.UserStory;
 public class CharacterService implements ICharacterService{
 
 	private IUserService userService;
+	private ICombatService combatService;
 	private CharacterDAO characterDao;
 	private AlignmentDAO alignmentDao;
 	private UserStoryDAO userStoryDao;
@@ -42,10 +49,12 @@ public class CharacterService implements ICharacterService{
 	private ClassDAO classDao;
 	
 	@Autowired
-	public CharacterService(IUserService userService,CharacterDAO characterDao,
-			AlignmentDAO alignmentDao,UserStoryDAO userStoryDao,RaceDAO raceDao,
+	public CharacterService(IUserService userService,ICombatService combatService,
+			CharacterDAO characterDao,AlignmentDAO alignmentDao,
+			UserStoryDAO userStoryDao,RaceDAO raceDao,
 			ClassDAO classDao) {
 		this.userService = userService;
+		this.combatService = combatService;
 		this.characterDao = characterDao;
 		this.alignmentDao = alignmentDao;
 		this.userStoryDao = userStoryDao;
@@ -82,8 +91,8 @@ public class CharacterService implements ICharacterService{
 	}
 
 	@Override
-	public CharacterInfoDTO getCharacterSheetByUserInStory(UserSheetFIlterDTO filter) throws ResourceNotFoundException {
-		
+	public CharacterGeneralInfoDTO getCharacterSheetByUserInStory(UserSheetFIlterDTO filter) throws ResourceNotFoundException {
+		CharacterGeneralInfoDTO result = new CharacterGeneralInfoDTO();
 		UserStory search = this.userStoryDao.retrieveCharacterOfUserInStory
 				(filter.getUserId(), filter.getStoryId())
 				.orElseThrow(() -> new ResourceNotFoundException(Messages.CHARACTER_NOT_FOUND));
@@ -93,7 +102,9 @@ public class CharacterService implements ICharacterService{
 		if(ch == null) {
 			throw new ResourceNotFoundException("Sem personagem nessa história");
 		}
-		return CharacterMapper.entityToInfo(ch);
+		result.setCharacterSheet(CharacterMapper.entityToInfo(ch));
+		result.setCharacterToken(this.initalizePlayerTokenInStory(result.getCharacterSheet(),filter.getUserId()));
+		return result;
 	}
 
 	@Override
@@ -110,5 +121,19 @@ public class CharacterService implements ICharacterService{
 				.collect(Collectors.toList()));
 		return result;
 	}
-
+	private PlayerCardDTO initalizePlayerTokenInStory(CharacterSheetDTO characterSheet,long playerId) {
+		
+		PlayerCardDTO result = new PlayerCardDTO();
+		result.setId(characterSheet.getId());
+		result.setName(characterSheet.getName());
+		result.setLifePoints(characterSheet.getTotalLifePoints());
+		result.setLevel(new LevelDTO());
+		result.setTotalLifePoints(characterSheet.getTotalLifePoints());
+		result.setImagePath(characterSheet.getImagePath());
+		result.setLifePercent(CombatHelper.calculateLifePercent(characterSheet.getTotalLifePoints(), characterSheet.getTotalLifePoints()));
+		result.setSpeed(characterSheet.getSpeed());
+		result.setPlayerId(playerId);
+		result.setPosition(new CardPositionDTO(3,4));
+		return result;
+	}
 }

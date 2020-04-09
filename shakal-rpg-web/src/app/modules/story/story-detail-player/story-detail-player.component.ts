@@ -9,6 +9,7 @@ import { CombatRoomService } from '../../combat/services/combat-room.service';
 import { MonsterCard } from 'src/app/domain/models/monster/monster.card';
 import { Level } from 'src/app/domain/models/comon/level';
 import { CombatState } from 'src/app/domain/models/combat/combat.state';
+import { CombatRoomPlayerService } from '../../combat/services/combat-room.player.service';
 
 @Component({
   selector: 'app-story-detail-player',
@@ -20,19 +21,16 @@ export class StoryDetailPlayerComponent implements OnInit {
   private combatShown: boolean;
   private mapShown: boolean;
   private storyId: number;
-  private combatState: CombatState;
 
   constructor(private _activatedRoute: ActivatedRoute, private characterService: CharacterService,
-    private router: Router, private authService: AuthService, private combatRoomService:CombatRoomService) {
+    private router: Router, private authService: AuthService, private combatRoomPlayerService:CombatRoomPlayerService) {
       
     this._activatedRoute.params.subscribe(params => {
       this.storyId = params['id'];
+      this.combatRoomPlayerService.initializeCombat(this.storyId);
       this.characterService.getCharacterSheetOnStory(this.storyId,this.authService.getCurrentUser().id).subscribe(
         data => {
-          this.combatRoomService.getCombatState().subscribe(
-            state => {this.combatState = state,
-              this.initializePlayerInformations(data)
-            }); 
+          this.combatRoomPlayerService.initializePlayerInfo(data, authService.getCurrentUser().id)
         },
         err =>{
           this.redirectCreateSheet();
@@ -56,29 +54,4 @@ export class StoryDetailPlayerComponent implements OnInit {
   redirectCreateSheet(){
     this.router.navigate(['home/character/create-in-story/'+ this.storyId]);
   }
-  initializePlayerInformations(characterSheet: CharacterSheet){
-    this.combatRoomService.addMonsterAlly({
-      id: characterSheet.id,
-      name: characterSheet.name,
-      level: {id: 1, value:1, xp:500} as Level,
-      lifePoints: characterSheet.lifePoints,
-      totalLifePoints: characterSheet.totalLifePoints,
-      imagePath: characterSheet.imagePath,
-      lifePercent: (100 *characterSheet.lifePoints)/ characterSheet.totalLifePoints,
-      position: {x: 4, y:5}
-    } as MonsterCard);
-    // this.combatRoomService.getCombatState().subscribe(
-    //   data => data.players.push({
-    //     id: characterSheet.id,
-    //     name: characterSheet.name,
-    //     level: {id: 1, value:1, xp:500} as Level,
-    //     lifePoints: characterSheet.lifePoints,
-    //     totalLifePoints: characterSheet.totalLifePoints,
-    //     imagePath: characterSheet.imagePath,
-    //     lifePercent: (100 *characterSheet.lifePoints)/ characterSheet.totalLifePoints,
-    //     position: {x: 4, y:5}
-    //   } as MonsterCard)
-    // )
-  }
-
 }

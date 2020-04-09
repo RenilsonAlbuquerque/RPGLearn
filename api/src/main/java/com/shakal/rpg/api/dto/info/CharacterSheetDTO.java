@@ -1,6 +1,6 @@
 package com.shakal.rpg.api.dto.info;
 
-public class CharacterInfoDTO {
+public class CharacterSheetDTO {
 
 	private long id;
 	private String imagePath;
@@ -10,7 +10,9 @@ public class CharacterInfoDTO {
 	private int height;
 	private int weight;
 	private long alignment;
+	private int speed;
 	
+	private int totalLifePoints;
 	
 	public long getId() {
 		return id;
@@ -59,6 +61,18 @@ public class CharacterInfoDTO {
 	}
 	public void setAlignment(long alignment) {
 		this.alignment = alignment;
+	}
+	public int getTotalLifePoints() {
+		return totalLifePoints;
+	}
+	public void setTotalLifePoints(int totalLifePoints) {
+		this.totalLifePoints = totalLifePoints;
+	}
+	public int getSpeed() {
+		return speed;
+	}
+	public void setSpeed(int speed) {
+		this.speed = speed;
 	}
 	
 	
