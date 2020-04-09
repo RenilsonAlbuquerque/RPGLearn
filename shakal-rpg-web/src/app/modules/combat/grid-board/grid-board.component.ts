@@ -18,13 +18,14 @@ export class GridBoardComponent implements OnInit {
   private squares: GridBoardCardComponent[][] = [];
   constructor(private combatRoomService: CombatRoomService) { 
     this.squareSize = 4;
-    this.initializeSquares();
+    this.instantiateSquares();
     this.combatRoomService.getCombatState().subscribe(
       state => {
-        this.combatState = state
+        this.combatState = state;
+        this.initializeSquares();
       });
   }
-  initializeSquares(){
+  instantiateSquares(){
     let totalSize = this.dimensionX * this.dimensionY;
     for (let i = 0; i < this.dimensionY; i++) {
       this.squares[i] = [];
@@ -32,21 +33,26 @@ export class GridBoardComponent implements OnInit {
         this.squares[i][j] = new GridBoardCardComponent();
       }  
     }
-   
+  }
+  initializeSquares(){
+   this.combatState.players.forEach(
+     player => {
+       console.log(player)
+       if(player.position.x > 0 || player.position.y > 0){
+         this.squares[player.position.x][player.position.y].monster = player
+       }
+     }
+    );
+    this.combatState.monsters.forEach(
+      enemy => {
+        if(enemy.position.x > 0 || enemy.position.y > 0){
+          this.squares[enemy.position.x][enemy.position.y].monster = enemy
+        }
+      }
+    )
   }
 
   ngOnInit() {
-    this.squares[5][5].setMonster(this.initializeMonster());
   }
-  initializeMonster(): MonsterCard{
-    return  {
-      id: 3,
-      name: "Monstro de Frankstein",
-      level: {id: 12, value: 10, xp: 5900},
-      lifePoints: 67,
-      totalLifePoints: 67,
-      imagePath: "https://upload.wikimedia.org/wikipedia/commons/a/a7/Frankenstein%27s_monster_%28Boris_Karloff%29.jpg",
-      lifePercent: 0
-    } as MonsterCard
-  }
+  
 }

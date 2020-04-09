@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.shakal.rpg.api.contracts.service.IStoryService;
-import com.shakal.rpg.api.dto.filter.CombatStateDTO;
+import com.shakal.rpg.api.dto.combat.CombatStateDTO;
 import com.shakal.rpg.api.exception.ResourceNotFoundException;
 import com.shakal.rpg.api.security.AuthenticationContext;
 

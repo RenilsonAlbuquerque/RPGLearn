@@ -14,8 +14,7 @@ export class CombatScreenPlayerComponent implements OnInit {
   private storyId: number;
   constructor(private combatRoomService: CombatRoomService,private _activatedRoute: ActivatedRoute) {  
     this.combatRoomService.getCombatState().subscribe(
-      state => {this.combatState = state;
-      console.log(this.combatState);}
+      state => {this.combatState = state;}
     );
   }
 

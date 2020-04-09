@@ -1,6 +1,6 @@
 package com.shakal.rpg.api.contracts.service;
 
-import com.shakal.rpg.api.dto.filter.CombatStateDTO;
+import com.shakal.rpg.api.dto.combat.CombatStateDTO;
 
 public interface ICombatService {
 

@@ -6,6 +6,8 @@ export const environment = {
   production: false,
   BASE_URL: 'http://localhost:8080/',
   BASE_SOCKET_URL : 'ws://localhost:8080/stomp'
+  //BASE_URL: 'http://a9c77308.ngrok.io/',
+  //BASE_SOCKET_URL : 'ws://a9c77308.ngrok.io/stomp'
 };
 
 /*

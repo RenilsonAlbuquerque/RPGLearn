@@ -1,5 +1,6 @@
 import { KeyValue } from '../comon/key.value';
 import { Level } from '../comon/level';
+import { CardPosition } from '../combat/card.position';
 
 export interface MonsterCard{
     id: number,
@@ -8,5 +9,6 @@ export interface MonsterCard{
     lifePoints: number,
     totalLifePoints: number,
     imagePath: string,
-    lifePercent: number
+    lifePercent: number,
+    position: CardPosition
 }

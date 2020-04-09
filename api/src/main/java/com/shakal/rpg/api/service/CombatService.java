@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.shakal.rpg.api.contracts.service.ICombatService;
-import com.shakal.rpg.api.dto.filter.CombatStateDTO;
+import com.shakal.rpg.api.dto.combat.CombatStateDTO;
+import com.shakal.rpg.api.dto.combat.CreatureCardDTO;
+import com.shakal.rpg.api.dto.combat.PlayerCardDTO;
 import com.shakal.rpg.api.dto.overview.MonsterCardDTO;
 import com.shakal.rpg.api.model.ChallangeDificult;
 import com.shakal.rpg.api.repository.ChallengeDificultDAO;
@@ -29,7 +31,7 @@ public class CombatService implements ICombatService{
 		double xpMonsterSum = 0;
 		int monsterMultiplierFactor = 1;
 
-		for(MonsterCardDTO player: input.getPlayers()) {
+		for(PlayerCardDTO player: input.getPlayers()) {
 			xpPlayersSum += player.getLevel().getXp();
 			if(player.getLevel().getValue() > maxLevel) {
 				maxLevel = player.getLevel().getValue();
@@ -56,8 +58,8 @@ public class CombatService implements ICombatService{
 			monster.setLifePercent((100 * monster.getLifePoints())/ monster.getTotalLifePoints() );
 		}
 		Collections.sort(input.getMonsters());
-		for(MonsterCardDTO player: input.getPlayers()) {
-			player.setLifePercent((100 * player.getLifePoints())/ player.getTotalLifePoints() );
+		for(PlayerCardDTO player: input.getPlayers()) {
+			player.setLifePercent((100 * player.getLifePoints())/ player.getTotalLifePoints());
 		}
 		Collections.sort(input.getPlayers());
 		return input;
