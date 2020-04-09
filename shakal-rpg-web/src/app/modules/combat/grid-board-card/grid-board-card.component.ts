@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { MonsterCard } from 'src/app/domain/models/monster/monster.card';
 
 @Component({
@@ -9,7 +9,7 @@ import { MonsterCard } from 'src/app/domain/models/monster/monster.card';
 export class GridBoardCardComponent implements OnInit {
 
   
-  public monster: MonsterCard;
+  @Input() public monster: MonsterCard;
   constructor() { 
     
   }
@@ -18,12 +18,16 @@ export class GridBoardCardComponent implements OnInit {
   
   }
   setMonster(monster: MonsterCard){
-    if(this.monster != null){
+    
+    if(this.monster == null){
       this.monster = monster;
     }
   }
+  getMonster(): MonsterCard{
+    return this.monster;
+  }
   handleClickCard(){
-    
+    console.log(this.monster)
   }
 
 }

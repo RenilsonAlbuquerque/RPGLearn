@@ -14,6 +14,7 @@ import { GridBoardComponent } from './grid-board/grid-board.component';
 import { GridBoardCardComponent } from './grid-board-card/grid-board-card.component';
 import { CombatScreenPlayerComponent } from './combat-screen-player/combat-screen-player.component';
 import { CombatRoomPlayerService } from './services/combat-room.player.service';
+import { GridBoardService } from './services/grid-board.service';
 
 
 
@@ -32,6 +33,7 @@ import { CombatRoomPlayerService } from './services/combat-room.player.service';
     MonsterService,
     CombatRoomService,
     CombatRoomPlayerService,
+    GridBoardService,
     {
       provide: InjectableRxStompConfig,
       useValue: myRxStompConfig

@@ -37,17 +37,16 @@ export class CombatRoomService {
   }
 
   public addMonsterEnemy(monster: MonsterCard){
+    monster.position = { x : 6,y: 6 }
     var combatState: CombatState = this.combatState.getValue();
-    console.log(combatState)
     combatState.monsters.push(monster);
     this.onSendMessage(combatState);
   }
   public addMonsterAlly(monster: MonsterCard){
+    monster.position = { x : 1,y: 1 }
     var combatState: CombatState = this.combatState.getValue();
-    console.log(combatState)
     combatState.players.push(monster);
     this.onSendMessage(combatState);
-    console.log(combatState)
   }
   public getCombatState():Observable<CombatState>{
     return this.combatState.asObservable();

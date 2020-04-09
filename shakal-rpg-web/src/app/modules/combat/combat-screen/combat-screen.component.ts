@@ -28,8 +28,6 @@ export class CombatScreenComponent implements OnInit {
     this.combatRoomService.getCombatState().subscribe(
        state => this.combatState = state
     );
-   
-    
   }
  
   ngOnInit() {
