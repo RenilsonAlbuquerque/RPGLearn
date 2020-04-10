@@ -1,7 +1,13 @@
-<div class="container">
-    <div class="rows" *ngFor="let squareRow of squares; index as j">
-        <app-grid-board-card *ngFor="let square of squareRow; index as k" [monster]="square.monster"></app-grid-board-card>
-    </div>
+<div class="canvas-container">
+    <!-- <mat-slider 
+        
+        vertical
+        tickInterval="1"  
+        min="1"
+        max="10">
+    </mat-slider> -->
+    <canvas #combatCanvas  width="1200" height="900" >
+    </canvas>
 </div>
 
 

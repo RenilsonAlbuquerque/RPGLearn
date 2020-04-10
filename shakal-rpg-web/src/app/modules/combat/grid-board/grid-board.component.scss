@@ -1,9 +1,13 @@
 
-.container{
+.canvas-container{
+    //-webkit-touch-callout: none!important;
     overflow: auto;
-    width: 100%;
-}
-.rows{
+    align-items: center;
+    justify-content: center;
     display: flex;
-    flex-wrap: nowrap;
+}
+
+.zoom-slider{
+    position: absolute;
+    z-index: 10;
 }
