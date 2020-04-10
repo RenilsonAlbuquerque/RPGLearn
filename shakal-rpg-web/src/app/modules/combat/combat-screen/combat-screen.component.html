@@ -1,9 +1,12 @@
 <div>
+  <!-- <div cdkDropList [cdkDropListData]="items" (cdkDropListDropped)="drop($event)">
+    <div *ngFor="let item of items" cdkDrag>{{item}}</div>
+  </div> -->
   <div class="enemies-container">
     <div *ngFor="let monster of combatState.monsters; index as i">
-      <button type="button" class="remove-button" (click)="openConfirmDeleteModal(confirmDelete)">X</button>
-      <app-monster-card  [monster]="monster" (click)="open(sheet)"></app-monster-card>
-      <ng-template #confirmDelete let-modal>
+      <!-- <button type="button" class="remove-button"  (click)="openConfirmDeleteModal()">X</button> -->
+      <app-monster-card [monster]="monster" (deleteEnemy)="openConfirmDeleteModal($event)"></app-monster-card>
+      <ng-template id="confirmDeleteDialog" #confirmDeleteDialog let-modal>
         <div class="modal-header">
           <h4 class="modal-title">Remover o monstro do combate</h4>
           <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
@@ -33,8 +36,7 @@
       </ng-template>
     </div>
   </div>
-   
-    <ngb-alert [dismissible]="false">
+    <ngb-alert cdkDrag [dismissible]="false">
             <strong>Fácil!</strong>
     </ngb-alert>
 
@@ -42,7 +44,6 @@
 
     <div class="players-container">
       <div *ngFor="let player of combatState.players; index as j">
-        <button type="button" class="remove-button" (click)="openConfirmDeleteModal(confirmDeleteAlly)">X</button>
         <app-monster-card  [monster]="player" (click)="open(sheetAlly)"></app-monster-card>
         <ng-template #confirmDeleteAlly let-modal>
           <div class="modal-header">

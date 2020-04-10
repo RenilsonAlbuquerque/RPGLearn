@@ -6,6 +6,14 @@ public class LevelDTO {
 	private double value;
 	private int xp;
 	
+	public LevelDTO(){
+		
+	}
+	public LevelDTO(double value,int xp){
+		this.value = value;
+		this.xp =xp;
+	}
+	
 	public long getId() {
 		return id;
 	}

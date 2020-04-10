@@ -1,4 +1,4 @@
-<div class="monster-card text-white" [ngClass]="{'bg-dark':monster.lifePercent == 0, 
+<div  class="monster-card text-white" [ngClass]="{'bg-dark':monster.lifePercent == 0, 
                                           'bg-danger': monster.lifePercent < 10 && monster.lifePercent > 0,
                                           'bg-warning': monster.lifePercent > 10 && monster.lifePercent < 50,
                                           'bg-success': monster.lifePercent > 50}">
@@ -7,6 +7,7 @@
         <small class="text">{{monster.name }}</small>
         <small class="text-lp">{{"Nv: " +  monster.level.value }}</small>
         <small class="text-level">{{ "Pv:" + monster.lifePoints}}</small>
+        <button type="button" class="remove-button delete-button" (click)="callDelete()">X</button>
 </div>
 <!-- <mat-card class="example-card">
     <img mat-card-image src="{{monster?.imagePath}}" height="150" width="100" alt="Photo of a Shiba Inu">

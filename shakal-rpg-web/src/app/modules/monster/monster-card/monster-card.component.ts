@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MonsterCard } from 'src/app/domain/models/monster/monster.card';
 
 @Component({
@@ -10,9 +10,13 @@ export class MonsterCardComponent implements OnInit {
 
 
   @Input() public monster: MonsterCard;
+  @Output() deleteEnemy= new EventEmitter<any>();
   constructor() { }
 
   ngOnInit() {
   }
 
+  callDelete(){
+    this.deleteEnemy.emit();
+  }
 }

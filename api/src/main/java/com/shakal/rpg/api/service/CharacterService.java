@@ -127,7 +127,7 @@ public class CharacterService implements ICharacterService{
 		result.setId(characterSheet.getId());
 		result.setName(characterSheet.getName());
 		result.setLifePoints(characterSheet.getTotalLifePoints());
-		result.setLevel(new LevelDTO());
+		result.setLevel(new LevelDTO(2,450));
 		result.setTotalLifePoints(characterSheet.getTotalLifePoints());
 		result.setImagePath(characterSheet.getImagePath());
 		result.setLifePercent(CombatHelper.calculateLifePercent(characterSheet.getTotalLifePoints(), characterSheet.getTotalLifePoints()));

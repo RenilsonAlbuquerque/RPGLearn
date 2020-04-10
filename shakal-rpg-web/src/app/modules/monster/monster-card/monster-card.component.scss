@@ -12,12 +12,38 @@
     border: 1px solid rgba(0,0,0,.125);
     border-radius: .25rem;
 }
+.cdk-drag-dragging {
+    > img{
+        height:auto;
+    }
+    >text{display: none;}
+    >button{display: none;}
+    >small{display: none;}
+    cursor: grabbing;
+    align-self: auto;
+    height: 5px;
+    width: 40px;
+  }
+  .delete-button{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    background-color:#dc3545;
+    width: 2em;
+    height: 2em;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  }
 .text{
     font-size: 12px;
     position: absolute;
     top: 1px;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+.text.cdk-drag-dragging{
+    display: none;
 }
 .text-lp{
     font-size: 12px;
@@ -26,6 +52,7 @@
     right:6px;
     overflow: hidden;
     text-overflow: ellipsis;
+    
 }
 .text-level{
     font-size: 12px;

@@ -15,6 +15,7 @@ import { GridBoardCardComponent } from './grid-board-card/grid-board-card.compon
 import { CombatScreenPlayerComponent } from './combat-screen-player/combat-screen-player.component';
 import { CombatRoomPlayerService } from './services/combat-room.player.service';
 import { GridBoardService } from './services/grid-board.service';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 
 
@@ -26,7 +27,8 @@ import { GridBoardService } from './services/grid-board.service';
     MonsterModule,
     NgbModalModule,
     MaterialModule,
-    NgbModule
+    NgbModule,
+    DragDropModule
 
   ],
   providers:[
