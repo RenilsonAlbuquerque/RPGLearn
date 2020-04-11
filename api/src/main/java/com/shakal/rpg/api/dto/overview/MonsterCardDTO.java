@@ -15,8 +15,9 @@ public class MonsterCardDTO implements Comparable<MonsterCardDTO> {
 	 private int totalLifePoints;
 	 private String imagePath;
 	 private int lifePercent;
+	 private int speed;
 	 private CardPositionDTO position;
-	 
+	 private double size;
 	 
 	public long getId() {
 		return id;
@@ -67,6 +68,18 @@ public class MonsterCardDTO implements Comparable<MonsterCardDTO> {
 	}
 	public void setPosition(CardPositionDTO position) {
 		this.position = position;
+	}
+	public int getSpeed() {
+		return speed;
+	}
+	public void setSpeed(int speed) {
+		this.speed = speed;
+	}
+	public double getSize() {
+		return size;
+	}
+	public void setSize(double size) {
+		this.size = size;
 	}
 	@Override
 	public int compareTo(MonsterCardDTO o) {

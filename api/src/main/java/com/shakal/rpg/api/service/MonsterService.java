@@ -48,6 +48,7 @@ import com.shakal.rpg.api.repository.MonsterTypeDAO;
 import com.shakal.rpg.api.specification.MonsterSpecification;
 import com.shakal.rpg.api.exception.*;
 import com.shakal.rpg.api.helpers.AtributeHelper;
+import com.shakal.rpg.api.helpers.SizeHelper;
 import com.shakal.rpg.api.mappers.AtributeMapper;
 import com.shakal.rpg.api.mappers.AttackMapper;
 import com.shakal.rpg.api.mappers.CreatureMapper;
@@ -340,6 +341,8 @@ public class MonsterService implements IMonsterService {
 		result.setTotalLifePoints(search.getBaseLifeDice());
 		result.setName(search.getRace().getName());
 		result.setImagePath(search.getImagePath());
+		result.setSpeed(search.getSpeed());
+		result.setSize(SizeHelper.getCreatureSizeInSquare( search.getSize()));
 		return result;
 	}
 	

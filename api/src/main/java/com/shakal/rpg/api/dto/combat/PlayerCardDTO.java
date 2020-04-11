@@ -15,6 +15,7 @@ public class PlayerCardDTO implements Comparable<PlayerCardDTO>{
 	 private int speed;
 	 private CardPositionDTO position;
 	 private long playerId;
+	 private double size;
 	 
 	public long getId() {
 		return id;
@@ -75,6 +76,13 @@ public class PlayerCardDTO implements Comparable<PlayerCardDTO>{
 	}
 	public void setPlayerId(long playerId) {
 		this.playerId = playerId;
+	}
+	
+	public double getSize() {
+		return size;
+	}
+	public void setSize(int size) {
+		this.size = size;
 	}
 	@Override
 	public int compareTo(PlayerCardDTO o) {

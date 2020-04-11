@@ -12,4 +12,6 @@ export interface MonsterCard{
     lifePercent: number,
     position: CardPosition
     playerId: number;
+    speed:number,
+    size:number
 }

@@ -5,6 +5,7 @@ import { CombatState } from 'src/app/domain/models/combat/combat.state';
 import { CombatRoomService } from '../services/combat-room.service';
 import { GridBoardService } from '../services/grid-board.service';
 import { MatSliderChange } from '@angular/material/slider';
+import { CardPosition } from 'src/app/domain/models/combat/card.position';
 
 @Component({
   selector: 'app-grid-board',
@@ -87,11 +88,12 @@ export class GridBoardComponent implements OnInit{
   applyZoom(value: number){
     this.svg.nativeElement.style.zoom = new Number(value).toString();
     this.zoomValue = value;
+    console.log(value)
   }
   
 
   ngOnInit() {
-    this.drawImage();
+    //this.drawImage();
   }
 
 
@@ -107,11 +109,46 @@ export class GridBoardComponent implements OnInit{
     if(monster){
       let squareMonster: GridBoardCardComponent = new GridBoardCardComponent();
       squareMonster.setMonster(monster);
+      squareMonster.setSquareSize(30);
       let numberZoom: number = (this.zoomValue > 0)?  this.zoomValue: 1;
-      monster.position = {x: ev.offsetX/ numberZoom , y: ev.offsetY /numberZoom}
-     
+      //monster.position = {x: ev.offsetX/ numberZoom , y: ev.offsetY /numberZoom}
+      monster.position = this.calculatePositionDrop(ev.offsetX,ev.offsetY);
       this.monsters.push(squareMonster);
     }
+  }
+  private calculatePositionDrop(x: number, y: number): CardPosition{
+    let numberZoom: number = (this.zoomValue > 0)?  this.zoomValue: 1;
+    x = x/numberZoom;
+    y = y/numberZoom;
+    
+    let jump:number = numberZoom * 30;
+    let xResult:number = numberZoom * 30;
+    let yResult:number = numberZoom * 30;
+    for(var i = 0; i < x; i += jump){
+        if(xResult >= x){
+          if((xResult - x) >= jump/2.5){
+            xResult -= jump; 
+          }
+          break;
+        }else{
+          xResult += jump;
+        }
+    }
+    console.log("jump: " + jump)
+    console.log("x:" +x + ", X: " + xResult);
+    for(var j = 0; j < y; i += jump){
+      if(yResult >= y){
+        if((xResult - y) >= jump/2.5){
+          yResult -= jump; 
+        }
+        break;
+      }else{
+        yResult += jump;
+      }
+    }
+    console.log("y:" +y + ", Y: " + yResult);
+    return {x:xResult, y:yResult};
+    //return {x:x, y:y}
   }
   
 }
