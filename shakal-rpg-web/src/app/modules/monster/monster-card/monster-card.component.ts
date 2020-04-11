@@ -19,4 +19,7 @@ export class MonsterCardComponent implements OnInit {
   callDelete(){
     this.deleteEnemy.emit();
   }
+  drag(ev: DragEvent) {
+    ev.dataTransfer.setData("monster", JSON.stringify(this.monster));
+  }
 }

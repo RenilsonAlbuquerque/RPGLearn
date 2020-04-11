@@ -1,4 +1,21 @@
-.user-image{
-    height: 35px;
-    width: 35px;
+.main-screen{
+    padding: 10px;
 }
+#drawer{
+    width: 200px;
+}
+#sidebar ul li {
+    list-style: none;
+    padding: 0 16px;
+}
+.main-button{
+    position: fixed;
+    left: 12px;
+    top: 12px;
+}
+#burger {
+    width: 35px;
+    height: 5px;
+    background-color: red;
+    margin: 6px 0;
+  }

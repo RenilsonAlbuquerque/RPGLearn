@@ -1,4 +1,7 @@
-<div  class="monster-card text-white" [ngClass]="{'bg-dark':monster.lifePercent == 0, 
+<div 
+  draggable="true" 
+  (dragstart)="drag($event)" 
+  class="monster-card text-white" [ngClass]="{'bg-dark':monster.lifePercent == 0, 
                                           'bg-danger': monster.lifePercent < 10 && monster.lifePercent > 0,
                                           'bg-warning': monster.lifePercent > 10 && monster.lifePercent < 50,
                                           'bg-success': monster.lifePercent > 50}">

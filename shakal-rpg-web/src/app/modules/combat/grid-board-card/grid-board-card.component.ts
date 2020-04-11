@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { MonsterCard } from 'src/app/domain/models/monster/monster.card';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 
@@ -9,6 +9,8 @@ import { CdkDragDrop } from '@angular/cdk/drag-drop';
 })
 export class GridBoardCardComponent implements OnInit {
 
+  @ViewChild('self', { static: true })
+  self: ElementRef<HTMLCanvasElement>;
   
   @Input() public monster: MonsterCard;
   constructor() { 
@@ -16,7 +18,8 @@ export class GridBoardCardComponent implements OnInit {
   }
 
   ngOnInit() {
-  
+    this.self.nativeElement.style.top = this.monster.position.y.toString() + "px";
+    this.self.nativeElement.style.left = this.monster.position.x.toString() + "px";
   }
   setMonster(monster: MonsterCard){
     

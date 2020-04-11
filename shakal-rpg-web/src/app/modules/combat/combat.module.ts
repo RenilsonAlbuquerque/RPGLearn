@@ -16,6 +16,7 @@ import { CombatScreenPlayerComponent } from './combat-screen-player/combat-scree
 import { CombatRoomPlayerService } from './services/combat-room.player.service';
 import { GridBoardService } from './services/grid-board.service';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { DragScrollModule } from 'ngx-drag-scroll';
 
 
 
@@ -28,7 +29,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     NgbModalModule,
     MaterialModule,
     NgbModule,
-    DragDropModule
+    DragDropModule,
+    DragScrollModule
 
   ],
   providers:[

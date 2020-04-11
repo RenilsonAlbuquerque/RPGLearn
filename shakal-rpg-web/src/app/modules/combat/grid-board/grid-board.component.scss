@@ -1,13 +1,21 @@
 
 .canvas-container{
-    //-webkit-touch-callout: none!important;
-    overflow: auto;
+    position: relative;
     align-items: center;
     justify-content: center;
-    display: flex;
+    overflow: scroll;
+    
 }
-
-.zoom-slider{
+.svg{
     position: absolute;
-    z-index: 10;
+}
+.canvas{
+    max-width: 80%;
+}
+.zoom-slider{
+    z-index: 150;
+    position: fixed;
+    top: 158px;
+    right: 0px;
+    transform: rotate(270deg);
 }

@@ -1,6 +1,6 @@
-
-<nav class="navbar navbar-expand-md navbar-dark bg-primary fixed-top">
-    <!-- Navbar content -->
+<!-- 
+<nav class="principal-nav">
+   
 
     <button class="navbar-toggler hidden-sm-up" type="button" 
             (click)="isNavbarCollapsed = !isNavbarCollapsed"
@@ -37,7 +37,27 @@
   <br>
   <br>
   <br>
-  <br>
-<div class="container">
-  <router-outlet></router-outlet>
-</div>
+  <br> -->
+  <mat-drawer-container class="example-container" [hasBackdrop]=true>
+    <mat-drawer id="drawer" #drawer [mode]="push">
+      <div id="drawer">
+        <ul>
+          <li [routerLink]="['story']">Historias</li>
+          <li [routerLink]="['monster']">Monstros</li>
+        </ul>
+      </div>
+      
+    </mat-drawer>
+    <mat-drawer-content>
+      <div class="container">
+        <button class="main-button" mat-raised-button (click)="drawer.toggle()">
+          <div id="burger"></div>
+          <div id="burger"></div>
+          <div id="burger"></div>
+        </button>
+
+        <router-outlet class="main-screen"></router-outlet>
+      </div>
+    </mat-drawer-content>
+  </mat-drawer-container>
+

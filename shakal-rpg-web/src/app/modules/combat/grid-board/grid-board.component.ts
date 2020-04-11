@@ -4,6 +4,7 @@ import { GridBoardCardComponent } from '../grid-board-card/grid-board-card.compo
 import { CombatState } from 'src/app/domain/models/combat/combat.state';
 import { CombatRoomService } from '../services/combat-room.service';
 import { GridBoardService } from '../services/grid-board.service';
+import { MatSliderChange } from '@angular/material/slider';
 
 @Component({
   selector: 'app-grid-board',
@@ -14,45 +15,20 @@ export class GridBoardComponent implements OnInit{
 
   @ViewChild('combatCanvas', { static: true })
   canvas: ElementRef<HTMLCanvasElement>;
+  @ViewChild('containerCanvas', { static: true })
+  svg: ElementRef<HTMLCanvasElement>;
 
   private ctx: CanvasRenderingContext2D;
 
   private image = new Image();
-  private zoomValue: number;
+  zoomValue: number;
 
+
+  private monsters: GridBoardCardComponent[];
 
   constructor(private combatRoomService: CombatRoomService,private gridBoardService: GridBoardService) { 
-    
+    this.monsters = [];
   }
- 
-  // createSvg(){
-   
-
-  //   this.ctx.canvas.width  = 1200;
-  //   this.ctx.canvas.height = 800;
-    
-  //   var data = '<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"> \
-  //       <defs> \
-  //           <pattern id="smallGrid" width="8" height="8" patternUnits="userSpaceOnUse"> \
-  //               <path d="M 8 0 L 0 0 0 8" fill="none" stroke="gray" stroke-width="0.5" /> \
-  //           </pattern> \
-  //           <pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse"> \
-  //               <rect width="80" height="80" fill="url(#smallGrid)" /> \
-  //               <path d="M 80 0 L 0 0 0 80" fill="none" stroke="gray" stroke-width="1" /> \
-  //           </pattern> \
-  //       </defs> \
-  //       <rect width="100%" height="100%" fill="url(#smallGrid)" /> \
-  //   </svg>';
-
-  //   var DOMURL = window.URL || window.webkitURL || window;
-    
-  //   var img = new Image();
-  //   var svg = new Blob([data], {type: 'image/svg+xml;charset=utf-8'});
-  //   var url = URL.createObjectURL(svg);
-  //   this.ctx.drawImage(img,0,0);
-     
-
-  // }
   createsvr(squareDimension: number){
      // 横线与竖线的是距
      var dx = squareDimension;
@@ -98,7 +74,7 @@ export class GridBoardComponent implements OnInit{
      }
   }
   drawImage(){
-    this.image.src = "https://geekandsundry.com/wp-content/uploads/2016/06/mapfeaturedimage.jpg";
+    this.image.src = "https://media-waterdeep.cursecdn.com/attachments/thumbnails/5/962/400/507/031.jpg";
     this.ctx = this.canvas.nativeElement.getContext('2d');
    
     this.image.onload = () => {
@@ -107,18 +83,35 @@ export class GridBoardComponent implements OnInit{
       this.ctx.drawImage(this.image,0,0);
       this.createsvr(28);
     }
-
-    
-    
   }
-  applyZoom(){
-    this.canvas.nativeElement.style.zoom = "0.2"
+  applyZoom(value: number){
+    this.svg.nativeElement.style.zoom = new Number(value).toString();
+    this.zoomValue = value;
   }
   
 
   ngOnInit() {
     this.drawImage();
-    
+  }
+
+
+  allowDrop(ev:DragEvent) {
+    ev.preventDefault();
+  }
+
+  drop(ev: DragEvent) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("monster");
+    let monster: MonsterCard = JSON.parse(data);
+
+    if(monster){
+      let squareMonster: GridBoardCardComponent = new GridBoardCardComponent();
+      squareMonster.setMonster(monster);
+      let numberZoom: number = (this.zoomValue > 0)?  this.zoomValue: 1;
+      monster.position = {x: ev.offsetX/ numberZoom , y: ev.offsetY /numberZoom}
+     
+      this.monsters.push(squareMonster);
+    }
   }
   
 }
