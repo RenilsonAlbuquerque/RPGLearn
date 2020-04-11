@@ -15,8 +15,10 @@ export class GridBoardCardComponent implements OnInit {
   
   @Input() public monster: MonsterCard;
   private squareSize: number;
+
+  public menuOpen: boolean;
   constructor() { 
-    
+    this.menuOpen = false;
   }
 
   ngOnInit() {
@@ -41,6 +43,6 @@ export class GridBoardCardComponent implements OnInit {
     return this.monster;
   }
   handleClickCard(){
-    console.log(this.monster)
+    this.menuOpen = !this.menuOpen;
   }
 }

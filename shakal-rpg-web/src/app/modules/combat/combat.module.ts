@@ -18,6 +18,11 @@ import { GridBoardService } from './services/grid-board.service';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { DragScrollModule } from 'ngx-drag-scroll';
 
+import { far } from '@fortawesome/free-regular-svg-icons';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+
 
 
 @NgModule({
@@ -30,13 +35,14 @@ import { DragScrollModule } from 'ngx-drag-scroll';
     MaterialModule,
     NgbModule,
     DragDropModule,
-    DragScrollModule
-
+    DragScrollModule,
+    FontAwesomeModule
   ],
   providers:[
     MonsterService,
     CombatRoomService,
     CombatRoomPlayerService,
+    FontAwesomeModule,
     GridBoardService,
     {
       provide: InjectableRxStompConfig,
@@ -50,4 +56,8 @@ import { DragScrollModule } from 'ngx-drag-scroll';
   ],
   exports:[GridBoardComponent, CombatScreenPlayerComponent]
 })
-export class CombatModule { }
+export class CombatModule {
+  constructor(){
+    library.add(fas,far);
+  }
+ }

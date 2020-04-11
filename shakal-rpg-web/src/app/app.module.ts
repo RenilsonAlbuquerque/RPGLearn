@@ -19,6 +19,12 @@ import { CanActivateRouteGuard } from './interceptors/can.activate';
 import { RegisterPlayerComponent } from './pages/register-player/register-player.component';
 import { UserService } from './modules/user/user.module.service';
 import { SpinnerService } from './infra/services/spinner.service';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { far } from '@fortawesome/free-regular-svg-icons';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+
 
 
 @NgModule({
@@ -37,6 +43,7 @@ import { SpinnerService } from './infra/services/spinner.service';
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
+    FontAwesomeModule,
     ToastrModule.forRoot()
     
   ],
@@ -49,4 +56,8 @@ import { SpinnerService } from './infra/services/spinner.service';
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+  constructor(){
+    library.add(fas,);
+  }
+}

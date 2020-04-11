@@ -110,8 +110,6 @@ export class GridBoardComponent implements OnInit{
       let squareMonster: GridBoardCardComponent = new GridBoardCardComponent();
       squareMonster.setMonster(monster);
       squareMonster.setSquareSize(30);
-      let numberZoom: number = (this.zoomValue > 0)?  this.zoomValue: 1;
-      //monster.position = {x: ev.offsetX/ numberZoom , y: ev.offsetY /numberZoom}
       monster.position = this.calculatePositionDrop(ev.offsetX,ev.offsetY);
       this.monsters.push(squareMonster);
     }
