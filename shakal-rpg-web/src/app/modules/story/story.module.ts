@@ -15,6 +15,7 @@ import { PlaceCreateComponent } from './place-create/place-create.component';
 import { StoryDetailPlayerComponent } from './story-detail-player/story-detail-player.component';
 import { CombatModule } from '../combat/combat.module';
 import { CharacterService } from '../character/character.module.service';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 
@@ -27,7 +28,8 @@ import { CharacterService } from '../character/character.module.service';
     FormsModule,
     ReactiveFormsModule,
     BasecomponentsModule,
-    CombatModule
+    CombatModule,
+    FontAwesomeModule,
   ],
   providers:[StoryService,FormBuilder,CharacterService]
 })

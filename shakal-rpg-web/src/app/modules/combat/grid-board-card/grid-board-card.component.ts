@@ -26,6 +26,7 @@ export class GridBoardCardComponent implements OnInit {
     this.self.nativeElement.style.left = this.monster.position.x.toString() + "px";
     this.self.nativeElement.style.height = (30 * this.monster.size).toString() + "px";
     this.self.nativeElement.style.width = (30 * this.monster.size).toString() + "px";
+    
   }
   getSquareSize(): number{
     return this.squareSize;

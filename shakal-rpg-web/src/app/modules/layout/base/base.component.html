@@ -49,12 +49,12 @@
       
     </mat-drawer>
     <mat-drawer-content>
-      <div class="container">
-        <button class="main-button" mat-raised-button (click)="drawer.toggle()">
-          <div id="burger"></div>
-          <div id="burger"></div>
-          <div id="burger"></div>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <button type="button"  class="btn btn-outline-dark btn-fab" (click)="drawer.toggle()">
+          <fa-icon icon="bars"></fa-icon>
         </button>
+      </nav>
+      <div class="container">
 
         <router-outlet class="main-screen"></router-outlet>
       </div>

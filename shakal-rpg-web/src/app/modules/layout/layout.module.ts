@@ -5,6 +5,7 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { MaterialModule } from '../material-design/material.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [BaseComponent ],
@@ -12,7 +13,8 @@ import { MaterialModule } from '../material-design/material.module';
     AppRoutingModule,
     CommonModule,
     NgbModule,
-    MaterialModule
+    MaterialModule,
+    FontAwesomeModule,
   ]
 })
 export class LayoutModule { }

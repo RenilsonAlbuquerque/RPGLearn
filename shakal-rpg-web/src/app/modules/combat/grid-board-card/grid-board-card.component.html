@@ -1,7 +1,12 @@
 
 <div #self class="caixa" (click)="handleClickCard()">
-        <img  *ngIf="monster != null" class="card-img" 
-        src="{{monster?.imagePath}}" alt="_blank" />
+        <img *ngIf="monster != null" 
+        src="{{monster?.imagePath}}" alt="_blank"
+        class="card-img" 
+        [ngClass]="{'dead':monster.lifePercent == 0, 
+        'danger': monster.lifePercent < 10 && monster.lifePercent > 0,
+        'warning': monster.lifePercent > 10 && monster.lifePercent < 50,
+        'safe': monster.lifePercent > 50 }" />
         <div class="fab-menu-overlay" [ngClass]="{'active':menuOpen}"></div>
         <div class="fab-container" [hidden]="!menuOpen" >
                     <button type="button" class="btn btn-primary bmd-btn-fab fab-options" data-toggle="tooltip" data-placement="top" title="Andar">

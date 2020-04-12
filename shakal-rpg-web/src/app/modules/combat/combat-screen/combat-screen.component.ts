@@ -23,37 +23,16 @@ export class CombatScreenComponent implements OnInit  {
   private combatState: CombatState;
   private modalReference;
 
-  
-
-  // items = [
-  //   'Item 0',
-  //   'Item 1',
-  //   'Item 2',
-  //   'Item 3',
-  //   'Item 4',
-  //   'Item 5',
-  //   'Item 6',
-  //   'Item 7',
-  // ]
 
   messageHistory = [];
   storyid: number;
 
-  constructor( public element: ElementRef,private _activatedRoute: ActivatedRoute,private modalService: NgbModal, private combatRoomService: CombatRoomService) { 
+  constructor(public element: ElementRef,private _activatedRoute: ActivatedRoute,private modalService: NgbModal, private combatRoomService: CombatRoomService) { 
     this.combatRoomService.getCombatState().subscribe(
        state => this.combatState = state
     );
 
   }
-  // drop(event: CdkDragDrop<string[]>) {
-  //   console.log("Hereasdasdfsa")
-  //   moveItemInArray(this.items, event.previousIndex, event.currentIndex);
-  // }
-  // drop2(event: CdkDragDrop<MonsterCard[]>) {
-  //   console.log("Turn down fasdasd")
-  //   ///moveItemInArray(this.items, event.previousIndex, event.currentIndex);
-  // }
-
   ngOnInit() {
     this._activatedRoute.params.subscribe(params => {
       this.storyid = params['id'];

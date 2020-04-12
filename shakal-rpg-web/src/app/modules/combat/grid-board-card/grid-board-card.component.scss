@@ -1,19 +1,32 @@
 .caixa{
   height: 50px;
   width: 50px;
-  border-style: solid;
-  border-width: thin;
-  border-color: black;
   cursor: pointer;
   text-align: center;
   position: absolute;
 }
+
+
 .card-img {
   width: 100%;
   height: 100%;
-  border-radius: 25px;
-  
+  border-radius: 100%;
+  border-style: solid;
+ 
 }
+.danger{
+  border-color: #9A1B27;
+}
+.warning {
+  border-color: #CC9900;
+}
+.safe {
+  border-color: #218838;
+}
+ .dead {
+  border-color: #252729;
+}
+
 .fab-options{
   font-size: large;
   border-radius: 100%;

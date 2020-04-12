@@ -72,8 +72,12 @@
         </ng-template>
       </div>
     </div>
-    <button type="button" focus-index="1" class="btn btn-danger bmd-btn-fab fab-add-enemy" (click)="open(modalAddEnemy)" >+</button>
-    <button type="button" focus-index="1" class="btn btn-primary bmd-btn-fab fab-add-player" (click)="open(modalAddHelper)" >+</button>
+    <button type="button"  class="btn btn-danger bmd-btn-fab fab-add-enemy" (click)="open(modalAddEnemy)" >
+      <fa-icon icon="plus"></fa-icon>
+    </button>
+    <button type="button"  class="btn btn-primary bmd-btn-fab fab-add-player" (click)="open(modalAddHelper)" >
+      <fa-icon icon="plus"></fa-icon>
+    </button>
         <!-- <div class="card players-container" >
             <div class="card-header">
                     <h6>Jogadores</h6>

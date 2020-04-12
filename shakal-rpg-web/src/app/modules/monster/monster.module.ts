@@ -19,6 +19,7 @@ import { CombatRoomService } from '../combat/services/combat-room.service';
 import { OnlynumberDirective } from 'src/app/infra/directives/only-number.directive';
 import { InjectableRxStompConfig, RxStompService, rxStompServiceFactory } from '@stomp/ng2-stompjs';
 import { myRxStompConfig } from 'src/app/infra/config/my-rx-stomp.config';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 
@@ -35,7 +36,8 @@ import { myRxStompConfig } from 'src/app/infra/config/my-rx-stomp.config';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    BasecomponentsModule
+    BasecomponentsModule,
+    FontAwesomeModule
   ],
   providers:[
     MonsterService,FormBuilder,CombatRoomService,

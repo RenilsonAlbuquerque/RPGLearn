@@ -26,6 +26,11 @@ const routes: Routes = [
     component: BaseComponent,
     children:[
       {
+        path: '',
+        redirectTo: 'story',
+        pathMatch:'full'
+      },
+      {
         path: 'monster',
         loadChildren: './modules/monster/monster.module#MonsterModule'
       },
