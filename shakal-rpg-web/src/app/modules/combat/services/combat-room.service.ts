@@ -37,13 +37,11 @@ export class CombatRoomService {
   }
 
   public addMonsterEnemy(monster: MonsterCard){
-    monster.position = { x : 6,y: 6 }
     var combatState: CombatState = this.combatState.getValue();
     combatState.monsters.push(monster);
     this.onSendMessage(combatState);
   }
   public addMonsterAlly(monster: MonsterCard){
-    monster.position = { x : 1,y: 1 }
     var combatState: CombatState = this.combatState.getValue();
     combatState.players.push(monster);
     this.onSendMessage(combatState);

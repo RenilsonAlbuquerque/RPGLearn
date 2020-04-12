@@ -26,6 +26,12 @@ export class GridBoardComponent implements OnInit{
   private combatState: CombatState;
   private monsters: GridBoardCardComponent[];
 
+  
+  private isPressed: boolean;
+  private startX: number;
+  private startY: number;
+
+
   constructor(private combatRoomService: CombatRoomService,private gridBoardService: GridBoardService) { 
     this.monsters = [];
     this.combatRoomService.getCombatState().subscribe(
@@ -34,16 +40,43 @@ export class GridBoardComponent implements OnInit{
         this.initializeBoardState()
       }
     );
+   
   }
   ngOnInit() {
-    //this.drawImage();
+    this.svg.nativeElement.onmousedown = (ev) =>{
+      this.isPressed = true;
+      this.startX = ev.clientX + this.svg.nativeElement.scrollLeft;
+      this.startY = ev.clientY + this.svg.nativeElement.scrollTop;
+    }
+    this.svg.nativeElement.onmouseup = () =>{
+      this.isPressed = false;
+      this.svg.nativeElement.style.cursor = "default";
+    }
+    this.svg.nativeElement.onmousemove = (ev) =>{
+      if (this.isPressed === true) {
+        this.svg.nativeElement.style.cursor = "dragging";
+        this.svg.nativeElement.scrollLeft += (this.startX - (ev.clientX + this.svg.nativeElement.scrollLeft));
+        this.svg.nativeElement.scrollTop += (this.startY - (ev.clientY + this.svg.nativeElement.scrollTop));
+      }
+    }
+   
   }
   initializeBoardState(){
-      this.combatState.monsters.forEach(monster => {
-        let squareMonster: GridBoardCardComponent = new GridBoardCardComponent();
-        squareMonster.setMonster(monster);
-        squareMonster.setSquareSize(30);
-        this.monsters.push(squareMonster);
+      this.combatState.monsters.forEach(enemy => {
+        if(enemy.position){
+          let squareEnemy: GridBoardCardComponent = new GridBoardCardComponent();
+          squareEnemy.setMonster(enemy);
+          squareEnemy.setSquareSize(30);
+          this.monsters.push(squareEnemy);
+        }
+      });
+      this.combatState.players.forEach(ally =>{
+        if(ally.position){
+          let squareAlly: GridBoardCardComponent = new GridBoardCardComponent();
+          squareAlly.setMonster(ally);
+          squareAlly.setSquareSize(30);
+          this.monsters.push(squareAlly);
+        }
       });
   }
   drawImage(){
@@ -77,5 +110,8 @@ export class GridBoardComponent implements OnInit{
       monster.position = calculatePositionDrop(ev.offsetX,ev.offsetY,this.zoomValue,30);
       this.monsters.push(squareMonster);
     }
+  }
+  handleDragToScroll(ev: DragEvent){
+    ev.preventDefault();
   }
 }
