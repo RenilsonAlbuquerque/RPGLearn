@@ -4,7 +4,7 @@ import { GridBoardCardComponent } from '../grid-board-card/grid-board-card.compo
 import { CombatState } from 'src/app/domain/models/combat/combat.state';
 import { CombatRoomService } from '../services/combat-room.service';
 import { GridBoardService } from '../services/grid-board.service';
-import { calculatePositionDrop } from 'src/app/infra/helpers/grid-board.helper';
+import { calculatePositionDrop, createSvgGrid } from 'src/app/infra/helpers/grid-board.helper';
 
 @Component({
   selector: 'app-grid-board',
@@ -15,12 +15,16 @@ export class GridBoardComponent implements OnInit{
 
   @ViewChild('combatCanvas', { static: true })
   canvas: ElementRef<HTMLCanvasElement>;
-  @ViewChild('containerCanvas', { static: true })
-  svg: ElementRef<HTMLCanvasElement>;
+  @ViewChild('mainContainer', { static: true })
+  mainContainer: ElementRef<HTMLCanvasElement>;
+  @ViewChild('imageContainer', { static: true })
+  imageContainer: ElementRef<HTMLCanvasElement>;
+  @ViewChild('svgGrid', { static: true })
+  svgGrid: ElementRef<HTMLCanvasElement>;
 
   private ctx: CanvasRenderingContext2D;
-
   private image = new Image();
+  
   zoomValue: number;
 
   private combatState: CombatState;
@@ -43,23 +47,23 @@ export class GridBoardComponent implements OnInit{
    
   }
   ngOnInit() {
-    this.svg.nativeElement.onmousedown = (ev) =>{
+    this.mainContainer.nativeElement.onmousedown = (ev) =>{
       this.isPressed = true;
-      this.startX = ev.clientX + this.svg.nativeElement.scrollLeft;
-      this.startY = ev.clientY + this.svg.nativeElement.scrollTop;
+      this.startX = ev.clientX + this.mainContainer.nativeElement.scrollLeft;
+      this.startY = ev.clientY + this.mainContainer.nativeElement.scrollTop;
     }
-    this.svg.nativeElement.onmouseup = () =>{
+    this.mainContainer.nativeElement.onmouseup = () =>{
       this.isPressed = false;
-      this.svg.nativeElement.style.cursor = "default";
+      this.mainContainer.nativeElement.style.cursor = "default";
     }
-    this.svg.nativeElement.onmousemove = (ev) =>{
+    this.mainContainer.nativeElement.onmousemove = (ev) =>{
       if (this.isPressed === true) {
-        this.svg.nativeElement.style.cursor = "dragging";
-        this.svg.nativeElement.scrollLeft += (this.startX - (ev.clientX + this.svg.nativeElement.scrollLeft));
-        this.svg.nativeElement.scrollTop += (this.startY - (ev.clientY + this.svg.nativeElement.scrollTop));
+        this.mainContainer.nativeElement.style.cursor = "dragging";
+        this.mainContainer.nativeElement.scrollLeft += (this.startX - (ev.clientX + this.mainContainer.nativeElement.scrollLeft));
+        this.mainContainer.nativeElement.scrollTop += (this.startY - (ev.clientY + this.mainContainer.nativeElement.scrollTop));
       }
     }
-   
+    this.newDrawImage();
   }
   initializeBoardState(){
       this.combatState.monsters.forEach(enemy => {
@@ -80,7 +84,7 @@ export class GridBoardComponent implements OnInit{
       });
   }
   drawImage(){
-    this.image.src = "https://media-waterdeep.cursecdn.com/attachments/thumbnails/5/962/400/507/031.jpg";
+    this.image.src = "https://1.bp.blogspot.com/-skjFbWikSuU/VvUUhJu7ImI/AAAAAAAAGXw/7EtMwcNzPfw30x3CKdyo3wAYCxU7Qhr1g/s1600/dp6links.jpg";
     this.ctx = this.canvas.nativeElement.getContext('2d');
    
     this.image.onload = () => {
@@ -89,8 +93,23 @@ export class GridBoardComponent implements OnInit{
       this.ctx.drawImage(this.image,0,0);
     }
   }
+  newDrawImage(){
+    this.image.src = "https://i.redd.it/7igkmw001p121.jpg";
+    this.image.onload = () => {
+      
+      this.imageContainer.nativeElement.style.width = "fit-content";
+      this.mainContainer.nativeElement.height = this.image.height;
+      this.mainContainer.nativeElement.width = this.image.width;
+      this.imageContainer.nativeElement.height = this.image.height;
+      this.imageContainer.nativeElement.width = this.image.width;
+      this.imageContainer.nativeElement.insertAdjacentHTML('afterbegin',createSvgGrid(30,this.image.naturalWidth,this.image.height));
+      this.imageContainer.nativeElement.ondragover = (ev) => {this.allowDrop(ev)};
+      this.imageContainer.nativeElement.ondrop = (ev) => {this.drop(ev)};
+      this.imageContainer.nativeElement.style.backgroundImage = `url(${this.image.src})`;
+    }
+  }
   applyZoom(value: number){
-    this.svg.nativeElement.style.zoom = new Number(value).toString();
+    this.mainContainer.nativeElement.style.zoom = new Number(value).toString();
     this.zoomValue = value;
   }
   

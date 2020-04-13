@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/pages/auth.service';
+import { SidebarItem, sidebarItems } from 'src/app/infra/models/sidebar';
 
 @Component({
   selector: 'app-base',
@@ -9,7 +10,15 @@ import { AuthService } from 'src/app/pages/auth.service';
 export class BaseComponent implements OnInit {
 
   public userName: string;
-  constructor(private authService: AuthService) { }
+  public sidebarItems: SidebarItem[];
+  public selectedIndex: number;
+  constructor(private authService: AuthService) {
+      this.sidebarItems = sidebarItems;
+      this.selectedIndex = 0;
+  }
+  changeSelected(index: number){
+    this.selectedIndex = index;
+  }
 
   ngOnInit() {
     this.userName = this.authService.getCurrentUser().name

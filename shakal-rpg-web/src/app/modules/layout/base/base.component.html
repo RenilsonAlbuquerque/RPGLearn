@@ -41,9 +41,18 @@
   <mat-drawer-container class="example-container" [hasBackdrop]=true>
     <mat-drawer id="drawer" #drawer [mode]="push">
       <div id="drawer">
-        <ul>
-          <li [routerLink]="['story']">Historias</li>
-          <li [routerLink]="['monster']">Monstros</li>
+        <div class="sidebar-header">
+          <img src="https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png" class="profile-image" alt="">
+        </div>
+        <ul class="sidebar-ul">
+          <li *ngFor="let item of sidebarItems;index as i" class="sidebar-li" 
+              [routerLink]="item.path"
+              (click)="changeSelected(i)"
+              [ngClass]="{'active':i === selectedIndex }">
+            {{item.label}}
+          </li> 
+          <!-- <li class="sidebar-li" [routerLink]="['story']">Historias</li>
+          <li class="sidebar-li" [routerLink]="['monster']">Monstros</li> -->
         </ul>
       </div>
       
@@ -55,7 +64,6 @@
         </button>
       </nav>
       <div class="container">
-
         <router-outlet class="main-screen"></router-outlet>
       </div>
     </mat-drawer-content>
