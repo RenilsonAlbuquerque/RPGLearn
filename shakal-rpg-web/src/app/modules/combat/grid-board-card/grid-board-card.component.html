@@ -10,7 +10,7 @@
         'safe': monster.lifePercent > 50 }" />
         <div class="fab-menu-overlay" [ngClass]="{'active':menuOpen}"></div>
         <div class="fab-container" [hidden]="!menuOpen" >
-                    <button type="button" class="btn btn-primary bmd-btn-fab fab-options" data-toggle="tooltip" data-placement="top" title="Andar">
+                    <button (click)="handleMove()" type="button" class="btn btn-primary bmd-btn-fab fab-options" data-toggle="tooltip" data-placement="top" title="Andar">
                         <fa-icon icon="walking"></fa-icon>
                     </button>
                     <button type="button" class="btn btn-success bmd-btn-fab fab-options" data-toggle="tooltip" data-placement="top" title="Batalha">

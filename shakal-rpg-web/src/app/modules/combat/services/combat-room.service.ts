@@ -13,7 +13,8 @@ export class CombatRoomService {
 
   private storyId: number;
   protected combatState: BehaviorSubject<CombatState>;
-  
+ 
+
   constructor(protected httpClient: HttpClient,protected rxStompService: RxStompService) {
       this.combatState = new BehaviorSubject<CombatState>({
         monsters :[],
@@ -21,7 +22,9 @@ export class CombatRoomService {
         dificult: 1
       } as CombatState); 
   }
-
+  protected onSendMessage(combatState: CombatState) {
+    this.rxStompService.publish({destination: '/app/combat/' + this.storyId, body: JSON.stringify(combatState)});
+  }
   public initializeCombat(storyId: number){
     this.storyId = storyId;
     
@@ -75,8 +78,6 @@ export class CombatRoomService {
     combatState.players.splice(index,1);
     this.onSendMessage(combatState);
   }
-
-  protected onSendMessage(combatState: CombatState) {
-    this.rxStompService.publish({destination: '/app/combat/' + this.storyId, body: JSON.stringify(combatState)});
-  }
+ 
+ 
 }

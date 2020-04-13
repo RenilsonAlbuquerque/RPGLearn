@@ -4,7 +4,7 @@ import { GridBoardCardComponent } from '../grid-board-card/grid-board-card.compo
 import { CombatState } from 'src/app/domain/models/combat/combat.state';
 import { CombatRoomService } from '../services/combat-room.service';
 import { GridBoardService } from '../services/grid-board.service';
-import { calculatePositionDrop, createSvgGrid } from 'src/app/infra/helpers/grid-board.helper';
+import { calculatePositionDrop, createSvgGrid, createSvgWalk } from 'src/app/infra/helpers/grid-board.helper';
 
 @Component({
   selector: 'app-grid-board',
@@ -19,8 +19,8 @@ export class GridBoardComponent implements OnInit{
   mainContainer: ElementRef<HTMLCanvasElement>;
   @ViewChild('imageContainer', { static: true })
   imageContainer: ElementRef<HTMLCanvasElement>;
-  @ViewChild('svgGrid', { static: true })
-  svgGrid: ElementRef<HTMLCanvasElement>;
+ 
+  private svgBattleGrid: HTMLElement;
 
   private ctx: CanvasRenderingContext2D;
   private image = new Image();
@@ -106,6 +106,8 @@ export class GridBoardComponent implements OnInit{
       this.imageContainer.nativeElement.ondragover = (ev) => {this.allowDrop(ev)};
       this.imageContainer.nativeElement.ondrop = (ev) => {this.drop(ev)};
       this.imageContainer.nativeElement.style.backgroundImage = `url(${this.image.src})`;
+      this.svgBattleGrid = document.getElementById("svggrid");
+      //this.insertMovePreview();
     }
   }
   applyZoom(value: number){
@@ -133,4 +135,11 @@ export class GridBoardComponent implements OnInit{
   handleDragToScroll(ev: DragEvent){
     ev.preventDefault();
   }
+  // insertMovePreview(){
+  //   if(document.getElementById("movePreview") != null){
+  //     let element = document.getElementById("movePreview");
+  //     element.parentNode.removeChild(element);
+  //   }
+  //   document.getElementById("svggrid").innerHTML += createSvgWalk(30,6);
+  // }
 }

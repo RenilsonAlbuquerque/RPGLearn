@@ -2,6 +2,7 @@ import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { MonsterCard } from 'src/app/domain/models/monster/monster.card';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { GridBoardService } from '../services/grid-board.service';
+import { createSvgWalk } from 'src/app/infra/helpers/grid-board.helper';
 
 @Component({
   selector: 'app-grid-board-card',
@@ -45,5 +46,12 @@ export class GridBoardCardComponent implements OnInit {
   }
   handleClickCard(){
     this.menuOpen = !this.menuOpen;
+  }
+  handleMove(){
+    if(document.getElementById("movePreview") != null){
+      let element = document.getElementById("movePreview");
+      element.parentNode.removeChild(element);
+    }
+    document.getElementById("svggrid").innerHTML += createSvgWalk(30,this.monster.speed,this.monster.position, this.monster.size);
   }
 }
