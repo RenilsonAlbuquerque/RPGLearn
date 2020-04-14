@@ -1,7 +1,8 @@
 
-<div #self class="caixa" (click)="handleClickCard()">
+<div #self class="caixa" (click)="handleClickCard()" [draggable]="dragging">
   
-        <img *ngIf="monster != null" 
+        <img *ngIf="monster != null"
+        draggable="false" 
         src="{{monster?.imagePath}}" alt="_blank"
         class="card-img" 
         [ngClass]="{'dead':monster.lifePercent == 0, 

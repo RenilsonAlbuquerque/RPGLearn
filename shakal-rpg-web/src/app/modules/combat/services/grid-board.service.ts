@@ -10,7 +10,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class GridBoardService {
     
   private squareSize : number = 30;
-  private boardZoom: number =0; 
+  private boardZoom: number = 0;
+   
   constructor(){
         
   }

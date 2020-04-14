@@ -18,8 +18,11 @@ export class GridBoardCardComponent implements OnInit {
   private squareSize: number;
 
   public menuOpen: boolean;
+
+  private dragging: boolean;
   constructor() { 
     this.menuOpen = false;
+    this.dragging = false;
   }
 
   ngOnInit() {
@@ -52,6 +55,7 @@ export class GridBoardCardComponent implements OnInit {
       let element = document.getElementById("movePreview");
       element.parentNode.removeChild(element);
     }
+    this.dragging = true;
     document.getElementById("svggrid").innerHTML += createSvgWalk(30,this.monster.speed,this.monster.position, this.monster.size);
   }
 }

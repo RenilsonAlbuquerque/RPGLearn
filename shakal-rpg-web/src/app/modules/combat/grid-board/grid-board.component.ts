@@ -35,9 +35,10 @@ export class GridBoardComponent implements OnInit{
   private startX: number;
   private startY: number;
 
-
+  private squareSize: number;
   constructor(private combatRoomService: CombatRoomService,private gridBoardService: GridBoardService) { 
     this.monsters = [];
+    this.squareSize = 30;
     this.combatRoomService.getCombatState().subscribe(
       state => {
         this.combatState = state,
@@ -47,14 +48,26 @@ export class GridBoardComponent implements OnInit{
    
   }
   ngOnInit() {
-    this.mainContainer.nativeElement.onmousedown = (ev) =>{
-      this.isPressed = true;
-      this.startX = ev.clientX + this.mainContainer.nativeElement.scrollLeft;
-      this.startY = ev.clientY + this.mainContainer.nativeElement.scrollTop;
+    this.mainContainer.nativeElement.oncontextmenu = (ev) => {
+      ev.preventDefault();
     }
-    this.mainContainer.nativeElement.onmouseup = () =>{
-      this.isPressed = false;
-      this.mainContainer.nativeElement.style.cursor = "default";
+    this.mainContainer.nativeElement.onmousedown = (ev) =>{
+      //ev.preventDefault();
+      if(ev.which == 3){
+        
+        this.isPressed = true;
+        this.startX = ev.clientX + this.mainContainer.nativeElement.scrollLeft;
+        this.startY = ev.clientY + this.mainContainer.nativeElement.scrollTop;
+      }
+      
+    }
+    this.mainContainer.nativeElement.onmouseup = (ev) =>{
+      if(ev.which == 3){
+        console.log("releaseddddd")
+        this.isPressed = false;
+        this.mainContainer.nativeElement.style.cursor = "default";
+      }
+     
     }
     this.mainContainer.nativeElement.onmousemove = (ev) =>{
       if (this.isPressed === true) {
@@ -70,7 +83,7 @@ export class GridBoardComponent implements OnInit{
         if(enemy.position){
           let squareEnemy: GridBoardCardComponent = new GridBoardCardComponent();
           squareEnemy.setMonster(enemy);
-          squareEnemy.setSquareSize(30);
+          squareEnemy.setSquareSize(this.squareSize);
           this.monsters.push(squareEnemy);
         }
       });
@@ -78,7 +91,7 @@ export class GridBoardComponent implements OnInit{
         if(ally.position){
           let squareAlly: GridBoardCardComponent = new GridBoardCardComponent();
           squareAlly.setMonster(ally);
-          squareAlly.setSquareSize(30);
+          squareAlly.setSquareSize(this.squareSize);
           this.monsters.push(squareAlly);
         }
       });
@@ -102,7 +115,7 @@ export class GridBoardComponent implements OnInit{
       this.mainContainer.nativeElement.width = this.image.width;
       this.imageContainer.nativeElement.height = this.image.height;
       this.imageContainer.nativeElement.width = this.image.width;
-      this.imageContainer.nativeElement.insertAdjacentHTML('afterbegin',createSvgGrid(30,this.image.naturalWidth,this.image.height));
+      this.imageContainer.nativeElement.insertAdjacentHTML('afterbegin',createSvgGrid(this.squareSize,this.image.naturalWidth,this.image.height));
       this.imageContainer.nativeElement.ondragover = (ev) => {this.allowDrop(ev)};
       this.imageContainer.nativeElement.ondrop = (ev) => {this.drop(ev)};
       this.imageContainer.nativeElement.style.backgroundImage = `url(${this.image.src})`;
@@ -127,8 +140,8 @@ export class GridBoardComponent implements OnInit{
     if(monster){
       let squareMonster: GridBoardCardComponent = new GridBoardCardComponent();
       squareMonster.setMonster(monster);
-      squareMonster.setSquareSize(30);
-      monster.position = calculatePositionDrop(ev.offsetX,ev.offsetY,this.zoomValue,30);
+      squareMonster.setSquareSize(this.squareSize);
+      monster.position = calculatePositionDrop(ev.offsetX,ev.offsetY,this.zoomValue,this.squareSize);
       this.monsters.push(squareMonster);
     }
   }

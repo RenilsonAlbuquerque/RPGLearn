@@ -30,13 +30,26 @@ import { ElementRef } from '@angular/core';
         yResult += jump;
       }
     }
-    console.log("y:" +y + ", Y: " + yResult);
     return {x:xResult, y:yResult};
 }
 function createSvgWalk(squareDimension: number, speed: number, position: CardPosition, creatureSize:number):string{
-  console.log(creatureSize)
-  //position = {x: position.x - (speed* squareDimension) + (creatureSize * squareDimension) ,y: position.y - (speed * squareDimension) + (creatureSize * squareDimension)};
-  position = {x: position.x - (speed* squareDimension),y: position.y - (speed * squareDimension)};
+  if(creatureSize <= 1){
+    position = {x: position.x - (speed* squareDimension),y: position.y - (speed * squareDimension)};
+    
+  }else{
+    if(creatureSize = 2){
+      position = {x: position.x - (speed* squareDimension) + (1 * squareDimension) ,y: position.y - (speed * squareDimension) + (creatureSize/2 * squareDimension)};
+    }
+    if(creatureSize == 3){
+      position = {x: position.x - (speed* squareDimension) + (1 * squareDimension) ,y: position.y - (speed * squareDimension) + (2 * squareDimension)};
+    }
+    if(creatureSize == 4){
+      position = {x: position.x - (speed* squareDimension) + (2 * squareDimension) ,y: position.y - (speed * squareDimension) + (2 * squareDimension)};
+    }
+  }
+  
+  
+  //position = {x: position.x - (speed* squareDimension),y: position.y - (speed * squareDimension)};
   let valuesLog: string[] = [];
   let result = 
   `<g id="movePreview" xmlns="http://www.w3.org/2000/svg">`;
