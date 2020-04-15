@@ -12,7 +12,7 @@ import { environment } from 'src/environments/environment';
 export class CombatRoomService {
 
   private storyId: number;
-  protected combatState: BehaviorSubject<CombatState>;
+  protected combatState: BehaviorSubject<CombatState>; 
  
 
   constructor(protected httpClient: HttpClient,protected rxStompService: RxStompService) {
@@ -78,6 +78,19 @@ export class CombatRoomService {
     combatState.players.splice(index,1);
     this.onSendMessage(combatState);
   }
- 
+  public updateCreature(creature:MonsterCard){
+    var combatState: CombatState = this.combatState.getValue();
+    combatState.monsters.forEach(enemy => {
+      if(enemy.combatId == creature.combatId){
+        enemy = creature;
+      }
+    });
+    combatState.players.forEach(ally => {
+      if(ally.combatId == creature.combatId){
+        ally = creature;
+      }
+    });
+    this.onSendMessage(combatState);
+  }
  
 }

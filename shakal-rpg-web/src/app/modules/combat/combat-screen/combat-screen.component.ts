@@ -6,6 +6,7 @@ import { CombatState } from 'src/app/domain/models/combat/combat.state';
 import { ActivatedRoute } from '@angular/router';
 import { DOCUMENT } from '@angular/common';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { generateRandomId } from 'src/app/infra/helpers/grid-board.helper';
 
 
 
@@ -61,11 +62,11 @@ export class CombatScreenComponent implements OnInit  {
     this.modalReference.dismiss();
   }
   addCreatureEnemy(monster: MonsterCard){
-  
+    monster.combatId = generateRandomId();
     this.combatRoomService.addMonsterEnemy(monster);
   }
   addCreatureAlly(monster: MonsterCard){
+    monster.combatId = generateRandomId();
     this.combatRoomService.addMonsterAlly(monster);
   }
-
 }

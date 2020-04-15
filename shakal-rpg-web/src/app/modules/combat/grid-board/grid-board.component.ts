@@ -4,7 +4,8 @@ import { GridBoardCardComponent } from '../grid-board-card/grid-board-card.compo
 import { CombatState } from 'src/app/domain/models/combat/combat.state';
 import { CombatRoomService } from '../services/combat-room.service';
 import { GridBoardService } from '../services/grid-board.service';
-import { calculatePositionDrop, createSvgGrid, createSvgWalk } from 'src/app/infra/helpers/grid-board.helper';
+import { calculatePositionDrop, createSvgGrid, createSvgWalk, moveCreature } from 'src/app/infra/helpers/grid-board.helper';
+import { ActionType } from 'src/app/domain/models/combat/action.type';
 
 @Component({
   selector: 'app-grid-board',
@@ -63,7 +64,6 @@ export class GridBoardComponent implements OnInit{
     }
     this.mainContainer.nativeElement.onmouseup = (ev) =>{
       if(ev.which == 3){
-        console.log("releaseddddd")
         this.isPressed = false;
         this.mainContainer.nativeElement.style.cursor = "default";
       }
@@ -81,7 +81,7 @@ export class GridBoardComponent implements OnInit{
   initializeBoardState(){
       this.combatState.monsters.forEach(enemy => {
         if(enemy.position){
-          let squareEnemy: GridBoardCardComponent = new GridBoardCardComponent();
+          let squareEnemy: GridBoardCardComponent = new GridBoardCardComponent(this.gridBoardService);
           squareEnemy.setMonster(enemy);
           squareEnemy.setSquareSize(this.squareSize);
           this.monsters.push(squareEnemy);
@@ -89,7 +89,7 @@ export class GridBoardComponent implements OnInit{
       });
       this.combatState.players.forEach(ally =>{
         if(ally.position){
-          let squareAlly: GridBoardCardComponent = new GridBoardCardComponent();
+          let squareAlly: GridBoardCardComponent = new GridBoardCardComponent(this.gridBoardService);
           squareAlly.setMonster(ally);
           squareAlly.setSquareSize(this.squareSize);
           this.monsters.push(squareAlly);
@@ -138,7 +138,7 @@ export class GridBoardComponent implements OnInit{
     let monster: MonsterCard = JSON.parse(data);
 
     if(monster){
-      let squareMonster: GridBoardCardComponent = new GridBoardCardComponent();
+      let squareMonster: GridBoardCardComponent = new GridBoardCardComponent(this.gridBoardService);
       squareMonster.setMonster(monster);
       squareMonster.setSquareSize(this.squareSize);
       monster.position = calculatePositionDrop(ev.offsetX,ev.offsetY,this.zoomValue,this.squareSize);
@@ -148,11 +148,41 @@ export class GridBoardComponent implements OnInit{
   handleDragToScroll(ev: DragEvent){
     ev.preventDefault();
   }
-  // insertMovePreview(){
-  //   if(document.getElementById("movePreview") != null){
-  //     let element = document.getElementById("movePreview");
-  //     element.parentNode.removeChild(element);
-  //   }
-  //   document.getElementById("svggrid").innerHTML += createSvgWalk(30,6);
-  // }
+  handleClickBoard(event: MouseEvent){ 
+    if(this.gridBoardService.getCreatureAction()){
+      //can be null
+      let action = this.gridBoardService.getCreatureAction();
+      if(action.actionType == ActionType.move){
+        let move = this.gridBoardService.moveCreature({x:event.offsetX, y: event.offsetY});
+        if(move != null){
+          this.svgBattleGrid.removeChild(document.getElementById("movePreview"));
+          for(let i = 0; i < this.monsters.length;i ++){
+            if(this.monsters[i].getMonster().combatId === action.creature.combatId){
+              let creature = this.monsters[i].getMonster();
+              creature.position = move;
+              this.combatRoomService.updateCreature(creature);
+              let elementToBeMoved = document.getElementById(this.mainContainer.nativeElement.children[1].children[i].children[0].id);
+              moveCreature(elementToBeMoved,move);
+              
+            }
+          }
+        }
+      }
+      if(action.actionType == ActionType.doubleMove){
+        let move = this.gridBoardService.moveCreature({x:event.offsetX, y: event.offsetY});
+        if(move != null){
+          this.svgBattleGrid.removeChild(document.getElementById("movePreview"));
+          for(let i = 0; i < this.monsters.length;i ++){
+            if(this.monsters[i].getMonster().combatId === action.creature.combatId){
+              let creature = this.monsters[i].getMonster();
+              creature.position = move;
+              this.combatRoomService.updateCreature(creature);
+              let elementToBeMoved = document.getElementById(this.mainContainer.nativeElement.children[1].children[i].children[0].id);
+              moveCreature(elementToBeMoved,move);
+            }
+          }
+        }
+      }
+    }
+  }
 }

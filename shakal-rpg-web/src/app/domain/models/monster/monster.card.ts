@@ -4,6 +4,7 @@ import { CardPosition } from '../combat/card.position';
 
 export interface MonsterCard{
     id: number,
+    combatId: string,
     name: String,
     level: Level,
     lifePoints: number,

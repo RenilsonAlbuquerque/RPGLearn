@@ -9,6 +9,7 @@ import com.shakal.rpg.api.dto.info.LevelDTO;
 public class MonsterCardDTO implements Comparable<MonsterCardDTO> {
 
 	 private long id;
+	 private String combatId;
 	 private String name;
 	 private LevelDTO level;
 	 private int lifePoints;
@@ -24,6 +25,12 @@ public class MonsterCardDTO implements Comparable<MonsterCardDTO> {
 	}
 	public void setId(long id) {
 		this.id = id;
+	}
+	public String getCombatId() {
+		return combatId;
+	}
+	public void setCombatId(String combatId) {
+		this.combatId = combatId;
 	}
 	public String getName() {
 		return name;

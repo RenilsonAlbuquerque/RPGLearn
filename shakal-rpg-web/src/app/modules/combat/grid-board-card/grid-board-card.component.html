@@ -1,5 +1,5 @@
 
-<div #self class="caixa" (click)="handleClickCard()" [draggable]="dragging">
+<div #self id="{{selfId}}" class="caixa" (click)="handleClickCard()">
   
         <img *ngIf="monster != null"
         draggable="false" 
@@ -17,7 +17,7 @@
                     <button type="button" class="btn btn-success bmd-btn-fab fab-options" data-toggle="tooltip" data-placement="top" title="Batalha">
                         <img src="../../../../assets/svg/sword.svg" alt="batle" height="17" width="17">
                     </button>
-                    <button type="button" class="btn btn-danger bmd-btn-fab fab-options" data-toggle="tooltip" data-placement="top" title="Desengajar">
+                    <button (click)="handleDoubleMove()" type="button" class="btn btn-danger bmd-btn-fab fab-options" data-toggle="tooltip" data-placement="top" title="Desengajar">
                         <fa-icon icon="running"></fa-icon>
                     </button>
         </div>

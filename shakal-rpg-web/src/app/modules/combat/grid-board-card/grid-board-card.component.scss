@@ -1,9 +1,11 @@
+
 .caixa{
   height: 50px;
   width: 50px;
   cursor: pointer;
   text-align: center;
   position: absolute;
+  transition: all  .3s ease-in;
 }
 
 
@@ -12,12 +14,6 @@
   height: 100%;
   border-radius: 100%;
   border-style: solid;
-  // user-drag: none; 
-  //   user-select: none;
-  //   -moz-user-select: none;
-  //   -webkit-user-drag: none;
-  //   -webkit-user-select: none;
-  //   -ms-user-select: none;
  
 }
 .danger{

@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { GridBoardCardComponent } from '../grid-board-card/grid-board-card.component';
-import { CombatRoomService } from './combat-room.service';
-import { CombatState } from 'src/app/domain/models/combat/combat.state';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { CardPosition } from 'src/app/domain/models/combat/card.position';
+import { MonsterCard } from 'src/app/domain/models/monster/monster.card';
+import { ActionControl } from 'src/app/domain/models/combat/action.control';
 
 
 
@@ -11,7 +10,9 @@ export class GridBoardService {
     
   private squareSize : number = 30;
   private boardZoom: number = 0;
-   
+  private playerMoving: string;
+  private creatureAction:ActionControl;
+
   constructor(){
         
   }
@@ -21,5 +22,25 @@ export class GridBoardService {
   setSquareSize(squareSize: number){
     this.squareSize = squareSize;
   }
-  
+  getCreatureAction():ActionControl{
+    return this.creatureAction;
+  }
+  setCreatureAction(creature: ActionControl):void{
+    this.creatureAction = creature;
+  }
+  moveCreature(target:CardPosition):CardPosition{
+    let result = target;
+    
+    if(this.creatureAction != null){
+       if(target.x > this.creatureAction.creature.position.x ){
+         if(target.y > this.creatureAction.creature.position.y){
+           for(let i = this.creatureAction.creature.speed; i > 0; i--){
+              
+           }
+         }
+       }
+       this.creatureAction = null;
+    } 
+    return result;
+  }
 }

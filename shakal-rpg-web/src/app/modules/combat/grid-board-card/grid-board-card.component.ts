@@ -2,7 +2,9 @@ import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { MonsterCard } from 'src/app/domain/models/monster/monster.card';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { GridBoardService } from '../services/grid-board.service';
-import { createSvgWalk } from 'src/app/infra/helpers/grid-board.helper';
+import { createSvgWalk, generateRandomId, createSvgDoubleMove } from 'src/app/infra/helpers/grid-board.helper';
+import { ActionType } from 'src/app/domain/models/combat/action.type';
+import { CardPosition } from 'src/app/domain/models/combat/card.position';
 
 @Component({
   selector: 'app-grid-board-card',
@@ -20,9 +22,12 @@ export class GridBoardCardComponent implements OnInit {
   public menuOpen: boolean;
 
   private dragging: boolean;
-  constructor() { 
+
+  private selfId: string;
+  constructor(private gridBoardService: GridBoardService) { 
     this.menuOpen = false;
     this.dragging = false;
+    this.selfId = generateRandomId();
   }
 
   ngOnInit() {
@@ -30,6 +35,7 @@ export class GridBoardCardComponent implements OnInit {
     this.self.nativeElement.style.left = this.monster.position.x.toString() + "px";
     this.self.nativeElement.style.height = (30 * this.monster.size).toString() + "px";
     this.self.nativeElement.style.width = (30 * this.monster.size).toString() + "px";
+    this.selfId = this.monster.combatId;
     
   }
   getSquareSize(): number{
@@ -39,7 +45,6 @@ export class GridBoardCardComponent implements OnInit {
     this.squareSize = squareSize;
   }
   setMonster(monster: MonsterCard){
-    
     if(this.monster == null){
       this.monster = monster;
     }
@@ -48,14 +53,31 @@ export class GridBoardCardComponent implements OnInit {
     return this.monster;
   }
   handleClickCard(){
+    this.dragging = false;
     this.menuOpen = !this.menuOpen;
+    
   }
   handleMove(){
+    this.resetMoves();
+    this.gridBoardService.setCreatureAction({creature:this.monster,actionType: ActionType.move});
+    this.dragging = !this.dragging;
+    document.getElementById("svggrid").innerHTML += createSvgWalk(30,this.monster.speed,this.monster.position, this.monster.size);
+  }
+  handleDoubleMove(){
+    this.resetMoves();
+    this.gridBoardService.setCreatureAction({creature:this.monster,actionType: ActionType.doubleMove});
+    this.dragging = !this.dragging;
+    document.getElementById("svggrid").innerHTML += createSvgDoubleMove(30,this.monster.speed,this.monster.position, this.monster.size);
+  }
+  resetMoves(){
+    if(document.getElementById("doubleMovePreview") != null){
+      let element = document.getElementById("doubleMovePreview");
+      element.parentNode.removeChild(element);
+    }
     if(document.getElementById("movePreview") != null){
       let element = document.getElementById("movePreview");
       element.parentNode.removeChild(element);
     }
-    this.dragging = true;
-    document.getElementById("svggrid").innerHTML += createSvgWalk(30,this.monster.speed,this.monster.position, this.monster.size);
   }
+ 
 }

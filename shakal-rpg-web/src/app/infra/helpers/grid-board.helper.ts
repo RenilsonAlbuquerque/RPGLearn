@@ -50,13 +50,11 @@ function createSvgWalk(squareDimension: number, speed: number, position: CardPos
   
   
   //position = {x: position.x - (speed* squareDimension),y: position.y - (speed * squareDimension)};
-  let valuesLog: string[] = [];
   let result = 
   `<g id="movePreview" xmlns="http://www.w3.org/2000/svg">`;
     let matrixDimension, c, k, space = 1;
     matrixDimension= speed + 1;
     space = matrixDimension - 1;
-    console.log("space: " + space)
     let jumpX: number = position.x;
     let jumpY: number = position.y;
 		  for (k = 1; k <= matrixDimension; k++)
@@ -66,7 +64,6 @@ function createSvgWalk(squareDimension: number, speed: number, position: CardPos
         }
 		    space--;
 		    for (c = 1; c <= (2*k-1); c++){
-          valuesLog.push("x: "+ jumpX + " " + "y:" + jumpY);
           result += `<rect  height="${squareDimension}" width="${squareDimension}" y="${jumpY}" x="${jumpX}" stroke-width="1.5" stroke="#000" fill="#044B94" fill-opacity="0.4"/> \n`;
           jumpY += squareDimension;
         }
@@ -81,14 +78,67 @@ function createSvgWalk(squareDimension: number, speed: number, position: CardPos
         }
 		    space++;
 		    for (c = 1 ; c <= 2*(matrixDimension-k)-1; c++){
-          valuesLog.push("x: "+ jumpX + " " + "y:" + jumpY);
           result += `<rect height="${squareDimension}" width="${squareDimension}" y="${jumpY}" x="${jumpX}" stroke-width="1.5" stroke="#000" fill="#044B94" fill-opacity="0.4"/> \n`;
           jumpY += squareDimension;
         }
         jumpY = position.y;
         jumpX += squareDimension;
       }
-      console.log(valuesLog)
+  result +=  `</g>`;
+  return result;
+}
+function createSvgDoubleMove(squareDimension: number, speed: number, position: CardPosition, creatureSize:number):string{
+  let squareColor = "#C82333";
+  if(creatureSize <= 1){
+    position = {x: position.x - (speed* squareDimension *2),y: position.y - (speed * squareDimension *2)};
+  }else{
+    if(creatureSize = 2){
+      position = {x: position.x - (speed* squareDimension) + (1 * squareDimension) ,y: position.y - (speed * squareDimension) + (creatureSize/2 * squareDimension)};
+    }
+    if(creatureSize == 3){
+      position = {x: position.x - (speed* squareDimension) + (1 * squareDimension) ,y: position.y - (speed * squareDimension) + (2 * squareDimension)};
+    }
+    if(creatureSize == 4){
+      position = {x: position.x - (speed* squareDimension) + (2 * squareDimension) ,y: position.y - (speed * squareDimension) + (2 * squareDimension)};
+    }
+  }
+  
+  
+  //position = {x: position.x - (speed* squareDimension),y: position.y - (speed * squareDimension)};
+  let result = 
+  `<g id="doubleMovePreview" xmlns="http://www.w3.org/2000/svg">`;
+    let matrixDimension, c, k, space = 1;
+    matrixDimension= (speed *2)+ 1;
+    space = matrixDimension - 1;
+    let jumpX: number = position.x;
+    let jumpY: number = position.y;
+		  for (k = 1; k <= matrixDimension; k++)
+		  {
+		    for (c = 1; c <= space; c++){
+          jumpY += squareDimension;
+        }
+		    space--;
+		    for (c = 1; c <= (2*k-1); c++){
+          result += `<rect  height="${squareDimension}" width="${squareDimension}" y="${jumpY}" x="${jumpX}" stroke-width="1.5" stroke="#000" fill="${squareColor}" fill-opacity="0.4"/> \n`;
+          jumpY += squareDimension;
+        }
+        jumpY = position.y;
+        jumpX += squareDimension;
+		  }
+		  space = 1;
+		  for (k = 1; k <= matrixDimension - 1; k++)
+		  {
+		    for (c = 1; c <= space; c++){
+          jumpY += squareDimension;
+        }
+		    space++;
+		    for (c = 1 ; c <= 2*(matrixDimension-k)-1; c++){
+          result += `<rect height="${squareDimension}" width="${squareDimension}" y="${jumpY}" x="${jumpX}" stroke-width="1.5" stroke="#000" fill="${squareColor}" fill-opacity="0.4"/> \n`;
+          jumpY += squareDimension;
+        }
+        jumpY = position.y;
+        jumpX += squareDimension;
+      }
   result +=  `</g>`;
   return result;
 }
@@ -108,9 +158,16 @@ function createSvgGrid(squareDimension: number,width:number, height:number):stri
     </svg>`;
       return result;
 }
-function deleteBatlePreview(dom: HTMLElement){
-  document.getElementById("svg").removeChild
+function generateRandomId(): string{
+  return 'xxxxxxxxxxxx4xxxyxxxxxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+    var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+    return v.toString(16);
+  }); 
+}
+function moveCreature(elemento:HTMLElement, position: CardPosition):void{
+  elemento.style.top = position.y.toString() + "px";
+  elemento.style.left = position.x.toString() + "px";
 }
    
 
-export  {calculatePositionDrop,createSvgGrid,createSvgWalk};
+export  {calculatePositionDrop,createSvgGrid,createSvgWalk,generateRandomId,moveCreature,createSvgDoubleMove};

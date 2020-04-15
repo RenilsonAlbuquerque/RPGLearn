@@ -2,7 +2,7 @@
     <input id="zoom-slider" value="{{zoomValue}}" type="range" min="0" max="5" #ranger (input)="applyZoom(ranger.value)">
   </div>
 <div #mainContainer class="canvas-container">
-  <div #imageContainer >
+  <div #imageContainer (click)="handleClickBoard($event)" >
   </div>
     <!-- <svg #sgv
       (drop)="drop($event)" 
