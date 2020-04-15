@@ -26,7 +26,7 @@ export class GridBoardComponent implements OnInit{
   private ctx: CanvasRenderingContext2D;
   private image = new Image();
   
-  zoomValue: number;
+  private zoomValue: number;
 
   private combatState: CombatState;
   private monsters: GridBoardCardComponent[];
@@ -40,6 +40,7 @@ export class GridBoardComponent implements OnInit{
   constructor(private combatRoomService: CombatRoomService,private gridBoardService: GridBoardService) { 
     this.monsters = [];
     this.squareSize = 30;
+    this.zoomValue = 1;
     this.combatRoomService.getCombatState().subscribe(
       state => {
         this.combatState = state,
@@ -158,6 +159,10 @@ export class GridBoardComponent implements OnInit{
           this.svgBattleGrid.removeChild(document.getElementById("movePreview"));
           for(let i = 0; i < this.monsters.length;i ++){
             if(this.monsters[i].getMonster().combatId === action.creature.combatId){
+              move = {
+                x: move.x/this.zoomValue,
+                y: move.y/this.zoomValue
+              }
               let creature = this.monsters[i].getMonster();
               creature.position = move;
               this.combatRoomService.updateCreature(creature);
@@ -171,9 +176,13 @@ export class GridBoardComponent implements OnInit{
       if(action.actionType == ActionType.doubleMove){
         let move = this.gridBoardService.moveCreature({x:event.offsetX, y: event.offsetY});
         if(move != null){
-          this.svgBattleGrid.removeChild(document.getElementById("movePreview"));
+          this.svgBattleGrid.removeChild(document.getElementById("doubleMovePreview"));
           for(let i = 0; i < this.monsters.length;i ++){
             if(this.monsters[i].getMonster().combatId === action.creature.combatId){
+              move = {
+                x: move.x/this.zoomValue,
+                y: move.y/this.zoomValue
+              }
               let creature = this.monsters[i].getMonster();
               creature.position = move;
               this.combatRoomService.updateCreature(creature);

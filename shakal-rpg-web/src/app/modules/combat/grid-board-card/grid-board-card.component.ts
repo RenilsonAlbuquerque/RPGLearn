@@ -21,12 +21,11 @@ export class GridBoardCardComponent implements OnInit {
 
   public menuOpen: boolean;
 
-  private dragging: boolean;
+ 
 
   private selfId: string;
   constructor(private gridBoardService: GridBoardService) { 
     this.menuOpen = false;
-    this.dragging = false;
     this.selfId = generateRandomId();
   }
 
@@ -53,20 +52,17 @@ export class GridBoardCardComponent implements OnInit {
     return this.monster;
   }
   handleClickCard(){
-    this.dragging = false;
     this.menuOpen = !this.menuOpen;
     
   }
   handleMove(){
     this.resetMoves();
     this.gridBoardService.setCreatureAction({creature:this.monster,actionType: ActionType.move});
-    this.dragging = !this.dragging;
     document.getElementById("svggrid").innerHTML += createSvgWalk(30,this.monster.speed,this.monster.position, this.monster.size);
   }
   handleDoubleMove(){
     this.resetMoves();
     this.gridBoardService.setCreatureAction({creature:this.monster,actionType: ActionType.doubleMove});
-    this.dragging = !this.dragging;
     document.getElementById("svggrid").innerHTML += createSvgDoubleMove(30,this.monster.speed,this.monster.position, this.monster.size);
   }
   resetMoves(){

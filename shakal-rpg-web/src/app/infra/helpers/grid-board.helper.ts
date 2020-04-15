@@ -33,6 +33,8 @@ import { ElementRef } from '@angular/core';
     return {x:xResult, y:yResult};
 }
 function createSvgWalk(squareDimension: number, speed: number, position: CardPosition, creatureSize:number):string{
+  let squareColor = "#044B94";
+  position = adjustPosition(position,squareDimension)
   if(creatureSize <= 1){
     position = {x: position.x - (speed* squareDimension),y: position.y - (speed * squareDimension)};
     
@@ -64,7 +66,7 @@ function createSvgWalk(squareDimension: number, speed: number, position: CardPos
         }
 		    space--;
 		    for (c = 1; c <= (2*k-1); c++){
-          result += `<rect  height="${squareDimension}" width="${squareDimension}" y="${jumpY}" x="${jumpX}" stroke-width="1.5" stroke="#000" fill="#044B94" fill-opacity="0.4"/> \n`;
+          result += `<rect  height="${squareDimension}" width="${squareDimension}" y="${jumpY}" x="${jumpX}" stroke-width="1.5" stroke="#000" fill="${squareColor}" fill-opacity="0.4"/> \n`;
           jumpY += squareDimension;
         }
         jumpY = position.y;
@@ -78,7 +80,7 @@ function createSvgWalk(squareDimension: number, speed: number, position: CardPos
         }
 		    space++;
 		    for (c = 1 ; c <= 2*(matrixDimension-k)-1; c++){
-          result += `<rect height="${squareDimension}" width="${squareDimension}" y="${jumpY}" x="${jumpX}" stroke-width="1.5" stroke="#000" fill="#044B94" fill-opacity="0.4"/> \n`;
+          result += `<rect height="${squareDimension}" width="${squareDimension}" y="${jumpY}" x="${jumpX}" stroke-width="1.5" stroke="#000" fill="${squareColor}" fill-opacity="0.4"/> \n`;
           jumpY += squareDimension;
         }
         jumpY = position.y;
@@ -89,17 +91,18 @@ function createSvgWalk(squareDimension: number, speed: number, position: CardPos
 }
 function createSvgDoubleMove(squareDimension: number, speed: number, position: CardPosition, creatureSize:number):string{
   let squareColor = "#C82333";
+  position = adjustPosition(position,squareDimension)
   if(creatureSize <= 1){
     position = {x: position.x - (speed* squareDimension *2),y: position.y - (speed * squareDimension *2)};
   }else{
     if(creatureSize = 2){
-      position = {x: position.x - (speed* squareDimension) + (1 * squareDimension) ,y: position.y - (speed * squareDimension) + (creatureSize/2 * squareDimension)};
+      position = {x: position.x - (speed* squareDimension  *2) + (1 * squareDimension) ,y: position.y - (speed * squareDimension *2) + (creatureSize/2 * squareDimension)};
     }
     if(creatureSize == 3){
-      position = {x: position.x - (speed* squareDimension) + (1 * squareDimension) ,y: position.y - (speed * squareDimension) + (2 * squareDimension)};
+      position = {x: position.x - (speed* squareDimension *2) + (1 * squareDimension) ,y: position.y - (speed * squareDimension *2 ) + (2 * squareDimension)};
     }
     if(creatureSize == 4){
-      position = {x: position.x - (speed* squareDimension) + (2 * squareDimension) ,y: position.y - (speed * squareDimension) + (2 * squareDimension)};
+      position = {x: position.x - (speed* squareDimension) + (2 * squareDimension) ,y: position.y - (speed * squareDimension *2) + (2 * squareDimension)};
     }
   }
   
@@ -165,8 +168,16 @@ function generateRandomId(): string{
   }); 
 }
 function moveCreature(elemento:HTMLElement, position: CardPosition):void{
-  elemento.style.top = position.y.toString() + "px";
-  elemento.style.left = position.x.toString() + "px";
+  let calculatedPosition = adjustPosition(position,30);
+  elemento.style.top = calculatedPosition.y.toString() + "px";
+  elemento.style.left = calculatedPosition.x.toString() + "px";
+}
+function adjustPosition(position:CardPosition, squareDimension: number):CardPosition{
+  return  {
+    x:Math.floor(position.x/squareDimension) * squareDimension,
+    y: Math.floor(position.y/squareDimension) * squareDimension
+  }
+
 }
    
 
