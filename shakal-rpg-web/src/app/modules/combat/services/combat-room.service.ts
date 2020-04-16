@@ -80,16 +80,28 @@ export class CombatRoomService {
   }
   public updateCreature(creature:MonsterCard){
     var combatState: CombatState = this.combatState.getValue();
-    combatState.monsters.forEach(enemy => {
-      if(enemy.combatId == creature.combatId){
-        enemy = creature;
+    for(let i = 0; i < combatState.monsters.length; i++){
+      if(combatState.monsters[i].combatId == creature.combatId){
+        combatState.monsters[i] = creature;
       }
-    });
-    combatState.players.forEach(ally => {
-      if(ally.combatId == creature.combatId){
-        ally = creature;
+    }
+    for(let j = 0; j < combatState.players.length; j++){
+      if(combatState.players[j].combatId == creature.combatId){
+        combatState.players[j] = creature;
       }
-    });
+    }
+    // combatState.monsters.forEach(enemy => {
+    //   if(enemy.combatId == creature.combatId){
+    //     enemy = creature;
+    //   }
+    // });
+    // combatState.players.forEach(ally => {
+    //   if(ally.combatId == creature.combatId){
+    //     console.log("updated reference")
+    //     ally = creature;
+    //   }
+    // });
+    //this.combatState.next(combatState);
     this.onSendMessage(combatState);
   }
  

@@ -44,7 +44,7 @@ export class GridBoardComponent implements OnInit{
     this.combatRoomService.getCombatState().subscribe(
       state => {
         this.combatState = state,
-        this.initializeBoardState()
+        this.updateBoardState()
       }
     );
    
@@ -79,7 +79,8 @@ export class GridBoardComponent implements OnInit{
     }
     this.newDrawImage();
   }
-  initializeBoardState(){
+  updateBoardState(){
+      let found = null;
       this.combatState.monsters.forEach(enemy => {
         if(enemy.position){
           let squareEnemy: GridBoardCardComponent = new GridBoardCardComponent(this.gridBoardService);
@@ -139,11 +140,12 @@ export class GridBoardComponent implements OnInit{
     let monster: MonsterCard = JSON.parse(data);
 
     if(monster){
+      monster.position = calculatePositionDrop(ev.offsetX,ev.offsetY,this.zoomValue,this.squareSize);
       let squareMonster: GridBoardCardComponent = new GridBoardCardComponent(this.gridBoardService);
       squareMonster.setMonster(monster);
       squareMonster.setSquareSize(this.squareSize);
-      monster.position = calculatePositionDrop(ev.offsetX,ev.offsetY,this.zoomValue,this.squareSize);
       this.monsters.push(squareMonster);
+      this.combatRoomService.updateCreature(monster)
     }
   }
   handleDragToScroll(ev: DragEvent){
