@@ -181,4 +181,4 @@ function adjustPosition(position:CardPosition, squareDimension: number):CardPosi
 }
    
 
-export  {calculatePositionDrop,createSvgGrid,createSvgWalk,generateRandomId,moveCreature,createSvgDoubleMove};
+export  {calculatePositionDrop,createSvgGrid,createSvgWalk,generateRandomId,moveCreature,createSvgDoubleMove,adjustPosition};

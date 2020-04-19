@@ -87,7 +87,7 @@ export class CombatRoomService {
     this.onSendMessage(combatState);
   }
   public updateCreature(creature:CreatureCard){
-    var combatState: CombatState = this.combatState.getValue();
+    let combatState: CombatState = this.combatState.getValue();
     for(let i = 0; i < combatState.creatures.length; i++){
       if(combatState.creatures[i].combatId == creature.combatId){
         combatState.creatures[i] = creature;

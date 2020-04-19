@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { CardPosition } from 'src/app/domain/models/combat/card.position';
-import { CreatureCard } from 'src/app/domain/models/monster/creature.card';
 import { ActionControl } from 'src/app/domain/models/combat/action.control';
 
 
@@ -16,11 +15,18 @@ export class GridBoardService {
   constructor(){
         
   }
+  
   getSquareSize(): number{
     return this.squareSize;
   }
   setSquareSize(squareSize: number){
     this.squareSize = squareSize;
+  }
+  getBoardZoom(): number{
+    return this.boardZoom;
+  }
+  setBoardZoom(boardZoom: number){
+    this.boardZoom = boardZoom;
   }
   getCreatureAction():ActionControl{
     return this.creatureAction;

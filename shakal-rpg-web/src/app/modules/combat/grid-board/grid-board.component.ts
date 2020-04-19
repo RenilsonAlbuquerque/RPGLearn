@@ -4,7 +4,7 @@ import { GridBoardCardComponent } from '../grid-board-card/grid-board-card.compo
 import { CombatState } from 'src/app/domain/models/combat/combat.state';
 import { CombatRoomService } from '../services/combat-room.service';
 import { GridBoardService } from '../services/grid-board.service';
-import { calculatePositionDrop, createSvgGrid, createSvgWalk, moveCreature } from 'src/app/infra/helpers/grid-board.helper';
+import { calculatePositionDrop, createSvgGrid, createSvgWalk, moveCreature, adjustPosition } from 'src/app/infra/helpers/grid-board.helper';
 import { ActionType } from 'src/app/domain/models/combat/action.type';
 
 @Component({
@@ -43,7 +43,6 @@ export class GridBoardComponent implements OnInit{
     this.combatRoomService.getCombatState().subscribe(
       state => {
         this.combatState = state
-        //this.updateBoardState()
       }
     );
    
@@ -118,14 +117,10 @@ export class GridBoardComponent implements OnInit{
     ev.preventDefault();
     var data = ev.dataTransfer.getData("monster");
     let monster: CreatureCard = JSON.parse(data);
-
     if(monster){
       monster.position = calculatePositionDrop(ev.offsetX,ev.offsetY,this.zoomValue,this.squareSize);
       this.combatRoomService.addCreatureToCombat(monster)
     }
-  }
-  handleDragToScroll(ev: DragEvent){
-    ev.preventDefault();
   }
   handleClickBoard(event: MouseEvent){ 
     if(this.gridBoardService.getCreatureAction()){
@@ -142,11 +137,10 @@ export class GridBoardComponent implements OnInit{
                 y: move.y/this.zoomValue
               }
               let creature = this.combatState.creatures[i];
-              creature.position = move;
+              creature.position = adjustPosition(move, this.gridBoardService.getSquareSize());
               this.combatRoomService.updateCreature(creature);
-              let elementToBeMoved = document.getElementById(this.mainContainer.nativeElement.children[1].children[i].children[0].id);
-              moveCreature(elementToBeMoved,move);
-              
+              // let elementToBeMoved = document.getElementById(this.mainContainer.nativeElement.children[1].children[i].children[0].id);
+              //moveCreature(elementToBeMoved,move);
             }
           }
         }
@@ -162,10 +156,10 @@ export class GridBoardComponent implements OnInit{
                 y: move.y/this.zoomValue
               }
               let creature = this.combatState.creatures[i];
-              creature.position = move;
+              creature.position = adjustPosition(move, this.gridBoardService.getSquareSize());
               this.combatRoomService.updateCreature(creature);
-              let elementToBeMoved = document.getElementById(this.mainContainer.nativeElement.children[1].children[i].children[0].id);
-              moveCreature(elementToBeMoved,move);
+              // let elementToBeMoved = document.getElementById(this.mainContainer.nativeElement.children[1].children[i].children[0].id);
+              //moveCreature(elementToBeMoved,move);
             }
           }
         }

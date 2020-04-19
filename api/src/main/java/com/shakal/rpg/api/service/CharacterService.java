@@ -134,6 +134,7 @@ public class CharacterService implements ICharacterService{
 		result.setSpeed(characterSheet.getSpeed());
 		result.setPlayerId(playerId);
 		result.setPosition(new CardPositionDTO(3,4));
+		result.setSize(1);
 		return result;
 	}
 }

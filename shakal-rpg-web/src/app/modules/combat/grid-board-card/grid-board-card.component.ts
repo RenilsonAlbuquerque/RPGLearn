@@ -1,10 +1,8 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { CreatureCard } from 'src/app/domain/models/monster/creature.card';
-import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { GridBoardService } from '../services/grid-board.service';
 import { createSvgWalk, generateRandomId, createSvgDoubleMove } from 'src/app/infra/helpers/grid-board.helper';
 import { ActionType } from 'src/app/domain/models/combat/action.type';
-import { CardPosition } from 'src/app/domain/models/combat/card.position';
 
 @Component({
   selector: 'app-grid-board-card',
@@ -17,32 +15,21 @@ export class GridBoardCardComponent implements OnInit {
   self: ElementRef<HTMLCanvasElement>;
   
   @Input() public monster: CreatureCard;
-  private squareSize: number;
 
   public menuOpen: boolean;
-
- 
-
   private selfId: string;
+  
   constructor(private gridBoardService: GridBoardService) { 
     this.menuOpen = false;
-    this.selfId = generateRandomId();
-    this.squareSize = 30;
   }
 
   ngOnInit() {
     this.self.nativeElement.style.top = this.monster.position.y.toString() + "px";
     this.self.nativeElement.style.left = this.monster.position.x.toString() + "px";
-    this.self.nativeElement.style.height = (30 * this.monster.size).toString() + "px";
-    this.self.nativeElement.style.width = (30 * this.monster.size).toString() + "px";
+    this.self.nativeElement.style.height = (this.gridBoardService.getSquareSize() * this.monster.size).toString() + "px";
+    this.self.nativeElement.style.width = (this.gridBoardService.getSquareSize() * this.monster.size).toString() + "px";
     this.selfId = this.monster.combatId;
     
-  }
-  getSquareSize(): number{
-    return this.squareSize;
-  }
-  setSquareSize(squareSize: number){
-    this.squareSize = squareSize;
   }
   setMonster(monster: CreatureCard){
     if(this.monster == null){

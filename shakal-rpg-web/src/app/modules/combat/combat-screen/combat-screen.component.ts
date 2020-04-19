@@ -18,9 +18,6 @@ export class CombatScreenComponent implements OnInit  {
   private combatState: CombatState;
   private modalReference;
   private combatLevel: string;
-
-
-  messageHistory = [];
   storyid: number;
 
   constructor(public element: ElementRef,private _activatedRoute: ActivatedRoute,private modalService: NgbModal, private combatRoomService: CombatRoomService) { 
@@ -69,7 +66,7 @@ export class CombatScreenComponent implements OnInit  {
   }
   updateCombatDifficult(): void{
     if(this.combatState.dificult == 1){
-      this.combatLevel = "fácil";
+      this.combatLevel = "Fácil";
     }
     if(this.combatState.dificult == 2){
       this.combatLevel = "Médio";

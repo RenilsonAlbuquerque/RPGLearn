@@ -14,6 +14,7 @@ public class CharacterMapper {
 		result.setAge(entity.getAge());
 		result.setHeight(entity.getHeight());
 		result.setTotalLifePoints(entity.getLifePoints());
+		result.setSpeed(entity.getSpeed());
 		
 		return result;
 	}
