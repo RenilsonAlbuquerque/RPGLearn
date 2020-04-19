@@ -1,7 +1,7 @@
 import { ActionType } from './action.type';
-import { MonsterCard } from '../monster/monster.card';
+import { CreatureCard } from '../monster/creature.card';
 
 export interface ActionControl{
-    creature:MonsterCard,
+    creature:CreatureCard,
     actionType: ActionType,
 }

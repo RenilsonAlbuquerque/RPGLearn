@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CardPosition } from 'src/app/domain/models/combat/card.position';
-import { MonsterCard } from 'src/app/domain/models/monster/monster.card';
+import { CreatureCard } from 'src/app/domain/models/monster/creature.card';
 import { ActionControl } from 'src/app/domain/models/combat/action.control';
 
 

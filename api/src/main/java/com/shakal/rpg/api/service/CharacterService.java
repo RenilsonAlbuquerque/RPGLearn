@@ -10,7 +10,7 @@ import com.shakal.rpg.api.contracts.service.ICharacterService;
 import com.shakal.rpg.api.contracts.service.ICombatService;
 import com.shakal.rpg.api.contracts.service.IUserService;
 import com.shakal.rpg.api.dto.combat.CardPositionDTO;
-import com.shakal.rpg.api.dto.combat.PlayerCardDTO;
+import com.shakal.rpg.api.dto.combat.CreatureCardDTO;
 import com.shakal.rpg.api.dto.create.CharacterCreateDTO;
 import com.shakal.rpg.api.dto.create.CharacterCreateInputDTO;
 import com.shakal.rpg.api.dto.filter.UserSheetFIlterDTO;
@@ -121,9 +121,9 @@ public class CharacterService implements ICharacterService{
 				.collect(Collectors.toList()));
 		return result;
 	}
-	private PlayerCardDTO initalizePlayerTokenInStory(CharacterSheetDTO characterSheet,long playerId) {
+	private CreatureCardDTO initalizePlayerTokenInStory(CharacterSheetDTO characterSheet,long playerId) {
 		
-		PlayerCardDTO result = new PlayerCardDTO();
+		CreatureCardDTO result = new CreatureCardDTO();
 		result.setId(characterSheet.getId());
 		result.setName(characterSheet.getName());
 		result.setLifePoints(characterSheet.getTotalLifePoints());

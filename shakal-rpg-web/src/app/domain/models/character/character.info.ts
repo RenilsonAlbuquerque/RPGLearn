@@ -1,7 +1,7 @@
 import { CharacterSheet } from './character.sheet';
-import { MonsterCard } from '../monster/monster.card';
+import { CreatureCard } from '../monster/creature.card';
 
 export interface CharacterInfo{
     characterSheet: CharacterSheet,
-    characterToken: MonsterCard
+    characterToken: CreatureCard
 }

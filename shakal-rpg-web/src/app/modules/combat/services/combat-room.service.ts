@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { MonsterCard } from 'src/app/domain/models/monster/monster.card';
+import { CreatureCard } from 'src/app/domain/models/monster/creature.card';
 
 import {  RxStompService } from "@stomp/ng2-stompjs";
 import { IMessage } from '@stomp/stompjs';
@@ -17,8 +17,7 @@ export class CombatRoomService {
 
   constructor(protected httpClient: HttpClient,protected rxStompService: RxStompService) {
       this.combatState = new BehaviorSubject<CombatState>({
-        monsters :[],
-        players: [],
+        creatures :[],
         dificult: 1
       } as CombatState); 
   }
@@ -39,14 +38,16 @@ export class CombatRoomService {
     
   }
 
-  public addMonsterEnemy(monster: MonsterCard){
+  public addMonsterEnemy(enemy: CreatureCard){
     var combatState: CombatState = this.combatState.getValue();
-    combatState.monsters.push(monster);
+    enemy.ally = false;
+    combatState.creatures.push(enemy);
     this.onSendMessage(combatState);
   }
-  public addMonsterAlly(monster: MonsterCard){
+  public addMonsterAlly(ally: CreatureCard){
     var combatState: CombatState = this.combatState.getValue();
-    combatState.players.push(monster);
+    ally.ally = true;
+    combatState.creatures.push(ally);
     this.onSendMessage(combatState);
   }
   public getCombatState():Observable<CombatState>{
@@ -57,37 +58,32 @@ export class CombatRoomService {
     
     var combatState: CombatState = this.combatState.getValue();
     if(value < 0){
-      combatState.monsters[index].lifePoints = 0; 
+      combatState.creatures[index].lifePoints = 0; 
     }
-    else if(value > combatState.monsters[index].totalLifePoints){
-      combatState.monsters[index].lifePoints = combatState.monsters[index].totalLifePoints;
+    else if(value > combatState.creatures[index].totalLifePoints){
+      combatState.creatures[index].lifePoints = combatState.creatures[index].totalLifePoints;
     }else{
-      combatState.monsters[index].lifePoints = value; 
+      combatState.creatures[index].lifePoints = value; 
     }
     this.onSendMessage(combatState);
       
   }
   public removeEnemy(index: number){
     var combatState: CombatState = this.combatState.getValue();
-    combatState.monsters.splice(index,1);
+    combatState.creatures.splice(index,1);
     this.onSendMessage(combatState);
   }
   
   public removeAlly(index: number){
     var combatState: CombatState = this.combatState.getValue();
-    combatState.players.splice(index,1);
+    combatState.creatures.splice(index,1);
     this.onSendMessage(combatState);
   }
-  public updateCreature(creature:MonsterCard){
+  public updateCreature(creature:CreatureCard){
     var combatState: CombatState = this.combatState.getValue();
-    for(let i = 0; i < combatState.monsters.length; i++){
-      if(combatState.monsters[i].combatId == creature.combatId){
-        combatState.monsters[i] = creature;
-      }
-    }
-    for(let j = 0; j < combatState.players.length; j++){
-      if(combatState.players[j].combatId == creature.combatId){
-        combatState.players[j] = creature;
+    for(let i = 0; i < combatState.creatures.length; i++){
+      if(combatState.creatures[i].combatId == creature.combatId){
+        combatState.creatures[i] = creature;
       }
     }
     // combatState.monsters.forEach(enemy => {

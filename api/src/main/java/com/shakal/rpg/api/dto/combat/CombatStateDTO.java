@@ -2,28 +2,22 @@ package com.shakal.rpg.api.dto.combat;
 
 import java.util.List;
 
-import com.shakal.rpg.api.dto.overview.MonsterCardDTO;
+
 
 public class CombatStateDTO {
-	private List<MonsterCardDTO> monsters;
-	private List<PlayerCardDTO> players;
+	private List<CreatureCardDTO> creatures;
 	private int dificult;
 	private int userTypeInStory;
 	
 	
 	
-	public List<MonsterCardDTO> getMonsters() {
-		return monsters;
-	}
-	public void setMonsters(List<MonsterCardDTO> monsters) {
-		this.monsters = monsters;
-	}
 	
-	public List<PlayerCardDTO> getPlayers() {
-		return players;
+	
+	public List<CreatureCardDTO> getCreatures() {
+		return creatures;
 	}
-	public void setPlayers(List<PlayerCardDTO> players) {
-		this.players = players;
+	public void setCreatures(List<CreatureCardDTO> creatures) {
+		this.creatures = creatures;
 	}
 	public int getDificult() {
 		return dificult;

@@ -23,13 +23,13 @@ export class CombatRoomPlayerService extends CombatRoomService{
     public initializePlayerInfo(characterInfo: CharacterInfo, playerId: number){
         var combatState: CombatState = this.combatState.getValue();
         var alreadyOn : boolean = false;
-        combatState.players.forEach((creature) =>{
+        combatState.creatures.forEach((creature) =>{
             if(creature.id == characterInfo.characterToken.id && creature.playerId == playerId ){
                 alreadyOn = true;
             }
         })
         if(!alreadyOn){
-            combatState.players.push(characterInfo.characterToken);
+            combatState.creatures.push(characterInfo.characterToken);
             this.onSendMessage(combatState);
         }
     }

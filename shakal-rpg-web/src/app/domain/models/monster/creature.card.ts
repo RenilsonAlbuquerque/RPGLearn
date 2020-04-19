@@ -2,7 +2,7 @@ import { KeyValue } from '../comon/key.value';
 import { Level } from '../comon/level';
 import { CardPosition } from '../combat/card.position';
 
-export interface MonsterCard{
+export interface CreatureCard{
     id: number,
     combatId: string,
     name: String,
@@ -14,5 +14,6 @@ export interface MonsterCard{
     position: CardPosition
     playerId: number;
     speed:number,
-    size:number
+    size:number,
+    ally: boolean
 }

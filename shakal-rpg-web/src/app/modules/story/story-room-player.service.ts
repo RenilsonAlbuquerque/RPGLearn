@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { MonsterCard } from 'src/app/domain/models/monster/monster.card';
+import { CreatureCard } from 'src/app/domain/models/monster/creature.card';
 
 import { CharacterSheet } from 'src/app/domain/models/character/character.sheet';
 

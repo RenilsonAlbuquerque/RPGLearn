@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { MonsterCard } from 'src/app/domain/models/monster/monster.card';
+import { CreatureCard } from 'src/app/domain/models/monster/creature.card';
 import { GridBoardCardComponent } from '../grid-board-card/grid-board-card.component';
 import { CombatState } from 'src/app/domain/models/combat/combat.state';
 import { CombatRoomService } from '../services/combat-room.service';
@@ -81,22 +81,22 @@ export class GridBoardComponent implements OnInit{
   }
   updateBoardState(){
       let found = null;
-      this.combatState.monsters.forEach(enemy => {
-        if(enemy.position){
+      this.combatState.creatures.forEach(creature => {
+        if(creature.position){
           let squareEnemy: GridBoardCardComponent = new GridBoardCardComponent(this.gridBoardService);
-          squareEnemy.setMonster(enemy);
+          squareEnemy.setMonster(creature);
           squareEnemy.setSquareSize(this.squareSize);
           this.monsters.push(squareEnemy);
         }
       });
-      this.combatState.players.forEach(ally =>{
-        if(ally.position){
-          let squareAlly: GridBoardCardComponent = new GridBoardCardComponent(this.gridBoardService);
-          squareAlly.setMonster(ally);
-          squareAlly.setSquareSize(this.squareSize);
-          this.monsters.push(squareAlly);
-        }
-      });
+      // this.combatState.players.forEach(ally =>{
+      //   if(ally.position){
+      //     let squareAlly: GridBoardCardComponent = new GridBoardCardComponent(this.gridBoardService);
+      //     squareAlly.setMonster(ally);
+      //     squareAlly.setSquareSize(this.squareSize);
+      //     this.monsters.push(squareAlly);
+      //   }
+      // });
   }
   drawImage(){
     this.image.src = "https://1.bp.blogspot.com/-skjFbWikSuU/VvUUhJu7ImI/AAAAAAAAGXw/7EtMwcNzPfw30x3CKdyo3wAYCxU7Qhr1g/s1600/dp6links.jpg";
@@ -137,7 +137,7 @@ export class GridBoardComponent implements OnInit{
   drop(ev: DragEvent) {
     ev.preventDefault();
     var data = ev.dataTransfer.getData("monster");
-    let monster: MonsterCard = JSON.parse(data);
+    let monster: CreatureCard = JSON.parse(data);
 
     if(monster){
       monster.position = calculatePositionDrop(ev.offsetX,ev.offsetY,this.zoomValue,this.squareSize);

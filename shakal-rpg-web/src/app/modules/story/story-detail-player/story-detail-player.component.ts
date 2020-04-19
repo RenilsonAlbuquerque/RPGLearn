@@ -6,7 +6,7 @@ import { CharacterService } from '../../character/character.module.service';
 import { StoryRoomPlayerService } from '../story-room-player.service';
 import { AuthService } from 'src/app/pages/auth.service';
 import { CombatRoomService } from '../../combat/services/combat-room.service';
-import { MonsterCard } from 'src/app/domain/models/monster/monster.card';
+import { CreatureCard } from 'src/app/domain/models/monster/creature.card';
 import { Level } from 'src/app/domain/models/comon/level';
 import { CombatState } from 'src/app/domain/models/combat/combat.state';
 import { CombatRoomPlayerService } from '../../combat/services/combat-room.player.service';

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, TemplateRef, ContentChild, ElementRef, AfterViewInit, Inject, ViewContainerRef } from '@angular/core';
-import { MonsterCard } from 'src/app/domain/models/monster/monster.card';
+import { CreatureCard } from 'src/app/domain/models/monster/creature.card';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CombatRoomService } from '../services/combat-room.service';
 import { CombatState } from 'src/app/domain/models/combat/combat.state';
@@ -61,11 +61,11 @@ export class CombatScreenComponent implements OnInit  {
     this.combatRoomService.removeAlly(index);
     this.modalReference.dismiss();
   }
-  addCreatureEnemy(monster: MonsterCard){
+  addCreatureEnemy(monster: CreatureCard){
     monster.combatId = generateRandomId();
     this.combatRoomService.addMonsterEnemy(monster);
   }
-  addCreatureAlly(monster: MonsterCard){
+  addCreatureAlly(monster: CreatureCard){
     monster.combatId = generateRandomId();
     this.combatRoomService.addMonsterAlly(monster);
   }

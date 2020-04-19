@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
-import { MonsterCard } from 'src/app/domain/models/monster/monster.card';
+import { CreatureCard } from 'src/app/domain/models/monster/creature.card';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { GridBoardService } from '../services/grid-board.service';
 import { createSvgWalk, generateRandomId, createSvgDoubleMove } from 'src/app/infra/helpers/grid-board.helper';
@@ -16,7 +16,7 @@ export class GridBoardCardComponent implements OnInit {
   @ViewChild('self', { static: true })
   self: ElementRef<HTMLCanvasElement>;
   
-  @Input() public monster: MonsterCard;
+  @Input() public monster: CreatureCard;
   private squareSize: number;
 
   public menuOpen: boolean;
@@ -43,12 +43,12 @@ export class GridBoardCardComponent implements OnInit {
   setSquareSize(squareSize: number){
     this.squareSize = squareSize;
   }
-  setMonster(monster: MonsterCard){
+  setMonster(monster: CreatureCard){
     if(this.monster == null){
       this.monster = monster;
     }
   }
-  getMonster(): MonsterCard{
+  getMonster(): CreatureCard{
     return this.monster;
   }
   handleClickCard(){

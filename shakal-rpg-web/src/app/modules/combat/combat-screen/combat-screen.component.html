@@ -1,6 +1,6 @@
 <div>
   <div class="enemies-container">
-    <div *ngFor="let monster of combatState.monsters; index as i">
+    <div *ngFor="let monster of combatState.creatures; index as i">
       <!-- <button type="button" class="remove-button"  (click)="openConfirmDeleteModal()">X</button> -->
       <app-monster-card [monster]="monster" (deleteEnemy)="openConfirmDeleteModal($event)"></app-monster-card>
       <ng-template id="confirmDeleteDialog" #confirmDeleteDialog let-modal>
@@ -40,7 +40,7 @@
     <app-grid-board></app-grid-board>
 
     <div class="players-container">
-      <div *ngFor="let player of combatState.players; index as j">
+      <div *ngFor="let player of combatState.creatures; index as j">
         <app-monster-card  [monster]="player" (click)="open(sheetAlly)"></app-monster-card>
         <ng-template #confirmDeleteAlly let-modal>
           <div class="modal-header">

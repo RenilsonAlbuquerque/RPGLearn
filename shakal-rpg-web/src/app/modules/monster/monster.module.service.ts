@@ -8,7 +8,7 @@ import { MonsterInfo } from 'src/app/domain/models/monster/monster.info';
 import { MonsterSheet } from 'src/app/domain/models/monster/monster.sheet';
 import { MonsterCreateInput } from 'src/app/domain/models/monster/monster.create.input';
 import { MonsterCreate } from 'src/app/domain/models/monster/monster.create';
-import { MonsterCard } from 'src/app/domain/models/monster/monster.card';
+import { CreatureCard } from 'src/app/domain/models/monster/creature.card';
 
 
 @Injectable()
@@ -31,8 +31,8 @@ export class MonsterService {
   getMonsterSheetById(id): Observable<MonsterSheet>{
     return this.httpClient.get<MonsterSheet>(`${environment.BASE_URL}monster/sheet/${id}`);
   }
-  getMonsterCardById(id): Observable<MonsterCard>{
-    return this.httpClient.get<MonsterCard>(`${environment.BASE_URL}monster/card/${id}`);
+  getMonsterCardById(id): Observable<CreatureCard>{
+    return this.httpClient.get<CreatureCard>(`${environment.BASE_URL}monster/card/${id}`);
   }
   getMonsterCreateInput(): Observable<MonsterCreateInput>{
     return this.httpClient.get<MonsterCreateInput>(`${environment.BASE_URL}monster/input`);

@@ -16,13 +16,12 @@ import org.springframework.stereotype.Service;
 
 import com.shakal.rpg.api.contracts.service.IMonsterService;
 import com.shakal.rpg.api.dto.MonsterSheetDTO;
-
+import com.shakal.rpg.api.dto.combat.CreatureCardDTO;
 import com.shakal.rpg.api.dto.create.MonsterCreateDTO;
 import com.shakal.rpg.api.dto.create.MonsterCreateInputDTO;
 import com.shakal.rpg.api.dto.filter.CustomPage;
 import com.shakal.rpg.api.dto.filter.PaginationFilter;
 import com.shakal.rpg.api.dto.info.MonsterInfoDTO;
-import com.shakal.rpg.api.dto.overview.MonsterCardDTO;
 import com.shakal.rpg.api.dto.overview.MonsterOverviewDTO;
 import com.shakal.rpg.api.model.Alignment;
 import com.shakal.rpg.api.model.Attack;
@@ -330,11 +329,11 @@ public class MonsterService implements IMonsterService {
 	}
 
 	@Override
-	public MonsterCardDTO getMonsterCardById(Long id) throws ResourceNotFoundException {
+	public CreatureCardDTO getMonsterCardById(Long id) throws ResourceNotFoundException {
 		Monster search = this.monsterDao.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException(Messages.MONSTER_NOT_FOUND));
 		
-		MonsterCardDTO result = new MonsterCardDTO();
+		CreatureCardDTO result = new CreatureCardDTO();
 		result.setId(search.getId());
 		result.setLevel(LevelMapper.entityToInfoDTO(search.getChallengeLevel()));
 		result.setLifePoints(search.getBaseLifeDice());

@@ -7,10 +7,9 @@ import org.springframework.stereotype.Service;
 
 import com.shakal.rpg.api.contracts.service.ICombatService;
 import com.shakal.rpg.api.dto.combat.CombatStateDTO;
+import com.shakal.rpg.api.dto.combat.ICreatureCardDTO;
 import com.shakal.rpg.api.dto.combat.CreatureCardDTO;
-import com.shakal.rpg.api.dto.combat.PlayerCardDTO;
 import com.shakal.rpg.api.dto.info.CharacterSheetDTO;
-import com.shakal.rpg.api.dto.overview.MonsterCardDTO;
 import com.shakal.rpg.api.model.ChallangeDificult;
 import com.shakal.rpg.api.repository.ChallengeDificultDAO;
 
@@ -32,16 +31,18 @@ public class CombatService implements ICombatService{
 		double xpMonsterSum = 0;
 		int monsterMultiplierFactor = 1;
 
-		for(PlayerCardDTO player: input.getPlayers()) {
-			xpPlayersSum += player.getLevel().getXp();
-			if(player.getLevel().getValue() > maxLevel) {
-				maxLevel = player.getLevel().getValue();
+		for(CreatureCardDTO creature: input.getCreatures()) {
+			if(creature.isAlly()) {
+				xpPlayersSum += creature.getLevel().getXp();
+				if(creature.getLevel().getValue() > maxLevel) {
+					maxLevel = creature.getLevel().getValue();
+				}
 			}
+			else {
+				xpMonsterSum += creature.getLevel().getXp();
+			}
+			
 		}
-		for(MonsterCardDTO monster: input.getMonsters()) {
-			xpMonsterSum += monster.getLevel().getXp();
-		}
-		xpMonsterSum = xpMonsterSum * this.multiplierFactor(input.getMonsters().size());
 		
 		ChallangeDificult currentChallenge = this.challengeDificultDAO.getOne(1L);
 		if(xpPlayersSum > currentChallenge.getEasy()) {
@@ -55,14 +56,11 @@ public class CombatService implements ICombatService{
 
 	
 	private CombatStateDTO updateMonstersConditions(CombatStateDTO input) {
-		for(MonsterCardDTO monster: input.getMonsters()) {
-			monster.setLifePercent((100 * monster.getLifePoints())/ monster.getTotalLifePoints() );
+
+		for(CreatureCardDTO creature: input.getCreatures()) {
+			creature.setLifePercent((100 * creature.getLifePoints())/ creature.getTotalLifePoints());
 		}
-		Collections.sort(input.getMonsters());
-		for(PlayerCardDTO player: input.getPlayers()) {
-			player.setLifePercent((100 * player.getLifePoints())/ player.getTotalLifePoints());
-		}
-		Collections.sort(input.getPlayers());
+		Collections.sort(input.getCreatures());
 		return input;
 	}
 
@@ -90,9 +88,9 @@ public class CombatService implements ICombatService{
 
 
 	@Override
-	public PlayerCardDTO initalizePlayerTokenInStory(long storyId, CharacterSheetDTO characterSheet) {
+	public CreatureCardDTO initalizePlayerTokenInStory(long storyId, CharacterSheetDTO characterSheet) {
 		
-		PlayerCardDTO result = new PlayerCardDTO();
+		CreatureCardDTO result = new CreatureCardDTO();
 		result.setId(characterSheet.getId());
 		result.setName(characterSheet.getName());
 		result.setImagePath(characterSheet.getImagePath());
