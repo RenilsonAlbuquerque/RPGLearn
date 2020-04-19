@@ -18,6 +18,8 @@ export class CombatRoomService {
   constructor(protected httpClient: HttpClient,protected rxStompService: RxStompService) {
       this.combatState = new BehaviorSubject<CombatState>({
         creatures :[],
+        allyQueue:[],
+        enemyQueue:[],
         dificult: 1
       } as CombatState); 
   }
@@ -41,13 +43,18 @@ export class CombatRoomService {
   public addMonsterEnemy(enemy: CreatureCard){
     var combatState: CombatState = this.combatState.getValue();
     enemy.ally = false;
-    combatState.creatures.push(enemy);
+    combatState.enemyQueue.push(enemy);
     this.onSendMessage(combatState);
   }
   public addMonsterAlly(ally: CreatureCard){
     var combatState: CombatState = this.combatState.getValue();
     ally.ally = true;
-    combatState.creatures.push(ally);
+    combatState.allyQueue.push(ally);
+    this.onSendMessage(combatState);
+  }
+  public addCreatureToCombat(creature: CreatureCard){
+    var combatState: CombatState = this.combatState.getValue();
+    combatState.creatures.push(creature);
     this.onSendMessage(combatState);
   }
   public getCombatState():Observable<CombatState>{
@@ -86,18 +93,6 @@ export class CombatRoomService {
         combatState.creatures[i] = creature;
       }
     }
-    // combatState.monsters.forEach(enemy => {
-    //   if(enemy.combatId == creature.combatId){
-    //     enemy = creature;
-    //   }
-    // });
-    // combatState.players.forEach(ally => {
-    //   if(ally.combatId == creature.combatId){
-    //     console.log("updated reference")
-    //     ally = creature;
-    //   }
-    // });
-    //this.combatState.next(combatState);
     this.onSendMessage(combatState);
   }
  

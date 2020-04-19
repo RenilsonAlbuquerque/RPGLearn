@@ -29,7 +29,6 @@ export class GridBoardComponent implements OnInit{
   private zoomValue: number;
 
   private combatState: CombatState;
-  private monsters: GridBoardCardComponent[];
 
   
   private isPressed: boolean;
@@ -38,13 +37,13 @@ export class GridBoardComponent implements OnInit{
 
   private squareSize: number;
   constructor(private combatRoomService: CombatRoomService,private gridBoardService: GridBoardService) { 
-    this.monsters = [];
+    //this.monsters = [];
     this.squareSize = 30;
     this.zoomValue = 1;
     this.combatRoomService.getCombatState().subscribe(
       state => {
-        this.combatState = state,
-        this.updateBoardState()
+        this.combatState = state
+        //this.updateBoardState()
       }
     );
    
@@ -78,25 +77,6 @@ export class GridBoardComponent implements OnInit{
       }
     }
     this.newDrawImage();
-  }
-  updateBoardState(){
-      let found = null;
-      this.combatState.creatures.forEach(creature => {
-        if(creature.position){
-          let squareEnemy: GridBoardCardComponent = new GridBoardCardComponent(this.gridBoardService);
-          squareEnemy.setMonster(creature);
-          squareEnemy.setSquareSize(this.squareSize);
-          this.monsters.push(squareEnemy);
-        }
-      });
-      // this.combatState.players.forEach(ally =>{
-      //   if(ally.position){
-      //     let squareAlly: GridBoardCardComponent = new GridBoardCardComponent(this.gridBoardService);
-      //     squareAlly.setMonster(ally);
-      //     squareAlly.setSquareSize(this.squareSize);
-      //     this.monsters.push(squareAlly);
-      //   }
-      // });
   }
   drawImage(){
     this.image.src = "https://1.bp.blogspot.com/-skjFbWikSuU/VvUUhJu7ImI/AAAAAAAAGXw/7EtMwcNzPfw30x3CKdyo3wAYCxU7Qhr1g/s1600/dp6links.jpg";
@@ -141,11 +121,7 @@ export class GridBoardComponent implements OnInit{
 
     if(monster){
       monster.position = calculatePositionDrop(ev.offsetX,ev.offsetY,this.zoomValue,this.squareSize);
-      let squareMonster: GridBoardCardComponent = new GridBoardCardComponent(this.gridBoardService);
-      squareMonster.setMonster(monster);
-      squareMonster.setSquareSize(this.squareSize);
-      this.monsters.push(squareMonster);
-      this.combatRoomService.updateCreature(monster)
+      this.combatRoomService.addCreatureToCombat(monster)
     }
   }
   handleDragToScroll(ev: DragEvent){
@@ -159,13 +135,13 @@ export class GridBoardComponent implements OnInit{
         let move = this.gridBoardService.moveCreature({x:event.offsetX, y: event.offsetY});
         if(move != null){
           this.svgBattleGrid.removeChild(document.getElementById("movePreview"));
-          for(let i = 0; i < this.monsters.length;i ++){
-            if(this.monsters[i].getMonster().combatId === action.creature.combatId){
+          for(let i = 0; i < this.combatState.creatures.length;i ++){
+            if(this.combatState.creatures[i].combatId === action.creature.combatId){
               move = {
                 x: move.x/this.zoomValue,
                 y: move.y/this.zoomValue
               }
-              let creature = this.monsters[i].getMonster();
+              let creature = this.combatState.creatures[i];
               creature.position = move;
               this.combatRoomService.updateCreature(creature);
               let elementToBeMoved = document.getElementById(this.mainContainer.nativeElement.children[1].children[i].children[0].id);
@@ -179,13 +155,13 @@ export class GridBoardComponent implements OnInit{
         let move = this.gridBoardService.moveCreature({x:event.offsetX, y: event.offsetY});
         if(move != null){
           this.svgBattleGrid.removeChild(document.getElementById("doubleMovePreview"));
-          for(let i = 0; i < this.monsters.length;i ++){
-            if(this.monsters[i].getMonster().combatId === action.creature.combatId){
+          for(let i = 0; i < this.combatState.creatures.length;i ++){
+            if(this.combatState.creatures[i].combatId === action.creature.combatId){
               move = {
                 x: move.x/this.zoomValue,
                 y: move.y/this.zoomValue
               }
-              let creature = this.monsters[i].getMonster();
+              let creature = this.combatState.creatures[i];
               creature.position = move;
               this.combatRoomService.updateCreature(creature);
               let elementToBeMoved = document.getElementById(this.mainContainer.nativeElement.children[1].children[i].children[0].id);

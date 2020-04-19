@@ -29,7 +29,7 @@ export class CombatRoomPlayerService extends CombatRoomService{
             }
         })
         if(!alreadyOn){
-            combatState.creatures.push(characterInfo.characterToken);
+            combatState.allyQueue.push(characterInfo.characterToken);
             this.onSendMessage(combatState);
         }
     }

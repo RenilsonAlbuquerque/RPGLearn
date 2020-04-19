@@ -27,6 +27,7 @@ export class GridBoardCardComponent implements OnInit {
   constructor(private gridBoardService: GridBoardService) { 
     this.menuOpen = false;
     this.selfId = generateRandomId();
+    this.squareSize = 30;
   }
 
   ngOnInit() {

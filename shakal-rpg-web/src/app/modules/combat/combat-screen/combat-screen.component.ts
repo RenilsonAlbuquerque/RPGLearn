@@ -4,8 +4,6 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CombatRoomService } from '../services/combat-room.service';
 import { CombatState } from 'src/app/domain/models/combat/combat.state';
 import { ActivatedRoute } from '@angular/router';
-import { DOCUMENT } from '@angular/common';
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { generateRandomId } from 'src/app/infra/helpers/grid-board.helper';
 
 
@@ -17,12 +15,9 @@ import { generateRandomId } from 'src/app/infra/helpers/grid-board.helper';
 })
 export class CombatScreenComponent implements OnInit  {
   
-  /*
-  public monsters: MonsterCard[];
-  public players: MonsterCard[];
-  */
   private combatState: CombatState;
   private modalReference;
+  private combatLevel: string;
 
 
   messageHistory = [];
@@ -30,7 +25,8 @@ export class CombatScreenComponent implements OnInit  {
 
   constructor(public element: ElementRef,private _activatedRoute: ActivatedRoute,private modalService: NgbModal, private combatRoomService: CombatRoomService) { 
     this.combatRoomService.getCombatState().subscribe(
-       state => this.combatState = state
+       state => {this.combatState = state,
+        this.updateCombatDifficult()}
     );
 
   }
@@ -61,12 +57,28 @@ export class CombatScreenComponent implements OnInit  {
     this.combatRoomService.removeAlly(index);
     this.modalReference.dismiss();
   }
-  addCreatureEnemy(monster: CreatureCard){
-    monster.combatId = generateRandomId();
-    this.combatRoomService.addMonsterEnemy(monster);
+  addCreatureEnemy(enemy: CreatureCard){
+    enemy.combatId = generateRandomId();
+    enemy.ally = false;
+    this.combatRoomService.addMonsterEnemy(enemy);
   }
-  addCreatureAlly(monster: CreatureCard){
-    monster.combatId = generateRandomId();
-    this.combatRoomService.addMonsterAlly(monster);
+  addCreatureAlly(ally: CreatureCard){
+    ally.combatId = generateRandomId();
+    ally.ally = true;
+    this.combatRoomService.addMonsterAlly(ally);
+  }
+  updateCombatDifficult(): void{
+    if(this.combatState.dificult == 1){
+      this.combatLevel = "fácil";
+    }
+    if(this.combatState.dificult == 2){
+      this.combatLevel = "Médio";
+    }
+    if(this.combatState.dificult == 3){
+      this.combatLevel = "Difícil";
+    }
+    if(this.combatState.dificult == 4){
+      this.combatLevel = "Mortal";
+    }
   }
 }

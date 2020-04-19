@@ -6,6 +6,8 @@ import java.util.List;
 
 public class CombatStateDTO {
 	private List<CreatureCardDTO> creatures;
+	private List<CreatureCardDTO> allyQueue;
+	private List<CreatureCardDTO> enemyQueue;
 	private int dificult;
 	private int userTypeInStory;
 	
@@ -19,6 +21,20 @@ public class CombatStateDTO {
 	public void setCreatures(List<CreatureCardDTO> creatures) {
 		this.creatures = creatures;
 	}
+	
+	public List<CreatureCardDTO> getAllyQueue() {
+		return allyQueue;
+	}
+	public void setAllyQueue(List<CreatureCardDTO> allyQueue) {
+		this.allyQueue = allyQueue;
+	}
+	public List<CreatureCardDTO> getEnemyQueue() {
+		return enemyQueue;
+	}
+	public void setEnemyQueue(List<CreatureCardDTO> enemyQueue) {
+		this.enemyQueue = enemyQueue;
+	}
+	
 	public int getDificult() {
 		return dificult;
 	}

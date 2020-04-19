@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.shakal.rpg.api.contracts.service.IStoryService;
+import com.shakal.rpg.api.dto.combat.CombatDifficultDTO;
 import com.shakal.rpg.api.dto.combat.CombatStateDTO;
 import com.shakal.rpg.api.exception.ResourceNotFoundException;
 import com.shakal.rpg.api.security.AuthenticationContext;
@@ -43,7 +44,7 @@ public class CombatController {
 		if(this.combats.get(id) == null) {
 			result = new CombatStateDTO();
 			result.setCreatures(new ArrayList<>());
-			result.setDificult(1);
+			result.setDificult(CombatDifficultDTO.easy.getValue());
 		}
 		AuthenticationContext context = (AuthenticationContext)SecurityContextHolder.getContext().getAuthentication();
 		result.setUserTypeInStory(this.storyService.checkUserRole(id, context.getId()).getValue());

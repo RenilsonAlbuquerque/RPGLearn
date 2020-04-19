@@ -40,3 +40,23 @@
     border-radius: .25rem;
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
  }
+ .difficult-alert{
+    padding: 10px;
+    background-color: green;
+ }
+ .deadly{
+    background-color:#9A1B27;
+   border-color: #9A1B27;
+ }
+ .hard {
+    background-color: #CC9900;
+   border-color: #CC9900;
+ }
+ .easy {
+   background-color: green;
+   border-color: #218838;
+ }
+.medium {
+   background-color: #12363C;
+   border-color: #252729;
+ }

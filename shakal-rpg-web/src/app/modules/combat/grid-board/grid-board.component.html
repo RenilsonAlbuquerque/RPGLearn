@@ -33,7 +33,7 @@
     <!-- <div style="background-color: blue;height: 500px;width: 500px;position: absolute;opacity: 0.1;">
     </div> -->
     <div>
-        <app-grid-board-card *ngFor="let monsterToken of monsters; index as i" [monster]="monsterToken.monster" ></app-grid-board-card>
+        <app-grid-board-card *ngFor="let monsterToken of combatState.creatures; index as i" [monster]="monsterToken" ></app-grid-board-card>
     </div>
 </div>
 
