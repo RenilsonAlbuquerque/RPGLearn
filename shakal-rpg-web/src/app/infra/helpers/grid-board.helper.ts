@@ -1,5 +1,6 @@
 import { CardPosition } from "src/app/domain/models/combat/card.position";
 import { ElementRef } from '@angular/core';
+import { CreatureCard } from 'src/app/domain/models/monster/creature.card';
 
 
  function calculatePositionDrop(x: number, y: number, zoomValue: number, squareDimension: number): CardPosition{
@@ -177,8 +178,31 @@ function adjustPosition(position:CardPosition, squareDimension: number):CardPosi
     x:Math.floor(position.x/squareDimension) * squareDimension,
     y: Math.floor(position.y/squareDimension) * squareDimension
   }
+}
+function canMove(creature:CreatureCard, target: CardPosition,squareDimension: number, zoom: number): boolean{
+  let result = false;
+  target = adjustPosition(target,squareDimension);
+  //console.log(zoom)
+  //console.log(Math.abs(((target.x - creature.position.x)/zoom) / (squareDimension * zoom  * zoom)))
+  //console.log(zoom)
 
+  if(Math.abs((target.x - creature.position.x) / (squareDimension * zoom * zoom)) + 
+      Math.abs((target.y - creature.position.y) / (squareDimension * zoom * zoom)) <= creature.speed ){
+    result = true;
+  } 
+  return result; 
+}
+function canDoubleMove(creature:CreatureCard, target: CardPosition,squareDimension: number, zoom: number): boolean{
+  let result = false;
+  target = adjustPosition(target,squareDimension);
+
+  if(Math.abs((target.x - creature.position.x) / (squareDimension * zoom)) + 
+      Math.abs((target.y - creature.position.y) / (squareDimension * zoom)) <= (creature.speed * 2)){
+    result = true;
+  } 
+  return result; 
 }
    
 
-export  {calculatePositionDrop,createSvgGrid,createSvgWalk,generateRandomId,moveCreature,createSvgDoubleMove,adjustPosition};
+export  {calculatePositionDrop,createSvgGrid,createSvgWalk,generateRandomId,moveCreature,
+  createSvgDoubleMove,adjustPosition,canMove,canDoubleMove};

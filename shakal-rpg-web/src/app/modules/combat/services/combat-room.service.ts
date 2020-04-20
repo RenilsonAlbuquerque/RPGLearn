@@ -54,8 +54,11 @@ export class CombatRoomService {
   }
   public addCreatureToCombat(creature: CreatureCard){
     var combatState: CombatState = this.combatState.getValue();
-    combatState.creatures.push(creature);
-    this.onSendMessage(combatState);
+    if(!this.creatureAlreadyInCombat(creature.combatId)){
+      combatState.creatures.push(creature);
+      this.onSendMessage(combatState);
+    }
+    
   }
   public getCombatState():Observable<CombatState>{
     return this.combatState.asObservable();
@@ -75,10 +78,16 @@ export class CombatRoomService {
     this.onSendMessage(combatState);
       
   }
-  public removeEnemy(index: number){
+  public removeEnemy(combatId: string){
     var combatState: CombatState = this.combatState.getValue();
-    combatState.creatures.splice(index,1);
-    this.onSendMessage(combatState);
+    
+    for(let i = 0; i < combatState.enemyQueue.length; i++){
+      if(combatState.enemyQueue[i].combatId === combatId){
+        combatState.creatures.splice(i,1);
+        this.onSendMessage(combatState);
+        break; 
+      }
+    }
   }
   
   public removeAlly(index: number){
@@ -95,5 +104,14 @@ export class CombatRoomService {
     }
     this.onSendMessage(combatState);
   }
- 
+  public creatureAlreadyInCombat(creatureCombatId: string): boolean{
+    let result = false;
+    let combatState: CombatState = this.combatState.getValue();
+    combatState.creatures.forEach(creature =>{
+      if(creature.combatId === creatureCombatId){
+        result = true;
+      }
+    })
+    return result;
+  }
 }

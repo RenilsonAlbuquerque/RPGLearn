@@ -4,7 +4,7 @@ import { GridBoardCardComponent } from '../grid-board-card/grid-board-card.compo
 import { CombatState } from 'src/app/domain/models/combat/combat.state';
 import { CombatRoomService } from '../services/combat-room.service';
 import { GridBoardService } from '../services/grid-board.service';
-import { calculatePositionDrop, createSvgGrid, createSvgWalk, moveCreature, adjustPosition } from 'src/app/infra/helpers/grid-board.helper';
+import { calculatePositionDrop, createSvgGrid, createSvgWalk, moveCreature, adjustPosition, canMove, canDoubleMove } from 'src/app/infra/helpers/grid-board.helper';
 import { ActionType } from 'src/app/domain/models/combat/action.type';
 
 @Component({
@@ -35,17 +35,16 @@ export class GridBoardComponent implements OnInit{
   private startX: number;
   private startY: number;
 
-  private squareSize: number;
+  //private squareSize: number;
   constructor(private combatRoomService: CombatRoomService,private gridBoardService: GridBoardService) { 
     //this.monsters = [];
-    this.squareSize = 30;
+    //this.squareSize = 30;
     this.zoomValue = 1;
     this.combatRoomService.getCombatState().subscribe(
       state => {
         this.combatState = state
       }
     );
-   
   }
   ngOnInit() {
     this.mainContainer.nativeElement.oncontextmenu = (ev) => {
@@ -96,7 +95,7 @@ export class GridBoardComponent implements OnInit{
       this.mainContainer.nativeElement.width = this.image.width;
       this.imageContainer.nativeElement.height = this.image.height;
       this.imageContainer.nativeElement.width = this.image.width;
-      this.imageContainer.nativeElement.insertAdjacentHTML('afterbegin',createSvgGrid(this.squareSize,this.image.naturalWidth,this.image.height));
+      this.imageContainer.nativeElement.insertAdjacentHTML('afterbegin',createSvgGrid(this.gridBoardService.getSquareSize(),this.image.naturalWidth,this.image.height));
       this.imageContainer.nativeElement.ondragover = (ev) => {this.allowDrop(ev)};
       this.imageContainer.nativeElement.ondrop = (ev) => {this.drop(ev)};
       this.imageContainer.nativeElement.style.backgroundImage = `url(${this.image.src})`;
@@ -118,7 +117,7 @@ export class GridBoardComponent implements OnInit{
     var data = ev.dataTransfer.getData("monster");
     let monster: CreatureCard = JSON.parse(data);
     if(monster){
-      monster.position = calculatePositionDrop(ev.offsetX,ev.offsetY,this.zoomValue,this.squareSize);
+      monster.position = calculatePositionDrop(ev.offsetX,ev.offsetY,this.zoomValue,this.gridBoardService.getSquareSize());
       this.combatRoomService.addCreatureToCombat(monster)
     }
   }
@@ -126,7 +125,10 @@ export class GridBoardComponent implements OnInit{
     if(this.gridBoardService.getCreatureAction()){
       //can be null
       let action = this.gridBoardService.getCreatureAction();
-      if(action.actionType == ActionType.move){
+      if(action.actionType == ActionType.move && 
+        canMove(this.gridBoardService.getCreatureAction().creature,{x:event.offsetX,y:event.offsetY},
+        this.gridBoardService.getSquareSize(),this.zoomValue))
+        {
         let move = this.gridBoardService.moveCreature({x:event.offsetX, y: event.offsetY});
         if(move != null){
           this.svgBattleGrid.removeChild(document.getElementById("movePreview"));
@@ -145,7 +147,9 @@ export class GridBoardComponent implements OnInit{
           }
         }
       }
-      if(action.actionType == ActionType.doubleMove){
+      if(action.actionType == ActionType.doubleMove && 
+        canDoubleMove(this.gridBoardService.getCreatureAction().creature,{x:event.offsetX,y:event.offsetY},
+        this.gridBoardService.getSquareSize(),this.zoomValue)){
         let move = this.gridBoardService.moveCreature({x:event.offsetX, y: event.offsetY});
         if(move != null){
           this.svgBattleGrid.removeChild(document.getElementById("doubleMovePreview"));

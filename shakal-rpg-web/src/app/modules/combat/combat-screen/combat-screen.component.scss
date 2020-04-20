@@ -41,6 +41,11 @@
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
  }
  .difficult-alert{
+   @supports ( position: sticky ) or ( position: -webkit-sticky ) {
+		position: sticky ;
+			position: -webkit-sticky ;
+		top: 0px ;
+   }
     padding: 10px;
     background-color: green;
  }
