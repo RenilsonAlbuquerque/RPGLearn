@@ -5,6 +5,8 @@ import { CombatRoomService } from '../services/combat-room.service';
 import { CombatState } from 'src/app/domain/models/combat/combat.state';
 import { ActivatedRoute } from '@angular/router';
 import { generateRandomId } from 'src/app/infra/helpers/grid-board.helper';
+import { DiceService } from '../../dice/dice.module.service';
+import { DiceNumber } from 'src/app/domain/models/dice/dice.number';
 
 
 
@@ -20,11 +22,15 @@ export class CombatScreenComponent implements OnInit  {
   private combatLevel: string;
   storyid: number;
 
-  constructor(public element: ElementRef,private _activatedRoute: ActivatedRoute,private modalService: NgbModal, private combatRoomService: CombatRoomService) { 
+  constructor(public element: ElementRef,private _activatedRoute: ActivatedRoute,private modalService: NgbModal,
+     private combatRoomService: CombatRoomService, private diceService:DiceService) { 
     this.combatRoomService.getCombatState().subscribe(
        state => {this.combatState = state,
         this.updateCombatDifficult()}
     );
+    this.diceService.addDicesToQueue([
+      {quantity:2,dice:DiceNumber.d20}
+    ]);
 
   }
   ngOnInit() {
