@@ -1,0 +1,199 @@
+$containerWidth: 200px;
+$containerHeight: 100px;
+
+$animation-12-roll-1-1: rotateX(280deg) rotateY(-1080deg) rotateZ(-360deg);
+$animation-12-roll-1-2: rotateX(-800deg) rotateY(360deg) rotateZ(720deg);
+$animation-12-roll-2-1: rotateX(395deg) rotateY(-935deg) rotateZ(-180deg);
+$animation-12-roll-2-2: rotateX(-685deg) rotateY(505deg) rotateZ(900deg);
+$animation-12-roll-3-1: rotateX(395deg) rotateY(-1110deg) rotateZ(-360deg);
+$animation-12-roll-3-2: rotateX(-685deg) rotateY(330deg) rotateZ(720deg);
+$animation-12-roll-4-1: rotateX(395deg) rotateY(-1150deg) rotateZ(-180deg);
+$animation-12-roll-4-2: rotateX(-685deg) rotateY(430deg) rotateZ(900deg);
+$animation-12-roll-5-1: rotateX(395deg) rotateY(-1080deg) rotateZ(-180deg);
+$animation-12-roll-5-2: rotateX(-685deg) rotateY(360deg) rotateZ(900deg);
+$animation-12-roll-6-1: rotateX(395deg) rotateY(-1150deg) rotateZ(-180deg);
+$animation-12-roll-6-2: rotateX(-685deg) rotateY(290deg) rotateZ(900deg);
+$animation-12-roll-7-1: rotateX(395deg) rotateY(-895deg) rotateZ(-360deg);
+$animation-12-roll-7-2: rotateX(-685deg) rotateY(545deg) rotateZ(720deg);
+$animation-12-roll-8-1: rotateX(395deg) rotateY(-1185deg) rotateZ(-360deg);
+$animation-12-roll-8-2: rotateX(-685deg) rotateY(255deg) rotateZ(720deg);
+$animation-12-roll-9-1: rotateX(395deg) rotateY(-970deg) rotateZ(-360deg);
+$animation-12-roll-9-2: rotateX(-685deg) rotateY(470deg) rotateZ(720deg);
+$animation-12-roll-10-1: rotateX(395deg) rotateY(-1225deg) rotateZ(-180deg);
+$animation-12-roll-10-2: rotateX(-685deg) rotateY(215deg) rotateZ(900deg);
+$animation-12-roll-11-1: rotateX(395deg) rotateY(-1045deg) rotateZ(-360deg);
+$animation-12-roll-11-2: rotateX(-685deg) rotateY(395deg) rotateZ(720deg);
+$animation-12-roll-12-1: rotateX(460deg) rotateY(-1080deg) rotateZ(-360deg);
+$animation-12-roll-12-2: rotateX(-620deg) rotateY(360deg) rotateZ(720deg);
+
+@mixin diceNum {
+    position: absolute;
+    top: 60px;
+    left: -20px;
+    color: #fff;
+    font-size: 40px;
+}
+.content {
+  margin: auto auto;
+  position: relative;
+  //width: $containerWidth;
+  height: $containerHeight;
+  perspective: 1500px;
+}
+
+.inner{
+  height: 150px;
+  width: 150px;
+  position: relative;
+  transform-style: preserve-3d;
+}
+.d12 {
+    position: relative;
+    width: 81px;
+    height: 77px;
+    transition: transform 3s ease-out;
+    cursor: pointer;
+
+    > div {
+        position: absolute;
+        width: 81px;
+        height: 77px;
+        border-width: 47.5px 15.43px 0;
+        border-style: solid;
+        border-color: rgba(221, 221, 0, 0.8) transparent;
+        transform-origin: 50% 0 0;
+
+        &:before {
+            content: "";
+            position: absolute;
+            border-width: 0 40.5px 29.5px;
+            border-style: solid;
+            border-color: transparent transparent rgba(221, 221, 0, 0.8);
+            top: -77px;
+            left: -15.43px;
+        }
+        span {
+            @include diceNum;
+            top: -60px;
+            left: 7px;
+
+            &.single {
+                left: 15px;
+            }
+        } 
+    }
+    .d12-5 {
+        transform: translateY(30px) rotateZ(180deg) rotateY(0deg) rotateX(-26.56deg) translateZ(62.3px);
+    }
+    .d12-6 {
+        transform: translateY(30px) rotateZ(180deg) rotateY(72deg) rotateX(-26.56deg) translateZ(62.3px);
+    }
+    .d12-10 {
+        transform: translateY(30px) rotateZ(180deg) rotateY(144deg) rotateX(-26.56deg) translateZ(62.3px);
+    }
+    .d12-2 {
+        transform: translateY(30px) rotateZ(180deg) rotateY(216deg) rotateX(-26.56deg) translateZ(62.3px);
+    }
+    .d12-4 {
+        transform: translateY(30px) rotateZ(180deg) rotateY(288deg) rotateX(-26.56deg) translateZ(62.3px);
+    }
+    .d12-1 {
+        transform: translateY(-41px) translateZ(-13.8px) rotateZ(0deg) rotateY(0deg) rotateX(90deg);
+    }
+    .d12-3 {
+        transform: translateY(0px) rotateZ(0deg) rotateY(36deg) rotateX(-26.56deg) translateZ(62.3px);
+    }
+    .d12-8 {
+        transform: translateY(0px) rotateZ(0deg) rotateY(108deg) rotateX(-26.56deg) translateZ(62.3px);
+    }
+    .d12-7 {
+        transform: translateY(0px) rotateZ(0deg) rotateY(180deg) rotateX(-26.56deg) translateZ(62.3px);
+    }
+    .d12-9 {
+        transform: translateY(0px) rotateZ(0deg) rotateY(252deg) rotateX(-26.56deg) translateZ(62.3px);
+    }
+    .d12-11 {
+        transform: translateY(0px) rotateZ(0deg) rotateY(324deg) rotateX(-26.56deg) translateZ(62.3px);
+    }
+    .d12-12 {
+        transform: translateY(71px) translateZ(13.8px) rotateZ(0deg) rotateY(0deg) rotateX(270deg);
+    }
+
+    &.roll-1{
+        &[data-roll="1"]{
+          transform: $animation-12-roll-1-1;
+        }
+        &[data-roll="2"]{
+          transform: $animation-12-roll-2-1;
+        }
+        &[data-roll="3"]{
+          transform: $animation-12-roll-3-1;
+        }
+        &[data-roll="4"]{
+          transform: $animation-12-roll-4-1;
+        }
+        &[data-roll="5"]{
+          transform: $animation-12-roll-5-1;
+        }
+        &[data-roll="6"]{
+          transform: $animation-12-roll-6-1;
+        }
+        &[data-roll="7"]{
+          transform: $animation-12-roll-7-1;
+        }
+        &[data-roll="8"]{
+          transform: $animation-12-roll-8-1;
+        }
+        &[data-roll="9"]{
+          transform: $animation-12-roll-9-1;
+        }
+        &[data-roll="10"]{
+          transform: $animation-12-roll-10-1;
+        }
+        &[data-roll="11"]{
+          transform: $animation-12-roll-11-1;
+        }
+        &[data-roll="12"]{
+          transform: $animation-12-roll-12-1;
+        }
+      }
+      &.roll-2{
+        &[data-roll="1"]{
+          transform: $animation-12-roll-1-2;
+        }
+        &[data-roll="2"]{
+          transform: $animation-12-roll-2-2;
+        }
+        &[data-roll="3"]{
+          transform: $animation-12-roll-3-2;
+        }
+        &[data-roll="4"]{
+          transform: $animation-12-roll-4-2;
+        }
+        &[data-roll="5"]{
+          transform: $animation-12-roll-5-2;
+        }
+        &[data-roll="6"]{
+          transform: $animation-12-roll-6-2;
+        }
+        &[data-roll="7"]{
+          transform: $animation-12-roll-7-2;
+        }
+        &[data-roll="8"]{
+          transform: $animation-12-roll-8-2;
+        }
+        &[data-roll="9"]{
+          transform: $animation-12-roll-9-2;
+        }
+        &[data-roll="10"]{
+          transform: $animation-12-roll-10-2;
+        }
+        &[data-roll="11"]{
+          transform: $animation-12-roll-11-2;
+        }
+        &[data-roll="12"]{
+          transform: $animation-12-roll-12-2;
+        }
+      }
+}
+

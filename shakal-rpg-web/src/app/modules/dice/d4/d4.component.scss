@@ -1,0 +1,148 @@
+$transitionDuration: 0.5s;
+$animationDuration: 3s;
+
+$angle: 90deg;
+$sideAngle: 360deg/6;
+$side: 1;
+
+body {
+  font-size: 0.9em;
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+@keyframes roll {
+  10% {
+    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+  }
+  30% {
+    transform: rotateX(120deg) rotateY(240deg) rotateZ(0deg) translateX(40px) translateY(40px);
+  }
+  50% {
+    transform: rotateX(240deg) rotateY(480deg) rotateZ(0deg) translateX(-40px) translateY(-40px);
+  }
+  70% {
+    transform: rotateX(360deg) rotateY(720deg) rotateZ(0deg);
+  }
+  90% {
+    transform: rotateX(480deg) rotateY(960deg) rotateZ(0deg);
+  }
+}
+
+.dice {
+  position: absolute;
+  transform-style: preserve-3d;
+  transition: transform $transitionDuration ease-out;
+  cursor: pointer;
+
+  &.rolling {
+    animation: roll $animationDuration linear;
+  }
+  span {
+    position: absolute;
+    margin: 100px 0 0 100px;
+    display: block;
+    font-size: 2.5em;
+    padding: 10px;
+  }
+  .side {
+    backface-visibility: hidden;
+    box-shadow: yellowgreen 0px 12px 100px 5px inset;
+    background: transparent rgba(255, 255, 255, 0.3) 0 0 no-repeat;
+    background-size: contain;
+    position: absolute;
+    width: 5rem;
+  }
+  .number {
+    font-size: 4em;
+  }
+  .number.center {
+    text-align: center;
+  }
+}
+.dice[data-face="1"] {
+  transform: rotateX(85deg) rotateY(180deg);
+}
+.dice[data-face="2"] {
+  transform: rotateX(0deg) rotateY(120deg);
+}
+.dice[data-face="3"] {
+  transform: rotateX(0deg) rotateY(245deg);
+}
+.dice[data-face="4"] {
+  transform: rotateX(0deg) rotateY(0deg);
+}
+
+.content {
+  margin: auto auto;
+  position: relative;
+  width: 200px;
+  height: 200px;
+  perspective: 1500px;
+}
+
+//d4 variables
+$rotateY: 120deg;
+$rotateX: 20deg;
+$setZ: 22px;
+$width: 140px;
+$height: 122px;
+
+
+$opacity: 0.87;
+
+.d4 {
+  position: relative;
+  //left: 50%;
+  //top: 50%;
+  //margin-left: -100px;
+  //margin-top: -100px;
+  width: 200px;
+  height: 173.2px;
+  transform-style: preserve-3d;
+  cursor: pointer;
+
+  &.rolling {
+    animation: roll $animationDuration linear;
+  }
+
+  [class*="side"] {
+    /*height: 200px;
+		width: 200px;*/
+    position: absolute;
+    width: 0;
+    height: 0;
+    color: white;
+    font-size: 100px;
+    text-align: center;
+    line-height: 200px;
+    text-indent: -30px;
+    border-left: 100px solid transparent;
+    border-right: 100px solid transparent;
+    border-bottom: 173.2px solid lightblue;
+    top: 0;
+    left: 50%;
+    margin-left: -86.6px;
+    opacity: $opacity;
+  }
+
+  .side1 {
+    transform: rotateX(90deg) rotateY(180deg) translateY(-60px) translateX(0px) translateZ(50px);
+    border-bottom: 173.2px solid pink;
+  }
+
+  .side2 {
+    transform: rotateY(-120deg) translateY(-30px) translateX(-25px) translateZ(43.35px) rotateX(20deg);
+
+    border-bottom: 173.2px solid #e1bee7;
+  }
+  .side3 {
+    transform: rotateY(120deg) translateX(25px) translateY(-30px) translateZ(43.3px) rotateX(20deg);
+    border-bottom: 173.2px solid #bbdefb;
+  }
+  .side4 {
+    transform: rotateX(20deg) translateZ(9px) translateY(-29px) translateX(0);
+  }
+  
+}
