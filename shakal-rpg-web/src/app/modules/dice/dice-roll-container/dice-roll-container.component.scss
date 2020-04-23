@@ -14,8 +14,9 @@
     height: 100%;
     //z-index: 118;
 }
-.container{
-    position: fixed;
+.dice-container{
+    align-items: center;
+    position: absolute;
     display: flex;
     flex-wrap: wrap;
     width: 100%;

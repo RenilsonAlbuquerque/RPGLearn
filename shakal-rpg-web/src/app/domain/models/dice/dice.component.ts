@@ -1,3 +1,3 @@
 export interface DiceComponent{
-    roll();
+    roll(): number;
 }

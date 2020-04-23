@@ -34,11 +34,11 @@ $animation-12-roll-12-2: rotateX(-620deg) rotateY(360deg) rotateZ(720deg);
     font-size: 40px;
 }
 .content {
-  margin: auto auto;
-  position: relative;
-  //width: $containerWidth;
-  height: $containerHeight;
-  perspective: 1500px;
+  height: 150px;
+  width: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .inner{
@@ -60,7 +60,7 @@ $animation-12-roll-12-2: rotateX(-620deg) rotateY(360deg) rotateZ(720deg);
         height: 77px;
         border-width: 47.5px 15.43px 0;
         border-style: solid;
-        border-color: rgba(221, 221, 0, 0.8) transparent;
+        border-color: rgba(221, 221, 0, 0.9) transparent;
         transform-origin: 50% 0 0;
 
         &:before {

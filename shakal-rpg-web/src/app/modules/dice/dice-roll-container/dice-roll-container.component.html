@@ -1,17 +1,8 @@
-<div #mainRollContainer class="container">
-    <div class="container-overlay" [ngClass]="{'active':rolling}"></div>
-    <!--<ng-template ad-host></ng-template> -->
-    <!-- <ng-template appInsertion></ng-template> -->
-    <!-- <div id="orderer">
-        <div>dice</div>
-        <div>dice2</div>
-        
-    </div> -->
-    <app-d20></app-d20>
-    <app-d12></app-d12>
-    <app-d10></app-d10>
-    <app-d8></app-d8>
-    <app-d6></app-d6>
-    <app-d4></app-d4>
+<div #mainRollContainer class="container" (click)="rollAll()">
+    
+    <div class="dice-container">
+        <div class="container-overlay" [ngClass]="{'active':rolling}"></div>
+        <ng-template #dynamicComponent></ng-template>
+    </div>
     
 </div>

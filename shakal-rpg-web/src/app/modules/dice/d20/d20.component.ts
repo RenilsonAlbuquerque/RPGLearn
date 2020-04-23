@@ -25,7 +25,6 @@ export class D20Component implements OnInit, DiceComponent {
     this.initialSide = 1;
     this.transitionDuration = 500;
     this.animationDuration = 3000;
-    this.diceService.addDiceCOmponentToRoll(this);
     
   }
   ngOnInit(){
@@ -35,12 +34,12 @@ export class D20Component implements OnInit, DiceComponent {
     this.die = document.getElementById(this.selfId);
     this.die.classList.add('rolling')
     clearTimeout(this.timeoutId)
-  
+    let result = generateRandomFace(20);
     this.timeoutId = setTimeout(() => {
       this.die.classList.remove('rolling')
-      this.rollTo(generateRandomFace(20))
+      this.rollTo(result)
     }, this.animationDuration)
-    return false ; 
+    return result ; 
   }
   rollTo(face: number) {
     clearTimeout(this.timeoutId)

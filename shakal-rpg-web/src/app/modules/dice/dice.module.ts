@@ -19,6 +19,6 @@ import { D12Component } from './d12/d12.component';
   ],
   exports:[DiceRollContainerComponent],
   providers:[DiceService],
-  entryComponents: [D20Component]
+  entryComponents: [D20Component,D12Component,D10Component,D8Component,D6Component,D4Component]
 })
 export class DiceModule { }

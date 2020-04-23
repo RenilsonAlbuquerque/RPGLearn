@@ -29,7 +29,12 @@ export class CombatScreenComponent implements OnInit  {
         this.updateCombatDifficult()}
     );
     this.diceService.addDicesToQueue([
-      {quantity:2,dice:DiceNumber.d20}
+      {quantity:2,dice:DiceNumber.d20, bonus:5},
+      //{quantity:2,dice:DiceNumber.d12},
+      //{quantity:2,dice:DiceNumber.d10},
+      //{quantity:2,dice:DiceNumber.d8},
+      //{quantity:2,dice:DiceNumber.d6},
+      //{quantity:2,dice:DiceNumber.d4}
     ]);
 
   }

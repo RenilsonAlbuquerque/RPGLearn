@@ -18,9 +18,7 @@ export class DiceService {
     addDicesToQueue(currentDice: DiceNotation[]){
         this.currentDice.next(currentDice);
     }
-    addDiceCOmponentToRoll(dice:DiceComponent){
-        this.dices.push(dice);
-    }
+   
     rollDicesinQueue(){
         this.dices.forEach(dice =>{
             dice.roll();

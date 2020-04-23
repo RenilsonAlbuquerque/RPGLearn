@@ -35,22 +35,22 @@ body {
 }
 
 .content {
-  margin: auto auto;
-  position: relative;
-  width: $containerWidth;
-  height: $containerHeight;
-  perspective: 1500px;
+  height: 150px;
+  width: 180px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .die {
   //position: absolute;
-  width: 100%;
-  height: 100%;
+  width: 81px;
+    height: 77px;
   transform-style: preserve-3d;
   transition: transform $transitionDuration ease-out;
   cursor: pointer;
   
-  transform: rotateX($rotateX);
+  //transform: rotateX($rotateX);
   
   &.rolling {
     animation: roll $animationDuration linear;

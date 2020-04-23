@@ -1,10 +1,15 @@
-import { Component, OnInit, ComponentFactoryResolver, ComponentFactory,ViewChild,ViewContainerRef, Type, ElementRef, TemplateRef, Directive } from '@angular/core';
+import { Component, OnInit, ComponentFactoryResolver, ComponentFactory,ViewChild,ViewContainerRef, Type, ElementRef, TemplateRef, Directive, ViewRef } from '@angular/core';
 import { DiceComponent } from 'src/app/domain/models/dice/dice.component';
 import { DiceService } from '../dice.module.service';
 import { DiceNotation } from 'src/app/domain/models/dice/dice.notation';
 import { DiceNumber } from 'src/app/domain/models/dice/dice.number';
 import { D20Component } from '../d20/d20.component';
 import { InsertionDirective } from 'src/app/infra/directives/insert-component.directive';
+import { D12Component } from '../d12/d12.component';
+import { D10Component } from '../d10/d10.component';
+import { D8Component } from '../d8/d8.component';
+import { D6Component } from '../d6/d6.component';
+import { D4Component } from '../d4/d4.component';
 
 
 @Component({
@@ -14,14 +19,11 @@ import { InsertionDirective } from 'src/app/infra/directives/insert-component.di
 })
 export class DiceRollContainerComponent implements OnInit {
 
-  //@ViewChild("AdDirective") container:ElementRef;
- 
-
-  @ViewChild(InsertionDirective, {static: true})
-  insertionPoint: InsertionDirective;
+  @ViewChild('dynamicComponent', { read: ViewContainerRef, static:true }) myRef
+  
   private rolling: boolean;
   private dices: DiceComponent[];
-  private diceQueue: DiceNotation[];
+  private queue: DiceNotation[];
 
 
   constructor(private resolver: ComponentFactoryResolver,private diceService: DiceService) { 
@@ -29,42 +31,77 @@ export class DiceRollContainerComponent implements OnInit {
     this.dices = [];
     this.diceService.getCurrentDice().subscribe(
       queue => {
-        this.changeDices(queue);
+        this.queue = queue;
       }
     )
   }
 
   ngOnInit() {
-  }
-  rollDices(){
-    this.dices.forEach( dice =>{
-      dice.roll();
+    this.queue.forEach(diceNotation => {
+      for(let i = 0; i < diceNotation.quantity; i++){
+        let factory = null;
+        if(diceNotation.dice === DiceNumber.d20.valueOf()){
+          factory = this.resolver.resolveComponentFactory(D20Component);
+        }
+        if(diceNotation.dice === DiceNumber.d12.valueOf()){
+          factory = this.resolver.resolveComponentFactory(D12Component);
+        }
+        if(diceNotation.dice === DiceNumber.d10.valueOf()){
+          factory = this.resolver.resolveComponentFactory(D10Component);
+        }
+        if(diceNotation.dice === DiceNumber.d8.valueOf()){
+          factory = this.resolver.resolveComponentFactory(D8Component);
+        }
+        if(diceNotation.dice === DiceNumber.d6.valueOf()){
+          factory = this.resolver.resolveComponentFactory(D6Component);
+        }
+        if(diceNotation.dice === DiceNumber.d4.valueOf()){
+          factory = this.resolver.resolveComponentFactory(D4Component);
+        }
+        const ref = this.myRef.createComponent(factory);
+        this.dices.push(ref._component);
+        ref.changeDetectorRef.detectChanges();
+      }
     })
+
   }
   changeDices(dices: DiceNotation[]){
     dices.forEach(diceNotation => {
       for(let i = 0; i < diceNotation.quantity; i++){
-        console.log(diceNotation)
         if(diceNotation.dice === DiceNumber.d20.valueOf()){
-          //this.dices.push(new D20Component());
           this.instantiateComponent(D20Component)
+        }
+        if(diceNotation.dice === DiceNumber.d12.valueOf()){
+          this.instantiateComponent(D12Component);
+        }
+        if(diceNotation.dice === DiceNumber.d10.valueOf()){
+          this.instantiateComponent(D10Component);
+        }
+        if(diceNotation.dice === DiceNumber.d8.valueOf()){
+          this.instantiateComponent(D8Component);
+        }
+        if(diceNotation.dice === DiceNumber.d6.valueOf()){
+          this.instantiateComponent(D6Component);
+        }
+        if(diceNotation.dice === DiceNumber.d4.valueOf()){
+          this.instantiateComponent(D4Component);
         }
       }
     })
-    this.instantiateComponent(D20Component)
-    //const factory: ComponentFactory = this.resolver.resolveComponentFactory(AlertComponent)
   }
   instantiateComponent(component){
-    
-    const factory = this.resolver.resolveComponentFactory(D20Component);
-    const viewContainerRef = this.insertionPoint.viewContainerRef;
-    viewContainerRef.clear();
-    //let componentRef = this.insertionPoint.createComponent(factory);
-    
-    //this.componentRef.instance.type = type;
+    const factory = this.resolver.resolveComponentFactory(component);
+    const ref = this.myRef.createComponent(factory);
+    this.dices.push(ref._component);
+    ref.changeDetectorRef.detectChanges();
+
   }
   rollAll(){
-    this.diceService.rollDicesinQueue();
+    let result = 0;
+    this.dices.forEach(dice =>{
+       result += dice.roll();
+    });
+    console.log(result);
   }
 
 }

@@ -40,7 +40,7 @@ body {
   .side {
     backface-visibility: hidden;
     box-shadow: yellowgreen 0px 12px 100px 5px inset;
-    background:transparent rgba(255,255,255,0.3) 0 0 no-repeat;
+    background:transparent rgba(255,255,255,0.8) 0 0 no-repeat;
     background-size: contain;
         position: absolute;
         width: 5rem;
@@ -72,11 +72,11 @@ body {
 }
 
 .content {
-  margin: auto auto;
-  position: relative;
-  //width: 200px;
-  height: 200px;
-  perspective: 1500px;
+  height: 150px;
+  width: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 

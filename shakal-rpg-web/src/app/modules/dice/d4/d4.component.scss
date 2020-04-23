@@ -74,12 +74,19 @@ body {
   transform: rotateX(0deg) rotateY(0deg);
 }
 
+// .content {
+//   margin: auto auto;
+//   position: relative;
+//   width: 200px;
+//   height: 200px;
+//   perspective: 1500px;
+// }
 .content {
-  margin: auto auto;
-  position: relative;
-  width: 200px;
   height: 200px;
-  perspective: 1500px;
+  width: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 //d4 variables
@@ -94,12 +101,8 @@ $opacity: 0.87;
 
 .d4 {
   position: relative;
-  //left: 50%;
-  //top: 50%;
-  //margin-left: -100px;
-  //margin-top: -100px;
-  width: 200px;
-  height: 173.2px;
+  width: 81px;
+    height: 77px;
   transform-style: preserve-3d;
   cursor: pointer;
 
