@@ -19,6 +19,7 @@ export class D10Component implements OnInit,DiceComponent {
   private timeoutId;
   private transitionDuration: number;
   private animationDuration: number;
+  public prefixedResult: number;
   constructor(private diceService: DiceService){
     this.selfId = generateRandomId();
     this.sides = 20;
@@ -33,7 +34,13 @@ export class D10Component implements OnInit,DiceComponent {
     this.die = document.getElementById(this.selfId);
     this.die.classList.add('rolling')
     clearTimeout(this.timeoutId)
-    let result = generateRandomFace(10);
+    let result = 0;
+    if(this.prefixedResult > 0){
+      result = this.prefixedResult;
+    }
+    else{
+      result = generateRandomFace(10);
+    }
     this.timeoutId = setTimeout(() => {
       this.die.classList.remove('rolling')
       this.rollTo(result);

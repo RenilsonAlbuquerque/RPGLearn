@@ -20,6 +20,7 @@ export class CombatScreenComponent implements OnInit  {
   private combatState: CombatState;
   private modalReference;
   private combatLevel: string;
+  private rolling: boolean;
   storyid: number;
 
   constructor(public element: ElementRef,private _activatedRoute: ActivatedRoute,private modalService: NgbModal,
@@ -28,14 +29,11 @@ export class CombatScreenComponent implements OnInit  {
        state => {this.combatState = state,
         this.updateCombatDifficult()}
     );
-    this.diceService.addDicesToQueue([
-      {quantity:2,dice:DiceNumber.d20, bonus:5},
-      //{quantity:2,dice:DiceNumber.d12},
-      //{quantity:2,dice:DiceNumber.d10},
-      //{quantity:2,dice:DiceNumber.d8},
-      //{quantity:2,dice:DiceNumber.d6},
-      //{quantity:2,dice:DiceNumber.d4}
-    ]);
+    this.diceService.isRolling().subscribe(
+      result =>{
+        this.rolling = result;
+      }
+    )
 
   }
   ngOnInit() {
@@ -89,4 +87,8 @@ export class CombatScreenComponent implements OnInit  {
       this.combatLevel = "Mortal";
     }
   }
+  get isCombatStarted(): boolean{
+    return this.combatState.creatures.length > 0; 
+  }
+  
 }

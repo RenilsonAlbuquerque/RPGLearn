@@ -20,78 +20,57 @@ import { D4Component } from '../d4/d4.component';
 export class DiceRollContainerComponent implements OnInit {
 
   @ViewChild('dynamicComponent', { read: ViewContainerRef, static:true }) myRef
-  
-  private rolling: boolean;
+
+
   private dices: DiceComponent[];
   private queue: DiceNotation[];
 
 
   constructor(private resolver: ComponentFactoryResolver,private diceService: DiceService) { 
-    this.rolling = true;
     this.dices = [];
-    this.diceService.getCurrentDice().subscribe(
-      queue => {
-        this.queue = queue;
+    
+    this.diceService.getInitiativeQueue().subscribe(
+      result => {
+        this.queue = result;
+        this.ngOnInit();
       }
-    )
+    );
   }
 
   ngOnInit() {
-    this.queue.forEach(diceNotation => {
-      for(let i = 0; i < diceNotation.quantity; i++){
-        let factory = null;
-        if(diceNotation.dice === DiceNumber.d20.valueOf()){
-          factory = this.resolver.resolveComponentFactory(D20Component);
-        }
-        if(diceNotation.dice === DiceNumber.d12.valueOf()){
-          factory = this.resolver.resolveComponentFactory(D12Component);
-        }
-        if(diceNotation.dice === DiceNumber.d10.valueOf()){
-          factory = this.resolver.resolveComponentFactory(D10Component);
-        }
-        if(diceNotation.dice === DiceNumber.d8.valueOf()){
-          factory = this.resolver.resolveComponentFactory(D8Component);
-        }
-        if(diceNotation.dice === DiceNumber.d6.valueOf()){
-          factory = this.resolver.resolveComponentFactory(D6Component);
-        }
-        if(diceNotation.dice === DiceNumber.d4.valueOf()){
-          factory = this.resolver.resolveComponentFactory(D4Component);
-        }
-        const ref = this.myRef.createComponent(factory);
-        this.dices.push(ref._component);
-        ref.changeDetectorRef.detectChanges();
-      }
-    })
-
+    this.changeDices(this.queue);
   }
   changeDices(dices: DiceNotation[]){
-    dices.forEach(diceNotation => {
-      for(let i = 0; i < diceNotation.quantity; i++){
-        if(diceNotation.dice === DiceNumber.d20.valueOf()){
-          this.instantiateComponent(D20Component)
+    if(this.myRef){
+      dices.forEach(diceNotation => {
+        for(let i = 0; i < diceNotation.quantity; i++){
+          if(diceNotation.dice === DiceNumber.d20.valueOf()){
+            this.instantiateComponent(D20Component, diceNotation.result)
+          }
+          if(diceNotation.dice === DiceNumber.d12.valueOf()){
+            this.instantiateComponent(D12Component,diceNotation.result);
+          }
+          if(diceNotation.dice === DiceNumber.d10.valueOf()){
+            this.instantiateComponent(D10Component,diceNotation.result);
+          }
+          if(diceNotation.dice === DiceNumber.d8.valueOf()){
+            this.instantiateComponent(D8Component,diceNotation.result);
+          }
+          if(diceNotation.dice === DiceNumber.d6.valueOf()){
+            this.instantiateComponent(D6Component,diceNotation.result);
+          }
+          if(diceNotation.dice === DiceNumber.d4.valueOf()){
+            this.instantiateComponent(D4Component,diceNotation.result);
+          }
         }
-        if(diceNotation.dice === DiceNumber.d12.valueOf()){
-          this.instantiateComponent(D12Component);
-        }
-        if(diceNotation.dice === DiceNumber.d10.valueOf()){
-          this.instantiateComponent(D10Component);
-        }
-        if(diceNotation.dice === DiceNumber.d8.valueOf()){
-          this.instantiateComponent(D8Component);
-        }
-        if(diceNotation.dice === DiceNumber.d6.valueOf()){
-          this.instantiateComponent(D6Component);
-        }
-        if(diceNotation.dice === DiceNumber.d4.valueOf()){
-          this.instantiateComponent(D4Component);
-        }
-      }
-    })
+      });
+      this.rollAllPrefixedValue();
+    }
   }
-  instantiateComponent(component){
+  instantiateComponent(component, result: number){
     const factory = this.resolver.resolveComponentFactory(component);
     const ref = this.myRef.createComponent(factory);
+    ref._component.prefixedResult = result;
     this.dices.push(ref._component);
     ref.changeDetectorRef.detectChanges();
 
@@ -101,7 +80,14 @@ export class DiceRollContainerComponent implements OnInit {
     this.dices.forEach(dice =>{
        result += dice.roll();
     });
-    console.log(result);
+  }
+  rollAllPrefixedValue(){
+    this.dices.forEach(dice =>{
+       dice.roll();
+    });
+  }
+  close(){
+    this.diceService.changeRolling(false);
   }
 
 }

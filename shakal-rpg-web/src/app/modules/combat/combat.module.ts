@@ -23,11 +23,14 @@ import { fas } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { DiceModule } from '../dice/dice.module';
+import { CombaatTurnOrderComponent } from './combaat-turn-order/combaat-turn-order.component';
+import { CombatCounterComponent } from './combat-counter/combat-counter.component';
+import { MasterMenuControlComponent } from './master-menu-control/master-menu-control.component';
 
 
 
 @NgModule({
-  declarations: [CombatMenuComponent, CombatScreenComponent, GridBoardComponent, GridBoardCardComponent, CombatScreenPlayerComponent],
+  declarations: [CombatMenuComponent, CombatScreenComponent, GridBoardComponent, GridBoardCardComponent, CombatScreenPlayerComponent, CombaatTurnOrderComponent, CombatCounterComponent, MasterMenuControlComponent],
   imports: [
     CombatRoutingModule,
     CommonModule,

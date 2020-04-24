@@ -104,6 +104,17 @@ export class CombatRoomService {
     }
     this.onSendMessage(combatState);
   }
+  public updateCreatures(creatures:CreatureCard[]){
+    let combatState: CombatState = this.combatState.getValue();
+    for(let i = 0; i < creatures.length; i++){
+      for(let j = 0; j< combatState.creatures.length;j++){
+        if(combatState.creatures[i].combatId == creatures[j].combatId){
+          combatState.creatures[j] = creatures[i];
+        }
+      }
+    }
+    this.onSendMessage(combatState);
+  }
   public creatureAlreadyInCombat(creatureCombatId: string): boolean{
     let result = false;
     let combatState: CombatState = this.combatState.getValue();

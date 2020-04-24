@@ -1,8 +1,6 @@
-<div #mainRollContainer class="container" (click)="rollAll()">
-    
-    <div class="dice-container">
-        <div class="container-overlay" [ngClass]="{'active':rolling}"></div>
-        <ng-template #dynamicComponent></ng-template>
-    </div>
-    
+
+<div class="dice-container" appInsertion (click)="close()">
+    <div class="container-overlay active"></div>
+    <ng-template #dynamicComponent></ng-template>
 </div>
+

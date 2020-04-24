@@ -15,5 +15,6 @@ export interface CreatureCard{
     playerId: number;
     speed:number,
     size:number,
-    ally: boolean
+    ally: boolean,
+    initiative: number,
 }

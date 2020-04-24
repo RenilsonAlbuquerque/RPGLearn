@@ -18,6 +18,7 @@ public class CreatureCardDTO implements Comparable<CreatureCardDTO>{
 	 private int speed;
 	 private double size;
 	 private boolean ally;
+	 private int initiative;
 
 	public long getId() {
 		return id;
@@ -149,10 +150,20 @@ public class CreatureCardDTO implements Comparable<CreatureCardDTO>{
 	}
 
 
+	public int getInitiative() {
+		return initiative;
+	}
+
+
+	public void setInitiative(int initiative) {
+		this.initiative = initiative;
+	}
+
+
 	@Override
 	public int compareTo(CreatureCardDTO o) {
 		// TODO Auto-generated method stub
-		return (this.getLifePercent() > o.getLifePercent()) ? 1: -1;
+		return (this.getInitiative() > o.getInitiative()) ? 1: -1;
 	}
 	 
 	 

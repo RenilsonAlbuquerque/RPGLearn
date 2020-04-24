@@ -1,0 +1,42 @@
+$widithGeneral: 250px;
+#turn-order-container{
+    //min-width: $widithGeneral;
+
+    //width: $widithGeneral;
+
+}
+.icon-image{
+    display: inline-block;
+    height: 2.5rem;
+    vertical-align:middle;
+    margin-right: 3px;
+    border-radius: 50%;
+    align-self: center;
+}
+.card-order{
+    //width: auto;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    cursor: pointer;
+    min-width: $widithGeneral;
+    background-color: #1976D2;
+}
+.text-right{
+    align-self: center;
+}
+.card-list{
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.9);
+    background-color: #03A9F4;
+    position: absolute;
+    z-index: 30;
+}
+.card-list-item{
+    width: 100%;
+    padding: 5px;
+    display: grid;
+    grid-template-columns: 25% 50% 25%;
+    border-bottom: solid ;
+    border-width: thin;
+    
+}
+

@@ -1,0 +1,13 @@
+
+    <div class="card-order" (click)="onShowList()">
+        <img class="icon-image"src="https://cdn0.iconfinder.com/data/icons/avatars-3/512/avatar_hipster_guy-512.png">
+        <span>name</span>
+    </div>
+    <div *ngIf="showList" class="card-list">
+        <div *ngFor="let creature of creatures; index as i" class="card-list-item">
+                <img class="icon-image" src="{{creature?.imagePath}}">
+                <span>{{creature.name}}</span>
+                <span class="text-right">{{creature.initiative}}</span>
+        </div>
+    </div>
+
