@@ -6,13 +6,15 @@ $widithGeneral: 250px;
 }
 .icon-image{
     display: inline-block;
-    height: 2.5rem;
+    height: 2rem;
+    width: 2rem;
     vertical-align:middle;
     margin-right: 3px;
     border-radius: 50%;
     align-self: center;
 }
 .card-order{
+    padding: 5px;
     height: 100%;
     cursor: pointer;
     background-color: #1976D2;

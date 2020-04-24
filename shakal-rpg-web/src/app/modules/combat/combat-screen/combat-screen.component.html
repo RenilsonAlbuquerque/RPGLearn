@@ -16,6 +16,26 @@
 
   <!--#####################--Combat Grid--##########################-->
   <app-grid-board></app-grid-board>
+
+  <!--#####################--Players Queue--##########################-->
+  <div class="players-container">
+    <div *ngFor="let player of combatState.allyQueue; index as j">
+        <app-monster-card  [monster]="player" (click)="open(sheetAlly)"></app-monster-card>
+        <ng-template #sheetAlly let-modal>
+            <div class="modal-header">
+                <h4 class="modal-title">{{player.name}} #{{j +1}}</h4>
+                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <app-monster-sheet [monsterId]="player.id"
+                [currentLifePoints]="player.lifePoints" [monsterIndex]="j"></app-monster-sheet>
+            </div>
+        </ng-template>
+    </div>
+  </div>
+
   <!--#####################--Toolbar menu--#########################-->  
   <app-master-menu-control></app-master-menu-control>
 

@@ -4,6 +4,7 @@ import { GridBoardService } from '../services/grid-board.service';
 import { createSvgWalk, generateRandomId, createSvgDoubleMove } from 'src/app/infra/helpers/grid-board.helper';
 import { ActionType } from 'src/app/domain/models/combat/action.type';
 
+
 @Component({
   selector: 'app-grid-board-card',
   templateUrl: './grid-board-card.component.html',

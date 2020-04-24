@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/pages/auth.service';
 import { SidebarItem, sidebarItems } from 'src/app/infra/models/sidebar';
 
+
 @Component({
   selector: 'app-base',
   templateUrl: './base.component.html',

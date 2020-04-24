@@ -2,8 +2,8 @@
         <span>Ainda não existem criaturas no combate</span>
     </div>
     <div *ngIf="hasCreatures()" class="card-order" (click)="onShowList()">
-        <img class="icon-image"src="https://cdn0.iconfinder.com/data/icons/avatars-3/512/avatar_hipster_guy-512.png">
-        <span>name</span>
+        <img class="icon-image" src="{{currentCreature?.imagePath}}">
+        <span>{{currentCreature.name}}</span>
     </div>
     <div *ngIf="showList" class="card-list">
         <div *ngFor="let creature of creatures; index as i" class="card-list-item">

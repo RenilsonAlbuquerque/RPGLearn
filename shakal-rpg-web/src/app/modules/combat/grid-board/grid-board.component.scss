@@ -19,3 +19,26 @@
     right: 0px;
     transform: rotate(270deg);
 }
+#zoom-slider_btn{
+    z-index: 100;
+    position: fixed;
+    top: 158px;
+    right: 60px;
+}
+@media screen and (max-width: 992px) {
+    #zoom-slider_btn{
+        z-index: 100;
+        position: fixed;
+        top: 158px;
+        right: 30px;
+    }
+}
+@media screen and (max-width: 600px) {
+    #zoom-slider_btn{
+        z-index: 100;
+        position: fixed;
+        top: 158px;
+        right: 20px;
+    }
+}
+  

@@ -106,8 +106,8 @@ export class GridBoardComponent implements OnInit{
     }
   }
   applyZoom(value: number){
-    this.mainContainer.nativeElement.style.zoom = new Number(value).toString();
-    this.zoomValue = value;
+    this.mainContainer.nativeElement.style.zoom = new Number(this.zoomValue += value).toString();
+    this.zoomValue += value;
   }
   
   allowDrop(ev:DragEvent) {
@@ -117,17 +117,23 @@ export class GridBoardComponent implements OnInit{
   drop(ev: DragEvent) {
     ev.preventDefault();
     var data = ev.dataTransfer.getData("monster");
-    let monster = JSON.parse(data);
-    if(monster){
-      this.monsterService.getMonsterCardById(monster.id).subscribe(
+    if(data){
+      let monster = JSON.parse(data);
+      if(monster){
+        this.monsterService.getMonsterCardById(monster.id).subscribe(
         response => {
           monster = response;
           monster.combatId = generateRandomId();
           monster.position = calculatePositionDrop(ev.offsetX,ev.offsetY,this.zoomValue,this.gridBoardService.getSquareSize());
           this.combatRoomService.addCreatureToCombat(monster)
-        }
-      );
-     
+        });
+        return;
+      }
+    }
+    let player = JSON.parse(ev.dataTransfer.getData("player"));
+    if(player){
+      player.position = calculatePositionDrop(ev.offsetX,ev.offsetY,this.zoomValue,this.gridBoardService.getSquareSize());
+      this.combatRoomService.addCreatureToCombat(player)
     }
   }
   handleClickBoard(event: MouseEvent){ 

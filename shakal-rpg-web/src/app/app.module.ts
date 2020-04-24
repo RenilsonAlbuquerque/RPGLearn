@@ -20,11 +20,10 @@ import { RegisterPlayerComponent } from './pages/register-player/register-player
 import { UserService } from './modules/user/user.module.service';
 import { SpinnerService } from './infra/services/spinner.service';
 
-import { far } from '@fortawesome/free-regular-svg-icons';
-import { fas } from '@fortawesome/free-solid-svg-icons';
+
 import { FontAwesomeModule} from '@fortawesome/angular-fontawesome';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { CombatCounterComponent } from './combat-counter/combat-counter.component';
+
+
 
 
 
@@ -59,7 +58,4 @@ import { CombatCounterComponent } from './combat-counter/combat-counter.componen
   bootstrap: [AppComponent]
 })
 export class AppModule { 
-  constructor(){
-    library.add(fas,far);
-  }
 }

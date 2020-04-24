@@ -26,5 +26,13 @@ export class CombaatTurnOrderComponent implements OnInit {
   onShowList(){
     this.showList = !this.showList;
   }
+  get currentCreature():CreatureCard{
+    if(this.creatures.length >0){
+      return this.creatures[0];
+    }
+    else{
+      return null;
+    }
+  }
 
 }

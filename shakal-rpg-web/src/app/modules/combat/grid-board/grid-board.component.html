@@ -1,6 +1,14 @@
-<div class="zoom-slider">
+<!-- <div class="zoom-slider">
     <input id="zoom-slider" value="{{zoomValue}}" type="range" min="0" max="5" #ranger (input)="applyZoom(ranger.value)">
-  </div>
+  </div> -->
+<div id="zoom-slider_btn" class="btn-group-vertical" role="group" aria-label="Basic example">
+  <button type="button" class="btn btn-secondary" (click)="applyZoom(1)">
+    <fa-icon icon="plus"></fa-icon>
+  </button>
+  <button type="button" class="btn btn-secondary" (click)="applyZoom(-1)">
+    <fa-icon icon="minus"></fa-icon>
+  </button>
+</div>
 <div #mainContainer class="canvas-container">
   <div #imageContainer (click)="handleClickBoard($event)" >
   </div>
