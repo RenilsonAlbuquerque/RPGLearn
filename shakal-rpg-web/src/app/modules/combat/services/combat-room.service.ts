@@ -63,6 +63,9 @@ export class CombatRoomService {
   public getCombatState():Observable<CombatState>{
     return this.combatState.asObservable();
   }
+  public getCombatStateValue():CombatState{
+    return this.combatState.value;
+  }
 
   public updateMonsterLifePoints(index: number,value: number){
     

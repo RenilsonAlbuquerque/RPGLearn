@@ -1,0 +1,14 @@
+.card-dragable-list{
+    box-shadow: 0 1px 7px 0 rgba(0,0,0,0.3);
+}
+.card-dragable-list-item{
+    width: 100%;
+    padding: 5px;
+    display: grid;
+    font-size: x-small;
+    grid-template-columns: 25% 50% 25%;
+    border-bottom: solid ;
+    border-width: thin;
+    cursor: grab;
+    height: 50px;
+}

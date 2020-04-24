@@ -20,6 +20,7 @@ import { OnlynumberDirective } from 'src/app/infra/directives/only-number.direct
 import { InjectableRxStompConfig, RxStompService, rxStompServiceFactory } from '@stomp/ng2-stompjs';
 import { myRxStompConfig } from 'src/app/infra/config/my-rx-stomp.config';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { MonsterDragableListComponent } from './monster-dragable-list/monster-dragable-list.component';
 
 
 
@@ -27,7 +28,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 @NgModule({
   declarations: [MonsterListComponent, MonsterDetailComponent, MonsterInfoComponent,
      MonsterSheetComponent, MonsterCardComponent, MonsterSearchCardComponent, 
-     MonsterCreateComponent,OnlynumberDirective],
+     MonsterCreateComponent,OnlynumberDirective, MonsterDragableListComponent],
   imports: [
     NgbModalModule,
     CommonModule,
@@ -51,6 +52,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
       deps: [InjectableRxStompConfig]
     }
   ],
-  exports: [MonsterCardComponent,MonsterSearchCardComponent, MonsterSheetComponent] 
+  exports: [MonsterCardComponent,MonsterSearchCardComponent, MonsterSheetComponent,MonsterDragableListComponent] 
 })
 export class MonsterModule { }

@@ -29,10 +29,6 @@ $translateLowerY: $faceHeight*0.78 + $translateRingY;
   90% { transform: rotateX(480deg) rotateY(960deg) rotateZ(0deg) }
 }
 
-body {
-  background: #333;
-  padding: 20px;
-}
 
 .content {
   height: 150px;

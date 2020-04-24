@@ -32,7 +32,9 @@ export class DiceRollContainerComponent implements OnInit {
     this.diceService.getInitiativeQueue().subscribe(
       result => {
         this.queue = result;
+        //this.diceService.clearInitiativeQueue();
         this.ngOnInit();
+        
       }
     );
   }
@@ -64,6 +66,7 @@ export class DiceRollContainerComponent implements OnInit {
           }
         }
       });
+      
       this.rollAllPrefixedValue();
     }
   }
@@ -88,6 +91,7 @@ export class DiceRollContainerComponent implements OnInit {
   }
   close(){
     this.diceService.changeRolling(false);
+    this.diceService.clearInitiativeQueue();
   }
 
 }

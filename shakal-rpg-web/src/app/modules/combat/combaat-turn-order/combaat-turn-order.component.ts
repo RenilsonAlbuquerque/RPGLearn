@@ -18,7 +18,9 @@ export class CombaatTurnOrderComponent implements OnInit {
       }
     );
   }
-
+  hasCreatures(): boolean{
+    return this.creatures.length > 0;
+  }
   ngOnInit() {
   } 
   onShowList(){

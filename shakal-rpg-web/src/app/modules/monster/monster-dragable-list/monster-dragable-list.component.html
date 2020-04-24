@@ -1,0 +1,12 @@
+<div class="input-group mb-3">
+    <input type="text" class="form-control" placeholder="Procurar criatura" (input)="search = $event.target.value" (keyup)="onSearch()" aria-label="Username" aria-describedby="basic-addon1">
+</div>
+<div class="card-dragable-list">
+    <div *ngFor="let creature of page.elements; index as i" 
+    class="card-dragable-list-item" 
+    draggable="true"
+    (dragstart)="drag($event,creature)">
+            <span>{{creature.race}}</span>
+            <span class="text-right">{{creature.challengeLevel}}</span>
+    </div>
+</div>

@@ -23,11 +23,9 @@ export class MasterMenuControlComponent implements OnInit {
   }
   rollInitiative(){
     document.getElementById("sidebar-master").style.width = "0";
-    this.combatRoomService.getCombatState().subscribe(
-      data =>{
-        this.diceService.rollInitiativeOfCreatures(data.creatures)
-      }
-    )
+    this.diceService.rollInitiativeOfCreatures(this.combatRoomService.getCombatStateValue().creatures)
+      
+    
     
   }
 

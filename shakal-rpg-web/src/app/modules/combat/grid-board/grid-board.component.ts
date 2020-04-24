@@ -4,8 +4,9 @@ import { GridBoardCardComponent } from '../grid-board-card/grid-board-card.compo
 import { CombatState } from 'src/app/domain/models/combat/combat.state';
 import { CombatRoomService } from '../services/combat-room.service';
 import { GridBoardService } from '../services/grid-board.service';
-import { calculatePositionDrop, createSvgGrid, createSvgWalk, moveCreature, adjustPosition, canMove, canDoubleMove } from 'src/app/infra/helpers/grid-board.helper';
+import { calculatePositionDrop, createSvgGrid, createSvgWalk, moveCreature, adjustPosition, canMove, canDoubleMove, generateRandomId } from 'src/app/infra/helpers/grid-board.helper';
 import { ActionType } from 'src/app/domain/models/combat/action.type';
+import { MonsterService } from '../../monster/monster.module.service';
 
 @Component({
   selector: 'app-grid-board',
@@ -36,7 +37,8 @@ export class GridBoardComponent implements OnInit{
   private startY: number;
 
   //private squareSize: number;
-  constructor(private combatRoomService: CombatRoomService,private gridBoardService: GridBoardService) { 
+  constructor(private combatRoomService: CombatRoomService,private gridBoardService: GridBoardService,
+    private monsterService: MonsterService) { 
     //this.monsters = [];
     //this.squareSize = 30;
     this.zoomValue = 1;
@@ -115,10 +117,17 @@ export class GridBoardComponent implements OnInit{
   drop(ev: DragEvent) {
     ev.preventDefault();
     var data = ev.dataTransfer.getData("monster");
-    let monster: CreatureCard = JSON.parse(data);
+    let monster = JSON.parse(data);
     if(monster){
-      monster.position = calculatePositionDrop(ev.offsetX,ev.offsetY,this.zoomValue,this.gridBoardService.getSquareSize());
-      this.combatRoomService.addCreatureToCombat(monster)
+      this.monsterService.getMonsterCardById(monster.id).subscribe(
+        response => {
+          monster = response;
+          monster.combatId = generateRandomId();
+          monster.position = calculatePositionDrop(ev.offsetX,ev.offsetY,this.zoomValue,this.gridBoardService.getSquareSize());
+          this.combatRoomService.addCreatureToCombat(monster)
+        }
+      );
+     
     }
   }
   handleClickBoard(event: MouseEvent){ 

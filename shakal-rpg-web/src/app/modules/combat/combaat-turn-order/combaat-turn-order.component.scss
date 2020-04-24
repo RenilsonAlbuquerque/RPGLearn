@@ -1,9 +1,8 @@
 $widithGeneral: 250px;
-#turn-order-container{
-    //min-width: $widithGeneral;
 
-    //width: $widithGeneral;
-
+#label-no-creatures{
+    text-align: center;
+    padding: 10px;
 }
 .icon-image{
     display: inline-block;
@@ -14,11 +13,8 @@ $widithGeneral: 250px;
     align-self: center;
 }
 .card-order{
-    //width: auto;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    transition: 0.3s;
+    height: 100%;
     cursor: pointer;
-    min-width: $widithGeneral;
     background-color: #1976D2;
 }
 .text-right{
@@ -29,6 +25,7 @@ $widithGeneral: 250px;
     background-color: #03A9F4;
     position: absolute;
     z-index: 30;
+    width: 27%;
 }
 .card-list-item{
     width: 100%;

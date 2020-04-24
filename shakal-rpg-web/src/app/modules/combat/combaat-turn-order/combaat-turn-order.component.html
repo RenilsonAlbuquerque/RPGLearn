@@ -1,5 +1,7 @@
-
-    <div class="card-order" (click)="onShowList()">
+    <div id="label-no-creatures" *ngIf="!hasCreatures()" class="card-order " (click)="onShowList()" >
+        <span>Ainda não existem criaturas no combate</span>
+    </div>
+    <div *ngIf="hasCreatures()" class="card-order" (click)="onShowList()">
         <img class="icon-image"src="https://cdn0.iconfinder.com/data/icons/avatars-3/512/avatar_hipster_guy-512.png">
         <span>name</span>
     </div>

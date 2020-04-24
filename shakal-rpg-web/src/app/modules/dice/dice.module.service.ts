@@ -25,6 +25,10 @@ export class DiceService {
     addDicesToQueue(currentDice: DiceNotation[]){
         this.currentDice.next(currentDice);
     }
+    public clearInitiativeQueue(){
+        this.initiativeQueue = new BehaviorSubject<DiceNotation[]>([] as DiceNotation[]);
+        console.log(this.initiativeQueue);
+    }
     public isRolling():Observable<boolean>{
         return this.rolling.asObservable();
     }
