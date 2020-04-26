@@ -157,7 +157,7 @@ export class CombatRoomService {
       if(!found){
         combatState.combatStarted = true;
         combatState.currentCreatureTurn = combatState.creatures[0].combatId;
-        this.combatState.next(combatState);
+        this.onSendMessage(combatState)
       }
     }
   }

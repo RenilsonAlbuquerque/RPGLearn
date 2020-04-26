@@ -23,4 +23,9 @@ export class DiceMasterMenuComponent implements OnInit {
       this.diceService.rollInitiativeOfCreatures(this.combatRoomService.getCombatStateValue().creatures)
     );
   }
+  rollInitiativeOfLeftPlayers(){
+    this.combatRoomService.updateCreatures(
+      this.diceService.rollInitiativeOfCreatures(this.combatRoomService.getCombatStateValue().creatures)
+    );
+  }
 }

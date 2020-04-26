@@ -59,6 +59,7 @@ export class GridBoardCardComponent implements OnInit {
     document.getElementById("svggrid").innerHTML += createSvgDoubleMove(30,this.monster.speed,this.monster.position, this.monster.size);
   }
   handleEndTurn(){
+    this.resetMoves();
     this.combatRoomService.endCreatureTurn(this.monster.combatId);
   }
   resetMoves(){

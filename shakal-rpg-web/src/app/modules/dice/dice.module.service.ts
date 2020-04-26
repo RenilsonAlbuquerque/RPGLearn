@@ -50,4 +50,13 @@ export class DiceService {
         this.initiativeQueue.next(dices);
         return creatures;
     }
+    public rollInitiativeOfLeftCreatures(creatures: CreatureCard[]): CreatureCard[]{
+        let creaturesLeft: CreatureCard[] = [];
+        for(let i = 0; i<creatures.length;i++){
+            if(creatures[i].initiative == 0){
+                creaturesLeft.push(creatures[i]);
+            }
+        }
+        return this.rollInitiativeOfCreatures(creaturesLeft);
+    }
 }
