@@ -25,6 +25,8 @@ import { DiceModule } from '../dice/dice.module';
 import { CombaatTurnOrderComponent } from './combaat-turn-order/combaat-turn-order.component';
 import { CombatCounterComponent } from './combat-counter/combat-counter.component';
 import { MasterMenuControlComponent } from './master-menu-control/master-menu-control.component';
+import { InternModalService } from 'src/app/infra/services/intern.modal.service';
+import { CharacterModule } from '../character/character.module';
 
 
 
@@ -40,7 +42,8 @@ import { MasterMenuControlComponent } from './master-menu-control/master-menu-co
     DragDropModule,
     DragScrollModule,
     FontAwesomeModule,
-    DiceModule
+    DiceModule,
+    CharacterModule
   ],
   providers:[
     MonsterService,
@@ -48,6 +51,7 @@ import { MasterMenuControlComponent } from './master-menu-control/master-menu-co
     CombatRoomPlayerService,
     FontAwesomeModule,
     GridBoardService,
+    InternModalService,
     {
       provide: InjectableRxStompConfig,
       useValue: myRxStompConfig

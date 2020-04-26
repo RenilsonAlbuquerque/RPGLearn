@@ -32,7 +32,7 @@ export class MasterMenuControlComponent implements OnInit {
   }
   get thereArePlayersNoInitiated(): boolean{
     if(this.combatRoomService.getCombatStateValue().creatures.length > 0 && 
-    this.combatRoomService.getCombatStateValue().creatures.some(creature => {creature.initiative === 0})){
+    this.combatRoomService.getCombatStateValue().creatures.some(creature => {return creature.initiative === 0})){
       return true;
     }
     return false;

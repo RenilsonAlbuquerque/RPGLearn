@@ -1,9 +1,10 @@
-import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef, TemplateRef } from '@angular/core';
 import { CreatureCard } from 'src/app/domain/models/monster/creature.card';
 import { GridBoardService } from '../services/grid-board.service';
 import { createSvgWalk, generateRandomId, createSvgDoubleMove } from 'src/app/infra/helpers/grid-board.helper';
 import { ActionType } from 'src/app/domain/models/combat/action.type';
 import { CombatRoomService } from '../services/combat-room.service';
+import { InternModalService } from 'src/app/infra/services/intern.modal.service';
 
 
 @Component({
@@ -22,7 +23,7 @@ export class GridBoardCardComponent implements OnInit {
   private selfId: string;
   
   constructor(private gridBoardService: GridBoardService,
-    private combatRoomService: CombatRoomService) { 
+    private combatRoomService: CombatRoomService, private internModalService: InternModalService) { 
     this.menuOpen = false;
   }
 
@@ -58,6 +59,9 @@ export class GridBoardCardComponent implements OnInit {
     this.gridBoardService.setCreatureAction({creature:this.monster,actionType: ActionType.doubleMove});
     document.getElementById("svggrid").innerHTML += createSvgDoubleMove(30,this.monster.speed,this.monster.position, this.monster.size);
   }
+  handleOpenSheet(template: TemplateRef<any>){
+    this.internModalService.openExtraLargeModal(template);
+  }
   handleEndTurn(){
     this.resetMoves();
     this.combatRoomService.endCreatureTurn(this.monster.combatId);
@@ -72,5 +76,6 @@ export class GridBoardCardComponent implements OnInit {
       element.parentNode.removeChild(element);
     }
   }
+  
  
 }

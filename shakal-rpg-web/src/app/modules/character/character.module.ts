@@ -5,11 +5,12 @@ import { CharacterRoutingModule } from './character.module.routing';
 import { MaterialModule } from '../material-design/material.module';
 import { CharacterService } from './character.module.service';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CharacterSheetComponent } from './character-sheet/character-sheet.component';
 
 
 
 @NgModule({
-  declarations: [CharacterCreateComponent],
+  declarations: [CharacterCreateComponent, CharacterSheetComponent],
   imports: [
     CommonModule,
     CharacterRoutingModule,
@@ -17,6 +18,7 @@ import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers:[CharacterService,FormBuilder]
+  providers:[CharacterService,FormBuilder],
+  exports: [CharacterSheetComponent]
 })
 export class CharacterModule { }

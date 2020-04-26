@@ -20,11 +20,34 @@
             <button *ngIf="isMyTurn" (click)="handleDoubleMove()" type="button" class="btn btn-warning bmd-btn-fab fab-options" data-toggle="tooltip" data-placement="top" title="Desengajar">
                 <fa-icon icon="running"></fa-icon>
             </button>
-            <button (click)="handleDoubleMove()" type="button" class="btn btn-info bmd-btn-fab fab-options" data-toggle="tooltip" data-placement="top" title="Ficha">
+            <button (click)="handleOpenSheet(sheetPlayer)" type="button" class="btn btn-info bmd-btn-fab fab-options" data-toggle="tooltip" data-placement="top" title="Ficha">
                 <fa-icon icon="file-alt"></fa-icon>
             </button>
             <button *ngIf="isMyTurn" (click)="handleEndTurn()" type="button" class="btn btn-danger bmd-btn-fab fab-options" data-toggle="tooltip" data-placement="top" title="Encerrar o turno">
                 <fa-icon icon="forward"></fa-icon>
             </button>
         </div>
+        <ng-template #sheetEnemy let-modal>
+            <div class="modal-header">
+                <h4 class="modal-title">{{monster.name}}</h4>
+                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <app-monster-sheet [monsterId]="monster.id"
+                [currentLifePoints]="monster.lifePoints" [monsterIndex]="j"></app-monster-sheet>
+            </div>
+        </ng-template>
+        <ng-template #sheetPlayer let-modal>
+            <div class="modal-header">
+                <h4 class="modal-title">{{monster.name}}</h4>
+                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <app-character-sheet></app-character-sheet>
+            </div>
+        </ng-template>
 </div>
