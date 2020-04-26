@@ -11,7 +11,9 @@ export class CombaatTurnOrderComponent implements OnInit {
 
   private creatures: CreatureCard[];
   private showList: boolean;
+  
   constructor(private combatRoomService: CombatRoomService) {
+    
     this.combatRoomService.getCombatState().subscribe(
       state =>{
         this.creatures = state.creatures;

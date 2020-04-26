@@ -5,5 +5,7 @@ export interface CombatState{
     allyQueue: CreatureCard[],
     enemyQueue: CreatureCard[],
     dificult: number,
-    userTypeInStory: number;
+    userTypeInStory: number,
+    currentCreatureTurn: string,
+    combatStarted: boolean
 }

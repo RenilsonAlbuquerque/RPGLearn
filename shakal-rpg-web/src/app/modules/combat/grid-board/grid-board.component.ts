@@ -7,6 +7,7 @@ import { GridBoardService } from '../services/grid-board.service';
 import { calculatePositionDrop, createSvgGrid, createSvgWalk, moveCreature, adjustPosition, canMove, canDoubleMove, generateRandomId } from 'src/app/infra/helpers/grid-board.helper';
 import { ActionType } from 'src/app/domain/models/combat/action.type';
 import { MonsterService } from '../../monster/monster.module.service';
+import { DragCreature } from 'src/app/domain/models/creature/drag.creature';
 
 @Component({
   selector: 'app-grid-board',
@@ -118,14 +119,15 @@ export class GridBoardComponent implements OnInit{
     ev.preventDefault();
     var data = ev.dataTransfer.getData("monster");
     if(data){
-      let monster = JSON.parse(data);
-      if(monster){
-        this.monsterService.getMonsterCardById(monster.id).subscribe(
+      let creature: DragCreature = JSON.parse(data);
+      if(creature){
+        this.monsterService.getMonsterCardById(creature.id).subscribe(
         response => {
-          monster = response;
-          monster.combatId = generateRandomId();
-          monster.position = calculatePositionDrop(ev.offsetX,ev.offsetY,this.zoomValue,this.gridBoardService.getSquareSize());
-          this.combatRoomService.addCreatureToCombat(monster)
+          let newCreature = response
+          newCreature.combatId = generateRandomId();
+          newCreature.ally = creature.ally;
+          newCreature.position = calculatePositionDrop(ev.offsetX,ev.offsetY,this.zoomValue,this.gridBoardService.getSquareSize());
+          this.combatRoomService.addCreatureToCombat(newCreature)
         });
         return;
       }

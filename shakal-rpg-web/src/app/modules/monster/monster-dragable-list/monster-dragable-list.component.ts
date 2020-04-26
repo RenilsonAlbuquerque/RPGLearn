@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MonsterService } from '../monster.module.service';
 import { Page } from 'src/app/infra/models/page';
 import { MonsterOverview } from 'src/app/domain/models/monster.overview';
+import { DragCreature } from 'src/app/domain/models/creature/drag.creature';
 
 @Component({
   selector: 'app-monster-dragable-list',
@@ -12,7 +13,9 @@ export class MonsterDragableListComponent implements OnInit {
 
   public page: Page<MonsterOverview>;
   public search: String;
+  public ally: boolean;
   constructor(private monsterService: MonsterService) {
+    this.ally = true;
     this.page = {
       elements: [],
       currentPageNumber: 1,
@@ -32,7 +35,12 @@ export class MonsterDragableListComponent implements OnInit {
       response => (this.page = response)  
     )
   }
-  drag(ev: DragEvent, monster) {
-    ev.dataTransfer.setData("monster", JSON.stringify(monster));
+  drag(ev: DragEvent, monster: MonsterOverview) {
+    ev.dataTransfer.setData("monster", JSON.stringify(
+      {
+        id: monster.id, 
+        ally: (this.ally)? true: false 
+      } as DragCreature)
+    );
   }
 }

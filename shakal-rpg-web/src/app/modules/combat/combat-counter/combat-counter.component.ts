@@ -17,9 +17,17 @@ export class CombatCounterComponent implements OnInit {
       }
     );
   }
+  get allyCount(): number{
+    return this.creatures.filter(ally => ally.ally).length;
+  }
+  
+  get enemyCount(): number{
+    return this.creatures.filter(enemy => enemy.ally == false).length;
+  }
   hasCreatures(): boolean{
     return this.creatures.length > 0;
   }
+
   ngOnInit() {
   } 
 

@@ -10,7 +10,8 @@ public class CombatStateDTO {
 	private List<CreatureCardDTO> enemyQueue;
 	private int dificult;
 	private int userTypeInStory;
-	
+	private String currentCreatureTurn;
+	private boolean combatStarted;
 	
 	
 	
@@ -46,6 +47,18 @@ public class CombatStateDTO {
 	}
 	public void setUserTypeInStory(int userTypeInStory) {
 		this.userTypeInStory = userTypeInStory;
+	}
+	public String getCurrentCreatureTurn() {
+		return currentCreatureTurn;
+	}
+	public void setCurrentCreatureTurn(String currentCreatureTurn) {
+		this.currentCreatureTurn = currentCreatureTurn;
+	}
+	public boolean isCombatStarted() {
+		return combatStarted;
+	}
+	public void setCombatStarted(boolean combatStarted) {
+		this.combatStarted = combatStarted;
 	}
 	
 	
