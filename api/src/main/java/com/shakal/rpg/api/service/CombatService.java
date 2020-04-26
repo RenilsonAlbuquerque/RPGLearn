@@ -95,13 +95,12 @@ public class CombatService implements ICombatService{
 	}
 
 	
-	private CombatStateDTO updateMonstersConditions(CombatStateDTO input) {
+	private void updateMonstersConditions(CombatStateDTO input) {
 
 		for(CreatureCardDTO creature: input.getCreatures()) {
 			creature.setLifePercent((100 * creature.getLifePoints())/ creature.getTotalLifePoints());
 		}
 		Collections.sort(input.getCreatures());
-		return input;
 	}
 
 	private double multiplierFactor(int monsterQuantity) {
@@ -122,7 +121,7 @@ public class CombatService implements ICombatService{
 	}
 	@Override
 	public CombatStateDTO updateCombatConditions(CombatStateDTO input) {
-		input = this.updateMonstersConditions(input);
+		this.updateMonstersConditions(input);
 		calculateChallengeDeficult(input);
 		return input;
 	}

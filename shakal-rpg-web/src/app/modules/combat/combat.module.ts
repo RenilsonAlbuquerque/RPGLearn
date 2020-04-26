@@ -18,7 +18,7 @@ import { GridBoardService } from './services/grid-board.service';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { DragScrollModule } from 'ngx-drag-scroll';
 
-import { faRunning,faWalking,faPlus,faMinus, faDice, faUser,faTimes, faUserCog, faCog } from '@fortawesome/free-solid-svg-icons';
+import { faRunning,faWalking,faPlus,faMinus, faDice, faUser,faTimes, faUserCog, faCog, faForward, faFileAlt, faPlay } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { DiceModule } from '../dice/dice.module';
@@ -62,6 +62,7 @@ import { MasterMenuControlComponent } from './master-menu-control/master-menu-co
 })
 export class CombatModule {
   constructor(){
-    library.add(faRunning,faWalking,faPlus,faDice,faUser,faTimes,faUserCog,faCog,faMinus);
+    library.add(faRunning,faWalking,faPlus,faDice,faUser,
+      faTimes,faUserCog,faCog,faMinus, faForward, faFileAlt,faPlay);
   }
 }

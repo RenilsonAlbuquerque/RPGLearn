@@ -10,6 +10,7 @@ import { CreatureCard } from 'src/app/domain/models/monster/creature.card';
 export class CombaatTurnOrderComponent implements OnInit {
 
   private creatures: CreatureCard[];
+  private currentCreatureTurn: string;
   private showList: boolean;
   
   constructor(private combatRoomService: CombatRoomService) {
@@ -17,6 +18,7 @@ export class CombaatTurnOrderComponent implements OnInit {
     this.combatRoomService.getCombatState().subscribe(
       state =>{
         this.creatures = state.creatures;
+        this.currentCreatureTurn = state.currentCreatureTurn;
       }
     );
   }
@@ -29,12 +31,19 @@ export class CombaatTurnOrderComponent implements OnInit {
     this.showList = !this.showList;
   }
   get currentCreature():CreatureCard{
-    if(this.creatures.length >0){
-      return this.creatures[0];
+    let result = null;
+    if(this.creatures.length > 0){
+      if(typeof this.currentCreatureTurn!='undefined' && this.currentCreatureTurn){
+         for(let i = 0; i< this.creatures.length; i++){
+           if(this.creatures[i].combatId === this.currentCreatureTurn){
+              result = this.creatures[i];
+           }
+         }
+      }else{
+        return this.creatures[0];
+      }
     }
-    else{
-      return null;
-    }
+    return result;
   }
 
 }

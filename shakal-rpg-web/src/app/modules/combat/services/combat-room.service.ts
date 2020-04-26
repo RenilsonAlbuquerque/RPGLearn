@@ -39,6 +39,12 @@ export class CombatRoomService {
     })
     
   }
+  public getCombatState():Observable<CombatState>{
+    return this.combatState.asObservable();
+  }
+  public getCombatStateValue():CombatState{
+    return this.combatState.value;
+  }
 
   public addMonsterEnemy(enemy: CreatureCard){
     var combatState: CombatState = this.combatState.getValue();
@@ -60,12 +66,7 @@ export class CombatRoomService {
     }
     
   }
-  public getCombatState():Observable<CombatState>{
-    return this.combatState.asObservable();
-  }
-  public getCombatStateValue():CombatState{
-    return this.combatState.value;
-  }
+  
 
   public updateMonsterLifePoints(index: number,value: number){
     
@@ -127,5 +128,37 @@ export class CombatRoomService {
       }
     })
     return result;
+  }
+  public endCreatureTurn(combatId:string): void{
+    let combatState: CombatState = this.combatState.getValue();
+    if(combatId === combatState.currentCreatureTurn){
+      for(let i = 0; i < combatState.creatures.length; i++){
+        if(combatId == combatState.creatures[i].combatId){
+          if(i >= (combatState.creatures.length -1)){
+            combatState.currentCreatureTurn = combatState.creatures[0].combatId;  
+          }else{
+            combatState.currentCreatureTurn = combatState.creatures[i+1].combatId;
+          }
+          this.onSendMessage(combatState);
+          break;
+        }
+      }
+    }
+  }
+  public startCombat():void{
+    let combatState: CombatState = this.combatState.getValue();
+    if(!combatState.combatStarted && combatState.creatures.length > 0 ){
+      let found: boolean = false;
+      combatState.creatures.forEach(creature =>{
+        if(creature.initiative === 0){
+          found = true;
+        }
+      });
+      if(!found){
+        combatState.combatStarted = true;
+        combatState.currentCreatureTurn = combatState.creatures[0].combatId;
+        this.combatState.next(combatState);
+      }
+    }
   }
 }

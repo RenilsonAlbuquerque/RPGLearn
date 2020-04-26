@@ -163,7 +163,7 @@ public class CreatureCardDTO implements Comparable<CreatureCardDTO>{
 	@Override
 	public int compareTo(CreatureCardDTO o) {
 		// TODO Auto-generated method stub
-		return (this.getInitiative() > o.getInitiative()) ? 1: -1;
+		return (this.getInitiative() < o.getInitiative()) ? 1: -1;
 	}
 	 
 	 

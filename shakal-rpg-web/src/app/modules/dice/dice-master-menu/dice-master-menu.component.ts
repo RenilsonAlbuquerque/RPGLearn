@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DiceService } from '../dice.module.service';
 import { CombatRoomService } from '../../combat/services/combat-room.service';
-import { faDice } from '@fortawesome/free-solid-svg-icons';
+import { CombatState } from 'src/app/domain/models/combat/combat.state';
 
 @Component({
   selector: 'app-dice-master-menu',
@@ -19,6 +19,8 @@ export class DiceMasterMenuComponent implements OnInit {
   }
 
   rollInitiative(){
-    this.diceService.rollInitiativeOfCreatures(this.combatRoomService.getCombatStateValue().creatures)
+    this.combatRoomService.updateCreatures(
+      this.diceService.rollInitiativeOfCreatures(this.combatRoomService.getCombatStateValue().creatures)
+    );
   }
 }

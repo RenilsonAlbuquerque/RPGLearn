@@ -12,7 +12,7 @@ export class MasterMenuControlComponent implements OnInit {
   private creatureMenu: boolean;
   private diceMenu: boolean;
   private configMenu: boolean;
-  constructor() { 
+  constructor(private combatRoomService:CombatRoomService) { 
     this.diceMenu = true;
     this.creatureMenu = false;
     this.configMenu = false;
@@ -25,6 +25,9 @@ export class MasterMenuControlComponent implements OnInit {
   }
   disable(){
     document.getElementById("sidebar-master").style.width = "0";
+  }
+  startCombat(){
+    this.combatRoomService.startCombat();
   }
  
   openDiceMenu(){

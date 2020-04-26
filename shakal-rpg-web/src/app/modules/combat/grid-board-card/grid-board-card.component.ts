@@ -3,6 +3,7 @@ import { CreatureCard } from 'src/app/domain/models/monster/creature.card';
 import { GridBoardService } from '../services/grid-board.service';
 import { createSvgWalk, generateRandomId, createSvgDoubleMove } from 'src/app/infra/helpers/grid-board.helper';
 import { ActionType } from 'src/app/domain/models/combat/action.type';
+import { CombatRoomService } from '../services/combat-room.service';
 
 
 @Component({
@@ -20,7 +21,8 @@ export class GridBoardCardComponent implements OnInit {
   public menuOpen: boolean;
   private selfId: string;
   
-  constructor(private gridBoardService: GridBoardService) { 
+  constructor(private gridBoardService: GridBoardService,
+    private combatRoomService: CombatRoomService) { 
     this.menuOpen = false;
   }
 
@@ -40,9 +42,11 @@ export class GridBoardCardComponent implements OnInit {
   getMonster(): CreatureCard{
     return this.monster;
   }
+  get isMyTurn():boolean{
+    return this.monster.combatId === this.combatRoomService.getCombatStateValue().currentCreatureTurn;
+  }
   handleClickCard(){
     this.menuOpen = !this.menuOpen;
-    
   }
   handleMove(){
     this.resetMoves();
@@ -53,6 +57,9 @@ export class GridBoardCardComponent implements OnInit {
     this.resetMoves();
     this.gridBoardService.setCreatureAction({creature:this.monster,actionType: ActionType.doubleMove});
     document.getElementById("svggrid").innerHTML += createSvgDoubleMove(30,this.monster.speed,this.monster.position, this.monster.size);
+  }
+  handleEndTurn(){
+    this.combatRoomService.endCreatureTurn(this.monster.combatId);
   }
   resetMoves(){
     if(document.getElementById("doubleMovePreview") != null){
