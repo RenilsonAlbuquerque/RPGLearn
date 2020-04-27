@@ -137,4 +137,12 @@ public class CharacterService implements ICharacterService{
 		result.setSize(1);
 		return result;
 	}
+
+	@Override
+	public CharacterSheetDTO getCharacterSheet(Long id) throws ResourceNotFoundException {
+		Character search = this.characterDao.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException(Messages.CHARACTER_NOT_FOUND));
+		CharacterSheetDTO result = CharacterMapper.entityToInfo(search);
+		return result;
+	}
 }

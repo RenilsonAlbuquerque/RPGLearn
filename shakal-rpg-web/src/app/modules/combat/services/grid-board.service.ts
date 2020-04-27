@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CardPosition } from 'src/app/domain/models/combat/card.position';
 import { ActionControl } from 'src/app/domain/models/combat/action.control';
+import { BoardConfig } from 'src/app/domain/models/combat/board.config';
 
 
 
@@ -11,11 +12,17 @@ export class GridBoardService {
   private boardZoom: number = 0;
   private playerMoving: string;
   private creatureAction:ActionControl;
+  private gridBoardConfig: BoardConfig;
 
   constructor(){
+    this.gridBoardConfig = {
+      imagePath : 'https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs/129763638/original/05c10920c7074e25558016afbdc34ad7784c4467/create-a-custom-tabletop-battle-map-for-your-campaign.jpg'
+    }
         
   }
-  
+  getGridBoardConfig():BoardConfig{
+    return this.gridBoardConfig;
+  }
   getSquareSize(): number{
     return this.squareSize;
   }

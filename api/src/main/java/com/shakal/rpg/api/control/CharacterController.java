@@ -6,6 +6,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,6 +32,10 @@ public class CharacterController {
 	@PostMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<Boolean> createCharacter(@RequestBody CharacterCreateDTO createDto) throws BusinessException{
 		return new ResponseEntity<Boolean>(this.characterService.createCharacterInStory(createDto), HttpStatus.OK);
+    }
+	@GetMapping(value="/sheet/{id}",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<CharacterSheetDTO> getCharacterSheet(@PathVariable Long id) throws ResourceNotFoundException{
+		return new ResponseEntity<CharacterSheetDTO>(this.characterService.getCharacterSheet(id), HttpStatus.OK);
     }
 	@PostMapping(value="/user-story",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<CharacterGeneralInfoDTO> getCharacterSheetOnStory(@RequestBody UserSheetFIlterDTO filterDto) throws ResourceNotFoundException{

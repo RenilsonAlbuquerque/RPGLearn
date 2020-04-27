@@ -1,13 +1,13 @@
 <form class="charsheet">
     <header>
       <section class="charname">
-        <label for="charname">Character Name</label>
-        <input name="charname" />
+        <label for="charname">Nome do personagem</label>
+        <input name="charname" [value]="sheet.name" readonly/>
       </section>
       <section class="misc">
         <ul>
           <li>
-            <label for="classlevel">Class & Level</label><input name="classlevel" placeholder="Paladin 2" />
+            <label for="classlevel">Classe e Nível</label><input name="classlevel" placeholder="Paladin 2" />
           </li>
           <li>
             <label for="background">Background</label><input name="background" placeholder="Acolyte" />
@@ -207,7 +207,7 @@
           </div>
           <div class="speed">
             <div>
-              <label for="speed">Speed</label><input name="speed" placeholder="30" type="text" />
+              <label for="speed">Deslocamento</label><input name="speed" placeholder="30" type="text" [value]="sheet.speed"/>
             </div>
           </div>
           <div class="hp">

@@ -13,4 +13,5 @@ public interface ICharacterService {
 	boolean createCharacterInStory(CharacterCreateDTO inputDto) throws  BusinessException;
 	CharacterGeneralInfoDTO getCharacterSheetByUserInStory(UserSheetFIlterDTO filter) throws ResourceNotFoundException;
 	CharacterCreateInputDTO getCharacterCreationMetadata();
+	CharacterSheetDTO getCharacterSheet(Long id) throws ResourceNotFoundException;
 }

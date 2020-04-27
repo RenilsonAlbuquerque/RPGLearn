@@ -17,8 +17,8 @@ export class BaseComponent implements OnInit {
       this.sidebarItems = sidebarItems;
       this.selectedIndex = 0;
   }
-  changeSelected(index: number){
-    this.selectedIndex = index;
+  changeSelected(sidebar){
+    sidebar.toggle();
   }
 
   ngOnInit() {

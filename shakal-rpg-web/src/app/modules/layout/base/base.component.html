@@ -1,63 +1,22 @@
-<!-- 
-<nav class="principal-nav">
-   
-
-    <button class="navbar-toggler hidden-sm-up" type="button" 
-            (click)="isNavbarCollapsed = !isNavbarCollapsed"
-            data-target="#navbarsDefault" aria-controls="navbarsDefault"
-             aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse" id="navbarsDefault">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" [routerLink]="['monster']">Monstros</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['combat']">Combate</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['story']">Histórias</a>
-        </li>
-       
-      </ul>
-      <button mat-button [matMenuTriggerFor]="menu">
-        <span>{{userName}} </span>
-        <img src="https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png" class="rounded user-image" alt="Cinque Terre">
-      </button>
-      <mat-menu #menu="matMenu">
-        <button mat-menu-item (click)="callLogout()">Sair</button>
-      </mat-menu>
-      
-    
-    </div>
-  </nav>
-
-  &nbsp;
-  <br>
-  <br>
-  <br>
-  <br> -->
-  <mat-drawer-container class="example-container" [hasBackdrop]=true>
+<mat-drawer-container class="example-container" [hasBackdrop]=true>
     <mat-drawer id="drawer" #drawer [mode]="push">
-      <div id="drawer">
-        <div class="sidebar-header">
-          <img src="https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png" class="profile-image" alt="">
-        </div>
-        <ul class="sidebar-ul">
-          <li *ngFor="let item of sidebarItems;index as i" class="sidebar-li" 
-              [routerLink]="item.path"
-              (click)="changeSelected(i)"
-              [ngClass]="{'active':i === selectedIndex }">
-            {{item.label}}
-          </li> 
-          <!-- <li class="sidebar-li" [routerLink]="['story']">Historias</li>
-          <li class="sidebar-li" [routerLink]="['monster']">Monstros</li> -->
-        </ul>
-          <button (click)="callLogout()">Sair</button>
-        
-      </div>
-      
+      <mat-card id="background-card">
+        <img mat-card-avatar src="https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png">
+        <mat-card-content>
+          <p>{{userName}}</p>
+        </mat-card-content>
+      </mat-card>
+      <mat-nav-list>
+        <mat-list-item *ngFor="let item of sidebarItems;index as i" [routerLink]="item.path" (click)="changeSelected(drawer)">
+          <mat-icon mat-list-icon>{{item.icon}}</mat-icon>
+          <div mat-line>{{ item.label }}</div>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item (click)="callLogout()">
+          <mat-icon mat-list-icon>exit_to_app</mat-icon>
+          <div mat-line>Sair</div>
+        </mat-list-item>
+      </mat-nav-list>
     </mat-drawer>
     <mat-drawer-content>
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -69,5 +28,5 @@
         <router-outlet class="main-screen"></router-outlet>
       </div>
     </mat-drawer-content>
-  </mat-drawer-container>
+</mat-drawer-container>
 

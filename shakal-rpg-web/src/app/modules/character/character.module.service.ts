@@ -14,6 +14,9 @@ export class CharacterService {
     constructor(private httpClient: HttpClient) {
         
     }
+    getCharacterSheet(characterId: number): Observable<CharacterSheet>{
+        return this.httpClient.get<CharacterSheet>((`${environment.BASE_URL}character/sheet/${characterId}`));
+    }
     getCharacterSheetOnStory(storyId: number,userId: number): Observable<CharacterInfo>{
         return this.httpClient.post<CharacterInfo>(`${environment.BASE_URL}character/user-story`,{userId:userId, storyId:storyId});
     }

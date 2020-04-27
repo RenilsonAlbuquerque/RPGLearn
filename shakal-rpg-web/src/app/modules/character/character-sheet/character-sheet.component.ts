@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { CharacterSheet } from 'src/app/domain/models/character/character.sheet';
+import { CharacterService } from '../character.module.service';
 
 @Component({
   selector: 'app-character-sheet',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CharacterSheetComponent implements OnInit {
 
-  constructor() { }
+  @Input() characterId: number;
+  private sheet: CharacterSheet;
+  constructor(private characterService: CharacterService) {
+    this.sheet = {} as CharacterSheet;
+  }
 
   ngOnInit() {
+    this.characterService.getCharacterSheet(this.characterId).subscribe(
+      response => (this.sheet = response)  
+    )
   }
 
 }

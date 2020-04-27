@@ -90,7 +90,7 @@ export class GridBoardComponent implements OnInit{
     }
   }
   newDrawImage(){
-    this.image.src = "https://i.redd.it/7igkmw001p121.jpg";
+    this.image.src = this.gridBoardService.getGridBoardConfig().imagePath;
     this.image.onload = () => {
       
       this.imageContainer.nativeElement.style.width = "fit-content";

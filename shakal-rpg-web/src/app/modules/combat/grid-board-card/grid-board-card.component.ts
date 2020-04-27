@@ -59,8 +59,13 @@ export class GridBoardCardComponent implements OnInit {
     this.gridBoardService.setCreatureAction({creature:this.monster,actionType: ActionType.doubleMove});
     document.getElementById("svggrid").innerHTML += createSvgDoubleMove(30,this.monster.speed,this.monster.position, this.monster.size);
   }
-  handleOpenSheet(template: TemplateRef<any>){
-    this.internModalService.openExtraLargeModal(template);
+  handleOpenSheet(templatePlayer: TemplateRef<any>,templateNPC:TemplateRef<any>){
+    if(this.monster.playerId > 0){
+      this.internModalService.openExtraLargeModal(templatePlayer);
+    }else{
+      this.internModalService.openExtraLargeModal(templateNPC);
+    }
+    
   }
   handleEndTurn(){
     this.resetMoves();

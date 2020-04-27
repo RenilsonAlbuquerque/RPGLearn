@@ -8,10 +8,10 @@ export const sidebarItems: SidebarItem[] = [
     {
         label:"Histórias",
         path:'story',
-        icon:'running'
+        icon:'library_books'
     },{
         label:"Criaturas",
         path:"monster",
-        icon:"monster"
+        icon:"mood_bad"
     }
 ]

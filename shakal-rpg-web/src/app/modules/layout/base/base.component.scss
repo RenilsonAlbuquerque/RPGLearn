@@ -13,29 +13,13 @@
     left: 12px;
     top: 12px;
 }
-.sidebar-header{
-    height: 150px;
-    padding: 24px;
-}
-.profile-image{
-    border-radius: 100%;
-    position: relative;
-    height: 120px;
-    width: 120px;
 
-}
-.sidebar-ul{
-    list-style: none;
-    padding: 8px 8px;
-}
-.sidebar-li{
-    padding: 0px 16px;
-    cursor: pointer;
-    height: 56px;
-    align-items: center;
-    display: flex;
-    border: none;
-}
-.active {
-    background-color: yellow;
+
+
+
+#background-card{
+    background-size: cover;
+    width: 100%;
+    background-image: url('https://i.pinimg.com/originals/10/e9/20/10e920e3c31a67cfd3932b6239bf5538.jpg');
+    background-repeat: no-repeat;
 }
