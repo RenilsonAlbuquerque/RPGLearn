@@ -2,14 +2,11 @@ package com.shakal.rpg.api.model;
 
 
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.shakal.rpg.api.model.enums.DamageTypeEnum;
 
 
 @Entity
@@ -20,9 +17,8 @@ public class DamageType {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
-	
-	@Enumerated(EnumType.ORDINAL)
-	private DamageTypeEnum value;
+
+	private String value;
 
 	public long getId() {
 		return id;
@@ -32,13 +28,14 @@ public class DamageType {
 		this.id = id;
 	}
 
-	public DamageTypeEnum getValue() {
+	public String getValue() {
 		return value;
 	}
 
-	public void setValue(DamageTypeEnum value) {
+	public void setValue(String value) {
 		this.value = value;
 	}
-	
+
+
 	
 }

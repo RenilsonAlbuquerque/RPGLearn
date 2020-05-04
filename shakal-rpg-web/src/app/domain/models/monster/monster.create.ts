@@ -6,6 +6,7 @@ export interface MonsterCreate{
     raceName: string,
     raceDescription: string;
     imagePath: string,
+    tokenImageRaw: string,
     alignment: number,
     size: number,
     type: number,

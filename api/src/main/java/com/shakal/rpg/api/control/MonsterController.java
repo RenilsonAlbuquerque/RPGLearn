@@ -25,6 +25,7 @@ import com.shakal.rpg.api.dto.filter.CustomPage;
 import com.shakal.rpg.api.dto.filter.PaginationFilter;
 import com.shakal.rpg.api.dto.info.MonsterInfoDTO;
 import com.shakal.rpg.api.dto.overview.MonsterOverviewDTO;
+import com.shakal.rpg.api.exception.BusinessException;
 import com.shakal.rpg.api.exception.ResourceNotFoundException;
 
 
@@ -38,7 +39,7 @@ public class MonsterController {
 	private IMonsterService monsterService;
 	
 	@PostMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<MonsterCreateDTO> createMoster(@RequestBody MonsterCreateDTO createDto) throws ResourceNotFoundException{
+    public ResponseEntity<MonsterCreateDTO> createMoster(@RequestBody MonsterCreateDTO createDto) throws ResourceNotFoundException,BusinessException{
 		return new ResponseEntity<MonsterCreateDTO>(this.monsterService.insertMonster(createDto), HttpStatus.OK);
     }
 	

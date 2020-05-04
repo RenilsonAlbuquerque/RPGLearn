@@ -1,6 +1,6 @@
 package com.shakal.rpg.api.service;
 
-import java.util.List;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -12,12 +12,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.shakal.rpg.api.contracts.service.IUserService;
-import com.shakal.rpg.api.dto.commons.KeyValueDTO;
 import com.shakal.rpg.api.dto.create.UserCreateDTO;
 import com.shakal.rpg.api.exception.DuplicatedResourceException;
 import com.shakal.rpg.api.mappers.UserMapper;
-import com.shakal.rpg.api.model.Story;
-import com.shakal.rpg.api.model.User;
 import com.shakal.rpg.api.model.character.Character;
 import com.shakal.rpg.api.model.embedded.UserStoryId;
 import com.shakal.rpg.api.model.relation.UserStory;

@@ -5,6 +5,7 @@ import { createSvgWalk, generateRandomId, createSvgDoubleMove } from 'src/app/in
 import { ActionType } from 'src/app/domain/models/combat/action.type';
 import { CombatRoomService } from '../services/combat-room.service';
 import { InternModalService } from 'src/app/infra/services/intern.modal.service';
+import { CreatureService } from 'src/app/infra/services/creature.service';
 
 
 @Component({
@@ -21,9 +22,11 @@ export class GridBoardCardComponent implements OnInit {
 
   public menuOpen: boolean;
   private selfId: string;
+  private imageToken: String;
   
   constructor(private gridBoardService: GridBoardService,
-    private combatRoomService: CombatRoomService, private internModalService: InternModalService) { 
+    private combatRoomService: CombatRoomService, private internModalService: InternModalService,
+    private creatureService: CreatureService) { 
     this.menuOpen = false;
   }
 
@@ -33,6 +36,12 @@ export class GridBoardCardComponent implements OnInit {
     this.self.nativeElement.style.height = (this.gridBoardService.getSquareSize() * this.monster.size).toString() + "px";
     this.self.nativeElement.style.width = (this.gridBoardService.getSquareSize() * this.monster.size).toString() + "px";
     this.selfId = this.monster.combatId;
+    this.creatureService.getCreatureTokenById(this.monster.id).subscribe(
+      response =>{
+        this.imageToken = response.picture;
+      }
+    );
+
     
   }
   setMonster(monster: CreatureCard){
@@ -52,12 +61,12 @@ export class GridBoardCardComponent implements OnInit {
   handleMove(){
     this.resetMoves();
     this.gridBoardService.setCreatureAction({creature:this.monster,actionType: ActionType.move});
-    document.getElementById("svggrid").innerHTML += createSvgWalk(30,this.monster.speed,this.monster.position, this.monster.size);
+    document.getElementById("svggrid").innerHTML += createSvgWalk(this.gridBoardService.getSquareSize(),this.monster.speed,this.monster.position, this.monster.size);
   }
   handleDoubleMove(){
     this.resetMoves();
     this.gridBoardService.setCreatureAction({creature:this.monster,actionType: ActionType.doubleMove});
-    document.getElementById("svggrid").innerHTML += createSvgDoubleMove(30,this.monster.speed,this.monster.position, this.monster.size);
+    document.getElementById("svggrid").innerHTML += createSvgDoubleMove(this.gridBoardService.getSquareSize(),this.monster.speed,this.monster.position, this.monster.size);
   }
   handleOpenSheet(templatePlayer: TemplateRef<any>,templateNPC:TemplateRef<any>){
     if(this.monster.playerId > 0){

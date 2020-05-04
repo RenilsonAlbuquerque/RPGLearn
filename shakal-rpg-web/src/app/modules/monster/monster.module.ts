@@ -21,6 +21,7 @@ import { InjectableRxStompConfig, RxStompService, rxStompServiceFactory } from '
 import { myRxStompConfig } from 'src/app/infra/config/my-rx-stomp.config';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MonsterDragableListComponent } from './monster-dragable-list/monster-dragable-list.component';
+import { CreatureService } from 'src/app/infra/services/creature.service';
 
 
 
@@ -41,7 +42,7 @@ import { MonsterDragableListComponent } from './monster-dragable-list/monster-dr
     FontAwesomeModule
   ],
   providers:[
-    MonsterService,FormBuilder,CombatRoomService,
+    MonsterService,FormBuilder,CombatRoomService,CreatureService,
     {
       provide: InjectableRxStompConfig,
       useValue: myRxStompConfig

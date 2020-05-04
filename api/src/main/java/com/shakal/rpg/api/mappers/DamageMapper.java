@@ -28,7 +28,7 @@ public class DamageMapper {
 	public static KeyValueDTO  entityTODTO(DamageType entity) {
 		KeyValueDTO result = new KeyValueDTO();
 		result.setId(entity.getId());
-		result.setValue(translateDamage(entity.getValue()));
+		result.setValue(entity.getValue());
 		return result;
 	}
 	

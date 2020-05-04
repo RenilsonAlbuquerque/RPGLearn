@@ -7,6 +7,8 @@ import { KeyValue } from 'src/app/domain/models/comon/key.value';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import mapFormToDTO from 'src/app/domain/mappers/monster.mapper';
+import { convertFileToBase64 } from 'src/app/infra/helpers/file.helper';
+
 
 
 @Component({
@@ -30,6 +32,7 @@ export class MonsterCreateComponent implements OnInit {
   //Items of the component
   public features: FormArray;
   profilePicture: string;
+  tokenImage: string;
 
   constructor(private _formBuilder: FormBuilder,private monsterService: MonsterService,
     private router: Router,private toastr: ToastrService) { }
@@ -44,7 +47,8 @@ export class MonsterCreateComponent implements OnInit {
       type:[{}, Validators.required],
       profilePicture: [''],
       name: ['',Validators.required],
-      description: ['',Validators.required]
+      description: ['',Validators.required],
+      tokenImage: [''],
     });
     this.habilitiesFormGroup = this._formBuilder.group({
       armorClass: ['', Validators.required],
@@ -162,6 +166,15 @@ export class MonsterCreateComponent implements OnInit {
   initializeDefaultValues(){
     this.informacoesFormGroup.controls['profilePicture'].setValue('../../../../assets/img/default-monster.jpg');
     this.profilePicture = '../../../../assets/img/default-monster.jpg';
+  }
+  async changeTokenImage(event:any){
+    let file = event.target.files[0];
+    await convertFileToBase64(file).then(
+      result => {
+        this.tokenImage = result as string,
+        this.informacoesFormGroup.controls['tokenImage'].setValue(result as string)
+      }
+    );
   }
 
 }

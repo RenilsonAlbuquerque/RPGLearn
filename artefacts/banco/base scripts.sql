@@ -1,3 +1,4 @@
+use rpg2;
 
 insert into tb_dice(id,value) values (1,0);
 insert into tb_dice(id,value) values (2,1);
@@ -6,6 +7,19 @@ insert into tb_dice(id,value) values (4,3);
 insert into tb_dice(id,value) values (5,4);
 insert into tb_dice(id,value) values (6,5);
 
+insert into tb_coin(id,name,abreviation,weight,cotation) values (1,"Peça de platina","PC",2.5,1);
+insert into tb_coin(id,name,abreviation,weight,cotation) values (2,"Peça de ouro","PO",2.5,10);
+insert into tb_coin(id,name,abreviation,weight,cotation) values (3,"Peça de platina","PE",2.5,20);
+insert into tb_coin(id,name,abreviation,weight,cotation) values (4,"Peça de prata","PP",2.5,100);
+insert into tb_coin(id,name,abreviation,weight,cotation) values (5,"Peça de cobre","PC",2.5,1000);
+
+insert into tb_rarity(id,name) values (1,"Comum");
+insert into tb_rarity(id,name) values (2,"Incomum");
+insert into tb_rarity(id,name) values (3,"Raro");
+insert into tb_rarity(id,name) values (4,"Muito Raro");
+insert into tb_rarity(id,name) values (5,"Lendário");
+
+
 insert into tb_atribute(id,value) values (1,0);
 insert into tb_atribute(id,value) values (2,1);
 insert into tb_atribute(id,value) values (3,2);
@@ -13,19 +27,38 @@ insert into tb_atribute(id,value) values (4,3);
 insert into tb_atribute(id,value) values (5,4);
 insert into tb_atribute(id,value) values (6,5);
 
-insert into tb_damage_type(id,value) values (1,0);
-insert into tb_damage_type(id,value) values (2,1);
-insert into tb_damage_type(id,value) values (3,2);
-insert into tb_damage_type(id,value) values (4,3);
-insert into tb_damage_type(id,value) values (5,4);
-insert into tb_damage_type(id,value) values (6,5);
-insert into tb_damage_type(id,value) values (7,6);
-insert into tb_damage_type(id,value) values (8,7);
-insert into tb_damage_type(id,value) values (9,8);
-insert into tb_damage_type(id,value) values (10,9);
-insert into tb_damage_type(id,value) values (11,10);
-insert into tb_damage_type(id,value) values (12,11);
-insert into tb_damage_type(id,value) values (13,12);
+insert into tb_damage_type(id,value) values (1,"Ácido");
+insert into tb_damage_type(id,value) values (2,"Concussão");
+insert into tb_damage_type(id,value) values (3,"Gelo");
+insert into tb_damage_type(id,value) values (4,"Fogo");
+insert into tb_damage_type(id,value) values (5,"Força");
+insert into tb_damage_type(id,value) values (6,"Elétrico");
+insert into tb_damage_type(id,value) values (7,"Necrótico");
+insert into tb_damage_type(id,value) values (8,"Perfurante");
+insert into tb_damage_type(id,value) values (9,"Veneno");
+insert into tb_damage_type(id,value) values (10,"Psíquico");
+insert into tb_damage_type(id,value) values (11,"Radiante");
+insert into tb_damage_type(id,value) values (12,"Trovão");
+
+insert into tb_proeficiency(id,name) values (1,"Acrobacia");
+insert into tb_proeficiency(id,name) values (2,"Arcanismo");
+insert into tb_proeficiency(id,name) values (3,"Atletismo");
+insert into tb_proeficiency(id,name) values (4,"Atuação");
+insert into tb_proeficiency(id,name) values (5,"Blefar");
+insert into tb_proeficiency(id,name) values (6,"Furtividade");
+insert into tb_proeficiency(id,name) values (7,"História");
+insert into tb_proeficiency(id,name) values (8,"Intimidação");
+insert into tb_proeficiency(id,name) values (9,"Intuição");
+insert into tb_proeficiency(id,name) values (10,"Investigação");
+insert into tb_proeficiency(id,name) values (11,"Lidar com animais");
+insert into tb_proeficiency(id,name) values (12,"Medicina");
+insert into tb_proeficiency(id,name) values (13,"Natureza");
+insert into tb_proeficiency(id,name) values (14,"Percepção");
+insert into tb_proeficiency(id,name) values (15,"Persuasão");
+insert into tb_proeficiency(id,name) values (16,"Prestidigitação");
+insert into tb_proeficiency(id,name) values (17,"Religião");
+insert into tb_proeficiency(id,name) values (18,"Sobrevivência");
+
 
 insert into tb_language(id,name)values(1,"Todos");
 insert into tb_language(id,name)values(2,"Comum");

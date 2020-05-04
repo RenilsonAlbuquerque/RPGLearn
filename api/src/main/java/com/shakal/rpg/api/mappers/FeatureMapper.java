@@ -4,7 +4,6 @@ import java.util.HashSet;
 import java.util.List;
 
 import com.shakal.rpg.api.dto.commons.NameDescriptionDTO;
-import com.shakal.rpg.api.dto.create.MonsterCreateDTO;
 import com.shakal.rpg.api.model.Monster;
 import com.shakal.rpg.api.model.MonsterFeature;
 

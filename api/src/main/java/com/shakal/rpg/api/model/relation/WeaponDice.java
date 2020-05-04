@@ -8,9 +8,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Table;
 
+import com.shakal.rpg.api.model.DamageType;
 import com.shakal.rpg.api.model.Dice;
-import com.shakal.rpg.api.model.Weapon;
 import com.shakal.rpg.api.model.embedded.WeaponDiceId;
+import com.shakal.rpg.api.model.weapon.Weapon;
 
 @Entity
 @Table(name= "mtm_weapon_dice")
@@ -29,9 +30,13 @@ public class WeaponDice {
 	@MapsId("diceId")
 	private Dice dice;
 	
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
+	@MapsId("damage_type_Id")
+	private DamageType damageType;
 	
 	private int quantity;
 	
+	private int bonus;
 
 	public WeaponDice() {
 		super();
@@ -87,6 +92,26 @@ public class WeaponDice {
 
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
+	}
+
+
+	public int getBonus() {
+		return bonus;
+	}
+
+
+	public void setBonus(int bonus) {
+		this.bonus = bonus;
+	}
+
+
+	public DamageType getDamageType() {
+		return damageType;
+	}
+
+
+	public void setDamageType(DamageType damageType) {
+		this.damageType = damageType;
 	}
 	
 	

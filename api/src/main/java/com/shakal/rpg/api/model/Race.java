@@ -9,9 +9,12 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.shakal.rpg.api.model.character.CharacterRaceAtributeBonus;
 import com.shakal.rpg.api.model.character.SubRace;
 
 @Entity
@@ -31,6 +34,22 @@ public class Race {
 	
 	@OneToMany(mappedBy = "race",cascade = CascadeType.PERSIST,fetch = FetchType.LAZY, targetEntity = SubRace.class)
 	private List<SubRace> subRaces;
+	
+	@OneToMany(mappedBy = "race",cascade = CascadeType.PERSIST,fetch = FetchType.LAZY, targetEntity = CharacterRaceAtributeBonus.class)
+	private List<CharacterRaceAtributeBonus> atributeBonus;
+	
+	@Column(length = 700)
+	private String languages;
+	
+	@Column(length = 700)
+	private String age;
+	
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
+	@JoinColumn(name ="size_id")
+	private MonsterSize size;
+	
+	@Column(length = 700)
+	private String sizeDescription;
 	
 	public Race() {
 		
@@ -85,6 +104,17 @@ public class Race {
 	public void setSpeed(int speed) {
 		this.speed = speed;
 	}
+
+
+	public List<CharacterRaceAtributeBonus> getAtributeBonus() {
+		return atributeBonus;
+	}
+
+
+	public void setAtributeBonus(List<CharacterRaceAtributeBonus> atributeBonus) {
+		this.atributeBonus = atributeBonus;
+	}
+	
 	
 	
 }

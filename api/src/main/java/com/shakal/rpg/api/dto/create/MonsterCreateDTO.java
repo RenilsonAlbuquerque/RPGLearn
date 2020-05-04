@@ -11,6 +11,7 @@ public class MonsterCreateDTO {
 	private String raceName;
 	private String raceDescription;
 	private String imagePath;
+	private String tokenImageRaw;
 	private long alignment;
 	private long size;
 	private long type;
@@ -54,6 +55,13 @@ public class MonsterCreateDTO {
 	}
 	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;
+	}
+	
+	public String getTokenImageRaw() {
+		return tokenImageRaw;
+	}
+	public void setTokenImageRaw(String tokenImageRaw) {
+		this.tokenImageRaw = tokenImageRaw;
 	}
 	public long getAlignment() {
 		return alignment;

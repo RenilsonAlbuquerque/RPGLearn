@@ -15,6 +15,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.shakal.rpg.api.contracts.entity.ICreature;
@@ -33,6 +34,9 @@ public abstract class Creature implements ICreature{
 	
 	@Column(length = 500)
 	private String imagePath;
+	
+	@OneToOne(fetch = FetchType.LAZY, cascade=CascadeType.REMOVE, mappedBy= "creature")
+	private ImageToken token;
 	
 	private int speed;
 	
@@ -71,6 +75,15 @@ public abstract class Creature implements ICreature{
 
 	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;
+	}
+
+	
+	public ImageToken getToken() {
+		return token;
+	}
+
+	public void setToken(ImageToken token) {
+		this.token = token;
 	}
 
 	public List<CreatureResistence> getResistences() {

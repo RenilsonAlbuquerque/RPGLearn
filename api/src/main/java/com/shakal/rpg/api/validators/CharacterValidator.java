@@ -1,5 +1,6 @@
 package com.shakal.rpg.api.validators;
 
+import java.io.UnsupportedEncodingException;
 import java.util.Optional;
 
 import com.shakal.rpg.api.dto.create.CharacterCreateDTO;
@@ -31,5 +32,13 @@ public class CharacterValidator {
 			errorMessages.addError("Raça inválida");
 		}
 		return errorMessages;
+	}
+	public static void validateToken(String base64, ErrorMessages errors) {
+		
+		try {
+			base64.getBytes("UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			errors.addError("Token inválido");
+		}
 	}
 }

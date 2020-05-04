@@ -22,6 +22,7 @@ public class Class {
 	
 	private DiceEnum lifedice;
 
+	
 	public long getId() {
 		return id;
 	}
