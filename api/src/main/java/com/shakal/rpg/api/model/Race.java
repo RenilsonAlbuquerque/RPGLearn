@@ -10,13 +10,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.shakal.rpg.api.model.character.CharacterRaceAtributeBonus;
 import com.shakal.rpg.api.model.character.SubRace;
-import com.shakal.rpg.api.model.equipament.EquipamentProeficiencyCategory;
+import com.shakal.rpg.api.model.equipament.EquipamentCategory;
 
 @Entity
 @Table(name= "tb_race")
@@ -54,6 +56,13 @@ public class Race {
 	
 	@Column(length = 700)
 	private String sizeDescription;
+	
+	
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(name = "mtm_race__equipment_category",
+            joinColumns = @JoinColumn(name = "race_id", referencedColumnName = "id"),
+            inverseJoinColumns =  @JoinColumn(name = "equipment_category_id", referencedColumnName = "id"))
+    private List<EquipamentCategory> equipmentCategory;
 	
 	
 	
@@ -120,6 +129,69 @@ public class Race {
 	public void setAtributeBonus(List<CharacterRaceAtributeBonus> atributeBonus) {
 		this.atributeBonus = atributeBonus;
 	}
+
+
+	public String getAlignment() {
+		return alignment;
+	}
+
+
+	public void setAlignment(String alignment) {
+		this.alignment = alignment;
+	}
+
+
+	public String getLanguages() {
+		return languages;
+	}
+
+
+	public void setLanguages(String languages) {
+		this.languages = languages;
+	}
+
+
+	public String getAge() {
+		return age;
+	}
+
+
+	public void setAge(String age) {
+		this.age = age;
+	}
+
+
+	public MonsterSize getSize() {
+		return size;
+	}
+
+
+	public void setSize(MonsterSize size) {
+		this.size = size;
+	}
+
+
+	public String getSizeDescription() {
+		return sizeDescription;
+	}
+
+
+	public void setSizeDescription(String sizeDescription) {
+		this.sizeDescription = sizeDescription;
+	}
+
+
+	public List<EquipamentCategory> getEquipmentCategory() {
+		return equipmentCategory;
+	}
+
+
+	public void setEquipmentCategory(List<EquipamentCategory> equipmentCategory) {
+		this.equipmentCategory = equipmentCategory;
+	}
+
+
+	
 	
 	
 	

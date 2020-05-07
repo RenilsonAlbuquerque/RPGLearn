@@ -22,7 +22,9 @@ import com.shakal.rpg.api.model.relation.WeaponDice;
 @PrimaryKeyJoinColumn(name = "id")
 public class Weapon extends Equipament {
 
-	
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL,targetEntity = WeaponCategory.class)
+	@JoinColumn(name ="category_id", referencedColumnName = "id")
+	private WeaponCategory category;
 	
 
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL,targetEntity = WeaponClassification.class )

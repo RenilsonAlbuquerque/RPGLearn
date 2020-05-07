@@ -1,6 +1,5 @@
 package com.shakal.rpg.api.model.equipament;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -43,13 +42,7 @@ public abstract class Equipament implements IEquipament{
 	@MapsId("rarity_Id")
 	private Rarity rarity;
 	
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, targetEntity = EquipamentCategory.class)
-	@JoinColumn(name ="category_id", referencedColumnName = "id")
-	private EquipamentCategory equipmentCategory;
-	
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, targetEntity = EquipamentProeficiencyCategory.class)
-	@JoinColumn(name ="preficiency_category_id", referencedColumnName = "id")
-	private EquipamentProeficiencyCategory equipmentProeficiencyCategory;
+
 	
 	
 	public Long getId() {
@@ -98,7 +91,7 @@ public abstract class Equipament implements IEquipament{
 		this.price = price;
 	}
 
-
+	
 
 	public int getWeight() {
 		return weight;
@@ -133,31 +126,8 @@ public abstract class Equipament implements IEquipament{
 		this.description = description;
 	}
 
-
-
-	public EquipamentCategory getEquipmentCategory() {
-		return equipmentCategory;
-	}
-
-
-
-	public void setEquipmentCategory(EquipamentCategory equipmentCategory) {
-		this.equipmentCategory = equipmentCategory;
-	}
-
-
-
-	public EquipamentProeficiencyCategory getEquipmentProeficiencyCategory() {
-		return equipmentProeficiencyCategory;
-	}
-
-
-
-	public void setEquipmentProeficiencyCategory(EquipamentProeficiencyCategory equipmentProeficiencyCategory) {
-		this.equipmentProeficiencyCategory = equipmentProeficiencyCategory;
-	}
-
-
+	
+	
 
 	@Override
 	public Cost price() {

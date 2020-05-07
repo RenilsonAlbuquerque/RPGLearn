@@ -1,20 +1,20 @@
 package com.shakal.rpg.api.model.equipament;
 
-import java.util.List;
 
-import javax.persistence.CascadeType;
+
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
 
 
 @Entity
 @Table(name= "tb_equipament_category")
-public class EquipamentCategory {
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class EquipamentCategory {
 	
 	@Id
 	@GeneratedValue
@@ -22,8 +22,6 @@ public class EquipamentCategory {
 	
 	private String name;
 	
-	@OneToMany(mappedBy = "equipmentCategory",cascade = CascadeType.PERSIST,fetch = FetchType.LAZY, targetEntity = Equipament.class)
-	private List<Equipament> equipaments;
 
 	public Long getId() {
 		return id;
@@ -41,13 +39,7 @@ public class EquipamentCategory {
 		this.name = name;
 	}
 
-	public List<Equipament> getEquipaments() {
-		return equipaments;
-	}
 
-	public void setEquipaments(List<Equipament> equipaments) {
-		this.equipaments = equipaments;
-	}
 	
 	
 	
