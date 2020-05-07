@@ -14,7 +14,7 @@ import com.shakal.rpg.api.model.Race;
 
 
 @Entity
-@Table(name= "tb_character_class_atribute_bonus")
+@Table(name= "tb_character_race_atribute_bonus")
 public class CharacterRaceAtributeBonus {
 
 	@Id

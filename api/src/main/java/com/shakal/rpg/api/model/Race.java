@@ -16,6 +16,7 @@ import javax.persistence.Table;
 
 import com.shakal.rpg.api.model.character.CharacterRaceAtributeBonus;
 import com.shakal.rpg.api.model.character.SubRace;
+import com.shakal.rpg.api.model.equipament.EquipamentProeficiencyCategory;
 
 @Entity
 @Table(name= "tb_race")
@@ -31,6 +32,9 @@ public class Race {
 	private String description;
 	
 	private int speed;
+	
+	@Column(length = 500)
+	private String alignment;
 	
 	@OneToMany(mappedBy = "race",cascade = CascadeType.PERSIST,fetch = FetchType.LAZY, targetEntity = SubRace.class)
 	private List<SubRace> subRaces;
@@ -50,6 +54,8 @@ public class Race {
 	
 	@Column(length = 700)
 	private String sizeDescription;
+	
+	
 	
 	public Race() {
 		

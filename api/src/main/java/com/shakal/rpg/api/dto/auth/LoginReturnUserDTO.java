@@ -4,6 +4,10 @@ import java.io.Serializable;
 
 public class LoginReturnUserDTO implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 9161763410710641665L;
 	private long id;
 	private String name;
 	private String email;

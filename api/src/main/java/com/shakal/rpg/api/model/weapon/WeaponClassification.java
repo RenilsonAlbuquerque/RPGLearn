@@ -12,6 +12,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
+
 @Entity
 @Table(name= "tb_weapon_classification")
 public class WeaponClassification {
@@ -22,7 +23,7 @@ public class WeaponClassification {
 	
 	private String name;
 	
-	@OneToMany(mappedBy = "classification",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "classification",cascade = CascadeType.ALL,fetch = FetchType.LAZY,targetEntity = Weapon.class)
 	private List<Weapon> weapon;
 
 	public long getId() {

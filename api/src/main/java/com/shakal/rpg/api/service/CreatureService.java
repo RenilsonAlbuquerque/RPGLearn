@@ -7,7 +7,6 @@ import com.shakal.rpg.api.contracts.service.ICreatureService;
 import com.shakal.rpg.api.dto.info.CreatureTokenDTO;
 import com.shakal.rpg.api.exception.ResourceNotFoundException;
 import com.shakal.rpg.api.mappers.CreatureTokenMapper;
-import com.shakal.rpg.api.model.Creature;
 import com.shakal.rpg.api.model.ImageToken;
 import com.shakal.rpg.api.repository.CreatureDAO;
 import com.shakal.rpg.api.repository.ImageTokenDAO;

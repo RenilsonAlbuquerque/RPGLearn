@@ -11,20 +11,19 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
-
 @Entity
-@Table(name= "tb_equipament_category")
-public class EquipamentCategory {
-	
+@Table(name="tb_equipment_proeficiency_category")
+public class EquipamentProeficiencyCategory {
+
 	@Id
 	@GeneratedValue
 	private Long id;
 	
 	private String name;
 	
-	@OneToMany(mappedBy = "equipmentCategory",cascade = CascadeType.PERSIST,fetch = FetchType.LAZY, targetEntity = Equipament.class)
-	private List<Equipament> equipaments;
-
+	@OneToMany(mappedBy = "equipmentProeficiencyCategory",cascade = CascadeType.PERSIST,fetch = FetchType.LAZY, targetEntity = Equipament.class)
+	private List<Equipament> equipments;
+	
 	public Long getId() {
 		return id;
 	}
@@ -41,15 +40,13 @@ public class EquipamentCategory {
 		this.name = name;
 	}
 
-	public List<Equipament> getEquipaments() {
-		return equipaments;
+	public List<Equipament> getEquipments() {
+		return equipments;
 	}
 
-	public void setEquipaments(List<Equipament> equipaments) {
-		this.equipaments = equipaments;
+	public void setEquipments(List<Equipament> equipments) {
+		this.equipments = equipments;
 	}
 	
 	
-	
-
 }
