@@ -75,8 +75,21 @@ public class Weapon extends Equipament {
 	public void setRange(WeaponRange range) {
 		this.range = range;
 	}
-	
-/*
+
+
+
+	public WeaponCategory getCategory() {
+		return category;
+	}
+
+
+
+	public void setCategory(WeaponCategory category) {
+		this.category = category;
+	}
+
+
+
 	public List<WeaponDice> getDamage() {
 		return damage;
 	}
@@ -86,6 +99,6 @@ public class Weapon extends Equipament {
 	public void setDamage(List<WeaponDice> damage) {
 		this.damage = damage;
 	}
+	
 
-	*/
 }

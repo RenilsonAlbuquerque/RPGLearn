@@ -29,16 +29,17 @@ insert into tb_atribute(id,value) values (6,5);
 
 insert into tb_damage_type(id,value) values (1,"Ácido");
 insert into tb_damage_type(id,value) values (2,"Concussão");
-insert into tb_damage_type(id,value) values (3,"Gelo");
-insert into tb_damage_type(id,value) values (4,"Fogo");
-insert into tb_damage_type(id,value) values (5,"Força");
-insert into tb_damage_type(id,value) values (6,"Elétrico");
-insert into tb_damage_type(id,value) values (7,"Necrótico");
-insert into tb_damage_type(id,value) values (8,"Perfurante");
-insert into tb_damage_type(id,value) values (9,"Veneno");
+insert into tb_damage_type(id,value) values (3,"Cortante");
+insert into tb_damage_type(id,value) values (4,"Elétrico");
+insert into tb_damage_type(id,value) values (5,"Energia");
+insert into tb_damage_type(id,value) values (6,"Fogo");
+insert into tb_damage_type(id,value) values (7,"Gelo");
+insert into tb_damage_type(id,value) values (8,"Necrótico");
+insert into tb_damage_type(id,value) values (9,"Perfurante");
 insert into tb_damage_type(id,value) values (10,"Psíquico");
 insert into tb_damage_type(id,value) values (11,"Radiante");
-insert into tb_damage_type(id,value) values (12,"Trovão");
+insert into tb_damage_type(id,value) values (12,"Trovejante");
+insert into tb_damage_type(id,value) values (13,"Veneno");
 
 insert into tb_proeficiency(id,name) values (1,"Acrobacia");
 insert into tb_proeficiency(id,name) values (2,"Arcanismo");
@@ -60,14 +61,22 @@ insert into tb_proeficiency(id,name) values (17,"Religião");
 insert into tb_proeficiency(id,name) values (18,"Sobrevivência");
 
 
-insert into tb_language(id,name)values(1,"Todos");
+insert into tb_language(id,name)values(1,"Anão");
 insert into tb_language(id,name)values(2,"Comum");
 insert into tb_language(id,name)values(3,"Élfico");
-insert into tb_language(id,name)values(4,"Anão");
-insert into tb_language(id,name)values(5,"Dracônico");
-insert into tb_language(id,name)values(6,"Celestial");
-insert into tb_language(id,name)values(7,"Infernal");
-insert into tb_language(id,name)values(8,"Druida");
+insert into tb_language(id,name)values(4,"Gigante");
+insert into tb_language(id,name)values(5,"Gnômico");
+insert into tb_language(id,name)values(6,"Goblin");
+insert into tb_language(id,name)values(7,"Halfling");
+insert into tb_language(id,name)values(8,"Orc");
+insert into tb_language(id,name)values(9,"Abissal");
+insert into tb_language(id,name)values(10,"Celestial");
+insert into tb_language(id,name)values(11,"Dialeto Subterrâneo");
+insert into tb_language(id,name)values(12,"Dracônico");
+insert into tb_language(id,name)values(13,"Infernal");
+insert into tb_language(id,name)values(14,"Primordial");
+insert into tb_language(id,name)values(15,"Silvestre");
+insert into tb_language(id,name)values(16,"Subterrâneo");
 
 
 insert into tb_challange_dificult(id,level,easy, medium, hard, deadly) values (1,1,25,50,75,100);
@@ -124,12 +133,12 @@ insert into tb_creature_level(id,value,experience_points,proeficiency_bonus) val
 insert into tb_creature_level(id,value,experience_points,proeficiency_bonus) values (31,29,135000,9);
 insert into tb_creature_level(id,value,experience_points,proeficiency_bonus) values (32,30,155000,9);
 
-insert into tb_monster_size(id,name,description) values (1,"Miúdo","0,75 m/0,75 m");
-insert into tb_monster_size(id,name,description) values (2,"Pequeno","1,5 m/1,5 m");
-insert into tb_monster_size(id,name,description) values (3,"Médio","1,5 m/1,5 m");
-insert into tb_monster_size(id,name,description) values (4,"Grande","3 m/3 m");
-insert into tb_monster_size(id,name,description) values (5,"Enorme","4,5 m/4,5 m");
-insert into tb_monster_size(id,name,description) values (6,"Imenso","6 m/6 m ou maior");
+insert into tb_creature_size(id,name,description) values (1,"Miúdo","0,75 m/0,75 m");
+insert into tb_creature_size(id,name,description) values (2,"Pequeno","1,5 m/1,5 m");
+insert into tb_creature_size(id,name,description) values (3,"Médio","1,5 m/1,5 m");
+insert into tb_creature_size(id,name,description) values (4,"Grande","3 m/3 m");
+insert into tb_creature_size(id,name,description) values (5,"Enorme","4,5 m/4,5 m");
+insert into tb_creature_size(id,name,description) values (6,"Imenso","6 m/6 m ou maior");
 
 insert into tb_alignment(id,name,description) values(1,"Leal e Bom", "é a tendência de criaturas que se pode contar para fazer o que é correto como é esperadopela sociedade. Dragões dourados, paladinos e muitos anões são leais e bons");
 insert into tb_alignment(id,name,description) values(2,"Neutro e Bom", " é a tendência do povo que faz o melhor que pode para ajudar outros de acordo com suas necessidades. Muitos celestiais, alguns gigantes das nuvens, e grande parte dos gnomos são neutros e bons.");

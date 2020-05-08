@@ -1,4 +1,4 @@
-package com.shakal.rpg.api.model;
+package com.shakal.rpg.api.model.creature;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,8 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name= "tb_monster_size")
-public class MonsterSize {
+@Table(name= "tb_creature_size")
+public class CreatureSize {
 	
 	
 	@Id

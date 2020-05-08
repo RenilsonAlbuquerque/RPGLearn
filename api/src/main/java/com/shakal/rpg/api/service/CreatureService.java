@@ -29,11 +29,6 @@ public class CreatureService implements ICreatureService {
 		ImageToken search = this.imageTokenDAO.retrieveCharacterTokenById(id)
 					.orElseThrow(() -> new ResourceNotFoundException(Messages.CHARACTER_NOT_FOUND));
 				
-		/*
-		Creature search = this.creatureDAO.retrieveCharacterWithTokenById(id)
-				.orElseThrow(() -> new ResourceNotFoundException(Messages.CHARACTER_NOT_FOUND));
-				*/
-				
 		return CreatureTokenMapper.mapEntityToDTO(search);
 	}
 

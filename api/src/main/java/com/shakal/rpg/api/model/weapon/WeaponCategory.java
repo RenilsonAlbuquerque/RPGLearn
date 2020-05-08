@@ -18,4 +18,14 @@ public class WeaponCategory extends EquipamentCategory {
 
 	@OneToMany(mappedBy = "category",cascade = CascadeType.ALL,fetch = FetchType.LAZY,targetEntity = Weapon.class)
 	private List<Weapon> weapon;
+
+	public List<Weapon> getWeapon() {
+		return weapon;
+	}
+
+	public void setWeapon(List<Weapon> weapon) {
+		this.weapon = weapon;
+	}
+	
+	
 }

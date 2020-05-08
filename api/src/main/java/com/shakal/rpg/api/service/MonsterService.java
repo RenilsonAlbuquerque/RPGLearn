@@ -29,8 +29,8 @@ import com.shakal.rpg.api.model.Attack;
 import com.shakal.rpg.api.model.Monster;
 import com.shakal.rpg.api.model.CreatureLevel;
 import com.shakal.rpg.api.model.MonsterRace;
-import com.shakal.rpg.api.model.MonsterSize;
 import com.shakal.rpg.api.model.MonsterType;
+import com.shakal.rpg.api.model.creature.CreatureSize;
 import com.shakal.rpg.api.model.embedded.CreatureAtributeId;
 import com.shakal.rpg.api.model.enums.ResistenceTypeEnum;
 import com.shakal.rpg.api.model.relation.CreatureAtribute;
@@ -226,7 +226,7 @@ public class MonsterService implements IMonsterService {
 		MonsterType typeResult = this.monsterTypeDao.findById(inputDto.getType())
 				.orElseThrow(() -> new ResourceNotFoundException(Messages.INVALID_MONSTER_TYPE));
 		
-		MonsterSize sizeSearch = this.monsterSizeDao.findById(inputDto.getSize())
+		CreatureSize sizeSearch = this.monsterSizeDao.findById(inputDto.getSize())
 				.orElseThrow(() -> new ResourceNotFoundException(Messages.INVALID_MONSTER_SIZE));
 		
 		Alignment alignmentSearch = this.alignmentDao.findById(inputDto.getAlignment())

@@ -1,10 +1,10 @@
 package com.shakal.rpg.api.helpers;
 
-import com.shakal.rpg.api.model.MonsterSize;
+import com.shakal.rpg.api.model.creature.CreatureSize;
 
 public class SizeHelper {
 	
-	public static double getCreatureSizeInSquare(MonsterSize creatureSize) {
+	public static double getCreatureSizeInSquare(CreatureSize creatureSize) {
 		double result = 1;
 		if(creatureSize.getId() == 1) {
 			result = 0.5;
