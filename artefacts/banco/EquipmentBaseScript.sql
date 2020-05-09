@@ -51,9 +51,6 @@ insert into tb_tool_category(id) values (21);
 insert into tb_equipament_category(id,name) values (22,"Equipamento padrão");
 insert into tb_adventure_gear_category(id) values (22);
 
-
-
-
 insert into tb_weapon_classification(id,name) values (1,"Simples");
 insert into tb_weapon_classification(id,name) values (2,"Marcial");
 
@@ -66,5 +63,19 @@ insert into tb_cost(id,quantity,coin_id) value (1,2,2);
 insert into tb_equipament(id,image_path,name,description,weight,cost_id,rarity_id)
 values (1,'https://vignette.wikia.nocookie.net/dnd4/images/8/83/P201H.jpg/revision/latest/scale-to-width-down/200?cb=20150119125601',
 'adaga','Agada simples e comum, pode ser de qualquer metal',0.5,1,1);
-insert into tb_weapon(id,category_id,classification_id,range_id)
-	values (1,12,1,1);
+insert into tb_weapon(bonus,id,category_id,classification_id,range_id) values (0,1,12,1,1,0);
+insert into mtm_weapon_dice(weapon_id,dice_id,damage_type_id,bonus,quantity) values (1,1,9,0,1);
+
+
+insert into tb_cost(id,quantity,coin_id) value (2,350000,2);
+insert into tb_equipament(id,image_path,name,description,weight,cost_id,rarity_id)
+values (2,'https://media-waterdeep.cursecdn.com/avatars/thumbnails/7/253/1000/1000/636284739956618526.jpeg',
+'Vingadora sagrada','Um tipo raro de espada forjada para combater o mal em todas as suas formas, almejada por paladinos de todos os reinos
+.Possui magnificos poderes que apenas se mostram nas mãos de um guerreiro benevolente',1.5,2,5);
+insert into tb_weapon(bonus,id,category_id,classification_id,range_id) values (3,2,6,2,1);
+insert into mtm_weapon_dice(weapon_id,dice_id,damage_type_id,bonus,quantity) values (2,3,11,0,1);
+insert into mtm_weapon_dice(weapon_id,dice_id,damage_type_id,bonus,quantity) values (2,4,11,0,1);
+
+   
+
+    

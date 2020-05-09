@@ -1,5 +1,8 @@
 package com.shakal.rpg.api.model.equipament;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,6 +13,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -42,20 +46,17 @@ public abstract class Equipament implements IEquipament{
 	@MapsId("rarity_Id")
 	private Rarity rarity;
 	
-
+	@OneToMany(mappedBy = "equipament",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	private List<EquipmentRequirement> requirements;
 	
 	
 	public Long getId() {
 		return id;
 	}
 
-
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-
 
 	public String getImagePath() {
 		return imagePath;
@@ -128,6 +129,18 @@ public abstract class Equipament implements IEquipament{
 
 	
 	
+
+	public List<EquipmentRequirement> getRequirements() {
+		return requirements;
+	}
+
+
+
+	public void setRequirements(List<EquipmentRequirement> requirements) {
+		this.requirements = requirements;
+	}
+
+
 
 	@Override
 	public Cost price() {

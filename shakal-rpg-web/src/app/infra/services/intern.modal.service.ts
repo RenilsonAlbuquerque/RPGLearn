@@ -15,4 +15,7 @@ export class InternModalService {
     openLargeModal(content:TemplateRef<any>) {
         this.modalReference = this.modalService.open(content, {size: 'lg'});
     }
+    openMediumModal(content:TemplateRef<any>) {
+        this.modalReference = this.modalService.open(content, {size: 'sm'});
+    }
 }

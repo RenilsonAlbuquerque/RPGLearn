@@ -26,6 +26,7 @@
 
 
 <div class="fab-queue">
+    
     <button type="button" focus-index="1" class="btn btn-primary btn-fab " (click)="openMenu()">
         <fa-icon icon="user-cog"></fa-icon>
     </button>
@@ -36,6 +37,9 @@
     <button *ngIf="thereArePlayersNoInitiated"  type="button" focus-index="3" class="btn btn-info btn-fab" 
         (click)="rollInitiativeOfLeftPlayers()">
         <fa-icon icon="dice"></fa-icon>
+    </button>
+    <button type="button" focus-index="1" class="btn btn-secondary btn-fab " (click)="openDagger(weapon)">
+        <fa-icon icon="user-cog"></fa-icon>
     </button>
 </div>
 
@@ -54,4 +58,14 @@
         <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">Cancelar</button>
         <button type="button" class="btn btn-danger" (click)="rollInitiativeForLeftPlayersAndStart()">Confirmar</button>
       </div>
+</ng-template>
+
+
+
+
+
+
+
+<ng-template #weapon let-modal>
+   <app-weapon-detail></app-weapon-detail>
 </ng-template>

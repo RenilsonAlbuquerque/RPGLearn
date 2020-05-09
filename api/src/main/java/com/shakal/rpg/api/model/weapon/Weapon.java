@@ -41,6 +41,7 @@ public class Weapon extends Equipament {
 	@OneToMany(mappedBy = "weapon",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	private List<WeaponDice> damage;
 	
+	private int bonus;
 
 	public Weapon() {
 		super();
@@ -99,6 +100,21 @@ public class Weapon extends Equipament {
 	public void setDamage(List<WeaponDice> damage) {
 		this.damage = damage;
 	}
-	
+
+
+
+	public int getBonus() {
+		return bonus;
+	}
+
+
+
+	public void setBonus(int bonus) {
+		this.bonus = bonus;
+	}
+
+
+
+
 
 }

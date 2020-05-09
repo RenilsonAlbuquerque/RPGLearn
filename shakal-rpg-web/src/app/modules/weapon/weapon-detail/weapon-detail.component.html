@@ -1,0 +1,57 @@
+<link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:700" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
+
+
+<div class="stat-block" [ngClass]="{'common': weapon.rarity.id == 1, 
+'incommon': weapon.rarity.id == 2,
+'rare': weapon.rarity.id == 3,
+'very-rare': weapon.rarity.id == 4,
+'legendary': weapon.rarity.id == 5 }">
+	<div class="rarity">
+		<h5>{{weapon.rarity.value}}</h5>
+	</div>
+    <div class="section-left">
+		<div class="weapon-heading">
+			<h1>{{weapon.name}}</h1>
+            <h2>Arma {{weapon.classification.value}}, {{weapon.range.value}}</h2>
+            
+		</div> <!-- creature heading -->
+		<svg height="5" width="100%" class="tapered-rule">
+	        <polyline points="0,0 400,2.5 0,5"></polyline>
+		</svg>
+		<div style="position: relative;">
+			<img id="card-image" class="card-img" src="{{weapon?.imagePath}}" alt="_blank" />
+			<img *ngIf="weapon.bonus == 3" style="position: absolute; right: 10px; bottom:5px;height: 30px;" src="../../../../assets/img/equipment/plus3.png"/>
+			<img *ngIf="weapon.bonus == 2" style="position: absolute; right: 10px; bottom:5px;height: 30px;" src="../../../../assets/img/equipment/plus3.png"/>
+			<img *ngIf="weapon.bonus == 1" style="position: absolute; right: 10px; bottom:5px;height: 30px;" src="../../../../assets/img/equipment/plus3.png"/>
+		</div>
+        
+        <svg height="5" width="100%" class="tapered-rule">
+	        <polyline points="0,0 400,2.5 0,5"></polyline>
+        </svg>
+		<div class="top-stats">
+			<div class="property-line first">
+				<h4>Dano</h4>
+				<p *ngFor="let damage of weapon.damage"> 
+					{{damage.quantity}}{{damage.dice.value}} {{damage.damageType.value}}  
+				</p>
+			</div> <!-- property line -->
+			<div class="property-line">
+				<h4>Custo</h4>
+				<p> {{weapon.cost.quantity}} {{weapon.cost.coin.abreviation}}</p>
+			</div> <!-- property line -->
+			<div class="property-line last">
+				<h4>Peso</h4>
+				<p> {{weapon.weight}} Kg</p>
+			</div> <!-- property line -->
+		</div> <!-- top stats -->
+		<svg height="5" width="100%" class="tapered-rule">
+	    <polyline points="0,0 400,2.5 0,5"></polyline>
+	  </svg>
+		<div class="property-block">
+			<h4>Descrição. </h4>
+			<p>{{weapon.description}}</p>
+		</div> <!-- property block -->
+	</div> 
+</div>

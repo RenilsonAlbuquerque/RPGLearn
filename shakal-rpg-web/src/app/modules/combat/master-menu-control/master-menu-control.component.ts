@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { CombatRoomService } from '../services/combat-room.service';
 import { DiceService } from '../../dice/dice.module.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { InternModalService } from 'src/app/infra/services/intern.modal.service';
 
 @Component({
   selector: 'app-master-menu-control',
@@ -15,7 +16,7 @@ export class MasterMenuControlComponent implements OnInit {
   private configMenu: boolean;
   private modalReference;
   constructor(private combatRoomService:CombatRoomService,private modalService: NgbModal,
-    private diceService: DiceService) { 
+    private diceService: DiceService,private internModalService: InternModalService) { 
     this.diceMenu = true;
     this.creatureMenu = false;
     this.configMenu = false;
@@ -36,6 +37,9 @@ export class MasterMenuControlComponent implements OnInit {
       return true;
     }
     return false;
+  }
+  openDagger(templatePlayer: TemplateRef<any>){
+      this.internModalService.openMediumModal(templatePlayer);  
   }
   openMenu(){
     document.getElementById("sidebar-master").style.width = "250px";

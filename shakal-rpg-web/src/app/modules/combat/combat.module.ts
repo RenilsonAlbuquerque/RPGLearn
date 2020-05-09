@@ -27,6 +27,7 @@ import { CombatCounterComponent } from './combat-counter/combat-counter.componen
 import { MasterMenuControlComponent } from './master-menu-control/master-menu-control.component';
 import { InternModalService } from 'src/app/infra/services/intern.modal.service';
 import { CharacterModule } from '../character/character.module';
+import { WeaponModule } from '../weapon/weapon.module';
 
 
 
@@ -43,7 +44,8 @@ import { CharacterModule } from '../character/character.module';
     DragScrollModule,
     FontAwesomeModule,
     DiceModule,
-    CharacterModule
+    CharacterModule,
+    WeaponModule
   ],
   providers:[
     MonsterService,

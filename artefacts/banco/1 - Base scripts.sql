@@ -9,7 +9,7 @@ insert into tb_dice(id,value) values (6,5);
 
 insert into tb_coin(id,name,abreviation,weight,cotation) values (1,"Peça de platina","PC",2.5,1);
 insert into tb_coin(id,name,abreviation,weight,cotation) values (2,"Peça de ouro","PO",2.5,10);
-insert into tb_coin(id,name,abreviation,weight,cotation) values (3,"Peça de platina","PE",2.5,20);
+insert into tb_coin(id,name,abreviation,weight,cotation) values (3,"Peça de electrum","PE",2.5,20);
 insert into tb_coin(id,name,abreviation,weight,cotation) values (4,"Peça de prata","PP",2.5,100);
 insert into tb_coin(id,name,abreviation,weight,cotation) values (5,"Peça de cobre","PC",2.5,1000);
 
