@@ -18,11 +18,11 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.shakal.rpg.api.model.character.CharacterRaceAtributeBonus;
-import com.shakal.rpg.api.model.character.SubRace;
 import com.shakal.rpg.api.model.creature.CreatureSize;
 import com.shakal.rpg.api.model.equipament.EquipamentCategory;
 import com.shakal.rpg.api.model.race.RaceStartingLanguageChoice;
 import com.shakal.rpg.api.model.race.RaceStartingProeficiencyChoice;
+import com.shakal.rpg.api.model.race.SubRace;
 import com.shakal.rpg.api.model.race.Trait;
 
 @Entity

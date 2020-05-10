@@ -1,6 +1,8 @@
-package com.shakal.rpg.api.model.character;
+package com.shakal.rpg.api.model.race;
 
 
+
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -29,6 +32,9 @@ public class SubRace {
 	
 	@Column(length = 500)
 	private String description;
+	
+	@OneToMany(mappedBy = "subRace",cascade = CascadeType.PERSIST,fetch = FetchType.LAZY, targetEntity = SubRaceAtributeBonus.class)
+	private List<SubRaceAtributeBonus> atributeBonus;
 	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, targetEntity = Race.class)
 	@JoinColumn(name ="race_id", referencedColumnName = "id")
