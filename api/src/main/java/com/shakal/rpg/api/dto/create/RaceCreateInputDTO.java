@@ -1,9 +1,14 @@
 package com.shakal.rpg.api.dto.create;
 
+import java.util.List;
+
+import com.shakal.rpg.api.dto.commons.KeyValueDTO;
+
 public class RaceCreateInputDTO {
 	private long id;
 	private String name;
-	private String description;
+	private List<KeyValueDTO> subRaces;
+	
 	public long getId() {
 		return id;
 	}
@@ -16,11 +21,11 @@ public class RaceCreateInputDTO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getDescription() {
-		return description;
+	public List<KeyValueDTO> getSubRaces() {
+		return subRaces;
 	}
-	public void setDescription(String description) {
-		this.description = description;
+	public void setSubRaces(List<KeyValueDTO> subRaces) {
+		this.subRaces = subRaces;
 	}
 	
 }

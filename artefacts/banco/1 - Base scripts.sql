@@ -20,12 +20,12 @@ insert into tb_rarity(id,name) values (4,"Muito Raro");
 insert into tb_rarity(id,name) values (5,"Lendário");
 
 
-insert into tb_atribute(id,value) values (1,0);
-insert into tb_atribute(id,value) values (2,1);
-insert into tb_atribute(id,value) values (3,2);
-insert into tb_atribute(id,value) values (4,3);
-insert into tb_atribute(id,value) values (5,4);
-insert into tb_atribute(id,value) values (6,5);
+insert into tb_atribute(id,value,abbreviation) values (1,"Força","For");
+insert into tb_atribute(id,value,abbreviation) values (2,"Destreza","Des");
+insert into tb_atribute(id,value,abbreviation) values (3,"Constituição","Con");
+insert into tb_atribute(id,value,abbreviation) values (4,"Inteligência","Int");
+insert into tb_atribute(id,value,abbreviation) values (5,"Sabedoria","Sab");
+insert into tb_atribute(id,value,abbreviation) values (6,"Carisma","Car");
 
 insert into tb_damage_type(id,value) values (1,"Ácido");
 insert into tb_damage_type(id,value) values (2,"Concussão");

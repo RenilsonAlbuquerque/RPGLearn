@@ -9,6 +9,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.shakal.rpg.api.model.Atribute;
+
 
 
 @Entity
@@ -19,12 +21,14 @@ public class SubRaceAtributeBonus {
 	@GeneratedValue
 	private long id;
 	
-	private int ability;
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, targetEntity = Atribute.class)
+	@JoinColumn(name ="atribute_id", referencedColumnName = "id")
+	private Atribute atribute;
 	
 	private int bonus;
 	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, targetEntity = SubRace.class)
-	@JoinColumn(name ="race_id", referencedColumnName = "id")
+	@JoinColumn(name ="sub_race_id", referencedColumnName = "id")
 	private SubRace subRace;
 
 	public long getId() {
@@ -35,12 +39,12 @@ public class SubRaceAtributeBonus {
 		this.id = id;
 	}
 
-	public int getAbility() {
-		return ability;
+	public Atribute getAtribute() {
+		return atribute;
 	}
 
-	public void setAbility(int ability) {
-		this.ability = ability;
+	public void setAtribute(Atribute atribute) {
+		this.atribute = atribute;
 	}
 
 	public int getBonus() {

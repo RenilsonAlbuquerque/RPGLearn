@@ -63,7 +63,7 @@ insert into tb_cost(id,quantity,coin_id) value (1,2,2);
 insert into tb_equipament(id,image_path,name,description,weight,cost_id,rarity_id)
 values (1,'https://vignette.wikia.nocookie.net/dnd4/images/8/83/P201H.jpg/revision/latest/scale-to-width-down/200?cb=20150119125601',
 'adaga','Agada simples e comum, pode ser de qualquer metal',0.5,1,1);
-insert into tb_weapon(bonus,id,category_id,classification_id,range_id) values (0,1,12,1,1,0);
+insert into tb_weapon(id,bonus,category_id,classification_id,range_id) values (1,0,12,1,1);
 insert into mtm_weapon_dice(weapon_id,dice_id,damage_type_id,bonus,quantity) values (1,1,9,0,1);
 
 

@@ -3,14 +3,10 @@ package com.shakal.rpg.api.model;
 
 
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import com.shakal.rpg.api.model.enums.AtributeEnum;
 
 @Entity
 @Table(name= "tb_atribute")
@@ -22,8 +18,9 @@ public class Atribute {
 	private long id;
 	
 	
-	@Enumerated(EnumType.ORDINAL)
-	private AtributeEnum value;
+	private String value;
+	
+	private String abbreviation;
 	
 	public Atribute() {
 		super();
@@ -38,15 +35,24 @@ public class Atribute {
 	public void setId(long id) {
 		this.id = id;
 	}
-	
 
-	public AtributeEnum getValue() {
+	public String getValue() {
 		return value;
 	}
 
-	public void setValue(AtributeEnum value) {
+	public void setValue(String value) {
 		this.value = value;
 	}
+
+	public String getAbbreviation() {
+		return abbreviation;
+	}
+
+	public void setAbbreviation(String abbreviation) {
+		this.abbreviation = abbreviation;
+	}
+	
+
 	
 
 	

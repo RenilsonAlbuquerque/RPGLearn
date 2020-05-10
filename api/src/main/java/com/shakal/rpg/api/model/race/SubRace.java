@@ -12,6 +12,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -36,10 +38,15 @@ public class SubRace {
 	@OneToMany(mappedBy = "subRace",cascade = CascadeType.PERSIST,fetch = FetchType.LAZY, targetEntity = SubRaceAtributeBonus.class)
 	private List<SubRaceAtributeBonus> atributeBonus;
 	
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(name = "mtm_sub_race_trait",
+            joinColumns = @JoinColumn(name = "sub_race_id", referencedColumnName = "id"),
+            inverseJoinColumns =  @JoinColumn(name = "trait_id", referencedColumnName = "id"))
+    private List<Trait> traits;
+	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, targetEntity = Race.class)
 	@JoinColumn(name ="race_id", referencedColumnName = "id")
 	private Race race;
-
 	
 	public SubRace() {
 		super();
@@ -75,6 +82,22 @@ public class SubRace {
 
 	public void setRace(Race race) {
 		this.race = race;
+	}
+
+	public List<SubRaceAtributeBonus> getAtributeBonus() {
+		return atributeBonus;
+	}
+
+	public void setAtributeBonus(List<SubRaceAtributeBonus> atributeBonus) {
+		this.atributeBonus = atributeBonus;
+	}
+
+	public List<Trait> getTraits() {
+		return traits;
+	}
+
+	public void setTraits(List<Trait> traits) {
+		this.traits = traits;
 	}
 	
 	

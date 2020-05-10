@@ -148,7 +148,7 @@ public abstract class Creature implements ICreature{
 	public Atribute getForce() {
 		Atribute result = null;
 		for(CreatureAtribute a: this.atributes) {
-			if(a.getAtribute().getValue() == AtributeEnum.FORCE) {
+			if(a.getAtribute().getId() == 1) {
 				result = a.getAtribute();
 			}
 		}
@@ -159,7 +159,7 @@ public abstract class Creature implements ICreature{
 	public Atribute getDexterity() {
 		Atribute result = null;
 		for(CreatureAtribute a: this.atributes) {
-			if(a.getAtribute().getValue() == AtributeEnum.DEXTERITY) {
+			if(a.getAtribute().getId() == 2) {
 				result = a.getAtribute();
 			}
 		}
@@ -170,7 +170,7 @@ public abstract class Creature implements ICreature{
 	public Atribute getConstitution() {
 		Atribute result = null;
 		for(CreatureAtribute a: this.atributes) {
-			if(a.getAtribute().getValue() == AtributeEnum.CONSTITUTION) {
+			if(a.getAtribute().getId() == 3) {
 				result = a.getAtribute();
 			}
 		}
@@ -181,7 +181,7 @@ public abstract class Creature implements ICreature{
 	public Atribute getInteligence() {
 		Atribute result = null;
 		for(CreatureAtribute a: this.atributes) {
-			if(a.getAtribute().getValue() == AtributeEnum.INTELIGENCE) {
+			if(a.getAtribute().getId() == 4) {
 				result = a.getAtribute();
 			}
 		}
@@ -192,7 +192,7 @@ public abstract class Creature implements ICreature{
 	public Atribute getWisdom() {
 		Atribute result = null;
 		for(CreatureAtribute a: this.atributes) {
-			if(a.getAtribute().getValue() == AtributeEnum.WISDOM) {
+			if(a.getAtribute().getId() == 5) {
 				result = a.getAtribute();
 			}
 		}
@@ -203,7 +203,7 @@ public abstract class Creature implements ICreature{
 	public Atribute getCharisma() {
 		Atribute result = null;
 		for(CreatureAtribute a: this.atributes) {
-			if(a.getAtribute().getValue() == AtributeEnum.CHARISMA) {
+			if(a.getAtribute().getId() == 6) {
 				result = a.getAtribute();
 			}
 		}

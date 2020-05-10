@@ -40,7 +40,7 @@ public abstract class Equipament implements IEquipament{
 	@JoinColumn(name ="cost_id")
 	private Cost price;
 	
-	private int weight;
+	private double weight;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@MapsId("rarity_Id")
@@ -94,17 +94,17 @@ public abstract class Equipament implements IEquipament{
 
 	
 
-	public int getWeight() {
+	
+
+
+
+	public double getWeight() {
 		return weight;
 	}
 
-
-
-	public void setWeight(int weight) {
+	public void setWeight(double weight) {
 		this.weight = weight;
 	}
-
-
 
 	public Rarity getRarity() {
 		return rarity;
@@ -151,7 +151,7 @@ public abstract class Equipament implements IEquipament{
 
 
 	@Override
-	public int weight() {
+	public double weight() {
 		// TODO Auto-generated method stub
 		return this.weight;
 	}

@@ -1,24 +1,33 @@
 <mat-horizontal-stepper labelPosition="bottom" linear #stepper>
     <mat-step [stepControl]="raceAndClassFormGroup">
-        <form [formGroup]="raceAndClassFormGroup">
-            <ng-template  matStepLabel>Raça e Classe</ng-template>
+        <form [formGroup]="raceAndClassFormGroup" class="mainContainer">
+            <ng-template  matStepLabel>Raça</ng-template>
             <div class="row">
-                    <mat-form-field class="form-group col-4" appearance="outline">    
+                <mat-form-field class="form-group col-4" appearance="outline">
+                    <mat-label>Raça</mat-label>
+                    <mat-select formControlName="race">
+                        <mat-option *ngFor="let race of inputValues?.races" [value]="race.id">
+                            {{race.name}}
+                        </mat-option>
+                    </mat-select>        
+                </mat-form-field>
+                <mat-form-field class="form-group col-4" appearance="outline">
+                    <mat-label>Sub-Raça</mat-label>
+                    <mat-select formControlName="subRace">
+                        <mat-option *ngFor="let subR of subRaceOptions" [value]="subR.id">
+                            {{subR.value}}
+                        </mat-option>
+                    </mat-select>        
+                </mat-form-field>
+                    <!-- <mat-form-field class="form-group col-4" appearance="outline">    
                         <mat-label>Classe</mat-label>
                         <mat-select formControlName="class">
-                            <mat-option *ngFor="let class of inputValues?.classes" [value]="class.id">
+                            <mat-option *ngFor="let class of inputValues?.classes" [value]="class.id" >
                                 {{class.name}}
                             </mat-option>
                         </mat-select>
-                    </mat-form-field>
-                    <mat-form-field class="form-group col-4" appearance="outline">
-                        <mat-label>Raça</mat-label>
-                        <mat-select formControlName="race">
-                            <mat-option *ngFor="let race of inputValues?.races" [value]="race.id">
-                                {{race.name}}
-                            </mat-option>
-                        </mat-select>        
-                    </mat-form-field>
+                    </mat-form-field> -->
+                   
                     <mat-form-field class="form-group col-4" appearance="outline">
                         <mat-label>Alinhamento</mat-label>
                             <mat-select formControlName="alignment">
@@ -28,9 +37,51 @@
                             </mat-select>  
                     </mat-form-field>
             </div>
+            <div class="column" *ngIf="raceDetailInput">
+                <div class="row">
+                    <b>Bonus de atributo: </b>
+                    <span *ngFor="let bonus of raceDetailInput.atributeBonus"> {{bonus.ability.value}} +{{bonus.bonus}}, </span>
+                </div>
+                <div class="row">
+                    <b>Idiomas: </b>
+                    <span *ngFor="let language of raceDetailInput?.languages"> {{language.value}}, </span>
+                </div>
+                <div class="row">
+                    <b>Deslocamento: </b>{{raceDetailInput.speed}} Q
+                </div>
+                <mat-divider></mat-divider>
+                <div class="row">
+                    <b>Alinhamento: </b>{{raceDetailInput.alignmentDescription}}
+                </div>
+                <div class="row">
+                    <b>Idade: </b>{{raceDetailInput.ageDescription}}
+                </div>
+                <div class="row">
+                    <b>Tamanho: </b>{{raceDetailInput.sizeDescription}}
+                </div>
+                <div class="row"> 
+                    <b>Descrição: </b>
+                    {{raceDetailInput.description}}
+                </div>
+            </div>
             <div class="example-button-row float-right">
                 <button mat-raised-button color="primary" matStepperNext>Próximo</button>
             </div>
+        </form>
+    </mat-step>
+    <mat-step [stepControl]="classFormGroup">
+        <form [formGroup]="classFormGroup">
+            <ng-template  matStepLabel>Classe</ng-template>
+            <div class="row">
+                <mat-form-field class="form-group col-4" appearance="outline">    
+                    <mat-label>Classe</mat-label>
+                    <mat-select formControlName="class">
+                        <mat-option *ngFor="let class of inputValues?.classes" [value]="class.id" >
+                            {{class.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div> 
         </form>
     </mat-step>
     <mat-step [stepControl]="generalInformationFormGroup">

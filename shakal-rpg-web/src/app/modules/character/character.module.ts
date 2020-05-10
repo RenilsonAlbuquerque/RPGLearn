@@ -6,6 +6,7 @@ import { MaterialModule } from '../material-design/material.module';
 import { CharacterService } from './character.module.service';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CharacterSheetComponent } from './character-sheet/character-sheet.component';
+import { RaceService } from 'src/app/infra/services/race.service';
 
 
 
@@ -18,7 +19,7 @@ import { CharacterSheetComponent } from './character-sheet/character-sheet.compo
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers:[CharacterService,FormBuilder],
+  providers:[CharacterService,FormBuilder,RaceService],
   exports: [CharacterSheetComponent]
 })
 export class CharacterModule { }

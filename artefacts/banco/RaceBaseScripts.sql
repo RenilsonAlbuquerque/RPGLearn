@@ -19,7 +19,7 @@ proporção que os humanos, mas são considerados jovens
 até atingirem a idade de 50 anos. Em média, eles vivem
 350 anos.",3);
 
-insert into tb_character_race_atribute_bonus(id,ability,bonus, race_id)
+insert into tb_character_race_atribute_bonus(id,atribute_id,bonus, race_id)
 values(1,3,2,1);
 
 insert into mtm_race__equipment_category(race_id,equipment_category_id) values (1,1);
@@ -58,6 +58,34 @@ proficiência com machados de batalha, machadinhas,
 martelos leves e martelos de guerra.");
 insert into mtm_race_trait(race_id,trait_id) values (1,4);
 
+
+insert into tb_sub_race(id,name,description,race_id) values(1,"Anão da colina","Como um anão da colina, você tem sentidos aguçados,
+maior intuição e notável resiliência. Os anões dourados de
+Faerûn, que vivem em seu poderoso reino ao sul do
+continente, são anões da colina, assim como os exilados
+Neidar e os depreciáveis Klar de Krynn, no cenário de
+Dragonlance",1);
+insert into tb_character_subrace_atribute_bonus(id,bonus,atribute_id,sub_race_id)
+values(1,1,5,1);
+insert into tb_trait(id,name,description) values (5,"Tenacidade Anã.","Seu máximo de pontos de vida
+aumentam em 1, e cada vez que o anão da colina sobe um
+nível, ele recebe 1 ponto de vida adicional.");
+insert into mtm_sub_race_trait(sub_race_id,trait_id) values (1,5);
+
+
+
+insert into tb_sub_race(id,name,description,race_id) values(2,"Anão da montanha","Como um anão da montanha, você é forte e resistente,
+acostumados a uma vida difícil em terrenos difíceis. Você,
+provavelmente tem a descendência daqueles mais altos
+(para um anão) e tende a possuir uma coloração mais
+clara. Os anões do escudo do norte de Faerûn, bem como o
+clã governante Hylar e os clãs nobres Daewar de
+Dragonlance, são anões da montanha.",1);
+insert into tb_character_subrace_atribute_bonus(id,bonus,atribute_id,sub_race_id)
+values(2,2,1,2);
+insert into tb_trait(id,name,description) values (6,"Treinamento Anão com Armaduras. ","Você adquire
+proficiência em armaduras leves e médias.");
+insert into mtm_sub_race_trait(sub_race_id,trait_id) values (2,6);
 
 /*
 ALTER TABLE tb_image_token
