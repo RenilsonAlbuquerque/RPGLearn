@@ -19,21 +19,27 @@ import com.shakal.rpg.api.dto.info.CharacterSheetDTO;
 import com.shakal.rpg.api.dto.info.LevelDTO;
 import com.shakal.rpg.api.exception.BusinessException;
 import com.shakal.rpg.api.exception.ResourceNotFoundException;
+import com.shakal.rpg.api.helpers.CharacterHelper;
 import com.shakal.rpg.api.helpers.CombatHelper;
 import com.shakal.rpg.api.mappers.CharacterMapper;
 import com.shakal.rpg.api.mappers.ClassMapper;
 import com.shakal.rpg.api.mappers.CreatureMapper;
 import com.shakal.rpg.api.mappers.RaceMapper;
 import com.shakal.rpg.api.repository.AlignmentDAO;
+import com.shakal.rpg.api.repository.CharacterClassLevelDAO;
 import com.shakal.rpg.api.repository.CharacterDAO;
 import com.shakal.rpg.api.repository.ClassDAO;
+import com.shakal.rpg.api.repository.ClassLevelDAO;
 import com.shakal.rpg.api.repository.RaceDAO;
 import com.shakal.rpg.api.repository.UserStoryDAO;
 import com.shakal.rpg.api.utils.Messages;
 import com.shakal.rpg.api.validators.CharacterValidator;
 import com.shakal.rpg.api.validators.ErrorMessages;
 import com.shakal.rpg.api.model.Alignment;
+import com.shakal.rpg.api.model.CreatureLevel;
 import com.shakal.rpg.api.model.Race;
+import com.shakal.rpg.api.model.character.Class;
+import com.shakal.rpg.api.model.character.ClassLevel;
 import com.shakal.rpg.api.model.character.Character;
 import com.shakal.rpg.api.model.relation.UserStory;
 
@@ -47,12 +53,15 @@ public class CharacterService implements ICharacterService{
 	private UserStoryDAO userStoryDao;
 	private RaceDAO raceDao;
 	private ClassDAO classDao;
+	private ClassLevelDAO classLevelDAO;
+	private CharacterClassLevelDAO characterClassLevelDAO;
 	
 	@Autowired
 	public CharacterService(IUserService userService,ICombatService combatService,
 			CharacterDAO characterDao,AlignmentDAO alignmentDao,
 			UserStoryDAO userStoryDao,RaceDAO raceDao,
-			ClassDAO classDao) {
+			ClassDAO classDao, ClassLevelDAO classLevelDAO,
+			CharacterClassLevelDAO characterClassLevelDAO) {
 		this.userService = userService;
 		this.combatService = combatService;
 		this.characterDao = characterDao;
@@ -60,6 +69,8 @@ public class CharacterService implements ICharacterService{
 		this.userStoryDao = userStoryDao;
 		this.raceDao = raceDao;
 		this.classDao = classDao;
+		this.classLevelDAO = classLevelDAO;
+		this.characterClassLevelDAO = characterClassLevelDAO;
 	}
 	
 	@Override
@@ -69,8 +80,11 @@ public class CharacterService implements ICharacterService{
 		
 		Optional<Alignment> alignmentSearch = this.alignmentDao.findById(inputDto.getAlignment());
 		Optional<Race> raceSearch = this.raceDao.findById(inputDto.getRace());
-		
+		Optional<Class> classSearch = this.classDao.findById(inputDto.getClasss());
+		Optional<ClassLevel> classLevelSearch = this.classLevelDAO.retrieveFirstLevelOfClass(inputDto.getClasss(), 4);
 		CharacterValidator.ValidateRecoveryEntities(error, alignmentSearch, raceSearch);
+		CharacterValidator.ValidateRecoveryClassEntities(error, classLevelSearch, classSearch);
+		
 		
 		if(error.hasError()) {
 			throw new BusinessException(error.getMessages().toString());
@@ -82,11 +96,17 @@ public class CharacterService implements ICharacterService{
 		entity.setAge(inputDto.getAge());
 		entity.setHeight(inputDto.getHeight());
 		entity.setAlignment(alignmentSearch.get());
+		entity.setLifePoints(CharacterHelper.calculateLifePoints(classSearch.get().getLifeDice()));
 		entity.setSpeed(raceSearch.get().getSpeed());
+		entity.setRace(raceSearch.get());
+		entity.setLanguages(raceSearch.get().getLangauges());
 		
-		this.characterDao.save(entity);
+		
+		entity = this.characterDao.save(entity);
 		this.userService.setCharacterToUserInStory(inputDto.getStoryId(),
 				inputDto.getUserId(), entity);
+		
+		this.characterClassLevelDAO.save(ClassMapper.createFistLevelOfPlayer(classLevelSearch.get(),entity));
 		return true;
 	}
 
@@ -126,11 +146,11 @@ public class CharacterService implements ICharacterService{
 		CreatureCardDTO result = new CreatureCardDTO();
 		result.setId(characterSheet.getId());
 		result.setName(characterSheet.getName());
-		result.setLifePoints(characterSheet.getTotalLifePoints());
+		result.setLifePoints(characterSheet.getLifePoints().getTotalLifePoints());
 		result.setLevel(new LevelDTO(2,450));
-		result.setTotalLifePoints(characterSheet.getTotalLifePoints());
+		result.setTotalLifePoints(characterSheet.getLifePoints().getTotalLifePoints());
 		result.setImagePath(characterSheet.getImagePath());
-		result.setLifePercent(CombatHelper.calculateLifePercent(characterSheet.getTotalLifePoints(), characterSheet.getTotalLifePoints()));
+		result.setLifePercent(CombatHelper.calculateLifePercent(characterSheet.getLifePoints().getTotalLifePoints(), characterSheet.getLifePoints().getTotalLifePoints()));
 		result.setSpeed(characterSheet.getSpeed());
 		result.setPlayerId(playerId);
 		result.setPosition(new CardPositionDTO(3,4));

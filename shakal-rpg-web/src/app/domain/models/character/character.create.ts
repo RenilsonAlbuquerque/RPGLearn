@@ -5,6 +5,14 @@ export interface CharacterCreate{
     name: string,
     publicBackground: string,
     secretBackground: string,
+
+    strength:number,
+    dexterity: number,
+    constitution: number,
+    inteligence: number,
+    wisdom: number,
+    charisma: number,
+    
     age: number,
     weight: number,
     height:number,

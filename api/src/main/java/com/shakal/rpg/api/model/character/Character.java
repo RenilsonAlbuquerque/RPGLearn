@@ -1,5 +1,6 @@
 package com.shakal.rpg.api.model.character;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -8,18 +9,24 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import com.shakal.rpg.api.model.Creature;
+import com.shakal.rpg.api.model.Race;
+import com.shakal.rpg.api.model.creature.Proeficiency;
 import com.shakal.rpg.api.model.enums.SexEnum;
 import com.shakal.rpg.api.model.relation.UserStory;
 
 @Entity
 @Table(name= "tb_character")
 @PrimaryKeyJoinColumn(name = "creature_id")
-public class Character extends Creature{
+public class Character extends Creature implements Serializable{
 	
 	private String name;
 	
@@ -41,8 +48,25 @@ public class Character extends Creature{
 	
 	private int lifePoints;
 	
+	private int experiencyPoints;
+	
 	@OneToMany(mappedBy = "character",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	private List<UserStory> userStory;
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name ="race_id")
+	private Race race;
+	
+	@OneToMany(mappedBy = "character",fetch = FetchType.LAZY)
+	private List<CharacterClassLevel> classLevel;
+	
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(name = "mtm_character_proeficiency",
+            joinColumns = @JoinColumn(name = "character_id", referencedColumnName = "id"),
+            inverseJoinColumns =  @JoinColumn(name = "proeficiency_id", referencedColumnName = "id"))
+    private List<Proeficiency> proeficiencies;
+	
+	
 
 	public String getName() {
 		return name;
@@ -122,6 +146,40 @@ public class Character extends Creature{
 
 	public void setLifePoints(int lifePoints) {
 		this.lifePoints = lifePoints;
+	}
+
+	public Race getRace() {
+		return race;
+	}
+
+	public void setRace(Race race) {
+		this.race = race;
+	}
+
+	
+
+	public List<CharacterClassLevel> getClassLevel() {
+		return classLevel;
+	}
+
+	public void setClassLevel(List<CharacterClassLevel> classLevel) {
+		this.classLevel = classLevel;
+	}
+
+	public List<Proeficiency> getProeficiencies() {
+		return proeficiencies;
+	}
+
+	public void setProeficiencies(List<Proeficiency> proeficiencies) {
+		this.proeficiencies = proeficiencies;
+	}
+
+	public int getExperiencyPoints() {
+		return experiencyPoints;
+	}
+
+	public void setExperiencyPoints(int experiencyPoints) {
+		this.experiencyPoints = experiencyPoints;
 	}
 	
 	

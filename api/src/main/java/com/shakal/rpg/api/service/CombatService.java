@@ -134,7 +134,7 @@ public class CombatService implements ICombatService{
 		result.setId(characterSheet.getId());
 		result.setName(characterSheet.getName());
 		result.setImagePath(characterSheet.getImagePath());
-		result.setTotalLifePoints(characterSheet.getTotalLifePoints());
+		result.setTotalLifePoints(characterSheet.getLifePoints().getTotalLifePoints());
 		return result;
 	}
 	

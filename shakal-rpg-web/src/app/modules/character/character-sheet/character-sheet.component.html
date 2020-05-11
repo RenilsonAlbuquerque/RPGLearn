@@ -7,22 +7,23 @@
       <section class="misc">
         <ul>
           <li>
-            <label for="classlevel">Classe e Nível</label><input name="classlevel" placeholder="Paladin 2" />
+            <label for="classlevel">Classe e Nível</label>
+            <input name="classlevel" placeholder="Paladin 2" *ngFor="let classLevel of sheet.classLevels" value="{{classLevel.clasS.value}} {{classLevel.level.value}}" readonly/>
           </li>
           <li>
-            <label for="background">Background</label><input name="background" placeholder="Acolyte" />
+            <label for="background">Background</label><input name="background" placeholder="Acolyte" readonly/>
           </li>
           <li>
-            <label for="playername">Player Name</label><input name="playername" placeholder="Player McPlayerface">
+            <label for="playername">Nome do jogador</label><input name="playername" placeholder="Player McPlayerface" value="{{sheet.player.value}}" readonly>
           </li>
           <li>
-            <label for="race">Race</label><input name="race" placeholder="Half-elf" />
+            <label for="race">Raça</label><input name="race" placeholder="Half-elf" value="{{sheet.race.value}}" readonly/>
           </li>
           <li>
-            <label for="alignment">Alignment</label><input name="alignment" placeholder="Lawful Good" />
+            <label for="alignment">Tendência</label><input name="alignment" placeholder="Lawful Good" value="{{sheet.alignment.value}}" readonly/>
           </li>
           <li>
-            <label for="experiencepoints">Experience Points</label><input name="experiencepoints" placeholder="3240" />
+            <label for="experiencepoints">Pontos de experiência</label><input name="experiencepoints" placeholder="3240" value="{{sheet.experiencyPoints}}" readonly/>
           </li>
         </ul>
       </section>
@@ -34,50 +35,50 @@
             <ul>
               <li>
                 <div class="score">
-                  <label for="Strengthscore">Strength</label><input name="Strengthscore" placeholder="10" />
+                  <label for="Strengthscore">Força</label><input name="Strengthscore" placeholder="10" value="{{sheet.strength.value}}" readonly/>
                 </div>
                 <div class="modifier">
-                  <input name="Strengthmod" placeholder="+0" />
+                  <input name="Strengthmod" placeholder="+0" value="{{sheet.strength.modfier}}" readonly />
                 </div>
               </li>
               <li>
                 <div class="score">
-                  <label for="Dexterityscore">Dexterity</label><input name="Dexterityscore" placeholder="10" />
+                  <label for="Dexterityscore">DESTREZA</label><input name="Dexterityscore" placeholder="10" value="{{sheet.dexterity.value}}" readonly  />
                 </div>
                 <div class="modifier">
-                  <input name="Dexteritymod" placeholder="+0" />
+                  <input name="Dexteritymod" placeholder="+0" value="{{sheet.dexterity.modfier}}" readonly/>
                 </div>
               </li>
               <li>
                 <div class="score">
-                  <label for="Constitutionscore">Constitution</label><input name="Constitutionscore" placeholder="10" />
+                  <label for="Constitutionscore">Constituição</label><input name="Constitutionscore" placeholder="10" value="{{sheet.constitution.value}}" readonly />
                 </div>
                 <div class="modifier">
-                  <input name="Constitutionmod" placeholder="+0" />
+                  <input name="Constitutionmod" placeholder="+0" value="{{sheet.constitution.modfier}}" readonly/>
                 </div>
               </li>
               <li>
                 <div class="score">
-                  <label for="Wisdomscore">Wisdom</label><input name="Wisdomscore" placeholder="10" />
+                  <label for="Intelligencescore">Inteligência</label><input name="Intelligencescore" placeholder="10" value="{{sheet.inteligence.value}}" readonly/>
                 </div>
                 <div class="modifier">
-                  <input name="Wisdommod" placeholder="+0" />
+                  <input name="Intelligencemod" placeholder="+0" value="{{sheet.inteligence.modfier}}" readonly/>
                 </div>
               </li>
               <li>
                 <div class="score">
-                  <label for="Intelligencescore">Intelligence</label><input name="Intelligencescore" placeholder="10" />
+                  <label for="Wisdomscore">Sabedoria</label><input name="Wisdomscore" placeholder="10" value="{{sheet.wisdom.value}}" readonly />
                 </div>
                 <div class="modifier">
-                  <input name="Intelligencemod" placeholder="+0" />
+                  <input name="Wisdommod" placeholder="+0" value="{{sheet.wisdom.modfier}}" readonly />
                 </div>
               </li>
               <li>
                 <div class="score">
-                  <label for="Charismascore">Charisma</label><input name="Charismascore" placeholder="10" />
+                  <label for="Charismascore">Carisma</label><input name="Charismascore" placeholder="10" value="{{sheet.charisma.value}}" readonly />
                 </div>
                 <div class="modifier">
-                  <input name="Charismamod" placeholder="+0" />
+                  <input name="Charismamod" placeholder="+0" value="{{sheet.charisma.modfier}}" readonly />
                 </div>
               </li>
             </ul>
@@ -91,29 +92,29 @@
             </div>
             <div class="proficiencybonus box">
               <div class="label-container">
-                <label for="proficiencybonus">Proficiency Bonus</label>
+                <label for="proficiencybonus">Bonus de proeficiência</label>
               </div>
-              <input name="proficiencybonus" placeholder="+2" />
+              <input name="proficiencybonus" placeholder="+2" value="+{{sheet.proeficiencBonus}}" readonly/>
             </div>
             <div class="saves list-section box">
               <ul>
                 <li>
-                  <label for="Strength-save">Strength</label><input name="Strength-save" placeholder="+0" type="text" /><input name="Strength-save-prof" type="checkbox" />
+                  <label for="Strength-save">Força</label><input name="Strength-save" placeholder="+0" type="text" /><input name="Strength-save-prof" type="checkbox" [checked]="sheet.strength.proeficiency" readonly/>
                 </li>
                 <li>
-                  <label for="Dexterity-save">Dexterity</label><input name="Dexterity-save" placeholder="+0" type="text" /><input name="Dexterity-save-prof" type="checkbox" />
+                  <label for="Dexterity-save">Destreza</label><input name="Dexterity-save" placeholder="+0" type="text" /><input name="Dexterity-save-prof" type="checkbox" [checked]="sheet.dexterity.proeficiency" readonly/>
                 </li>
                 <li>
-                  <label for="Constitution-save">Constitution</label><input name="Constitution-save" placeholder="+0" type="text" /><input name="Constitution-save-prof" type="checkbox" />
+                  <label for="Constitution-save">Constituição</label><input name="Constitution-save" placeholder="+0" type="text" /><input name="Constitution-save-prof" type="checkbox" [checked]="sheet.constitution.proeficiency" readonly/>
                 </li>
                 <li>
-                  <label for="Wisdom-save">Wisdom</label><input name="Wisdom-save" placeholder="+0" type="text" /><input name="Wisdom-save-prof" type="checkbox" />
+                  <label for="Intelligence-save">Inteligência</label><input name="Intelligence-save" placeholder="+0" type="text" /><input name="Intelligence-save-prof" type="checkbox" [checked]="sheet.inteligence.proeficiency" readonly />
                 </li>
                 <li>
-                  <label for="Intelligence-save">Intelligence</label><input name="Intelligence-save" placeholder="+0" type="text" /><input name="Intelligence-save-prof" type="checkbox" />
+                  <label for="Wisdom-save">Sabedoria</label><input name="Wisdom-save" placeholder="+0" type="text" /><input name="Wisdom-save-prof" type="checkbox" [checked]="sheet.wisdom.proeficiency" readonly />
                 </li>
                 <li>
-                  <label for="Charisma-save">Charisma</label><input name="Charisma-save" placeholder="+0" type="text" /><input name="Charisma-save-prof" type="checkbox" />
+                  <label for="Charisma-save">Carisma</label><input name="Charisma-save" placeholder="+0" type="text" /><input name="Charisma-save-prof" type="checkbox"  [checked]="sheet.charisma.proeficiency" readonly/>
                 </li>
               </ul>
               <div class="label">
@@ -190,33 +191,37 @@
           <input name="passiveperception" placeholder="10" />
         </div>
         <div class="otherprofs box textblock">
-          <label for="otherprofs">Other Proficiencies and Languages</label><textarea name="otherprofs"></textarea>
+          <label for="otherprofs">Other Proficiencies and Languages</label>
+          <div name="otherprofs" class="other-proeficiency-area">
+            <span>Idiomas: </span>
+            <span *ngFor="let language of sheet.languages">{{language?.value}},</span>
+          </div>
         </div>
       </section>
       <section>
         <section class="combat">
           <div class="armorclass">
             <div>
-              <label for="ac">Armor Class</label><input name="ac" placeholder="10" type="text" />
+              <label for="ac">AC</label><input name="ac" placeholder="10" type="text" [value]="sheet.armorClass" readonly/>
             </div>
           </div>
           <div class="initiative">
             <div>
-              <label for="initiative">Initiative</label><input name="initiative" placeholder="+0" type="text" />
+              <label for="initiative">Iniciativa</label><input name="initiative" placeholder="+0" type="text"  [value]="sheet.initiative" readonly/>
             </div>
           </div>
           <div class="speed">
             <div>
-              <label for="speed">Deslocamento</label><input name="speed" placeholder="30" type="text" [value]="sheet.speed"/>
+              <label for="speed">Deslocamento</label><input name="speed" placeholder="30" type="text" [value]="sheet.speed" readonly/>
             </div>
           </div>
           <div class="hp">
             <div class="regular">
               <div class="max">
-                <label for="maxhp">Hit Point Maximum</label><input name="maxhp" placeholder="10" type="text" />
+                <label for="maxhp">PV Totais</label><input name="maxhp" placeholder="10" type="text" value="{{sheet.lifePoints.totalLifePoints}}" readonly/>
               </div>
               <div class="current">
-                <label for="currenthp">Current Hit Points</label><input name="currenthp" type="text" />
+                <label for="currenthp">PONTOS DE VIDA ATUAIS</label><input name="currenthp" type="text" value="{{sheet.lifePoints.currentLifePoints}}"/>
               </div>
             </div>
             <div class="temporary">
@@ -226,7 +231,7 @@
           <div class="hitdice">
             <div>
               <div class="total">
-                <label for="totalhd">Total</label><input name="totalhd" placeholder="2d10" type="text" />
+                <label for="totalhd">Total</label><input name="totalhd" placeholder="2d10" type="text" value="{{sheet.lifePoints.hitDice}}" readonly/>
               </div>
               <div class="remaining">
                 <label for="remaininghd">Hit Dice</label><input name="remaininghd" type="text" />

@@ -19,6 +19,13 @@ public class CreatureLevel {
 	private int experiencePoints;
 	
 	private int proeficiencyBonus;
+	
+	public CreatureLevel() {
+		
+	}
+	public CreatureLevel(long id) {
+		this.setId(id);
+	}
 
 	public long getId() {
 		return id;

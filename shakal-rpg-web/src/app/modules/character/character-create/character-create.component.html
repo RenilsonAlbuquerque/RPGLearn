@@ -73,7 +73,7 @@
         <form [formGroup]="classFormGroup">
             <ng-template  matStepLabel>Classe</ng-template>
             <div class="row">
-                <mat-form-field class="form-group col-4" appearance="outline">    
+                <mat-form-field class="form-group col-lg-4 col-md-12" appearance="outline">    
                     <mat-label>Classe</mat-label>
                     <mat-select formControlName="class">
                         <mat-option *ngFor="let class of inputValues?.classes" [value]="class.id" >
@@ -81,6 +81,36 @@
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
+            </div>
+            <div class="column" *ngIf="classDetailInput">
+                <div class="row section"> 
+                    <b>Dado de vida: </b>
+                    {{classDetailInput.lifeDice}}
+                </div>
+                <div class="row section">
+                    <b>Testes de resistência: </b>
+                    <span *ngFor="let saving of classDetailInput?.savingThrows"> {{saving.value}}, </span>
+                </div>
+                <div class="row section"> 
+                    <b>Descrição: </b>
+                    {{classDetailInput.description}}
+                </div>
+                <div  class="row section">
+                    <span style="width: 100%;">Escolha <b>{{classDetailInput?.proeficiencyChoose.choose}}</b> perícias entre:</span>
+                    <br>
+                    <div *ngFor="let proeficiency of classFormGroup.controls['proeficiencies'].controls let i = index" formArrayName="proeficiencies">
+                        <mat-checkbox class="checkbox" 
+                            (change)="onChangeProeficiencies(proeficiency.id)"
+                            [formControlName]="i">
+                            {{classDetailInput?.proeficiencyChoose.proeficiencies[i].value}}
+                        </mat-checkbox>
+                    </div>
+                   
+                </div>
+                <!-- <button (click)="printTest()">The test has been made</button> -->
+            </div>
+            <div class="example-button-row float-right">
+                <button mat-raised-button color="primary" matStepperNext>Próximo</button>
             </div> 
         </form>
     </mat-step>
@@ -117,6 +147,74 @@
                         <button mat-raised-button color="primary" matStepperNext>Próximo</button>
                 </div>
         </form>
+    </mat-step>
+    <mat-step [stepControl]="atributeFormGroup">
+        <form [formGroup]="atributeFormGroup">
+            <ng-template  matStepLabel>Atributos</ng-template>
+            <div class="row">
+                <div class="col-md-2 col-sm-4">
+                    <mat-form-field class="col-md-12" appearance="outline">
+                        <mat-label>Força</mat-label>
+                        <input numbersOnly matInput formControlName="strength" placeholder="Força">
+                        <mat-error *ngIf="!atributeFormGroup.controls['strength'].valid && atributeFormGroup.controls['strength'].touched">
+                            Campo obrigatório
+                        </mat-error>
+                    </mat-form-field>     
+                </div>
+                <div class="col-md-2 col-sm-4">
+                        <mat-form-field class="col-12" appearance="outline">
+                                <mat-label>Destreza</mat-label>
+                                <input numbersOnly matInput formControlName="dexterity" placeholder="Destreza">
+                                <mat-error *ngIf="!atributeFormGroup.controls['dexterity'].valid && atributeFormGroup.controls['dexterity'].touched">
+                                        Campo obrigatório
+                                </mat-error>
+                            </mat-form-field>
+                </div>
+                
+                <div class="col-md-2 col-sm-4">
+                    <mat-form-field class="col-12" appearance="outline">
+                                <mat-label>Constituição</mat-label>
+                                <input numbersOnly matInput formControlName="constitution" placeholder="Constituição">
+                                <mat-error *ngIf="!atributeFormGroup.controls['constitution'].valid && atributeFormGroup.controls['constitution'].touched">
+                                        Campo obrigatório
+                                </mat-error>
+                    </mat-form-field>
+                </div>
+                
+                <div class="col-md-2 col-sm-4">
+                        <mat-form-field class="col-12" appearance="outline">
+                                <mat-label>Inteligência</mat-label>
+                                <input numbersOnly matInput formControlName="inteligence" placeholder="Inteligência">
+                                <mat-error *ngIf="!atributeFormGroup.controls['inteligence'].valid && atributeFormGroup.controls['inteligence'].touched">
+                                        Campo obrigatório
+                                </mat-error>
+                            </mat-form-field>                           
+                </div>
+                
+                <div class="col-md-2 col-sm-4">
+                        <mat-form-field class="col-12" appearance="outline">
+                                <mat-label>Sabedoria</mat-label>
+                                <input numbersOnly matInput formControlName="wisdom" placeholder="Sabedoria">
+                                <mat-error *ngIf="!atributeFormGroup.controls['wisdom'].valid && atributeFormGroup.controls['wisdom'].touched">
+                                        Campo obrigatório
+                                </mat-error>
+                            </mat-form-field>   
+                </div>
+                
+                <div class="col-md-2 col-sm-4">
+                        <mat-form-field class="col-12" appearance="outline">
+                                <mat-label>carisma</mat-label>
+                                <input numbersOnly matInput formControlName="charisma" placeholder="Carisma">
+                                <mat-error *ngIf="!atributeFormGroup.controls['charisma'].valid && atributeFormGroup.controls['charisma'].touched">
+                                        Campo obrigatório
+                                </mat-error>
+                            </mat-form-field>
+                </div>
+            </div>
+            <div class="example-button-row float-right">
+                <button mat-raised-button color="primary" matStepperNext>Próximo</button>
+            </div>
+        </form>     
     </mat-step>
     <mat-step>
         <ng-template  matStepLabel>Finalizar</ng-template>

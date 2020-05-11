@@ -6,6 +6,8 @@ import java.util.Optional;
 import com.shakal.rpg.api.dto.create.CharacterCreateDTO;
 import com.shakal.rpg.api.model.Alignment;
 import com.shakal.rpg.api.model.Race;
+import com.shakal.rpg.api.model.character.Class;
+import com.shakal.rpg.api.model.character.ClassLevel;
 
 public class CharacterValidator {
 
@@ -15,8 +17,8 @@ public class CharacterValidator {
 			errorMessages.addError("Texto de background muito grande");
 		}
 		*/
-		if(insertDto.getName().length() < 5 ) {
-			errorMessages.addError("Nome da aventura muito curto");
+		if(insertDto.getName().length() < 1 ) {
+			errorMessages.addError("Nome o personagem muito curto");
 		}
 		if(insertDto.getName().length() > 50) {
 			errorMessages.addError("Nome da aventura muito longo");
@@ -30,6 +32,16 @@ public class CharacterValidator {
 		}
 		if(!race.isPresent()) {
 			errorMessages.addError("Raça inválida");
+		}
+		return errorMessages;
+	}
+	public static ErrorMessages ValidateRecoveryClassEntities(ErrorMessages errorMessages,
+			Optional<ClassLevel> classLevel, Optional<Class> clasS) {
+		if(!classLevel.isPresent()) {
+			errorMessages.addError("Classe Nível Inválido");
+		}
+		if(!clasS.isPresent()) {
+			errorMessages.addError("Classe Inválida");
 		}
 		return errorMessages;
 	}

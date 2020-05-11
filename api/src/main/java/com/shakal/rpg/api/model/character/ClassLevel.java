@@ -24,13 +24,14 @@ public class ClassLevel {
 	private ClassLevelId id;
 	
 	
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL )
 	@MapsId("classId")
 	private Class clasS;
 	
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL )
 	@MapsId("levelId")
 	private CreatureLevel level;
+	
 
 	public ClassLevelId getId() {
 		return id;

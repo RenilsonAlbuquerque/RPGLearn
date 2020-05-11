@@ -79,4 +79,10 @@ public abstract class RaceMapper {
 		result.setValue(entity.getName());
 		return result;
 	}
+	public static KeyValueDTO mapRaceToOverviewDTO(Race entity) {
+		KeyValueDTO result = new KeyValueDTO();
+		result.setId(entity.getId());
+		result.setValue(entity.getName());
+		return result;
+	}
 }

@@ -9,12 +9,21 @@ public class CharacterCreateDTO {
 	private String name;
 	private String publicBackground;
 	private String secretBackground;
+	
+	private int strength;
+	private int dexterity;
+	private int constitution;
+	private int inteligence;
+	private int wisdom;
+	private int charisma;
+	
 	private int age;
 	private int height;
 	private int weight;
 	private long alignment;
 	private long classs;
 	private long race;
+	
 	public long getUserId() {
 		return userId;
 	}
@@ -86,6 +95,42 @@ public class CharacterCreateDTO {
 	}
 	public void setRace(long race) {
 		this.race = race;
+	}
+	public int getStrength() {
+		return strength;
+	}
+	public void setStrength(int strength) {
+		this.strength = strength;
+	}
+	public int getDexterity() {
+		return dexterity;
+	}
+	public void setDexterity(int dexterity) {
+		this.dexterity = dexterity;
+	}
+	public int getConstitution() {
+		return constitution;
+	}
+	public void setConstitution(int constitution) {
+		this.constitution = constitution;
+	}
+	public int getInteligence() {
+		return inteligence;
+	}
+	public void setInteligence(int inteligence) {
+		this.inteligence = inteligence;
+	}
+	public int getWisdom() {
+		return wisdom;
+	}
+	public void setWisdom(int wisdom) {
+		this.wisdom = wisdom;
+	}
+	public int getCharisma() {
+		return charisma;
+	}
+	public void setCharisma(int charisma) {
+		this.charisma = charisma;
 	}
 	
 	
