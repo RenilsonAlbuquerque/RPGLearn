@@ -7,19 +7,21 @@ import { CharacterSheet } from '../models/character/character.sheet';
     generalInformationFormGroup : FormGroup,atributeFormGroup: FormGroup): CharacterCreate {
     return {
         race:raceFormGroup.controls['race'].value,
-        alignment: raceFormGroup.controls['alignment'].value,
+        
 
         classs:classFormGroup.controls['class'].value,
 
+        alignment: generalInformationFormGroup.controls['alignment'].value,
         name:generalInformationFormGroup.controls['name'].value,
         imagePath: generalInformationFormGroup.controls['profilePicture'].value,
+        tokenImageRaw: generalInformationFormGroup.controls['tokenImage'].value,
 
-        strength: Number(atributeFormGroup['strength'].value),
-        dexterity: Number(atributeFormGroup['dexterity'].value),
-        constitution: Number(atributeFormGroup['constitution'].value),
-        inteligence: Number(atributeFormGroup['inteligence'].value),
-        wisdom: Number(atributeFormGroup['wisdom'].value),
-        charisma:Number(atributeFormGroup['charisma'].value),
+        strength: Number(atributeFormGroup.controls['strength'].value),
+        dexterity: Number(atributeFormGroup.controls['dexterity'].value),
+        constitution: Number(atributeFormGroup.controls['constitution'].value),
+        inteligence: Number(atributeFormGroup.controls['inteligence'].value),
+        wisdom: Number(atributeFormGroup.controls['wisdom'].value),
+        charisma:Number(atributeFormGroup.controls['charisma'].value),
 
         publicBackground:'',
         secretBackground:'',

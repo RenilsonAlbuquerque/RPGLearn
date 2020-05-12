@@ -13,6 +13,8 @@ import { KeyValue } from 'src/app/domain/models/comon/key.value';
 import { ClassCreateInput } from 'src/app/domain/models/class/class.create.input';
 import { ClassService } from 'src/app/infra/services/class.service';
 import { mapFormToDTO } from 'src/app/domain/mappers/character.mapper';
+import { convertFileToBase64 } from 'src/app/infra/helpers/file.helper';
+import { getDefaultBarbarianToken } from 'src/app/infra/helpers/character.helper';
 
 
 @Component({
@@ -35,6 +37,7 @@ export class CharacterCreateComponent implements OnInit {
   private storyId: number;
   
   profilePicture: string;
+  tokenImage: string = getDefaultBarbarianToken();
   constructor(private _formBuilder: FormBuilder,private characterService: CharacterService,
     private raceService:RaceService, private classService: ClassService,
     private toastr: ToastrService,private router: Router,private _activatedRoute: ActivatedRoute,
@@ -49,7 +52,6 @@ export class CharacterCreateComponent implements OnInit {
       response => (this.inputValues = response)   
     );
     this.raceAndClassFormGroup = this._formBuilder.group({
-      alignment:[{},Validators.required],
       race:[{}, Validators.required],
       subRace:[{},Validators.required],
     });
@@ -59,7 +61,9 @@ export class CharacterCreateComponent implements OnInit {
     });
     //this.addCheckboxes();
     this.generalInformationFormGroup = this._formBuilder.group({
+      alignment:[{},Validators.required],
       profilePicture: [''],
+      tokenImage:[''],
       name: ['',Validators.required],
       age: [''],
       height:[''],
@@ -150,6 +154,15 @@ export class CharacterCreateComponent implements OnInit {
       const control = new FormControl(i === 0); // if first item set to true, else false
       (this.classFormGroup.controls.proeficiencies as FormArray).push(control);
     });
+  }
+  async changeTokenImage(event:any){
+    let file = event.target.files[0];
+    await convertFileToBase64(file).then(
+      result => {
+        this.tokenImage = result as string,
+        this.generalInformationFormGroup.controls['tokenImage'].setValue(result as string)
+      }
+    );
   }
 
 }

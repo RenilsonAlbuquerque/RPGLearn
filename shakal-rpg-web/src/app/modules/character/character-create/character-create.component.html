@@ -3,7 +3,7 @@
         <form [formGroup]="raceAndClassFormGroup" class="mainContainer">
             <ng-template  matStepLabel>Raça</ng-template>
             <div class="row">
-                <mat-form-field class="form-group col-4" appearance="outline">
+                <mat-form-field class="form-group col-md-6 col-sm-12" appearance="outline">
                     <mat-label>Raça</mat-label>
                     <mat-select formControlName="race">
                         <mat-option *ngFor="let race of inputValues?.races" [value]="race.id">
@@ -11,7 +11,7 @@
                         </mat-option>
                     </mat-select>        
                 </mat-form-field>
-                <mat-form-field class="form-group col-4" appearance="outline">
+                <mat-form-field class="form-group col-md-6 col-sm-12" appearance="outline">
                     <mat-label>Sub-Raça</mat-label>
                     <mat-select formControlName="subRace">
                         <mat-option *ngFor="let subR of subRaceOptions" [value]="subR.id">
@@ -19,23 +19,8 @@
                         </mat-option>
                     </mat-select>        
                 </mat-form-field>
-                    <!-- <mat-form-field class="form-group col-4" appearance="outline">    
-                        <mat-label>Classe</mat-label>
-                        <mat-select formControlName="class">
-                            <mat-option *ngFor="let class of inputValues?.classes" [value]="class.id" >
-                                {{class.name}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field> -->
                    
-                    <mat-form-field class="form-group col-4" appearance="outline">
-                        <mat-label>Alinhamento</mat-label>
-                            <mat-select formControlName="alignment">
-                                <mat-option *ngFor="let alignment of inputValues?.alignments" [value]="alignment.id">
-                                    {{alignment.value}}
-                                </mat-option>
-                            </mat-select>  
-                    </mat-form-field>
+                    
             </div>
             <div class="column" *ngIf="raceDetailInput">
                 <div class="row">
@@ -64,7 +49,7 @@
                     {{raceDetailInput.description}}
                 </div>
             </div>
-            <div class="example-button-row float-right">
+            <div class="control-section">
                 <button mat-raised-button color="primary" matStepperNext>Próximo</button>
             </div>
         </form>
@@ -109,7 +94,7 @@
                 </div>
                 <!-- <button (click)="printTest()">The test has been made</button> -->
             </div>
-            <div class="example-button-row float-right">
+            <div class="control-section">
                 <button mat-raised-button color="primary" matStepperNext>Próximo</button>
             </div> 
         </form>
@@ -118,14 +103,23 @@
         <form [formGroup]="generalInformationFormGroup">
             <ng-template  matStepLabel>Informações gerais</ng-template> 
                 <div class="row">
-                    <div class="col-md-6 col-sm-12 w-50 h-100">
+                    <mat-form-field class="form-group col-12" appearance="outline">
+                        <mat-label>Alinhamento</mat-label>
+                            <mat-select formControlName="alignment">
+                                <mat-option *ngFor="let alignment of inputValues?.alignments" [value]="alignment.id">
+                                    {{alignment.value}}
+                                </mat-option>
+                            </mat-select>  
+                    </mat-form-field>
+                    <div class="col-md-12 col-lg-6 " >
                         <img height="360" mat-card-image src="{{ profilePicture }}" alt="">
-                        <mat-form-field class="form-group col-12" appearance="outline">
+                        <mat-form-field class="form-group col-12" appearance="outline" style="width: 100%;padding-left: 30px;">
+                            <mat-label>URL imagem</mat-label>
                             <input matInput placeholder="Url imagem" [(ngModel)]="profilePicture" formControlName="profilePicture">
                         </mat-form-field>
                         
                     </div>
-                    <div class="col-md-6 col-sm-12 w-50 h-100">
+                    <div class="col-md-12 col-lg-6 ">
                         <mat-form-field class="form-group col-12" appearance="outline">
                             <mat-label>Nome</mat-label>
                             <input matInput placeholder="Descrição" formControlName="name">
@@ -140,10 +134,18 @@
                                 Campo obrigatório
                             </mat-error>
                         </mat-form-field>
-                    </div>    
-                                
+                    </div>       
                 </div>
-                <div class="example-button-row float-right">
+                <mat-divider></mat-divider>
+                <h5>Tokens</h5>
+                <div class="row" style="padding: 25px;" >
+                    <div class="column" style="display: inline-grid;">
+                        <img height="80" width="80" id="input-image-token" src="{{ tokenImage}}"  accept="image/png">
+                        <input id="fileInputToken" type="file" (change)="changeTokenImage($event)" style="display: none;">
+                        <button mat-raised-button color="primary" onclick="document.getElementById('fileInputToken').click();">Selecionar token</button>
+                    </div>
+                </div>
+                <div class="control-section">
                         <button mat-raised-button color="primary" matStepperNext>Próximo</button>
                 </div>
         </form>
@@ -211,7 +213,7 @@
                             </mat-form-field>
                 </div>
             </div>
-            <div class="example-button-row float-right">
+            <div class="control-section">
                 <button mat-raised-button color="primary" matStepperNext>Próximo</button>
             </div>
         </form>     
@@ -219,14 +221,59 @@
     <mat-step>
         <ng-template  matStepLabel>Finalizar</ng-template>
           <mat-card>
-              <div class="row">
-                <h3>Tem certeza?</h3>
-              </div>
-              <div class="row align-items-end">
-                <button type="button" class="btn btn-success pull-right" matStepperPrevious>Back</button>
-                <button type="button" class="btn btn-success pull-right" (click)="stepper.reset()">Reset</button>
-                <button type="button" class="btn btn-success pull-right" (click)="onSubmit()">Finalizar</button>
-              </div>                                  
+            <mat-card-header>
+                <img height="40" width="40" mat-card-avatar src="{{ tokenImage}}"  accept="image/png">
+                <mat-card-title>{{generalInformationFormGroup.controls.name.value}}</mat-card-title>
+                <mat-card-subtitle>Bárbaro</mat-card-subtitle>
+            </mat-card-header>
+            <div class="row">
+                <img mat-card-image class="col-sm-12 col-md-6" src="{{ generalInformationFormGroup.controls.profilePicture.value }}" alt="Photo of a Shiba Inu">
+                <div class="col-sm-12 col-md-6">
+                    <div class="row">
+                        <div class="col-2">
+                            <span><b>For</b></span>
+                            <br>
+                            <span>{{atributeFormGroup.controls.strength.value}}</span>
+                        </div>
+                        <div class="col-2">
+                            <span><b>Des</b></span>
+                            <br>
+                            <span>{{atributeFormGroup.controls.dexterity.value}}</span>
+                        </div>
+                        <div class="col-2">
+                            <span><b>Con</b></span>
+                            <br>
+                            <span>{{atributeFormGroup.controls.constitution.value}}</span>
+                        </div>
+                        <div class="col-2">
+                            <span><b>Int</b></span>
+                            <br>
+                            <span>{{atributeFormGroup.controls.inteligence.value}}</span>
+                        </div>
+                        <div class="col-2">
+                            <span><b>Sab</b></span>
+                            <br>
+                            <span>{{atributeFormGroup.controls.wisdom.value}}</span>
+                        </div>
+                        <div class="col-2">
+                            <span><b>Car</b></span>
+                            <br>
+                            <span>{{atributeFormGroup.controls.charisma.value}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+              <!-- <div class="column">
+                <img height="360" mat-card-image src="{{ generalInformationFormGroup.controls.profilePicture.value }}" alt="">
+                <span><b>{{classFormGroup.controls.class.value}}</b></span>
+              </div> -->
+                                               
             </mat-card>
+            <div class="control-section">
+                <button type="button" class="btn btn-success pull-right" matStepperPrevious>voltar</button>
+                <button type="button" class="btn btn-danger pull-right" (click)="stepper.reset()">Resetar</button>
+                <button type="button" class="btn btn-success pull-right" (click)="onSubmit()">Finalizar</button>
+            </div> 
     </mat-step>
 </mat-horizontal-stepper>

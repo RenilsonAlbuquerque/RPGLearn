@@ -6,6 +6,7 @@ public class CharacterCreateDTO {
 	private long storyId;
 	
 	private String imagePath;
+	private String tokenImageRaw;
 	private String name;
 	private String publicBackground;
 	private String secretBackground;
@@ -131,6 +132,12 @@ public class CharacterCreateDTO {
 	}
 	public void setCharisma(int charisma) {
 		this.charisma = charisma;
+	}
+	public String getTokenImageRaw() {
+		return tokenImageRaw;
+	}
+	public void setTokenImageRaw(String tokenImageRaw) {
+		this.tokenImageRaw = tokenImageRaw;
 	}
 	
 	

@@ -2,6 +2,7 @@ export interface CharacterCreate{
     userId: number,
     storyId: number,
     imagePath: string,
+    tokenImageRaw: string,
     name: string,
     publicBackground: string,
     secretBackground: string,

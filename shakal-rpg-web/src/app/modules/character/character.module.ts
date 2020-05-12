@@ -8,6 +8,7 @@ import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CharacterSheetComponent } from './character-sheet/character-sheet.component';
 import { RaceService } from 'src/app/infra/services/race.service';
 import { ClassService } from 'src/app/infra/services/class.service';
+//import { DirectivesModule } from '../generalmodules/directives.module';
 
 
 
@@ -20,6 +21,7 @@ import { ClassService } from 'src/app/infra/services/class.service';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
+    //DirectivesModule
   ],
   providers:[CharacterService,FormBuilder,RaceService,ClassService],
   exports: [CharacterSheetComponent]

@@ -29,7 +29,7 @@ import { CreatureService } from 'src/app/infra/services/creature.service';
 @NgModule({
   declarations: [MonsterListComponent, MonsterDetailComponent, MonsterInfoComponent,
      MonsterSheetComponent, MonsterCardComponent, MonsterSearchCardComponent, 
-     MonsterCreateComponent,OnlynumberDirective, MonsterDragableListComponent],
+     MonsterCreateComponent, MonsterDragableListComponent],
   imports: [
     NgbModalModule,
     CommonModule,

@@ -10,6 +10,8 @@ import com.shakal.rpg.api.model.character.Class;
 import com.shakal.rpg.api.model.character.ClassLevel;
 
 public class CharacterValidator {
+	
+	
 
 	public static ErrorMessages ValidateDTO(CharacterCreateDTO insertDto,ErrorMessages errorMessages) {
 		/*

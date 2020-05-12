@@ -22,6 +22,7 @@ import { SpinnerService } from './infra/services/spinner.service';
 
 
 import { FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import { DirectivesModule } from './modules/generalmodules/directives.module';
 
 
 
@@ -34,6 +35,7 @@ import { FontAwesomeModule} from '@fortawesome/angular-fontawesome';
     RegisterPlayerComponent
   ],
   imports: [
+    DirectivesModule,
     LayoutModule,
     BrowserModule,
     AppRoutingModule,

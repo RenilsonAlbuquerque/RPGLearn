@@ -19,28 +19,36 @@ import com.shakal.rpg.api.dto.info.CharacterSheetDTO;
 import com.shakal.rpg.api.dto.info.LevelDTO;
 import com.shakal.rpg.api.exception.BusinessException;
 import com.shakal.rpg.api.exception.ResourceNotFoundException;
+import com.shakal.rpg.api.helpers.AtributeHelper;
 import com.shakal.rpg.api.helpers.CharacterHelper;
 import com.shakal.rpg.api.helpers.CombatHelper;
 import com.shakal.rpg.api.mappers.CharacterMapper;
 import com.shakal.rpg.api.mappers.ClassMapper;
 import com.shakal.rpg.api.mappers.CreatureMapper;
+import com.shakal.rpg.api.mappers.CreatureTokenMapper;
 import com.shakal.rpg.api.mappers.RaceMapper;
 import com.shakal.rpg.api.repository.AlignmentDAO;
+import com.shakal.rpg.api.repository.AtributeDAO;
 import com.shakal.rpg.api.repository.CharacterClassLevelDAO;
 import com.shakal.rpg.api.repository.CharacterDAO;
 import com.shakal.rpg.api.repository.ClassDAO;
 import com.shakal.rpg.api.repository.ClassLevelDAO;
+import com.shakal.rpg.api.repository.CreatureAtributeDAO;
+import com.shakal.rpg.api.repository.ImageTokenDAO;
 import com.shakal.rpg.api.repository.RaceDAO;
 import com.shakal.rpg.api.repository.UserStoryDAO;
 import com.shakal.rpg.api.utils.Messages;
 import com.shakal.rpg.api.validators.CharacterValidator;
 import com.shakal.rpg.api.validators.ErrorMessages;
 import com.shakal.rpg.api.model.Alignment;
-import com.shakal.rpg.api.model.CreatureLevel;
+import com.shakal.rpg.api.model.Atribute;
 import com.shakal.rpg.api.model.Race;
 import com.shakal.rpg.api.model.character.Class;
 import com.shakal.rpg.api.model.character.ClassLevel;
+import com.shakal.rpg.api.model.embedded.CreatureAtributeId;
 import com.shakal.rpg.api.model.character.Character;
+import com.shakal.rpg.api.model.character.CharacterRaceAtributeBonus;
+import com.shakal.rpg.api.model.relation.CreatureAtribute;
 import com.shakal.rpg.api.model.relation.UserStory;
 
 @Service
@@ -55,13 +63,19 @@ public class CharacterService implements ICharacterService{
 	private ClassDAO classDao;
 	private ClassLevelDAO classLevelDAO;
 	private CharacterClassLevelDAO characterClassLevelDAO;
+	private CreatureAtributeDAO creatureAtributeDao;
+	private ImageTokenDAO tokenDao;
+	private AtributeDAO atributeDao;
 	
 	@Autowired
 	public CharacterService(IUserService userService,ICombatService combatService,
 			CharacterDAO characterDao,AlignmentDAO alignmentDao,
 			UserStoryDAO userStoryDao,RaceDAO raceDao,
 			ClassDAO classDao, ClassLevelDAO classLevelDAO,
-			CharacterClassLevelDAO characterClassLevelDAO) {
+			CharacterClassLevelDAO characterClassLevelDAO,
+			CreatureAtributeDAO creatureAtributeDao,
+			ImageTokenDAO tokenDao,
+			AtributeDAO atributeDao) {
 		this.userService = userService;
 		this.combatService = combatService;
 		this.characterDao = characterDao;
@@ -71,6 +85,9 @@ public class CharacterService implements ICharacterService{
 		this.classDao = classDao;
 		this.classLevelDAO = classLevelDAO;
 		this.characterClassLevelDAO = characterClassLevelDAO;
+		this.creatureAtributeDao = creatureAtributeDao;
+		this.tokenDao = tokenDao;
+		this.atributeDao = atributeDao;
 	}
 	
 	@Override
@@ -78,12 +95,14 @@ public class CharacterService implements ICharacterService{
 		ErrorMessages error = new ErrorMessages();
 		CharacterValidator.ValidateDTO(inputDto, error);
 		
+		
 		Optional<Alignment> alignmentSearch = this.alignmentDao.findById(inputDto.getAlignment());
 		Optional<Race> raceSearch = this.raceDao.findById(inputDto.getRace());
 		Optional<Class> classSearch = this.classDao.findById(inputDto.getClasss());
 		Optional<ClassLevel> classLevelSearch = this.classLevelDAO.retrieveFirstLevelOfClass(inputDto.getClasss(), 4);
 		CharacterValidator.ValidateRecoveryEntities(error, alignmentSearch, raceSearch);
 		CharacterValidator.ValidateRecoveryClassEntities(error, classLevelSearch, classSearch);
+		CharacterValidator.validateToken(inputDto.getImagePath(), error);
 		
 		
 		if(error.hasError()) {
@@ -99,14 +118,15 @@ public class CharacterService implements ICharacterService{
 		entity.setLifePoints(CharacterHelper.calculateLifePoints(classSearch.get().getLifeDice()));
 		entity.setSpeed(raceSearch.get().getSpeed());
 		entity.setRace(raceSearch.get());
-		entity.setLanguages(raceSearch.get().getLangauges());
+		//entity.setLanguages(raceSearch.get().getLangauges());
 		
 		
 		entity = this.characterDao.save(entity);
 		this.userService.setCharacterToUserInStory(inputDto.getStoryId(),
 				inputDto.getUserId(), entity);
-		
+		this.buildCharacterAtributes(inputDto,entity,raceSearch.get(), classSearch.get());
 		this.characterClassLevelDAO.save(ClassMapper.createFistLevelOfPlayer(classLevelSearch.get(),entity));
+		this.tokenDao.save(CreatureTokenMapper.createToken(inputDto.getTokenImageRaw(),entity));
 		return true;
 	}
 
@@ -164,5 +184,137 @@ public class CharacterService implements ICharacterService{
 				.orElseThrow(() -> new ResourceNotFoundException(Messages.CHARACTER_NOT_FOUND));
 		CharacterSheetDTO result = CharacterMapper.entityToInfo(search);
 		return result;
+	}
+	
+	private void buildCharacterAtributes(CharacterCreateDTO inputDto, Character character,Race race,
+			Class clasS) {
+		int strengthBonus = 0;
+		int dexterityBonus = 0;
+		int constitutionBonus = 0;
+		int intelligenceBonus = 0;
+		int wisdomBonus = 0;
+		int charismaBonus = 0 ;
+		boolean strengthProf = false;
+		boolean dexProf = false;
+		boolean conProf = false;
+		boolean intProf = false;
+		boolean wisProf = false;
+		boolean carProf = false;
+		
+		for(CharacterRaceAtributeBonus at: race.getAtributeBonus()) {
+			if(at.getAtribute().getId() == 1) {
+				strengthBonus += at.getBonus();
+				
+			}
+			if(at.getAtribute().getId() == 2) {
+				dexterityBonus += at.getBonus();
+			}
+			if(at.getAtribute().getId() == 3) {
+				constitutionBonus += at.getBonus();
+			}
+			if(at.getAtribute().getId() == 4) {
+				intelligenceBonus += at.getBonus();
+			}
+			if(at.getAtribute().getId() == 5) {
+				wisdomBonus += at.getBonus();
+			}
+			if(at.getAtribute().getId() == 6) {
+				charismaBonus += at.getBonus();
+			}
+		}
+		for(Atribute st: clasS.getSavingThrows()) {
+			if(st.getId() == 1) {
+				strengthProf = true;
+			}
+			if(st.getId() == 2) {
+				dexProf = true;
+			}
+			if(st.getId() == 3) {
+				conProf = true;
+			}
+			if(st.getId() == 4) {
+				intProf = true;
+			}
+			if(st.getId() == 5) {
+				wisProf = true;
+			}
+			if(st.getId() == 6) {
+				carProf = true;
+			}
+		}
+		
+		CreatureAtribute strenght = new CreatureAtribute();
+		CreatureAtributeId strenghtId = new CreatureAtributeId();
+		strenghtId.setAtributeId(1L);
+		strenghtId.setCreatureId(character.getId());
+		strenght.setValue(inputDto.getStrength() + strengthBonus);
+		strenght.setModfier(AtributeHelper.calculateAtributeBonus(strenght.getValue()));
+		strenght.setProeficiency(strengthProf);
+		strenght.setCreature(character);
+		strenght.setAtribute(this.atributeDao.getOne(1L));
+		strenght.setId(strenghtId);
+		this.creatureAtributeDao.save(strenght);
+		
+		
+		CreatureAtribute dexterity = new CreatureAtribute();
+		CreatureAtributeId dexterityId = new CreatureAtributeId();
+		dexterityId.setAtributeId(2L);
+		dexterityId.setCreatureId(character.getId());
+		dexterity.setValue(inputDto.getDexterity() + dexterityBonus);
+		dexterity.setModfier(AtributeHelper.calculateAtributeBonus(dexterity.getValue()));
+		dexterity.setProeficiency(dexProf);
+		dexterity.setCreature(character);
+		dexterity.setAtribute(this.atributeDao.getOne(2L));
+		dexterity.setId(dexterityId);
+		this.creatureAtributeDao.save(dexterity);
+		
+		CreatureAtribute constitution = new CreatureAtribute();
+		CreatureAtributeId constitutionId = new CreatureAtributeId();
+		constitutionId.setAtributeId(3L);
+		constitutionId.setCreatureId(character.getId());
+		constitution.setValue(inputDto.getConstitution() + constitutionBonus);
+		constitution.setModfier(AtributeHelper.calculateAtributeBonus(constitution.getValue()));
+		constitution.setProeficiency(conProf);
+		constitution.setCreature(character);
+		constitution.setAtribute(this.atributeDao.getOne(3L));
+		constitution.setId(constitutionId);
+		this.creatureAtributeDao.save(constitution);
+		
+		CreatureAtribute intelligence = new CreatureAtribute();
+		CreatureAtributeId intelligenceId = new CreatureAtributeId();
+		intelligenceId.setAtributeId(4L);
+		intelligenceId.setCreatureId(character.getId());
+		intelligence.setValue(inputDto.getInteligence() + intelligenceBonus);
+		intelligence.setModfier(AtributeHelper.calculateAtributeBonus(intelligence.getValue()));
+		intelligence.setProeficiency(intProf);
+		intelligence.setCreature(character);
+		intelligence.setAtribute(this.atributeDao.getOne(4L));
+		intelligence.setId(intelligenceId);
+		this.creatureAtributeDao.save(intelligence);
+		
+		CreatureAtribute wisdom = new CreatureAtribute();
+		CreatureAtributeId wisdomId = new CreatureAtributeId();
+		wisdomId.setAtributeId(5L);
+		wisdomId.setCreatureId(character.getId());
+		wisdom.setValue(inputDto.getWisdom() + wisdomBonus);
+		wisdom.setModfier(AtributeHelper.calculateAtributeBonus(wisdom.getValue()));
+		wisdom.setProeficiency(wisProf);
+		wisdom.setCreature(character);
+		wisdom.setAtribute(this.atributeDao.getOne(5L));
+		wisdom.setId(wisdomId);
+		this.creatureAtributeDao.save(wisdom);
+		
+		CreatureAtribute charisma = new CreatureAtribute();
+		CreatureAtributeId charismaId = new CreatureAtributeId();
+		charismaId.setAtributeId(6L);
+		charismaId.setCreatureId(character.getId());
+		charisma.setValue(inputDto.getCharisma() + charismaBonus);
+		charisma.setModfier(AtributeHelper.calculateAtributeBonus(charisma.getValue()));
+		charisma.setProeficiency(carProf);
+		charisma.setCreature(character);
+		charisma.setAtribute(this.atributeDao.getOne(6L));
+		charisma.setId(charismaId);
+		this.creatureAtributeDao.save(charisma);
+		
 	}
 }
