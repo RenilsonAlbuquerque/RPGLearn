@@ -23,6 +23,8 @@ export interface CharacterSheet{
     inteligence:CreatureAtribute,
     charisma:CreatureAtribute,
 
+    proeficiencies:number[],
+
     languages: KeyValue[],
 
     proeficiencBonus: number,

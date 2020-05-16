@@ -23,5 +23,8 @@ export class CharacterSheetComponent implements OnInit {
         this.sheet = response)  
     )
   }
+  getAcrobatics(){
+
+  }
 
 }

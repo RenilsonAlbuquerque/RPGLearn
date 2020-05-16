@@ -1,5 +1,7 @@
 package com.shakal.rpg.api.dto.create;
 
+import java.util.List;
+
 public class CharacterCreateDTO {
 	
 	private long userId;
@@ -17,6 +19,8 @@ public class CharacterCreateDTO {
 	private int inteligence;
 	private int wisdom;
 	private int charisma;
+	
+	private List<Long> proeficiencies;
 	
 	private int age;
 	private int height;
@@ -138,6 +142,12 @@ public class CharacterCreateDTO {
 	}
 	public void setTokenImageRaw(String tokenImageRaw) {
 		this.tokenImageRaw = tokenImageRaw;
+	}
+	public List<Long> getProeficiencies() {
+		return proeficiencies;
+	}
+	public void setProeficiencies(List<Long> proeficiencies) {
+		this.proeficiencies = proeficiencies;
 	}
 	
 	

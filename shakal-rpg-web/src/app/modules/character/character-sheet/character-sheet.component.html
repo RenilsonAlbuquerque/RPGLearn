@@ -38,7 +38,7 @@
                   <label for="Strengthscore">Força</label><input name="Strengthscore" placeholder="10" value="{{sheet.strength.value}}" readonly/>
                 </div>
                 <div class="modifier">
-                  <input name="Strengthmod" placeholder="+0" value="{{sheet.strength.modfier}}" readonly />
+                  <input name="Strengthmod" placeholder="+0" value="{{sheet.strength.modfier}}" disabled/>
                 </div>
               </li>
               <li>
@@ -124,7 +124,9 @@
             <div class="skills list-section box">
               <ul>
                 <li>
-                  <label for="Acrobatics">Acrobatics <span class="skill">(Dex)</span></label><input name="Acrobatics" placeholder="+0" type="text" /><input name="Acrobatics-prof" type="checkbox" />
+                  <label for="Acrobatics">Acrobacia <span class="skill">(Des)</span></label>
+                  <input name="Acrobatics" placeholder="+0" type="text" />
+                  <input name="Acrobatics-prof" type="checkbox"  readonly/>
                 </li>
                 <li>
                   <label for="Animal Handling">Animal Handling <span class="skill">(Wis)</span></label><input name="Animal Handling" placeholder="+0" type="text" /><input name="Animal Handling-prof" type="checkbox" />
@@ -193,7 +195,7 @@
         <div class="otherprofs box textblock">
           <label for="otherprofs">Other Proficiencies and Languages</label>
           <div name="otherprofs" class="other-proeficiency-area">
-            <span>Idiomas: </span>
+            <span><b>Idiomas:</b></span>
             <span *ngFor="let language of sheet.languages">{{language?.value}},</span>
           </div>
         </div>

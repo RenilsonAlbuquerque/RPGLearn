@@ -81,15 +81,96 @@
                     {{classDetailInput.description}}
                 </div>
                 <div  class="row section">
-                    <span style="width: 100%;">Escolha <b>{{classDetailInput?.proeficiencyChoose.choose}}</b> perícias entre:</span>
+                    <span style="width: 100%;"><b>Escolha <strong>{{classDetailInput?.proeficiencyChoose.choose}}</strong> perícias entre:</b></span>
                     <br>
-                    <div *ngFor="let proeficiency of classFormGroup.controls['proeficiencies'].controls let i = index" formArrayName="proeficiencies">
+                    <div class="checkboxes" *ngFor="let proeficiency of classDetailInput?.proeficiencyChoose.proeficiencies; let i=index">
+                        <label>
+                          <input type="checkbox"
+                          [disabled]="fullProeficiency" 
+                          (change)="onChangeProeficiencies($event,proeficiency)"/>
+                          {{proeficiency.value}}
+                        </label>
+                    </div>
+                    <!-- [formGroup]="proeficiency"
+                    <div *ngFor="let proeficiency of classDetailInput?.proeficiencyChoose.proeficiencies let i = index" >
                         <mat-checkbox class="checkbox" 
+                            (change)="onChangeProeficiencies(proeficiency.id)">
+                            {{classDetailInput?.proeficiencyChoose.proeficiencies[i].value}}
+                        </mat-checkbox>
+                    </div> -->
+                  
+                        
+                        <!-- <label formControlName="i">
+                            <input type="checkbox" 
+                            [checked]="classFormGroup.get('proeficiencies').controls[i].value.value.check"
+                            (change)="onChangeProeficiencies(classFormGroup.get('proeficiencies').controls[i].value.value.id)" />
+                            {{proeficiency.value.value.name}}
+                          </label> -->
+                         
+                          <!-- <ng-container [formGroup]="proeficiency">
+                            <label>
+                                <input 
+                                
+                                type="checkbox" 
+                                [checked]="classFormGroup.get('proeficiencies').controls[i].value.value.check"
+                                (change)="printTest(proeficiency)" />
+                                {{proeficiency.value.value.name}}
+                              </label>
+
+                          </ng-container> -->
+                        <!-- <label>
+                            <input type="checkbox" 
+                            [checked]="classFormGroup.get('proeficiencies').controls[i].value.value.check"
+                            (change)="printTest(proeficiency)" />
+                            {{proeficiency.value.value.name}}
+                          </label> -->
+                        
+                        <!-- <input type="checkbox" 
+                            
+                            
+                            [checked]="proeficiency.value.check"
+                            />
+                            {{proeficiency.value.value.name}} -->
+                            <!-- <mat-checkbox class="checkbox" 
+                            [checked]="proeficiency.value.check">
+                            {{proeficiency.value.value.name}}
+                        </mat-checkbox> -->
+                        
+                        <!-- <ng-container [formGroupName]="i">
+                            <input type="checkbox" 
+                            (click)="onChangeProeficiencies()"
+                            [checked]="check"
+                            />
+                            <label formControlName="value.controls.name"></label>
+                        
+                        </ng-container> -->
+                        <!-- <mat-checkbox 
+                            formControlName="proeficiency.value.check"
+                            class="checkbox" 
+                            [checked]="proeficiency.value.check">
+                            {{proeficiency.value.value}}
+                        </mat-checkbox> -->
+                       
+                       
+<!--                   
+                        <ng-container [formControlGroup]="i">
+                          
+                        </ng-container> -->
+                       
+                        <!-- <mat-checkbox 
+                            [value]="proeficiency.value.check"
+                            [checked]="proeficiency.value.check" 
                             (change)="onChangeProeficiencies(proeficiency.id)"
                             [formControlName]="i">
                             {{classDetailInput?.proeficiencyChoose.proeficiencies[i].value}}
+                        </mat-checkbox> -->
+                    
+                    <!-- <div *ngFor="let proeficiency of classDetailInput?.proeficiencyChoose.proeficiencies let i = index" >
+                        <mat-checkbox class="checkbox" 
+                            (change)="onChangeProeficiencies(proeficiency.id)">
+                            {{classDetailInput?.proeficiencyChoose.proeficiencies[i].value}}
                         </mat-checkbox>
-                    </div>
+                    </div> -->
                    
                 </div>
                 <!-- <button (click)="printTest()">The test has been made</button> -->

@@ -1,17 +1,18 @@
 package com.shakal.rpg.api.model.creature;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name= "tb_proeficiency")
-public class Proeficiency {
+public class Proeficiency implements Serializable{
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue
 	private long id;
 	
 	private String name;

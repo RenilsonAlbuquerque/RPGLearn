@@ -23,6 +23,8 @@ public class CharacterSheetDTO {
 	private AtributeInfoDTO inteligence;
 	private AtributeInfoDTO charisma;
 	
+	private List<Long> proeficiencies;
+	
 	private List<KeyValueDTO> languages;
 
 	private int proeficiencBonus;
@@ -186,6 +188,12 @@ public class CharacterSheetDTO {
 	}
 	public void setLanguages(List<KeyValueDTO> languages) {
 		this.languages = languages;
+	}
+	public List<Long> getProeficiencies() {
+		return proeficiencies;
+	}
+	public void setProeficiencies(List<Long> proeficiencies) {
+		this.proeficiencies = proeficiencies;
 	}
 	
 	

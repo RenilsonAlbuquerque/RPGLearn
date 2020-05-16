@@ -23,7 +23,7 @@ import { getDefaultBarbarianToken } from 'src/app/infra/helpers/character.helper
   styleUrls: ['./character-create.component.scss']
 })
 export class CharacterCreateComponent implements OnInit {
-
+  fullProeficiency: boolean = false;
   public classDetailInput:ClassCreateInput;
 
   public raceDetailInput: RaceCreateInput;
@@ -57,9 +57,10 @@ export class CharacterCreateComponent implements OnInit {
     });
     this.classFormGroup = this._formBuilder.group({
       class:[{}, Validators.required],
-      proeficiencies: new FormArray([],this.maxSelectedCheckboxes(1)),
+      proeficiencies: new FormArray([]),
+      proeficiencies2:this._formBuilder.array([  ])
+      //proeficiencies: new FormArray([],this.maxSelectedCheckboxes(1)),
     });
-    //this.addCheckboxes();
     this.generalInformationFormGroup = this._formBuilder.group({
       alignment:[{},Validators.required],
       profilePicture: [''],
@@ -80,13 +81,14 @@ export class CharacterCreateComponent implements OnInit {
     });
     this.raceAndClassFormGroup.get('race').valueChanges.subscribe(race =>{
       this.onChageRace(race);
-    })
+    });
     this.raceAndClassFormGroup.get('subRace').valueChanges.subscribe(subRace =>{
       this.onChageSubRace(subRace);
-    })
+    });
     this.classFormGroup.get('class').valueChanges.subscribe(classId =>{
       this.onChageClass(classId);
-    })
+    });
+    this.initializeDefaultValues();
   }
   onChageRace(raceId: number){
     if(this.inputValues && this.inputValues.races){
@@ -113,22 +115,46 @@ export class CharacterCreateComponent implements OnInit {
     this.classService.getClassDetail(classId).subscribe(
       classDetail => {
         this.classDetailInput = classDetail;
+        this.addCheckboxes();
       }
     )
   }
-  onChangeProeficiencies(id: number){
-    console.log(id)
+  onChangeProeficiencies(event,proeficiency){
+    const checkArray: FormArray = this.classFormGroup.get('proeficiencies') as FormArray;
+    let i: number = 0;
+    checkArray.controls.forEach((item: FormControl) => {
+      //checa se existe
+      if (item.value.id === proeficiency.id) {
+        //se existe e foi deschecado então remova
+        if(!event.target.checked){
+          (this.classFormGroup.get('proeficiencies') as FormArray).removeAt(i);
+        }
+        return;
+      }
+      i++;
+    });
+    if(event.target.checked){
+      //se não existe e foi checado então adiciona
+      (this.classFormGroup.get('proeficiencies') as FormArray).controls.push(
+        new FormControl({id:proeficiency.id,ckeck:true}));
+        if((this.classFormGroup.get('proeficiencies') as FormArray).controls.length >= this.classDetailInput.proeficiencyChoose.choose){
+          this.fullProeficiency = true;
+        }
+    }
+   
+   
+    console.log(this.classFormGroup.controls.proeficiencies);
   }
     
-  printTest(){
-    console.log(this.classFormGroup);
+  printTest(e){
+    console.log(e);
   }
   public onSubmit(){
-    var monsterDTO: CharacterCreate = mapFormToDTO(this.raceAndClassFormGroup,
+    var characterDTO: CharacterCreate = mapFormToDTO(this.raceAndClassFormGroup,
       this.classFormGroup, this.generalInformationFormGroup,this.atributeFormGroup);
-    monsterDTO.userId = this.authService.getCurrentUser().id;
-    monsterDTO.storyId = this.storyId;
-    this.characterService.createCharacterOfPlayerInStory(monsterDTO).subscribe(
+    characterDTO.userId = this.authService.getCurrentUser().id;
+    characterDTO.storyId = this.storyId;
+    this.characterService.createCharacterOfPlayerInStory(characterDTO).subscribe(
       response => (this.toastr.success("Ficha criada"),
                   this.router.navigate(['home/story/datail-player/' + this.storyId])),
       error => (this.toastr.error(error)) 
@@ -150,10 +176,21 @@ export class CharacterCreateComponent implements OnInit {
     return validator;
   }
   private addCheckboxes() {
+    console.log(this.classFormGroup)
     this.classDetailInput.proeficiencyChoose.proeficiencies.forEach((o, i) => {
-      const control = new FormControl(i === 0); // if first item set to true, else false
-      (this.classFormGroup.controls.proeficiencies as FormArray).push(control);
+       let control = this._formBuilder.group({
+         id:o.id,name: o.value,ckeck: false
+      });
+      //let control = new FormControl({id:o.id,value: o.value,ckeck:true}); // if first item set to true, else false
+      (this.classFormGroup.controls.proeficiencies2 as FormArray).push(control);
     });
+    console.log(this.classFormGroup.controls.proeficiencies2)
+  }
+  private initializeDefaultValues(){
+    //this.raceAndClassFormGroup.controls.race.setValue(1);
+    //this.raceAndClassFormGroup.controls.subRace.setValue(1);
+    //this.classFormGroup.controls.class.setValue(1);
+    
   }
   async changeTokenImage(event:any){
     let file = event.target.files[0];

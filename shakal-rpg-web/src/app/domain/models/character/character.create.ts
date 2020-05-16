@@ -14,6 +14,8 @@ export interface CharacterCreate{
     wisdom: number,
     charisma: number,
     
+    proeficiencies:number[],
+    
     age: number,
     weight: number,
     height:number,

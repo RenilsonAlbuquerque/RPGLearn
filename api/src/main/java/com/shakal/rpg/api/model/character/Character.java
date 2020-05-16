@@ -60,7 +60,7 @@ public class Character extends Creature implements Serializable{
 	@OneToMany(mappedBy = "character",fetch = FetchType.LAZY)
 	private List<CharacterClassLevel> classLevel;
 	
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = Proeficiency.class)
     @JoinTable(name = "mtm_character_proeficiency",
             joinColumns = @JoinColumn(name = "character_id", referencedColumnName = "id"),
             inverseJoinColumns =  @JoinColumn(name = "proeficiency_id", referencedColumnName = "id"))

@@ -1,4 +1,4 @@
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormArray } from '@angular/forms';
 import { CharacterCreate } from '../models/character/character.create';
 import { CharacterSheet } from '../models/character/character.sheet';
 
@@ -23,13 +23,21 @@ import { CharacterSheet } from '../models/character/character.sheet';
         wisdom: Number(atributeFormGroup.controls['wisdom'].value),
         charisma:Number(atributeFormGroup.controls['charisma'].value),
 
+        proeficiencies: mapProeficiencies(classFormGroup),
+
         publicBackground:'',
         secretBackground:'',
         height: 180,
         weight:120
     } as CharacterCreate;
   }
-
+function mapProeficiencies(classFormGroup): number[]{
+  let result = [];
+   (classFormGroup.controls['proeficiencies'] as FormArray).controls.forEach(proeficiency => {
+      result.push(proeficiency.value.id)
+    });
+  return result;
+}
   
  function initializeCharacterSheet(): CharacterSheet {
     return {

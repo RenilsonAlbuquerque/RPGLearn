@@ -1,5 +1,6 @@
 package com.shakal.rpg.api.service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -35,6 +36,8 @@ import com.shakal.rpg.api.repository.ClassDAO;
 import com.shakal.rpg.api.repository.ClassLevelDAO;
 import com.shakal.rpg.api.repository.CreatureAtributeDAO;
 import com.shakal.rpg.api.repository.ImageTokenDAO;
+import com.shakal.rpg.api.repository.LanguageDAO;
+import com.shakal.rpg.api.repository.ProeficiencyDAO;
 import com.shakal.rpg.api.repository.RaceDAO;
 import com.shakal.rpg.api.repository.UserStoryDAO;
 import com.shakal.rpg.api.utils.Messages;
@@ -45,6 +48,7 @@ import com.shakal.rpg.api.model.Atribute;
 import com.shakal.rpg.api.model.Race;
 import com.shakal.rpg.api.model.character.Class;
 import com.shakal.rpg.api.model.character.ClassLevel;
+import com.shakal.rpg.api.model.creature.Proeficiency;
 import com.shakal.rpg.api.model.embedded.CreatureAtributeId;
 import com.shakal.rpg.api.model.character.Character;
 import com.shakal.rpg.api.model.character.CharacterRaceAtributeBonus;
@@ -66,6 +70,8 @@ public class CharacterService implements ICharacterService{
 	private CreatureAtributeDAO creatureAtributeDao;
 	private ImageTokenDAO tokenDao;
 	private AtributeDAO atributeDao;
+	private LanguageDAO languageDao;
+	private ProeficiencyDAO proeficiencyDao;
 	
 	@Autowired
 	public CharacterService(IUserService userService,ICombatService combatService,
@@ -75,7 +81,8 @@ public class CharacterService implements ICharacterService{
 			CharacterClassLevelDAO characterClassLevelDAO,
 			CreatureAtributeDAO creatureAtributeDao,
 			ImageTokenDAO tokenDao,
-			AtributeDAO atributeDao) {
+			AtributeDAO atributeDao,LanguageDAO languageDao,
+			ProeficiencyDAO proeficiencyDao) {
 		this.userService = userService;
 		this.combatService = combatService;
 		this.characterDao = characterDao;
@@ -88,6 +95,8 @@ public class CharacterService implements ICharacterService{
 		this.creatureAtributeDao = creatureAtributeDao;
 		this.tokenDao = tokenDao;
 		this.atributeDao = atributeDao;
+		this.languageDao = languageDao;
+		this.proeficiencyDao = proeficiencyDao;
 	}
 	
 	@Override
@@ -118,7 +127,13 @@ public class CharacterService implements ICharacterService{
 		entity.setLifePoints(CharacterHelper.calculateLifePoints(classSearch.get().getLifeDice()));
 		entity.setSpeed(raceSearch.get().getSpeed());
 		entity.setRace(raceSearch.get());
-		//entity.setLanguages(raceSearch.get().getLangauges());
+		entity.setLanguages(raceSearch.get().getLangauges().stream()
+				.map(language -> this.languageDao.getOne(language.getId()))
+				.collect(Collectors.toList()));
+		
+		entity.setProeficiencies(inputDto.getProeficiencies().stream()
+				.map(proeficiency -> this.proeficiencyDao.findById(Long.valueOf(proeficiency)).get())
+				.collect(Collectors.toList()));
 		
 		
 		entity = this.characterDao.save(entity);

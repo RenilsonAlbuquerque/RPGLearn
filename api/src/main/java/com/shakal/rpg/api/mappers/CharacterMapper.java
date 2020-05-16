@@ -30,6 +30,10 @@ public class CharacterMapper {
 		result.setWisdom(AtributeMapper.entityToDetailTO(entity.getAtributes(),5));
 		result.setCharisma(AtributeMapper.entityToDetailTO(entity.getAtributes(),6));
 		
+		result.setProeficiencies(entity.getProeficiencies().stream()
+						.map(proeficiency ->  proeficiency.getId()  )
+						.collect(Collectors.toList()));
+		
 		result.setLanguages(entity.getLanguages().stream()
 				.map( language ->  LanguageMappers.entityToDTO(language))
 				.collect(Collectors.toList()));
@@ -43,7 +47,7 @@ public class CharacterMapper {
 		result.setLifePoints(CharacterMapper.mapLevelToDTO(entity));
 		
 		result.setArmorClass(entity.getArmorClass());
-		result.setInitiative(entity.getCharisma().getModfier());
+		result.setInitiative(entity.getDexterity().getModfier());
 		result.setSpeed(entity.getSpeed());
 		
 		return result;
