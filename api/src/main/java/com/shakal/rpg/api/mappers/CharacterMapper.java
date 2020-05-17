@@ -30,17 +30,17 @@ public class CharacterMapper {
 		result.setWisdom(AtributeMapper.entityToDetailTO(entity.getAtributes(),5));
 		result.setCharisma(AtributeMapper.entityToDetailTO(entity.getAtributes(),6));
 		
-		result.setProeficiencies(entity.getProeficiencies().stream()
-						.map(proeficiency ->  proeficiency.getId()  )
-						.collect(Collectors.toList()));
+		result.setProeficiencBonus(entity.getClassLevel().get(
+				entity.getClassLevel().size() -1).getClassLevel().getLevel().getProeficiencyBonus()
+				);
+		
+		result.setProeficiencies(ProeficiencyMapper.createProeficiencyView(entity, result.getProeficiencBonus()));
 		
 		result.setLanguages(entity.getLanguages().stream()
 				.map( language ->  LanguageMappers.entityToDTO(language))
 				.collect(Collectors.toList()));
 		
-		result.setProeficiencBonus(entity.getClassLevel().get(
-				entity.getClassLevel().size() -1).getClassLevel().getLevel().getProeficiencyBonus()
-				);
+		
 		result.setBackground(entity.getBackgroundStory());
 		result.setAge(entity.getAge());
 		result.setHeight(entity.getHeight());

@@ -2,6 +2,7 @@ import { ClassLevelDetail } from '../class/class.level.detail';
 import { KeyValue } from '../comon/key.value';
 import { CharacterLifePoints } from './character.life.points';
 import { CreatureAtribute } from '../creature/creature.atribute';
+import { ViewAtributeInfo } from './character.view.atribute';
 
 export interface CharacterSheet{
     id: number,
@@ -23,7 +24,7 @@ export interface CharacterSheet{
     inteligence:CreatureAtribute,
     charisma:CreatureAtribute,
 
-    proeficiencies:number[],
+    proeficiencies:ViewAtributeInfo[],
 
     languages: KeyValue[],
 

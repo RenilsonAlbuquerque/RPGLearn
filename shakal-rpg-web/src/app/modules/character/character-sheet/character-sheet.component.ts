@@ -5,13 +5,17 @@ import { initializeCharacterSheet } from 'src/app/domain/mappers/character.mappe
 
 @Component({
   selector: 'app-character-sheet',
-  templateUrl: './character-sheet.component.html',
-  styleUrls: ['./character-sheet.component.scss']
+  //templateUrl: './character-sheet.component.html',
+  templateUrl: './character.html',
+  //styleUrls: ['./character-sheet.component.scss']
+  styleUrls: ['./character.sheet.alt.scss']
 })
 export class CharacterSheetComponent implements OnInit {
 
   @Input() characterId: number;
   private sheet: CharacterSheet;
+
+  public mobile: boolean = true;
   constructor(private characterService: CharacterService) {
     this.sheet = initializeCharacterSheet();
   }
@@ -22,6 +26,9 @@ export class CharacterSheetComponent implements OnInit {
         console.log(response),
         this.sheet = response)  
     )
+    if (window.innerWidth <= 400) { // 768px portrait
+      this.mobile = true;
+    }
   }
   getAcrobatics(){
 
