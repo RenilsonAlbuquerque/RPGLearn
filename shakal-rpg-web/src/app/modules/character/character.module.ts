@@ -8,22 +8,35 @@ import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CharacterSheetComponent } from './character-sheet/character-sheet.component';
 import { RaceService } from 'src/app/infra/services/race.service';
 import { ClassService } from 'src/app/infra/services/class.service';
+import { CharacterAtributesPieceComponent } from './character-sheet/character-atributes-piece/character-atributes-piece.component';
+import { CharacterLifePieceComponent } from './character-sheet/character-life-piece/character-life-piece.component';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faShieldAlt, faHandSparkles, faMagic, faFingerprint, faGem } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { CharacterItemPieceComponent } from './character-sheet/character-item-piece/character-item-piece.component';
+import { CoinModule } from '../coin/coin.module';
 //import { DirectivesModule } from '../generalmodules/directives.module';
 
 
 
 
 @NgModule({
-  declarations: [CharacterCreateComponent, CharacterSheetComponent],
+  declarations: [CharacterCreateComponent, CharacterSheetComponent, CharacterAtributesPieceComponent, CharacterLifePieceComponent, CharacterItemPieceComponent],
   imports: [
     CommonModule,
     CharacterRoutingModule,
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
+    FontAwesomeModule,
+    CoinModule
     //DirectivesModule
   ],
   providers:[CharacterService,FormBuilder,RaceService,ClassService],
   exports: [CharacterSheetComponent]
 })
-export class CharacterModule { }
+export class CharacterModule { 
+  constructor(){
+    library.add(faShieldAlt,faHandSparkles,faMagic,faFingerprint,faGem);
+  }
+}

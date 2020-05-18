@@ -1,0 +1,6 @@
+<div class="coin" [ngClass]="{'platinum':coinType == 1,'gold':coinType == 2,
+'electrum':coinType == 3,'silver':coinType == 4,'bronze':coinType == 5 }">
+	<div class="number">
+		{{value}}
+	</div>
+</div>

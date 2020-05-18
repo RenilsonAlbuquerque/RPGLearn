@@ -1,0 +1,87 @@
+.page{
+    display: flex;
+    flex-direction: column;
+    background-color: #EEEEEE;
+  }
+
+.shield{
+    height: 120px;
+    width: 98px;
+    display: flex;
+    flex-direction: column; 
+  }
+  .title-bottom{
+    position: relative;
+    /* left: 37px; */
+    font-size: 15px;
+    bottom: 43px;
+    text-align: center;
+  } 
+  .valor{
+    position: relative;
+    font-size: 32px;
+    bottom: 52px;
+    font-size: 32px;
+    font-weight: 500;
+    text-align: center;
+  }
+  svg{
+    width: 100%;
+    height: 100%;
+  }
+  
+  
+  
+#main-sheet{
+  display: flex;
+}
+#ac-in-sp{
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    background-color: #EEEEEE;
+    border-radius: 10px;
+  }
+
+#current-lp{
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  border-radius: 10px 10px 0 0;
+  padding: 10px;
+  text-align: center;
+  align-items: center;
+  #lp-v{
+    font-size: 40px;
+    font-weight: 800
+  }
+}
+#temporary-lp{
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  border-radius: 0 0 10px 10px;
+  padding: 10px;
+  text-align: center;
+  align-items: center;
+  #lp-v{
+    font-size: 40px;
+    font-weight: 800
+  }
+  
+}
+#hd-ds{
+  display: grid;
+  grid-template-columns: 50% 50%;
+  margin-left: 7px;
+  margin-right: 7px;
+  .dc-column{
+    align-items: center;
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+}

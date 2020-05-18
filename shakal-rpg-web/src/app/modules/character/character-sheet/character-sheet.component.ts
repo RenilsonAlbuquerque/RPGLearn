@@ -11,6 +11,9 @@ import { initializeCharacterSheet } from 'src/app/domain/mappers/character.mappe
   styleUrls: ['./character.sheet.alt.scss']
 })
 export class CharacterSheetComponent implements OnInit {
+  private hpLife: boolean =true;
+  private abilities: boolean =false;
+  private item: boolean =false;
 
   @Input() characterId: number;
   private sheet: CharacterSheet;
@@ -30,8 +33,20 @@ export class CharacterSheetComponent implements OnInit {
       this.mobile = true;
     }
   }
-  getAcrobatics(){
-
+  handleAbilities(){
+    this.abilities = true;
+    this.hpLife = false;
+    this.item = false;
+  }
+  handleAc(){
+    this.abilities = false;
+    this.hpLife = true;
+    this.item = false;
+  }
+  handleItem(){
+    this.abilities = false;
+    this.hpLife = false;
+    this.item = true;
   }
 
 }
