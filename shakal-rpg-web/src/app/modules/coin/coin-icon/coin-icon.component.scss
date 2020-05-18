@@ -6,6 +6,7 @@
     clip-path: circle(50% at 50% 50%);
     font-family: 'Source Sans Pro', sans-serif;
     margin:auto;
+    cursor: pointer;
     &.platinum{
         background: rgb(229, 228, 226);
         background: linear-gradient(143deg, rgba(229, 228, 226,1) 0%, rgba(229, 253, 225,1) 48%, rgba(178,189,225,1) 100%);

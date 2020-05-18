@@ -14,6 +14,8 @@ export class CharacterSheetComponent implements OnInit {
   private hpLife: boolean =true;
   private abilities: boolean =false;
   private item: boolean =false;
+  private trait: boolean =false;
+  private spell: boolean =false;
 
   @Input() characterId: number;
   private sheet: CharacterSheet;
@@ -37,16 +39,35 @@ export class CharacterSheetComponent implements OnInit {
     this.abilities = true;
     this.hpLife = false;
     this.item = false;
+    this.trait = false;
+    this.spell = false;
   }
   handleAc(){
     this.abilities = false;
     this.hpLife = true;
     this.item = false;
+    this.trait = false;
+    this.spell = false;
   }
   handleItem(){
     this.abilities = false;
     this.hpLife = false;
     this.item = true;
+    this.trait = false;
+    this.spell = false;
   }
-
+  handleTrait(){
+    this.abilities = false;
+    this.hpLife = false;
+    this.item = false;
+    this.trait = true;
+    this.spell = false;
+  }
+  handleSpell(){
+    this.abilities = false;
+    this.hpLife = false;
+    this.item = false;
+    this.trait = false;
+    this.spell = true;
+  }
 }

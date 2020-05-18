@@ -15,13 +15,15 @@ import { faShieldAlt, faHandSparkles, faMagic, faFingerprint, faGem } from '@for
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CharacterItemPieceComponent } from './character-sheet/character-item-piece/character-item-piece.component';
 import { CoinModule } from '../coin/coin.module';
+import { CharacterTraitsPieceComponent } from './character-sheet/character-traits-piece/character-traits-piece.component';
+import { CharacterSpellsPieceComponent } from './character-sheet/character-spells-piece/character-spells-piece.component';
 //import { DirectivesModule } from '../generalmodules/directives.module';
 
 
 
 
 @NgModule({
-  declarations: [CharacterCreateComponent, CharacterSheetComponent, CharacterAtributesPieceComponent, CharacterLifePieceComponent, CharacterItemPieceComponent],
+  declarations: [CharacterCreateComponent, CharacterSheetComponent, CharacterAtributesPieceComponent, CharacterLifePieceComponent, CharacterItemPieceComponent, CharacterTraitsPieceComponent, CharacterSpellsPieceComponent],
   imports: [
     CommonModule,
     CharacterRoutingModule,

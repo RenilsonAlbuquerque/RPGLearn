@@ -60,6 +60,8 @@
   <app-character-life-piece [sheet]="sheet" *ngIf="hpLife"></app-character-life-piece>
   <app-character-atributes-piece [sheet]="sheet" *ngIf="abilities"></app-character-atributes-piece>
   <app-character-item-piece [sheet]="sheet" *ngIf="item"></app-character-item-piece>
+  <app-character-traits-piece [sheet]="sheet" *ngIf="trait"></app-character-traits-piece>
+  <app-character-spells-piece [sheet]="sheet" *ngIf="spell"></app-character-spells-piece>
  </form>
  <div id="bottom-bar">
   <div (click)="handleAc()">
@@ -74,11 +76,11 @@
     <fa-icon icon="gem"></fa-icon>
     <label>Itens</label>
   </div>
-  <div (click)="handleItem()">
+  <div (click)="handleTrait()">
     <fa-icon icon="fingerprint"></fa-icon>
     <label>Traços</label>
   </div>
-  <div (click)="handleAbilities()">
+  <div (click)="handleSpell()">
     <fa-icon icon="magic"></fa-icon>
     <label>Magias</label>
   </div>
