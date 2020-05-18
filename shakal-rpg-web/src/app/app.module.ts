@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -25,7 +25,12 @@ import { FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import { DirectivesModule } from './modules/generalmodules/directives.module';
 
 
-
+export class HammerConfig extends HammerGestureConfig {
+  overrides = <any> {
+      'pinch': { enable: false },
+      'rotate': { enable: false }
+  }
+}
 
 
 @NgModule({
@@ -56,7 +61,11 @@ import { DirectivesModule } from './modules/generalmodules/directives.module';
     SpinnerService,
     FontAwesomeModule,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },],
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    {
+      provide: HAMMER_GESTURE_CONFIG,
+      useClass: HammerConfig
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { 

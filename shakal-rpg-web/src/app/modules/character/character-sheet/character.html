@@ -30,7 +30,9 @@
     <app-character-life-piece [sheet]="sheet"></app-character-life-piece>
   </section>
  </form>
- <form id="form-mobile" *ngIf="mobile">
+ <form id="form-mobile" *ngIf="mobile"
+ (swipeleft)="onSwipeLeft($event)"
+ (swiperight)="onSwipeRight($event)">
   <section class="header-mobile" >
     <img height="80" width="80"  style="vertical-align: middle;padding: 15px;"
     src="https://i1.wp.com/merricb.com/wp-content/uploads/2015/02/022515_1235_5eadventure1.jpg?w=865&ssl=1"/>

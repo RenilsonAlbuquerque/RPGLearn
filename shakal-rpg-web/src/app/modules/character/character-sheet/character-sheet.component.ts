@@ -70,4 +70,59 @@ export class CharacterSheetComponent implements OnInit {
     this.trait = false;
     this.spell = true;
   }
+  /*############# Swipe #####################*/
+  onSwipeLeft(event){
+    if(this.hpLife){
+      this.hpLife = false;
+      this.abilities =true;
+      return;
+    }
+    if(this.abilities){
+      this.abilities = false;
+      this.item = true;
+      return;
+    }
+    if(this.item){
+      this.item = false;
+      this.trait = true;
+      return;
+    }
+    if(this.trait){
+      this.trait = false;
+      this.spell = true;
+      return;
+    }
+    if(this.spell){
+      this.spell = false;
+      this.hpLife = true;
+      return;
+    }
+  }
+  onSwipeRight(event){
+    if(this.hpLife){
+      this.hpLife = false;
+      this.spell =true;
+      return;
+    }
+    if(this.abilities){
+      this.abilities = false;
+      this.hpLife = true;
+      return;
+    }
+    if(this.item){
+      this.item = false;
+      this.abilities = true;
+      return;
+    }
+    if(this.trait){
+      this.trait = false;
+      this.item = true;
+      return;
+    }
+    if(this.spell){
+      this.spell = false;
+      this.trait = true;
+      return;
+    }
+  }
 }
