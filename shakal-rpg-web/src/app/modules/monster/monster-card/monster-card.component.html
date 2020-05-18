@@ -1,22 +1,23 @@
-<div class="card text-white" [ngClass]="{'bg-dark':monster.lifePercent == 0, 
+<div 
+  draggable="true" 
+  (dragstart)="drag($event)" 
+  class="monster-card text-white" [ngClass]="{'bg-dark':monster.lifePercent == 0, 
                                           'bg-danger': monster.lifePercent < 10 && monster.lifePercent > 0,
                                           'bg-warning': monster.lifePercent > 10 && monster.lifePercent < 50,
                                           'bg-success': monster.lifePercent > 50}">
-        <img class="card-img" height="150" width="100"
+        <img id="card-image" class="card-img" height="80" 
         src="{{monster?.imagePath}}" alt="_blank" />
-        <div class="card-body">
-          <strong class="text">{{monster.name }}</strong><br>
-          <small class="text">{{"Nível: " +  monster.level.value }}</small><br>
-          <small class="text">Pontos de vida: {{monster.lifePoints}}</small>
-        </div>
+        <small class="text">{{monster.name }}</small>
+        <small class="text-lp">{{"Nv: " +  monster.level.value }}</small>
+        <small class="text-level">{{ "Pv:" + monster.lifePoints}}</small>
 </div>
 <!-- <mat-card class="example-card">
     <img mat-card-image src="{{monster?.imagePath}}" height="150" width="100" alt="Photo of a Shiba Inu">
     <mat-card-content>
       <h6>{{monster.name }}</h6>
-      <small>{{"Nv: " +  monster.level }}</small>
+      <small>{{"Nv: " +  monster.level.value }}</small>
       <br>
-      <small>Pontos de vida: {{monster.lifePoints}}</small>
+      <small>Pv: {{monster.lifePoints}}</small>
       
     </mat-card-content>
 

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="api/src/main/java"/>
+	<classpathentry kind="src" path="api/src/test/java"/>
+	<classpathentry kind="src" path="rpgmobile/android/app/src/main/java"/>
+	<classpathentry kind="src" path="shakal_flutter/android/app/src/main/java"/>
+	<classpathentry kind="lib" path="api/gradle/wrapper/gradle-wrapper.jar"/>
+	<classpathentry kind="lib" path="rpgmobile/android/gradle/wrapper/gradle-wrapper.jar"/>
+	<classpathentry kind="output" path="api/bin/main"/>
+</classpath>

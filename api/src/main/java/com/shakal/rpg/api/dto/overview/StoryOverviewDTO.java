@@ -8,6 +8,8 @@ public class StoryOverviewDTO {
 	
 	private String folderImage;
 	
+	private int userRoleInStory;
+	
 	
 
 	public StoryOverviewDTO() {
@@ -43,6 +45,14 @@ public class StoryOverviewDTO {
 
 	public void setFolderImage(String folderImage) {
 		this.folderImage = folderImage;
+	}
+
+	public int getUserRoleInStory() {
+		return userRoleInStory;
+	}
+
+	public void setUserRoleInStory(int userRoleInStory) {
+		this.userRoleInStory = userRoleInStory;
 	}
 	
 	

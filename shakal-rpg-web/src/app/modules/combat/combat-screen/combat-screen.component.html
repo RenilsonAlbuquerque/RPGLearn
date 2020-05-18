@@ -1,127 +1,42 @@
 <div>
-    
-    <div class="card" >
-        <div class="card-header">
-            <h6>Inimigos</h6>
-        </div>
-        <div class="card-body">
-            <div class="row">
-                <div class="col-lg-2 col-md-4 col-sm-12" *ngFor="let monster of combatState.monsters; index as i"  >
-                       
-                    <app-monster-card [monster]="monster" (click)="open(sheet)"></app-monster-card>
-                    <button type="button" class="btn btn-secondary btn-lg btn-block" (click)="openConfirmDeleteModal(confirmDelete)">Remover</button>
-                    <ng-template #confirmDelete let-modal>
-                        <div class="modal-header">
-                            <h4 class="modal-title">Remover o monstro do combate</h4>
-                            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <p><strong>Tem certeza que deseja remover <span class="text-danger">{{monster.name}} #{{i +1}}</span> do combate?</strong></p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">Cancelar</button>
-                            <button type="button" class="btn btn-danger" (click)="removeEnemy(i)">Confirmar</button>
-                          </div>
-                    </ng-template>
-                    
-                    <ng-template #sheet let-modal>
-                            <div class="modal-header">
-                              <h4 class="modal-title">{{monster.name}} #{{i +1}}</h4>
-                              <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                                <span aria-hidden="true">&times;</span>
-                              </button>
-                            </div>
-                            <div class="modal-body">
-                              <app-monster-sheet [monsterId]="monster.id"
-                               [currentLifePoints]="monster.lifePoints" [monsterIndex]="i"></app-monster-sheet>
-                            </div>
-                    </ng-template>
-                </div>
-                
-            </div>
-            
-        </div>
-              
-        <div class="card-footer text-muted">
-            <button type="button" focus-index="1" class="btn btn-dark" (click)="open(modalAddEnemy)" >Adcionar</button>
-            
-        </div>
-        <ng-template #modalAddEnemy let-modal>
+  <!--#####################--Dice Roller--############################-->
+  <app-dice-roll-container *ngIf="rolling"></app-dice-roll-container>
+
+  <!--#####################--Toolbar--############################-->
+  <div class="menu-toolbar">
+    <div class="difficult-alert" [ngClass]="{'easy':combatState.dificult == 1, 
+      'medium': combatState.dificult == 2,
+      'hard': combatState.dificult == 3,
+      'deadly': combatState.dificult == 4 }">
+      <strong>{{combatLevel}}</strong>
+    </div>
+    <app-combaat-turn-order></app-combaat-turn-order>
+    <app-combat-counter></app-combat-counter>
+  </div>
+
+  <!--#####################--Combat Grid--##########################-->
+  <app-grid-board></app-grid-board>
+
+  <!--#####################--Players Queue--##########################-->
+  <div class="players-container">
+    <div *ngFor="let player of combatState.allyQueue; index as j">
+        <app-monster-card  [monster]="player" (click)="open(sheetAlly)"></app-monster-card>
+        <ng-template #sheetAlly let-modal>
             <div class="modal-header">
-              <h4 class="modal-title" id="modal-basic-title">Selecione o monstro</h4>
-              <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                <span aria-hidden="true">&times;</span>
-              </button>
+                <h4 class="modal-title">{{player.name}} #{{j +1}}</h4>
+                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body">
-              <app-monster-search-card (adcionarMonstro)="addCreatureEnemy($event)" (fecharModal)="disposeModalAddMonster($event)" ></app-monster-search-card>
+                <app-monster-sheet [monsterId]="player.id"
+                [currentLifePoints]="player.lifePoints" [monsterIndex]="j"></app-monster-sheet>
             </div>
         </ng-template>
     </div>
-   
-    <ngb-alert [dismissible]="false">
-            <strong>Fácil!</strong>
-    </ngb-alert>
+  </div>
 
+  <!--#####################--Toolbar menu--#########################-->  
+  <app-master-menu-control></app-master-menu-control>
 
-
-        <div class="card" >
-            <div class="card-header">
-                    <h6>Jogadores</h6>
-                </div>
-            <div class="card-body">
-                <div class="row">
-                  <div class="col-lg-2 col-md-4 col-sm-12" *ngFor="let player of combatState.players; index as j"  >
-                    <app-monster-card [monster]="player" (click)="open(sheetAlly)"></app-monster-card>
-                    <button type="button" class="btn btn-secondary btn-lg btn-block" (click)="openConfirmDeleteModal(confirmDeleteAlly)">Remover</button>
-                    <ng-template #confirmDeleteAlly let-modal>
-                        <div class="modal-header">
-                            <h4 class="modal-title">Remover o monstro aliado do combate</h4>
-                            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <p><strong>Tem certeza que deseja remover o aliado <span class="text-primary">{{player.name}} #{{i +1}}</span> do combate?</strong></p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">Cancelar</button>
-                            <button type="button" class="btn btn-danger" (click)="removeAlly(j)">Confirmar</button>
-                          </div>
-                    </ng-template>
-                    
-                    <ng-template #sheetAlly let-modal>
-                            <div class="modal-header">
-                              <h4 class="modal-title">{{player.name}} #{{j +1}}</h4>
-                              <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                                <span aria-hidden="true">&times;</span>
-                              </button>
-                            </div>
-                            <div class="modal-body">
-                              <app-monster-sheet [monsterId]="player.id"
-                               [currentLifePoints]="player.lifePoints" [monsterIndex]="j"></app-monster-sheet>
-                            </div>
-                    </ng-template>
-                </div>
-                </div>
-            </div>
-            <div class="card-footer text-muted">
-                    <button type="button" focus-index="1" class="btn btn-dark" (click)="open(modalAddHelper)" >Adcionar Monstro</button>
-                    
-            </div>
-            
-        </div>
-        <ng-template #modalAddHelper let-modal>
-                <div class="modal-header">
-                  <h4 class="modal-title" id="modal-basic-title">Selecione o monstro</h4>
-                  <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  <app-monster-search-card (adcionarMonstro)="addCreatureAlly($event)" (fecharModal)="disposeModalAddMonster($event)" ></app-monster-search-card>
-                </div>
-            </ng-template>
 </div>

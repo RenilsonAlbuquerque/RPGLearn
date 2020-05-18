@@ -1,29 +1,30 @@
 package com.shakal.rpg.api.control;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.shakal.rpg.api.dto.MonsterSheetDTO;
-import com.shakal.rpg.api.dto.UserDetailDTO;
-import com.shakal.rpg.api.exception.ResourceNotFoundException;
+import com.shakal.rpg.api.contracts.service.IUserService;
+import com.shakal.rpg.api.dto.create.UserCreateDTO;
+import com.shakal.rpg.api.exception.DuplicatedResourceException;
+
 
 @CrossOrigin
 @RestController
 @RequestMapping("/user")
 public class UserController {
 
-	@GetMapping("/detail")
-    public ResponseEntity<UserDetailDTO> getUserDetail() {
-		UserDetailDTO user = new UserDetailDTO();
-		user.setId(1);
-		user.setNome("Remelsom");
-		user.setToken("hadouken");
-		user.setAuthenticated(true);
-        return new ResponseEntity<UserDetailDTO>(user, HttpStatus.OK);
+	@Autowired
+	private IUserService userService;
+	
+	@PostMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<UserCreateDTO> createStory(@RequestBody UserCreateDTO createDto) throws DuplicatedResourceException {
+		return new ResponseEntity<UserCreateDTO>(this.userService.insertUser(createDto), HttpStatus.OK);
     }
 }

@@ -24,6 +24,9 @@ public class ChallangeDificult {
 	
 	private int deadly;
 
+	public ChallangeDificult() {
+		
+	}
 	public long getId() {
 		return id;
 	}

@@ -1,40 +1,32 @@
-
-<nav class="navbar navbar-expand-md navbar-dark bg-primary fixed-top">
-    <!-- Navbar content -->
-
-    <button class="navbar-toggler hidden-sm-up" type="button" 
-            (click)="isNavbarCollapsed = !isNavbarCollapsed"
-            data-target="#navbarsDefault" aria-controls="navbarsDefault"
-             aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse" id="navbarsDefault">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" [routerLink]="['monster']">Monstros</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['combat']">Combate</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['story']">Histórias</a>
-        </li>
-       
-      </ul>
-      <div>
-          <span>{{userName}} </span>
-          <img src="https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png" class="rounded user-image" alt="Cinque Terre">
+<mat-drawer-container class="example-container" [hasBackdrop]=true>
+    <mat-drawer id="drawer" #drawer [mode]="push">
+      <mat-card id="background-card">
+        <img mat-card-avatar src="https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png">
+        <mat-card-content>
+          <p>{{userName}}</p>
+        </mat-card-content>
+      </mat-card>
+      <mat-nav-list>
+        <mat-list-item *ngFor="let item of sidebarItems;index as i" [routerLink]="item.path" (click)="changeSelected(drawer)">
+          <mat-icon mat-list-icon>{{item.icon}}</mat-icon>
+          <div mat-line>{{ item.label }}</div>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item (click)="callLogout()">
+          <mat-icon mat-list-icon>exit_to_app</mat-icon>
+          <div mat-line>Sair</div>
+        </mat-list-item>
+      </mat-nav-list>
+    </mat-drawer>
+    <mat-drawer-content>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <button type="button"  class="btn btn-outline-dark btn-fab" (click)="drawer.toggle()">
+          <fa-icon icon="bars"></fa-icon>
+        </button>
+      </nav>
+      <div class="container">
+        <router-outlet class="main-screen"></router-outlet>
       </div>
-      
-    
-    </div>
-  </nav>
+    </mat-drawer-content>
+</mat-drawer-container>
 
-  &nbsp;
-  <br>
-  <br>
-  <br>
-  <br>
-<div class="container">
-  <router-outlet></router-outlet>
-</div>

@@ -18,13 +18,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.shakal.rpg.api.contracts.service.IMonsterService;
 import com.shakal.rpg.api.dto.MonsterSheetDTO;
+import com.shakal.rpg.api.dto.combat.CreatureCardDTO;
 import com.shakal.rpg.api.dto.create.MonsterCreateDTO;
 import com.shakal.rpg.api.dto.create.MonsterCreateInputDTO;
 import com.shakal.rpg.api.dto.filter.CustomPage;
 import com.shakal.rpg.api.dto.filter.PaginationFilter;
 import com.shakal.rpg.api.dto.info.MonsterInfoDTO;
-import com.shakal.rpg.api.dto.overview.MonsterCardDTO;
 import com.shakal.rpg.api.dto.overview.MonsterOverviewDTO;
+import com.shakal.rpg.api.exception.BusinessException;
 import com.shakal.rpg.api.exception.ResourceNotFoundException;
 
 
@@ -38,7 +39,7 @@ public class MonsterController {
 	private IMonsterService monsterService;
 	
 	@PostMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<MonsterCreateDTO> createMoster(@RequestBody MonsterCreateDTO createDto) throws ResourceNotFoundException{
+    public ResponseEntity<MonsterCreateDTO> createMoster(@RequestBody MonsterCreateDTO createDto) throws ResourceNotFoundException,BusinessException{
 		return new ResponseEntity<MonsterCreateDTO>(this.monsterService.insertMonster(createDto), HttpStatus.OK);
     }
 	
@@ -52,9 +53,9 @@ public class MonsterController {
         return new ResponseEntity<MonsterSheetDTO>(monsterService.getMonsterSheetById(id), HttpStatus.OK);
     }
 	@GetMapping("/card/{id}")
-    public ResponseEntity<MonsterCardDTO> getMonsterCardById(@PathVariable Long id) throws ResourceNotFoundException {
+    public ResponseEntity<CreatureCardDTO> getMonsterCardById(@PathVariable Long id) throws ResourceNotFoundException {
     	
-        return new ResponseEntity<MonsterCardDTO>(monsterService.getMonsterCardById(id), HttpStatus.OK);
+        return new ResponseEntity<CreatureCardDTO>(monsterService.getMonsterCardById(id), HttpStatus.OK);
     }
 	 @PostMapping(value = "/filter",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	 public ResponseEntity<CustomPage<MonsterOverviewDTO>> filter(@RequestBody PaginationFilter filter,

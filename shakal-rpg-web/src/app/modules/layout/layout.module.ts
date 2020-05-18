@@ -5,6 +5,10 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { MaterialModule } from '../material-design/material.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
+
 
 @NgModule({
   declarations: [BaseComponent ],
@@ -12,7 +16,13 @@ import { MaterialModule } from '../material-design/material.module';
     AppRoutingModule,
     CommonModule,
     NgbModule,
-    MaterialModule
+    MaterialModule,
+    FontAwesomeModule,
   ]
+  
 })
-export class LayoutModule { }
+export class LayoutModule {
+  constructor(){
+    library.add(faBars);
+  }
+ }

@@ -5,7 +5,13 @@ public class KeyValueDTO {
 	private long id;
 	private String value;
 	
-	
+	public KeyValueDTO() {
+		
+	}
+	public KeyValueDTO(long id, String value) {
+		this.setId(id);
+		this.setValue(value);
+	}
 	public long getId() {
 		return id;
 	}

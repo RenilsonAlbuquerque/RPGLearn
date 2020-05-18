@@ -1,0 +1,71 @@
+<div id="sidebar-master">
+    <button type="button" class="btn btn-danger btn-lg btn-block" (click)="disable()">
+        <fa-icon icon="times"></fa-icon>
+        <span>Fechar</span>
+    </button>
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link" [ngClass]="{'active':creatureMenu === true}" [routerLink]="" (click)="openDiceMenu()">
+              <fa-icon icon="dice"></fa-icon>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" [ngClass]="{'active':diceMenu === true}" [routerLink]="" (click)="openCreatureMenu()">
+                <fa-icon icon="user"></fa-icon>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" [ngClass]="{active:configMenu === true}" [routerLink]="">
+                <fa-icon icon="cog"></fa-icon>
+            </a>
+        </li>
+    </ul>
+    <app-dice-master-menu *ngIf="diceMenu"></app-dice-master-menu>
+    <app-monster-dragable-list *ngIf="creatureMenu"></app-monster-dragable-list>
+</div>
+
+
+<div class="fab-queue">
+    
+    <button type="button" focus-index="1" class="btn btn-primary btn-fab " (click)="openMenu()">
+        <fa-icon icon="user-cog"></fa-icon>
+    </button>
+    <button *ngIf="canStartCombat" type="button" focus-index="2" class="btn btn-success btn-fab" 
+        (click)="openConfirmDeleteModal(confirmStartCombat)">
+        <fa-icon icon="play"></fa-icon>
+    </button>
+    <button *ngIf="thereArePlayersNoInitiated"  type="button" focus-index="3" class="btn btn-info btn-fab" 
+        (click)="rollInitiativeOfLeftPlayers()">
+        <fa-icon icon="dice"></fa-icon>
+    </button>
+    <button type="button" focus-index="1" class="btn btn-secondary btn-fab " (click)="openDagger(weapon)">
+        <fa-icon icon="user-cog"></fa-icon>
+    </button>
+</div>
+
+
+<ng-template #confirmStartCombat let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Iniciar combate</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p><strong>Existem criaturas no tabuleiro que não rolaram iniciativa. Deseja rolar?</strong></p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">Cancelar</button>
+        <button type="button" class="btn btn-danger" (click)="rollInitiativeForLeftPlayersAndStart()">Confirmar</button>
+      </div>
+</ng-template>
+
+
+
+
+
+
+
+<ng-template #weapon let-modal>
+   <app-weapon-detail></app-weapon-detail>
+</ng-template>

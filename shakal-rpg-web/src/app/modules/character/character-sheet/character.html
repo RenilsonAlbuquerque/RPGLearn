@@ -1,0 +1,93 @@
+<form *ngIf="!mobile">
+  <section class="header-mobile" >
+    <img height="80" width="80"  style="vertical-align: middle;padding: 15px;"
+    src="https://i1.wp.com/merricb.com/wp-content/uploads/2015/02/022515_1235_5eadventure1.jpg?w=865&ssl=1"/>
+    <div class="side-column">
+      <label for="charname">
+        <b>{{sheet.name}}</b>
+      </label>
+      <label placeholder="Paladin 2" *ngFor="let classLevel of sheet.classLevels">
+        {{classLevel.clasS.value}} {{classLevel.level.value}}
+      </label>
+      <label name="race" placeholder="Half-elf" >
+        {{sheet.race.value}}
+      </label>
+    </div>
+    <div class="side-column" style="text-align: end;">
+      <label name="player" placeholder="shakal">
+        {{sheet.player.value}}
+      </label>
+      <label name="alignment" placeholder="Lawful Good">
+        {{sheet.alignment.value}}
+      </label>
+      <label name="experiencepoints" placeholder="3240">
+        <b>XP:</b> {{sheet.experiencyPoints}}
+      </label>
+    </div>
+  </section>
+  <section id="main-sheet">
+    <app-character-atributes-piece [sheet]="sheet"></app-character-atributes-piece>
+    <app-character-life-piece [sheet]="sheet"></app-character-life-piece>
+  </section>
+ </form>
+ <form id="form-mobile" *ngIf="mobile"
+ (swipeleft)="onSwipeLeft($event)"
+ (swiperight)="onSwipeRight($event)">
+  <section class="header-mobile" >
+    <img height="80" width="80"  style="vertical-align: middle;padding: 15px;"
+    src="https://i1.wp.com/merricb.com/wp-content/uploads/2015/02/022515_1235_5eadventure1.jpg?w=865&ssl=1"/>
+    <div class="side-column">
+      <label for="charname">
+        <b>{{sheet.name}}</b>
+      </label>
+      <label placeholder="Paladin 2" *ngFor="let classLevel of sheet.classLevels">
+        {{classLevel.clasS.value}} {{classLevel.level.value}}
+      </label>
+      <label name="race" placeholder="Half-elf" >
+        {{sheet.race.value}}
+      </label>
+    </div>
+    <div class="side-column" style="text-align: end;">
+      <label name="player" placeholder="shakal">
+        {{sheet.player.value}}
+      </label>
+      <label name="alignment" placeholder="Lawful Good">
+        {{sheet.alignment.value}}
+      </label>
+      <label name="experiencepoints" placeholder="3240">
+        <b>XP:</b> {{sheet.experiencyPoints}}
+      </label>
+    </div>
+  </section>
+  <app-character-life-piece [sheet]="sheet" *ngIf="hpLife"></app-character-life-piece>
+  <app-character-atributes-piece [sheet]="sheet" *ngIf="abilities"></app-character-atributes-piece>
+  <app-character-item-piece [sheet]="sheet" *ngIf="item"></app-character-item-piece>
+  <app-character-traits-piece [sheet]="sheet" *ngIf="trait"></app-character-traits-piece>
+  <app-character-spells-piece [sheet]="sheet" *ngIf="spell"></app-character-spells-piece>
+ </form>
+ <div id="bottom-bar">
+  <div (click)="handleAc()">
+    <fa-icon icon="shield-alt"></fa-icon>
+    <label>AC</label>
+  </div>
+  <div (click)="handleAbilities()">
+    <fa-icon icon="hand-sparkles"></fa-icon>
+    <label>Habi.</label>
+  </div>
+  <div (click)="handleItem()">
+    <fa-icon icon="gem"></fa-icon>
+    <label>Itens</label>
+  </div>
+  <div (click)="handleTrait()">
+    <fa-icon icon="fingerprint"></fa-icon>
+    <label>Traços</label>
+  </div>
+  <div (click)="handleSpell()">
+    <fa-icon icon="magic"></fa-icon>
+    <label>Magias</label>
+  </div>
+</div>
+
+
+
+

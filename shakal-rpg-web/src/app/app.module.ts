@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -15,14 +15,32 @@ import { AuthService } from './pages/auth.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
+import { CanActivateRouteGuard } from './interceptors/can.activate';
+import { RegisterPlayerComponent } from './pages/register-player/register-player.component';
+import { UserService } from './modules/user/user.module.service';
+import { SpinnerService } from './infra/services/spinner.service';
+
+
+import { FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import { DirectivesModule } from './modules/generalmodules/directives.module';
+
+
+export class HammerConfig extends HammerGestureConfig {
+  overrides = <any> {
+      'pinch': { enable: false },
+      'rotate': { enable: false }
+  }
+}
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    RegisterPlayerComponent
   ],
   imports: [
+    DirectivesModule,
     LayoutModule,
     BrowserModule,
     AppRoutingModule,
@@ -32,13 +50,23 @@ import { ErrorInterceptor } from './interceptors/error.interceptor';
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
+    FontAwesomeModule,
     ToastrModule.forRoot()
     
   ],
   providers: [
     AuthService,
+    CanActivateRouteGuard,
+    UserService,
+    SpinnerService,
+    FontAwesomeModule,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },],
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    {
+      provide: HAMMER_GESTURE_CONFIG,
+      useClass: HammerConfig
+    }],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+}

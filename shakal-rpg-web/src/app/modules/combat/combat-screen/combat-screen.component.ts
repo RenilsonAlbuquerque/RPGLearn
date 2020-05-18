@@ -1,9 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { MonsterCard } from 'src/app/domain/models/monster/monster.card';
+import { Component, OnInit, ViewChild, TemplateRef, ContentChild, ElementRef, AfterViewInit, Inject, ViewContainerRef } from '@angular/core';
+import { CreatureCard } from 'src/app/domain/models/monster/creature.card';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CombatRoomService } from '../services/combat-room.service';
 import { CombatState } from 'src/app/domain/models/combat/combat.state';
 import { ActivatedRoute } from '@angular/router';
+import { generateRandomId } from 'src/app/infra/helpers/grid-board.helper';
+import { DiceService } from '../../dice/dice.module.service';
+import { DiceNumber } from 'src/app/domain/models/dice/dice.number';
 
 
 
@@ -12,26 +15,27 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './combat-screen.component.html',
   styleUrls: ['./combat-screen.component.scss']
 })
-export class CombatScreenComponent implements OnInit {
-  /*
-  public monsters: MonsterCard[];
-  public players: MonsterCard[];
-  */
+export class CombatScreenComponent implements OnInit  {
+  
   private combatState: CombatState;
   private modalReference;
-  
-
-  messageHistory = [];
+  private combatLevel: string;
+  private rolling: boolean;
   storyid: number;
 
-  constructor(private _activatedRoute: ActivatedRoute,private modalService: NgbModal, private combatRoomService: CombatRoomService) { 
+  constructor(public element: ElementRef,private _activatedRoute: ActivatedRoute,private modalService: NgbModal,
+     private combatRoomService: CombatRoomService, private diceService:DiceService) { 
     this.combatRoomService.getCombatState().subscribe(
-       state => this.combatState = state
+       state => {this.combatState = state,
+        this.updateCombatDifficult()}
     );
-   
-    
+    this.diceService.isRolling().subscribe(
+      result =>{
+        this.rolling = result;
+      }
+    )
+
   }
- 
   ngOnInit() {
     this._activatedRoute.params.subscribe(params => {
       this.storyid = params['id'];
@@ -41,8 +45,9 @@ export class CombatScreenComponent implements OnInit {
   open(content) {
     this.modalReference = this.modalService.open(content, {size: 'xl'});
   }
-  openConfirmDeleteModal(reference){
-    this.modalReference = this.modalService.open(reference,{ centered: true });
+  openConfirmDeleteModal(){
+    let element = document.getElementById("confirmDeleteDialog");
+    this.modalReference = this.modalService.open(element,{ centered: true });
   }
   openSheet(content) {
     this.modalReference = this.modalService.open(content, {size: 'xl'});
@@ -50,21 +55,40 @@ export class CombatScreenComponent implements OnInit {
   disposeModalAddMonster(result: boolean){
     this.modalReference.dismiss();
   }
-  removeEnemy(index: number){
-    this.combatRoomService.removeEnemy(index);
+  removeEnemy(enemyCombatId: string){
+    this.combatRoomService.removeEnemy(enemyCombatId);
     this.modalReference.dismiss();
   }
   removeAlly(index: number){
     this.combatRoomService.removeAlly(index);
     this.modalReference.dismiss();
   }
-  addCreatureEnemy(monster: MonsterCard){
+  addCreatureEnemy(enemy: CreatureCard){
+    enemy.combatId = generateRandomId();
+    enemy.ally = false;
+    this.combatRoomService.addMonsterEnemy(enemy);
+  }
+  addCreatureAlly(ally: CreatureCard){
+    ally.combatId = generateRandomId();
+    ally.ally = true;
+    this.combatRoomService.addMonsterAlly(ally);
+  }
+  updateCombatDifficult(): void{
+    if(this.combatState.dificult == 1){
+      this.combatLevel = "Fácil";
+    }
+    if(this.combatState.dificult == 2){
+      this.combatLevel = "Médio";
+    }
+    if(this.combatState.dificult == 3){
+      this.combatLevel = "Difícil";
+    }
+    if(this.combatState.dificult == 4){
+      this.combatLevel = "Mortal";
+    }
+  }
+  get isCombatStarted(): boolean{
+    return this.combatState.creatures.length > 0; 
+  }
   
-    this.combatRoomService.addMonsterEnemy(monster);
-  }
-  addCreatureAlly(monster: MonsterCard){
-    
-    this.combatRoomService.addMonsterAlly(monster);
-  }
-
 }

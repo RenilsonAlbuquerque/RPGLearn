@@ -6,8 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.shakal.rpg.api.contracts.service.ICombatService;
-import com.shakal.rpg.api.dto.filter.CombatStateDTO;
-import com.shakal.rpg.api.dto.overview.MonsterCardDTO;
+import com.shakal.rpg.api.dto.combat.CombatDifficultDTO;
+import com.shakal.rpg.api.dto.combat.CombatStateDTO;
+import com.shakal.rpg.api.dto.combat.ICreatureCardDTO;
+import com.shakal.rpg.api.dto.combat.CreatureCardDTO;
+import com.shakal.rpg.api.dto.info.CharacterSheetDTO;
 import com.shakal.rpg.api.model.ChallangeDificult;
 import com.shakal.rpg.api.repository.ChallengeDificultDAO;
 
@@ -22,45 +25,82 @@ public class CombatService implements ICombatService{
 	}
 
 	
-	private int calculateChallengeDeficult(CombatStateDTO input) {
+	private void calculateChallengeDeficult(CombatStateDTO input) {
 		int result = 1;
-		int maxLevel = 0;
-		double xpPlayersSum = 0;
-		double xpMonsterSum = 0;
-		int monsterMultiplierFactor = 1;
+		double maxLevel = 0;
+		double xpPlayerEasySum = 0;
+		double xpPlayerMediumSum = 0;
+		double xpPlayerHardSum = 0;
+		double xpPlayerDeadlySum = 0;
+		ChallangeDificult currentChallengeLevel = null;
+		
+		double xpEnemySum = 0;
+		double monsterMultiplierFactor = 1;
+		short enemyCount = 0;
+		short allyCount = 0;
+		
 
-		for(MonsterCardDTO player: input.getPlayers()) {
-			xpPlayersSum += player.getLevel().getXp();
-			if(player.getLevel().getValue() > maxLevel) {
-				maxLevel = player.getLevel().getValue();
+		for(CreatureCardDTO creature: input.getCreatures()) {
+			if(creature.isAlly()) {
+				if(creature.getLevel().getValue() >20) {
+					currentChallengeLevel = this.challengeDificultDAO.findById(20L).get();
+				}else {
+					currentChallengeLevel = this.challengeDificultDAO.findById((long)creature.getLevel().getValue()).get();
+				}
+				xpPlayerEasySum += currentChallengeLevel.getEasy();
+				xpPlayerMediumSum += currentChallengeLevel.getMedium();
+				xpPlayerHardSum += currentChallengeLevel.getHard();
+				xpPlayerDeadlySum += currentChallengeLevel.getDeadly();
+				allyCount++;
+			}
+			else {
+				xpEnemySum += creature.getLevel().getXp();
+				enemyCount++;
 			}
 		}
-		for(MonsterCardDTO monster: input.getMonsters()) {
-			xpMonsterSum += monster.getLevel().getXp();
-		}
-		xpMonsterSum = xpMonsterSum * this.multiplierFactor(input.getMonsters().size());
-		
-		ChallangeDificult currentChallenge = this.challengeDificultDAO.getOne(Long.valueOf(maxLevel));
-		if(xpPlayersSum > currentChallenge.getEasy()) {
-			if(xpPlayersSum < currentChallenge.getMedium()) {
-				
+		if(enemyCount > 0 && allyCount > 0) {
+			if(enemyCount == 2) {
+				monsterMultiplierFactor = 1.5f;
+			}
+			if(enemyCount >= 3 && enemyCount <= 6) {
+				monsterMultiplierFactor = 2f;
+			}
+			if(enemyCount >= 7 && enemyCount <= 10) {
+				monsterMultiplierFactor = 2.5f;
+			}
+			if(enemyCount >= 11 && enemyCount <= 14) {
+				monsterMultiplierFactor = 3f;
+			}
+			if(enemyCount >= 15) {
+				monsterMultiplierFactor = 4f;
+			}
+			xpEnemySum = xpEnemySum * monsterMultiplierFactor;
+			
+			
+			if(xpEnemySum >= xpPlayerMediumSum) {
+				result = 2;
+			}
+			if(xpEnemySum >= xpPlayerHardSum) {
+				result = 3;
+			}
+			if(xpEnemySum >= xpPlayerDeadlySum) {
+				result = 4;
 			}
 		}
+		else {
+			result = 1;
+		}
 		
-		return result;
+		input.setDificult(result);
 	}
 
 	
-	private CombatStateDTO updateMonstersConditions(CombatStateDTO input) {
-		for(MonsterCardDTO monster: input.getMonsters()) {
-			monster.setLifePercent((100 * monster.getLifePoints())/ monster.getTotalLifePoints() );
+	private void updateMonstersConditions(CombatStateDTO input) {
+
+		for(CreatureCardDTO creature: input.getCreatures()) {
+			creature.setLifePercent((100 * creature.getLifePoints())/ creature.getTotalLifePoints());
 		}
-		Collections.sort(input.getMonsters());
-		for(MonsterCardDTO player: input.getPlayers()) {
-			player.setLifePercent((100 * player.getLifePoints())/ player.getTotalLifePoints() );
-		}
-		Collections.sort(input.getPlayers());
-		return input;
+		Collections.sort(input.getCreatures());
 	}
 
 	private double multiplierFactor(int monsterQuantity) {
@@ -81,7 +121,21 @@ public class CombatService implements ICombatService{
 	}
 	@Override
 	public CombatStateDTO updateCombatConditions(CombatStateDTO input) {
-		input = this.updateMonstersConditions(input);
+		this.updateMonstersConditions(input);
+		calculateChallengeDeficult(input);
 		return input;
 	}
+
+
+	@Override
+	public CreatureCardDTO initalizePlayerTokenInStory(long storyId, CharacterSheetDTO characterSheet) {
+		
+		CreatureCardDTO result = new CreatureCardDTO();
+		result.setId(characterSheet.getId());
+		result.setName(characterSheet.getName());
+		result.setImagePath(characterSheet.getImagePath());
+		result.setTotalLifePoints(characterSheet.getLifePoints().getTotalLifePoints());
+		return result;
+	}
+	
 }

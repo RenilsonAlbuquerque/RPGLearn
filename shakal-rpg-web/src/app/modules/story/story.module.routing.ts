@@ -5,6 +5,7 @@ import { StoryListComponent } from './story-list/story-list.component';
 import { StoryDetailComponent } from './story-detail/story-detail.component';
 import { PlaceDetailComponent } from './place-detail/place-detail.component';
 import { StoryCreateComponent } from './story-create/story-create.component';
+import { StoryDetailPlayerComponent } from './story-detail-player/story-detail-player.component';
 
 const routes: Routes = [
     {
@@ -24,6 +25,11 @@ const routes: Routes = [
         {
           path: 'datail/:id',
           component: StoryDetailComponent,
+          
+        },
+        {
+          path: 'datail-player/:id',
+          component: StoryDetailPlayerComponent,
           
         },
         {

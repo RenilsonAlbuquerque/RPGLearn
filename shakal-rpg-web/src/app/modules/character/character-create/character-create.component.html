@@ -1,0 +1,360 @@
+<mat-horizontal-stepper labelPosition="bottom" linear #stepper>
+    <mat-step [stepControl]="raceAndClassFormGroup">
+        <form [formGroup]="raceAndClassFormGroup" class="mainContainer">
+            <ng-template  matStepLabel>Raça</ng-template>
+            <div class="row">
+                <mat-form-field class="form-group col-md-6 col-sm-12" appearance="outline">
+                    <mat-label>Raça</mat-label>
+                    <mat-select formControlName="race">
+                        <mat-option *ngFor="let race of inputValues?.races" [value]="race.id">
+                            {{race.name}}
+                        </mat-option>
+                    </mat-select>        
+                </mat-form-field>
+                <mat-form-field class="form-group col-md-6 col-sm-12" appearance="outline">
+                    <mat-label>Sub-Raça</mat-label>
+                    <mat-select formControlName="subRace">
+                        <mat-option *ngFor="let subR of subRaceOptions" [value]="subR.id">
+                            {{subR.value}}
+                        </mat-option>
+                    </mat-select>        
+                </mat-form-field>
+                   
+                    
+            </div>
+            <div class="column" *ngIf="raceDetailInput">
+                <div class="row">
+                    <b>Bonus de atributo: </b>
+                    <span *ngFor="let bonus of raceDetailInput.atributeBonus"> {{bonus.ability.value}} +{{bonus.bonus}}, </span>
+                </div>
+                <div class="row">
+                    <b>Idiomas: </b>
+                    <span *ngFor="let language of raceDetailInput?.languages"> {{language.value}}, </span>
+                </div>
+                <div class="row">
+                    <b>Deslocamento: </b>{{raceDetailInput.speed}} Q
+                </div>
+                <mat-divider></mat-divider>
+                <div class="row">
+                    <b>Alinhamento: </b>{{raceDetailInput.alignmentDescription}}
+                </div>
+                <div class="row">
+                    <b>Idade: </b>{{raceDetailInput.ageDescription}}
+                </div>
+                <div class="row">
+                    <b>Tamanho: </b>{{raceDetailInput.sizeDescription}}
+                </div>
+                <div class="row"> 
+                    <b>Descrição: </b>
+                    {{raceDetailInput.description}}
+                </div>
+            </div>
+            <div class="control-section">
+                <button mat-raised-button color="primary" matStepperNext>Próximo</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step [stepControl]="classFormGroup">
+        <form [formGroup]="classFormGroup">
+            <ng-template  matStepLabel>Classe</ng-template>
+            <div class="row">
+                <mat-form-field class="form-group col-lg-4 col-md-12" appearance="outline">    
+                    <mat-label>Classe</mat-label>
+                    <mat-select formControlName="class">
+                        <mat-option *ngFor="let class of inputValues?.classes" [value]="class.id" >
+                            {{class.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="column" *ngIf="classDetailInput">
+                <div class="row section"> 
+                    <b>Dado de vida: </b>
+                    {{classDetailInput.lifeDice}}
+                </div>
+                <div class="row section">
+                    <b>Testes de resistência: </b>
+                    <span *ngFor="let saving of classDetailInput?.savingThrows"> {{saving.value}}, </span>
+                </div>
+                <div class="row section"> 
+                    <b>Descrição: </b>
+                    {{classDetailInput.description}}
+                </div>
+                <div  class="row section">
+                    <span style="width: 100%;"><b>Escolha <strong>{{classDetailInput?.proeficiencyChoose.choose}}</strong> perícias entre:</b></span>
+                    <br>
+                    <div class="checkboxes" *ngFor="let proeficiency of classDetailInput?.proeficiencyChoose.proeficiencies; let i=index">
+                        <label>
+                          <input type="checkbox"
+                          [disabled]="fullProeficiency" 
+                          (change)="onChangeProeficiencies($event,proeficiency)"/>
+                          {{proeficiency.value}}
+                        </label>
+                    </div>
+                    <!-- [formGroup]="proeficiency"
+                    <div *ngFor="let proeficiency of classDetailInput?.proeficiencyChoose.proeficiencies let i = index" >
+                        <mat-checkbox class="checkbox" 
+                            (change)="onChangeProeficiencies(proeficiency.id)">
+                            {{classDetailInput?.proeficiencyChoose.proeficiencies[i].value}}
+                        </mat-checkbox>
+                    </div> -->
+                  
+                        
+                        <!-- <label formControlName="i">
+                            <input type="checkbox" 
+                            [checked]="classFormGroup.get('proeficiencies').controls[i].value.value.check"
+                            (change)="onChangeProeficiencies(classFormGroup.get('proeficiencies').controls[i].value.value.id)" />
+                            {{proeficiency.value.value.name}}
+                          </label> -->
+                         
+                          <!-- <ng-container [formGroup]="proeficiency">
+                            <label>
+                                <input 
+                                
+                                type="checkbox" 
+                                [checked]="classFormGroup.get('proeficiencies').controls[i].value.value.check"
+                                (change)="printTest(proeficiency)" />
+                                {{proeficiency.value.value.name}}
+                              </label>
+
+                          </ng-container> -->
+                        <!-- <label>
+                            <input type="checkbox" 
+                            [checked]="classFormGroup.get('proeficiencies').controls[i].value.value.check"
+                            (change)="printTest(proeficiency)" />
+                            {{proeficiency.value.value.name}}
+                          </label> -->
+                        
+                        <!-- <input type="checkbox" 
+                            
+                            
+                            [checked]="proeficiency.value.check"
+                            />
+                            {{proeficiency.value.value.name}} -->
+                            <!-- <mat-checkbox class="checkbox" 
+                            [checked]="proeficiency.value.check">
+                            {{proeficiency.value.value.name}}
+                        </mat-checkbox> -->
+                        
+                        <!-- <ng-container [formGroupName]="i">
+                            <input type="checkbox" 
+                            (click)="onChangeProeficiencies()"
+                            [checked]="check"
+                            />
+                            <label formControlName="value.controls.name"></label>
+                        
+                        </ng-container> -->
+                        <!-- <mat-checkbox 
+                            formControlName="proeficiency.value.check"
+                            class="checkbox" 
+                            [checked]="proeficiency.value.check">
+                            {{proeficiency.value.value}}
+                        </mat-checkbox> -->
+                       
+                       
+<!--                   
+                        <ng-container [formControlGroup]="i">
+                          
+                        </ng-container> -->
+                       
+                        <!-- <mat-checkbox 
+                            [value]="proeficiency.value.check"
+                            [checked]="proeficiency.value.check" 
+                            (change)="onChangeProeficiencies(proeficiency.id)"
+                            [formControlName]="i">
+                            {{classDetailInput?.proeficiencyChoose.proeficiencies[i].value}}
+                        </mat-checkbox> -->
+                    
+                    <!-- <div *ngFor="let proeficiency of classDetailInput?.proeficiencyChoose.proeficiencies let i = index" >
+                        <mat-checkbox class="checkbox" 
+                            (change)="onChangeProeficiencies(proeficiency.id)">
+                            {{classDetailInput?.proeficiencyChoose.proeficiencies[i].value}}
+                        </mat-checkbox>
+                    </div> -->
+                   
+                </div>
+                <!-- <button (click)="printTest()">The test has been made</button> -->
+            </div>
+            <div class="control-section">
+                <button mat-raised-button color="primary" matStepperNext>Próximo</button>
+            </div> 
+        </form>
+    </mat-step>
+    <mat-step [stepControl]="generalInformationFormGroup">
+        <form [formGroup]="generalInformationFormGroup">
+            <ng-template  matStepLabel>Informações gerais</ng-template> 
+                <div class="row">
+                    <mat-form-field class="form-group col-12" appearance="outline">
+                        <mat-label>Alinhamento</mat-label>
+                            <mat-select formControlName="alignment">
+                                <mat-option *ngFor="let alignment of inputValues?.alignments" [value]="alignment.id">
+                                    {{alignment.value}}
+                                </mat-option>
+                            </mat-select>  
+                    </mat-form-field>
+                    <div class="col-md-12 col-lg-6 " >
+                        <img height="360" mat-card-image src="{{ profilePicture }}" alt="">
+                        <mat-form-field class="form-group col-12" appearance="outline" style="width: 100%;padding-left: 30px;">
+                            <mat-label>URL imagem</mat-label>
+                            <input matInput placeholder="Url imagem" [(ngModel)]="profilePicture" formControlName="profilePicture">
+                        </mat-form-field>
+                        
+                    </div>
+                    <div class="col-md-12 col-lg-6 ">
+                        <mat-form-field class="form-group col-12" appearance="outline">
+                            <mat-label>Nome</mat-label>
+                            <input matInput placeholder="Descrição" formControlName="name">
+                            <mat-error *ngIf="!generalInformationFormGroup.controls['name'].valid && generalInformationFormGroup.controls['name'].touched">
+                                Campo obrigatório
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="form-group col-12" appearance="outline">
+                            <mat-label>Descrição</mat-label>
+                            <textarea matInput formControlName="description" matInput rows="13"></textarea>
+                            <mat-error *ngIf="!generalInformationFormGroup.controls['description'].valid && generalInformationFormGroup.controls['description'].touched">
+                                Campo obrigatório
+                            </mat-error>
+                        </mat-form-field>
+                    </div>       
+                </div>
+                <mat-divider></mat-divider>
+                <h5>Tokens</h5>
+                <div class="row" style="padding: 25px;" >
+                    <div class="column" style="display: inline-grid;">
+                        <img height="80" width="80" id="input-image-token" src="{{ tokenImage}}"  accept="image/png">
+                        <input id="fileInputToken" type="file" (change)="changeTokenImage($event)" style="display: none;">
+                        <button mat-raised-button color="primary" onclick="document.getElementById('fileInputToken').click();">Selecionar token</button>
+                    </div>
+                </div>
+                <div class="control-section">
+                        <button mat-raised-button color="primary" matStepperNext>Próximo</button>
+                </div>
+        </form>
+    </mat-step>
+    <mat-step [stepControl]="atributeFormGroup">
+        <form [formGroup]="atributeFormGroup">
+            <ng-template  matStepLabel>Atributos</ng-template>
+            <div class="row">
+                <div class="col-md-2 col-sm-4">
+                    <mat-form-field class="col-md-12" appearance="outline">
+                        <mat-label>Força</mat-label>
+                        <input numbersOnly matInput formControlName="strength" placeholder="Força">
+                        <mat-error *ngIf="!atributeFormGroup.controls['strength'].valid && atributeFormGroup.controls['strength'].touched">
+                            Campo obrigatório
+                        </mat-error>
+                    </mat-form-field>     
+                </div>
+                <div class="col-md-2 col-sm-4">
+                        <mat-form-field class="col-12" appearance="outline">
+                                <mat-label>Destreza</mat-label>
+                                <input numbersOnly matInput formControlName="dexterity" placeholder="Destreza">
+                                <mat-error *ngIf="!atributeFormGroup.controls['dexterity'].valid && atributeFormGroup.controls['dexterity'].touched">
+                                        Campo obrigatório
+                                </mat-error>
+                            </mat-form-field>
+                </div>
+                
+                <div class="col-md-2 col-sm-4">
+                    <mat-form-field class="col-12" appearance="outline">
+                                <mat-label>Constituição</mat-label>
+                                <input numbersOnly matInput formControlName="constitution" placeholder="Constituição">
+                                <mat-error *ngIf="!atributeFormGroup.controls['constitution'].valid && atributeFormGroup.controls['constitution'].touched">
+                                        Campo obrigatório
+                                </mat-error>
+                    </mat-form-field>
+                </div>
+                
+                <div class="col-md-2 col-sm-4">
+                        <mat-form-field class="col-12" appearance="outline">
+                                <mat-label>Inteligência</mat-label>
+                                <input numbersOnly matInput formControlName="inteligence" placeholder="Inteligência">
+                                <mat-error *ngIf="!atributeFormGroup.controls['inteligence'].valid && atributeFormGroup.controls['inteligence'].touched">
+                                        Campo obrigatório
+                                </mat-error>
+                            </mat-form-field>                           
+                </div>
+                
+                <div class="col-md-2 col-sm-4">
+                        <mat-form-field class="col-12" appearance="outline">
+                                <mat-label>Sabedoria</mat-label>
+                                <input numbersOnly matInput formControlName="wisdom" placeholder="Sabedoria">
+                                <mat-error *ngIf="!atributeFormGroup.controls['wisdom'].valid && atributeFormGroup.controls['wisdom'].touched">
+                                        Campo obrigatório
+                                </mat-error>
+                            </mat-form-field>   
+                </div>
+                
+                <div class="col-md-2 col-sm-4">
+                        <mat-form-field class="col-12" appearance="outline">
+                                <mat-label>carisma</mat-label>
+                                <input numbersOnly matInput formControlName="charisma" placeholder="Carisma">
+                                <mat-error *ngIf="!atributeFormGroup.controls['charisma'].valid && atributeFormGroup.controls['charisma'].touched">
+                                        Campo obrigatório
+                                </mat-error>
+                            </mat-form-field>
+                </div>
+            </div>
+            <div class="control-section">
+                <button mat-raised-button color="primary" matStepperNext>Próximo</button>
+            </div>
+        </form>     
+    </mat-step>
+    <mat-step>
+        <ng-template  matStepLabel>Finalizar</ng-template>
+          <mat-card>
+            <mat-card-header>
+                <img height="40" width="40" mat-card-avatar src="{{ tokenImage}}"  accept="image/png">
+                <mat-card-title>{{generalInformationFormGroup.controls.name.value}}</mat-card-title>
+                <mat-card-subtitle>Bárbaro</mat-card-subtitle>
+            </mat-card-header>
+            <div class="row">
+                <img mat-card-image class="col-sm-12 col-md-6" src="{{ generalInformationFormGroup.controls.profilePicture.value }}" alt="Photo of a Shiba Inu">
+                <div class="col-sm-12 col-md-6">
+                    <div class="row">
+                        <div class="col-2">
+                            <span><b>For</b></span>
+                            <br>
+                            <span>{{atributeFormGroup.controls.strength.value}}</span>
+                        </div>
+                        <div class="col-2">
+                            <span><b>Des</b></span>
+                            <br>
+                            <span>{{atributeFormGroup.controls.dexterity.value}}</span>
+                        </div>
+                        <div class="col-2">
+                            <span><b>Con</b></span>
+                            <br>
+                            <span>{{atributeFormGroup.controls.constitution.value}}</span>
+                        </div>
+                        <div class="col-2">
+                            <span><b>Int</b></span>
+                            <br>
+                            <span>{{atributeFormGroup.controls.inteligence.value}}</span>
+                        </div>
+                        <div class="col-2">
+                            <span><b>Sab</b></span>
+                            <br>
+                            <span>{{atributeFormGroup.controls.wisdom.value}}</span>
+                        </div>
+                        <div class="col-2">
+                            <span><b>Car</b></span>
+                            <br>
+                            <span>{{atributeFormGroup.controls.charisma.value}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+              <!-- <div class="column">
+                <img height="360" mat-card-image src="{{ generalInformationFormGroup.controls.profilePicture.value }}" alt="">
+                <span><b>{{classFormGroup.controls.class.value}}</b></span>
+              </div> -->
+                                               
+            </mat-card>
+            <div class="control-section">
+                <button type="button" class="btn btn-success pull-right" matStepperPrevious>voltar</button>
+                <button type="button" class="btn btn-danger pull-right" (click)="stepper.reset()">Resetar</button>
+                <button type="button" class="btn btn-success pull-right" (click)="onSubmit()">Finalizar</button>
+            </div> 
+    </mat-step>
+</mat-horizontal-stepper>

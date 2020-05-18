@@ -19,6 +19,9 @@ import { CombatRoomService } from '../combat/services/combat-room.service';
 import { OnlynumberDirective } from 'src/app/infra/directives/only-number.directive';
 import { InjectableRxStompConfig, RxStompService, rxStompServiceFactory } from '@stomp/ng2-stompjs';
 import { myRxStompConfig } from 'src/app/infra/config/my-rx-stomp.config';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { MonsterDragableListComponent } from './monster-dragable-list/monster-dragable-list.component';
+import { CreatureService } from 'src/app/infra/services/creature.service';
 
 
 
@@ -26,7 +29,7 @@ import { myRxStompConfig } from 'src/app/infra/config/my-rx-stomp.config';
 @NgModule({
   declarations: [MonsterListComponent, MonsterDetailComponent, MonsterInfoComponent,
      MonsterSheetComponent, MonsterCardComponent, MonsterSearchCardComponent, 
-     MonsterCreateComponent,OnlynumberDirective],
+     MonsterCreateComponent, MonsterDragableListComponent],
   imports: [
     NgbModalModule,
     CommonModule,
@@ -35,10 +38,11 @@ import { myRxStompConfig } from 'src/app/infra/config/my-rx-stomp.config';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    BasecomponentsModule
+    BasecomponentsModule,
+    FontAwesomeModule
   ],
   providers:[
-    MonsterService,FormBuilder,CombatRoomService,
+    MonsterService,FormBuilder,CombatRoomService,CreatureService,
     {
       provide: InjectableRxStompConfig,
       useValue: myRxStompConfig
@@ -49,6 +53,6 @@ import { myRxStompConfig } from 'src/app/infra/config/my-rx-stomp.config';
       deps: [InjectableRxStompConfig]
     }
   ],
-  exports: [MonsterCardComponent,MonsterSearchCardComponent, MonsterSheetComponent] 
+  exports: [MonsterCardComponent,MonsterSearchCardComponent, MonsterSheetComponent,MonsterDragableListComponent] 
 })
 export class MonsterModule { }

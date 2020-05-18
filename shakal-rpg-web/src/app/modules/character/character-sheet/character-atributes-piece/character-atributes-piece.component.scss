@@ -1,0 +1,94 @@
+#first-section{
+    display: flex;
+}
+#atributes{
+    display: flex;
+    flex-direction: column;
+    height: max-content;
+    width: 101px;
+    background-color: #bbb;
+    border-radius: 10px;
+  }
+  .atribute{
+    //height: 81px;
+    font-family: Roboto,Helvetica,sans-serif;
+    width: 95px;
+    padding: 5px;
+    position: absolute;
+  }
+  .atribute-title{
+    padding-top: 8px;
+    position: relative;
+    top: 0;
+    left: 25px;
+    font-size: 10px;
+  }
+  
+  .atribute-value{
+    position: relative;
+    top: 0;
+    text-align: center;
+    font-size: 26px;
+    font-weight: 500;
+  }
+  .atribute-modfier{
+    padding-top: 12px;
+      position: relative;
+      text-align: center;
+      font-size: 18px;
+      font-weight: 500;
+  }
+  .coringa{
+    height: 120px;
+    display: flex;
+    flex-direction: column  
+  }
+  #proeficiency{
+    display: flex;
+    flex-direction: column;
+    height: max-content;
+    width: 180px;
+    margin-left: 15px;
+    .upper-values {
+      display: flex;
+      flex-direction: row;
+      .value{
+        width: 40px;
+        padding: 5px;
+        border:2px solid black;
+        border-radius: 10px;
+        text-align: center;
+      }
+      .label{
+        position: relative;
+        width: 100%;
+        height: 22px;
+        margin-top: 6px;
+        border: 1px solid black;
+        border-left: 0;
+        text-align: center;
+      }
+    }
+  }
+  #saving-throws{
+    border:2px solid black;
+    border-radius: 10px;
+    padding:10px;
+    .saving{
+      
+      flex-direction: row;
+      .value{
+        margin-left: 5px;
+        font-size: 12px;
+        border-bottom: 1px solid black;
+        margin-bottom: 1px;
+        display: initial;
+      }
+      .label{
+        margin-left: 5px;
+        font-size: 12px;
+        font-weight: bolder;
+      }
+    }
+  }
+  

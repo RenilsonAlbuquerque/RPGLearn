@@ -1,0 +1,75 @@
+form{
+  font-family: Roboto,Helvetica,sans-serif;
+}
+.legend{
+  font-weight: 500;
+}
+#first-section{
+  display: flex;
+}
+
+/*############################### Cabeçalhos ###########################*/
+.header-mobile{
+  display: flex;
+  font-family: Roboto,Helvetica,sans-serif;
+  position: sticky;
+  top: 0px;
+  background-color: white;
+  z-index: 99;
+  margin-bottom: 5px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 20% 40% 40%;
+  border-style: solid;
+  border-color: #c53131;
+  border-radius: 10px;
+  .side-column{
+    padding: 15px;
+    display: inline-grid;
+    > label{
+      display: inline-block;
+      margin-bottom: 0px;
+    }
+  }
+}
+#main-sheet{
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+  
+}
+/*################################### atributes ###################################*/
+
+
+
+/*###################################### ac and life ########################################*/
+
+#bottom-bar{
+  background-color: #c53131;
+  
+  z-index: 99;
+  position: sticky;
+  bottom: 0px;
+  height: 56px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 20% 20% 20% 20% 20%;
+  >div{
+    height: 36px;
+    min-width: 50px;
+    max-width: 168px;
+    padding-top: 8px;
+    padding-bottom: 12px;
+    align-items: center;
+    text-align: center;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    >label{
+      font-size: 12px;
+    }
+  }
+}
+
+
+

@@ -1,7 +1,11 @@
-import { MonsterCard } from '../monster/monster.card';
+import { CreatureCard } from '../monster/creature.card';
 
 export interface CombatState{
-    monsters: MonsterCard[],
-    players: MonsterCard[],
-    dificult: number
+    creatures: CreatureCard[],
+    allyQueue: CreatureCard[],
+    enemyQueue: CreatureCard[],
+    dificult: number,
+    userTypeInStory: number,
+    currentCreatureTurn: string,
+    combatStarted: boolean
 }

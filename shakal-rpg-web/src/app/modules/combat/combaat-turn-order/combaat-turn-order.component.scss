@@ -1,0 +1,41 @@
+$widithGeneral: 250px;
+
+#label-no-creatures{
+    text-align: center;
+    padding: 10px;
+}
+.icon-image{
+    display: inline-block;
+    height: 2rem;
+    width: 2rem;
+    vertical-align:middle;
+    margin-right: 3px;
+    border-radius: 50%;
+    align-self: center;
+}
+.card-order{
+    padding: 5px;
+    height: 100%;
+    cursor: pointer;
+    background-color: #1976D2;
+}
+.text-right{
+    align-self: center;
+}
+.card-list{
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.9);
+    background-color: #03A9F4;
+    position: absolute;
+    z-index: 30;
+    width: 27%;
+}
+.card-list-item{
+    width: 100%;
+    padding: 5px;
+    display: grid;
+    grid-template-columns: 25% 50% 25%;
+    border-bottom: solid ;
+    border-width: thin;
+    
+}
+

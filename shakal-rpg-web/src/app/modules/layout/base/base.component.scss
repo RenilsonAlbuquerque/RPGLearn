@@ -1,4 +1,25 @@
-.user-image{
-    height: 35px;
-    width: 35px;
+.main-screen{
+    padding: 10px;
+}
+#drawer{
+    width: 200px;
+}
+#sidebar ul li {
+    list-style: none;
+    padding: 0 16px;
+}
+.main-button{
+    position: fixed;
+    left: 12px;
+    top: 12px;
+}
+
+
+
+
+#background-card{
+    background-size: cover;
+    width: 100%;
+    background-image: url('https://i.pinimg.com/originals/10/e9/20/10e920e3c31a67cfd3932b6239bf5538.jpg');
+    background-repeat: no-repeat;
 }

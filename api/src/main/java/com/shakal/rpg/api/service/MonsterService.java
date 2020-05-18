@@ -1,6 +1,7 @@
 package com.shakal.rpg.api.service;
 
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 import java.util.List;
@@ -16,21 +17,20 @@ import org.springframework.stereotype.Service;
 
 import com.shakal.rpg.api.contracts.service.IMonsterService;
 import com.shakal.rpg.api.dto.MonsterSheetDTO;
-
+import com.shakal.rpg.api.dto.combat.CreatureCardDTO;
 import com.shakal.rpg.api.dto.create.MonsterCreateDTO;
 import com.shakal.rpg.api.dto.create.MonsterCreateInputDTO;
 import com.shakal.rpg.api.dto.filter.CustomPage;
 import com.shakal.rpg.api.dto.filter.PaginationFilter;
 import com.shakal.rpg.api.dto.info.MonsterInfoDTO;
-import com.shakal.rpg.api.dto.overview.MonsterCardDTO;
 import com.shakal.rpg.api.dto.overview.MonsterOverviewDTO;
 import com.shakal.rpg.api.model.Alignment;
 import com.shakal.rpg.api.model.Attack;
 import com.shakal.rpg.api.model.Monster;
-import com.shakal.rpg.api.model.MonsterChallengeLevel;
+import com.shakal.rpg.api.model.CreatureLevel;
 import com.shakal.rpg.api.model.MonsterRace;
-import com.shakal.rpg.api.model.MonsterSize;
 import com.shakal.rpg.api.model.MonsterType;
+import com.shakal.rpg.api.model.creature.CreatureSize;
 import com.shakal.rpg.api.model.embedded.CreatureAtributeId;
 import com.shakal.rpg.api.model.enums.ResistenceTypeEnum;
 import com.shakal.rpg.api.model.relation.CreatureAtribute;
@@ -39,6 +39,7 @@ import com.shakal.rpg.api.repository.AtributeDAO;
 import com.shakal.rpg.api.repository.CreatureAtributeDAO;
 import com.shakal.rpg.api.repository.DamageTypeDAO;
 import com.shakal.rpg.api.repository.DiceDAO;
+import com.shakal.rpg.api.repository.ImageTokenDAO;
 import com.shakal.rpg.api.repository.LanguageDAO;
 import com.shakal.rpg.api.repository.MonsterChallengeLevelDAO;
 import com.shakal.rpg.api.repository.MonsterDAO;
@@ -48,9 +49,11 @@ import com.shakal.rpg.api.repository.MonsterTypeDAO;
 import com.shakal.rpg.api.specification.MonsterSpecification;
 import com.shakal.rpg.api.exception.*;
 import com.shakal.rpg.api.helpers.AtributeHelper;
+import com.shakal.rpg.api.helpers.SizeHelper;
 import com.shakal.rpg.api.mappers.AtributeMapper;
 import com.shakal.rpg.api.mappers.AttackMapper;
 import com.shakal.rpg.api.mappers.CreatureMapper;
+import com.shakal.rpg.api.mappers.CreatureTokenMapper;
 import com.shakal.rpg.api.mappers.DamageMapper;
 import com.shakal.rpg.api.mappers.DiceMapper;
 import com.shakal.rpg.api.mappers.FeatureMapper;
@@ -61,6 +64,8 @@ import com.shakal.rpg.api.mappers.MonsterTypeMapper;
 import com.shakal.rpg.api.mappers.SavingThrowMapper;
 import com.shakal.rpg.api.utils.Messages;
 import com.shakal.rpg.api.utils.PaginationGenerator;
+import com.shakal.rpg.api.validators.CharacterValidator;
+import com.shakal.rpg.api.validators.ErrorMessages;
 
 
 
@@ -82,14 +87,15 @@ public class MonsterService implements IMonsterService {
 	private AttackService attackService;
 	private MonsterFeatureDAO monsterFeatureDAO;
 	private DiceDAO diceDao;
-	
+	private ImageTokenDAO tokenDao;
 	@Autowired
 	public MonsterService(MonsterDAO monsterDao,LanguageDAO languageDao, 
 			MonsterChallengeLevelDAO monsterChallengeDao, DamageTypeDAO damageTypeDao,
 			MonsterTypeDAO monsterTypeDao, MonsterSizeDAO monsterSizeDao,
 			AlignmentDAO alignmentDao, AtributeDAO atributeDao,
 			CreatureAtributeDAO creatureAtributeDao, CreatureResistenceService creatureResistenceService,
-			MonsterFeatureDAO monsterFeatureDao, DiceDAO diceDao,AttackService attackService) {
+			MonsterFeatureDAO monsterFeatureDao, DiceDAO diceDao,AttackService attackService,
+			ImageTokenDAO tokenDao) {
 		this.monsterDao = monsterDao;
 		this.languageDao = languageDao;
 		this.challengeLevelDao = monsterChallengeDao;
@@ -102,6 +108,7 @@ public class MonsterService implements IMonsterService {
 		this.cretureResisteceService = creatureResistenceService;
 		this.diceDao = diceDao;
 		this.attackService = attackService;
+		this.tokenDao = tokenDao;
 	}
 
 	@Override
@@ -211,18 +218,21 @@ public class MonsterService implements IMonsterService {
 	}
 
 	@Override
-	public MonsterCreateDTO insertMonster(MonsterCreateDTO inputDto) throws ResourceNotFoundException {
+	public MonsterCreateDTO insertMonster(MonsterCreateDTO inputDto) throws ResourceNotFoundException, BusinessException {
+		ErrorMessages error = new ErrorMessages();
+		CharacterValidator.validateToken(inputDto.getImagePath(), error);
+		
 		//Search entities
 		MonsterType typeResult = this.monsterTypeDao.findById(inputDto.getType())
 				.orElseThrow(() -> new ResourceNotFoundException(Messages.INVALID_MONSTER_TYPE));
 		
-		MonsterSize sizeSearch = this.monsterSizeDao.findById(inputDto.getSize())
+		CreatureSize sizeSearch = this.monsterSizeDao.findById(inputDto.getSize())
 				.orElseThrow(() -> new ResourceNotFoundException(Messages.INVALID_MONSTER_SIZE));
 		
 		Alignment alignmentSearch = this.alignmentDao.findById(inputDto.getAlignment())
 				.orElseThrow(() -> new ResourceNotFoundException(Messages.INVALID_CREATURE_ALIGNMENT));
 		
-		MonsterChallengeLevel levelSearch = this.challengeLevelDao.findById(inputDto.getLevel())
+		CreatureLevel levelSearch = this.challengeLevelDao.findById(inputDto.getLevel())
 				.orElseThrow(() -> new ResourceNotFoundException(Messages.INVALID_MONSTER_CHALLENGE_LEVEL));
 		
 		
@@ -246,6 +256,14 @@ public class MonsterService implements IMonsterService {
 		entity.setLanguages(inputDto.getLanguages().stream()
 				.map(language -> this.languageDao.getOne(language.getId()))
 				.collect(Collectors.toList()));
+		
+		
+		
+		//entity.setToken(CreatureMapper.createToken(inputDto.getTokenImageRaw(), error));
+		
+		if(error.hasError()) {
+			throw new BusinessException(error.getMessages().toString());
+		}
 		/*
 		entity.setActions(inputDto.getActions().stream()
 				.map(action -> ActionMapper.dtoToGenericEntity(action))
@@ -261,6 +279,8 @@ public class MonsterService implements IMonsterService {
 		this.attackService.mountActions(inputDto.getActions(), entity, false);
 		this.attackService.mountActions(inputDto.getLegendaryActions(), entity, true);
 		
+		
+		this.tokenDao.save(CreatureTokenMapper.createToken(inputDto.getTokenImageRaw(),entity));
 		return inputDto;
 	}
 	private List<CreatureAtribute> mountAtributes(MonsterCreateDTO inputDto, Monster monster){
@@ -329,17 +349,19 @@ public class MonsterService implements IMonsterService {
 	}
 
 	@Override
-	public MonsterCardDTO getMonsterCardById(Long id) throws ResourceNotFoundException {
+	public CreatureCardDTO getMonsterCardById(Long id) throws ResourceNotFoundException {
 		Monster search = this.monsterDao.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException(Messages.MONSTER_NOT_FOUND));
 		
-		MonsterCardDTO result = new MonsterCardDTO();
+		CreatureCardDTO result = new CreatureCardDTO();
 		result.setId(search.getId());
 		result.setLevel(LevelMapper.entityToInfoDTO(search.getChallengeLevel()));
 		result.setLifePoints(search.getBaseLifeDice());
 		result.setTotalLifePoints(search.getBaseLifeDice());
 		result.setName(search.getRace().getName());
 		result.setImagePath(search.getImagePath());
+		result.setSpeed(search.getSpeed());
+		result.setSize(SizeHelper.getCreatureSizeInSquare( search.getSize()));
 		return result;
 	}
 	

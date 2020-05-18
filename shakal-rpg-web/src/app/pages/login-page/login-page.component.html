@@ -18,8 +18,10 @@
                                     Campo obrigatório
                             </mat-error>
                         </mat-form-field>
-                        <button [disabled]="loading" (click)="onSubmit()" mat-raised-button color="primary">Login</button>
-                        
+                        <div class="buttons-row">
+                            <button [disabled]="loading" (click)="goRegister()" mat-raised-button color="secondary">Registrar</button>
+                            <button [disabled]="loading" (click)="onSubmit()" mat-raised-button color="primary">Login</button>
+                        </div>
                     </form>
                 </mat-card-content>
            </mat-card>

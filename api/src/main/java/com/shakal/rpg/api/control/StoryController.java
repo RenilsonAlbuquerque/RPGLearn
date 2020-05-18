@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -23,6 +24,7 @@ import com.shakal.rpg.api.dto.filter.CustomPage;
 import com.shakal.rpg.api.dto.filter.PaginationFilter;
 import com.shakal.rpg.api.dto.info.StoryInfoDTO;
 import com.shakal.rpg.api.dto.overview.StoryOverviewDTO;
+import com.shakal.rpg.api.exception.BusinessException;
 import com.shakal.rpg.api.exception.ResourceNotFoundException;
 import com.shakal.rpg.api.security.AuthenticationContext;
 
@@ -36,7 +38,7 @@ public class StoryController {
 
 	
 	@PostMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<StoryCreateDTO> createStory(@RequestBody StoryCreateDTO createDto) throws ResourceNotFoundException{
+    public ResponseEntity<StoryCreateDTO> createStory(@RequestBody StoryCreateDTO createDto) throws ResourceNotFoundException, BusinessException{
 		return new ResponseEntity<StoryCreateDTO>(this.storyrService.insertStory(createDto), HttpStatus.OK);
     }
 	
@@ -46,6 +48,14 @@ public class StoryController {
 		long userId = ((AuthenticationContext) SecurityContextHolder.getContext().getAuthentication()).getId();
         return new ResponseEntity<CustomPage<StoryOverviewDTO>>(this.storyrService.listsStoriesByUserIdPaged(filter, userId), HttpStatus.OK);
     }
+	 @PostMapping(value = "/filter",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	 public ResponseEntity<CustomPage<StoryOverviewDTO>> filter(@RequestBody PaginationFilter filter,
+	    													@RequestParam(required = false) String name
+	    													){
+		 long userId = ((AuthenticationContext) SecurityContextHolder.getContext().getAuthentication()).getId();
+		 return new ResponseEntity<CustomPage<StoryOverviewDTO>>
+	    	 		(this.storyrService.searchUserStoriesPaged(userId,name,filter), HttpStatus.OK);
+	 }
 	@PostMapping(value="/list",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<CustomPage<StoryOverviewDTO>> listAllStories(@RequestBody PaginationFilter filter){
 	

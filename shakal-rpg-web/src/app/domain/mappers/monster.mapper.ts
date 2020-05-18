@@ -7,6 +7,7 @@ export default function mapFormToDTO(informacoesFormGroup: FormGroup,habilitiesF
       raceName: informacoesFormGroup.controls['name'].value,
       raceDescription: informacoesFormGroup.controls['description'].value,
       imagePath: informacoesFormGroup.controls['profilePicture'].value,
+      tokenImageRaw : informacoesFormGroup.controls['tokenImage'].value,
       size: informacoesFormGroup.controls['size'].value,
       alignment: informacoesFormGroup.controls['alignment'].value,
       type: informacoesFormGroup.controls['type'].value,

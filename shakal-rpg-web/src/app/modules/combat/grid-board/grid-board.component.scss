@@ -1,0 +1,44 @@
+
+.canvas-container{
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    overflow: scroll;
+
+}
+.svg{
+    position: absolute;
+}
+.canvas{
+    max-width: 80%;
+}
+.zoom-slider{
+    z-index: 150;
+    position: fixed;
+    top: 158px;
+    right: 0px;
+    transform: rotate(270deg);
+}
+#zoom-slider_btn{
+    z-index: 100;
+    position: fixed;
+    top: 158px;
+    right: 60px;
+}
+@media screen and (max-width: 992px) {
+    #zoom-slider_btn{
+        z-index: 100;
+        position: fixed;
+        top: 158px;
+        right: 30px;
+    }
+}
+@media screen and (max-width: 600px) {
+    #zoom-slider_btn{
+        z-index: 100;
+        position: fixed;
+        top: 158px;
+        right: 20px;
+    }
+}
+  

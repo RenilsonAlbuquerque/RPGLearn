@@ -12,19 +12,25 @@ import { StoryCreateComponent } from './story-create/story-create.component';
 import { FormsModule, ReactiveFormsModule, FormBuilder } from '@angular/forms';
 import { BasecomponentsModule } from '../basecomponents/basecomponents.module';
 import { PlaceCreateComponent } from './place-create/place-create.component';
+import { StoryDetailPlayerComponent } from './story-detail-player/story-detail-player.component';
+import { CombatModule } from '../combat/combat.module';
+import { CharacterService } from '../character/character.module.service';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 
 @NgModule({
-  declarations: [StoryMapComponent, PlaceDetailComponent, StoryListComponent, StoryDetailComponent, PlaceOverviewComponent, StoryCreateComponent, PlaceCreateComponent],
+  declarations: [StoryMapComponent, PlaceDetailComponent, StoryListComponent, StoryDetailComponent, PlaceOverviewComponent, StoryCreateComponent, PlaceCreateComponent, StoryDetailPlayerComponent],
   imports: [
     CommonModule,
     StoryRoutingModule,
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    BasecomponentsModule
+    BasecomponentsModule,
+    CombatModule,
+    FontAwesomeModule,
   ],
-  providers:[StoryService,FormBuilder]
+  providers:[StoryService,FormBuilder,CharacterService]
 })
 export class StoryModule { }

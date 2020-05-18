@@ -15,6 +15,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
+import com.shakal.rpg.api.model.creature.CreatureSize;
+
 
 
 @Entity
@@ -28,11 +30,11 @@ public class Monster extends Creature{
 	
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
 	@JoinColumn(name ="challenge_level_id")
-	private MonsterChallengeLevel challengeLevel;
+	private CreatureLevel challengeLevel;
 	
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
 	@JoinColumn(name ="size_id")
-	private MonsterSize size;
+	private CreatureSize size;
 	
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
 	@JoinColumn(name ="race_id")
@@ -88,22 +90,22 @@ public class Monster extends Creature{
 	}
 
 
-	public MonsterChallengeLevel getChallengeLevel() {
+	public CreatureLevel getChallengeLevel() {
 		return challengeLevel;
 	}
 
 
-	public void setChallengeLevel(MonsterChallengeLevel challengeLevel) {
+	public void setChallengeLevel(CreatureLevel challengeLevel) {
 		this.challengeLevel = challengeLevel;
 	}
 
 
-	public MonsterSize getSize() {
+	public CreatureSize getSize() {
 		return size;
 	}
 
 
-	public void setSize(MonsterSize size) {
+	public void setSize(CreatureSize size) {
 		this.size = size;
 	}
 

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 
+import com.shakal.rpg.api.exception.BusinessException;
 import com.shakal.rpg.api.exception.DuplicatedResourceException;
 import com.shakal.rpg.api.exception.ExceptionReponseDetail;
 import com.shakal.rpg.api.exception.ResourceNotFoundException;
@@ -43,6 +44,17 @@ public class RestHandlerexceptionBuilder {
                 );
 
         return new ResponseEntity<>(resourceNotFoundDetail, HttpStatus.CONFLICT);
+    }
+    @ExceptionHandler(BusinessException.class)
+    public ResponseEntity<?> handlerBusinessException(BusinessException businessException) {
+        ExceptionReponseDetail resourceNotFoundDetail = new ExceptionReponseDetail( 
+                "Business Exception",
+                HttpStatus.CONFLICT.value(),
+                businessException.getMessage(),
+                businessException.getClass().getName()
+                );
+
+        return new ResponseEntity<>(resourceNotFoundDetail, HttpStatus.UNPROCESSABLE_ENTITY);
     }
 
     @ExceptionHandler({ ConstraintViolationException.class })

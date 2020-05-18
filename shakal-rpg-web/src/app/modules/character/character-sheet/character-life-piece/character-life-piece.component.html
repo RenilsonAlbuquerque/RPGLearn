@@ -1,0 +1,69 @@
+<div class="page">
+    <div id="ac-in-sp">
+      <div class="shield">
+        <svg aria-hidden="true" focusable="false" width="100" height="100" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 36 36">
+          <path d="M31.25 7.4a43.79 43.79 0 0 1-6.62-2.35a45 45 0 0 1-6.08-3.21L18 1.5l-.54.35a45 45 0 0 1-6.08 3.21A43.79 43.79 0 0 1 4.75 7.4L4 7.59v8.34c0 13.39 13.53 18.4 13.66 18.45l.34.12l.34-.12c.14 0 13.66-5.05 13.66-18.45V7.59zM30 15.93c0 11-10 15.61-12 16.43c-2-.82-12-5.44-12-16.43V9.14a47.54 47.54 0 0 0 6.18-2.25a48.23 48.23 0 0 0 5.82-3a48.23 48.23 0 0 0 5.82 3A47.54 47.54 0 0 0 30 9.14z" class="clr-i-outline clr-i-outline-path-1" fill="#c53131"/>
+        </svg>
+        <div class="valor">
+          <b>{{sheet.armorClass}}</b>
+        </div>
+        <div class="title-bottom">
+          <span><b>AC</b></span>
+        </div>
+      </div>
+      <div class="shield">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path d="M17 2H7C4.243 2 2 4.243 2 7v10c0 2.757 2.243 5 5 5h10c2.757 0 5-2.243 5-5V7c0-2.757-2.243-5-5-5zm3 15c0 1.654-1.346 3-3 3H7c-1.654 0-3-1.346-3-3V7c0-1.654 1.346-3 3-3h10c1.654 0 3 1.346 3 3v10z" fill="#c53131"/>
+        </svg>
+        <div class="valor">
+          <span><b>{{sheet.initiative}}</b></span>
+        </div>
+        <div class="title-bottom">
+          <span><b>Iniciativa</b></span>
+        </div>
+      </div>
+      <div class="shield">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path d="M17 2H7C4.243 2 2 4.243 2 7v10c0 2.757 2.243 5 5 5h10c2.757 0 5-2.243 5-5V7c0-2.757-2.243-5-5-5zm3 15c0 1.654-1.346 3-3 3H7c-1.654 0-3-1.346-3-3V7c0-1.654 1.346-3 3-3h10c1.654 0 3 1.346 3 3v10z" fill="#c53131"/>
+        </svg>
+        <div class="valor">
+          <span><b>{{sheet.speed}}</b></span>
+        </div>
+        <div class="title-bottom">
+          <span><b>Desloc.</b></span>
+        </div>
+      </div>
+    </div>
+    <div id="life" style="padding: 7px;">
+      <div id="current-lp">
+        <div style="display: flex;font-size: 12px;">
+          <label>Pontos de vida máximos</label>
+          <label style="margin-left: 16px">{{sheet.lifePoints.totalLifePoints}}</label>
+        </div>
+        <label id="lp-v">{{sheet.lifePoints.currentLifePoints}}</label>
+        <label>Pontos de vida atuais</label>
+      </div>
+    </div>
+    <div id="life" style="padding: 7px;">
+      <div id="temporary-lp">
+        <label id="lp-v">{{sheet.lifePoints.temporary}} 0</label>
+        <label>Pontos de vida temporários</label>
+      </div>
+    </div>
+    <div id="hd-ds">
+      <div class="dc-column" style="margin-right: 3px;">
+        <div style="display: flex;font-size: 12px;">
+          <label>Total</label>
+          <label style="margin-left: 16px">{{sheet.lifePoints.totalLifePoints}}</label>
+        </div>
+        <label>0</label>
+        <label style="font-size: 12px">Dado de vida</label>
+      </div>
+      <div class="dc-column" style="margin-left: 3px;">
+        <div style="display: flex;font-size: 12px;">
+          <label>Total</label>
+          <label style="margin-left: 16px">{{sheet.lifePoints.totalLifePoints}}</label>
+        </div>
+        <label>0</label>
+        <label style="font-size: 12px">Testes contra a morte</label>
+      </div>
+    </div>
+  </div>

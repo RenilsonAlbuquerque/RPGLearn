@@ -37,6 +37,37 @@ public class WeaponDiceId implements Serializable {
 	public void setDiceId(Long diceId) {
 		this.diceId = diceId;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((diceId == null) ? 0 : diceId.hashCode());
+		result = prime * result + ((weaponId == null) ? 0 : weaponId.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		WeaponDiceId other = (WeaponDiceId) obj;
+		if (diceId == null) {
+			if (other.diceId != null)
+				return false;
+		} else if (!diceId.equals(other.diceId))
+			return false;
+		if (weaponId == null) {
+			if (other.weaponId != null)
+				return false;
+		} else if (!weaponId.equals(other.weaponId))
+			return false;
+		return true;
+	}
     
     
     

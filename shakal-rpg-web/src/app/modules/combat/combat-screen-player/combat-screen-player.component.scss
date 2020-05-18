@@ -1,0 +1,19 @@
+
+  .players-container{
+    position:fixed;
+    left: 0;
+    bottom:0px;
+    width:120px;
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  @media screen and (max-width: 800px) {
+    .players-container{
+      position:fixed;
+      left: 0;
+      bottom:0px;
+      width:120px;
+      display: flex;
+      flex-direction: row;
+    }
+}

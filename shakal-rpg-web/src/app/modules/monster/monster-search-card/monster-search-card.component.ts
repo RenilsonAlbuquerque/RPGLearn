@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { EventEmitter } from '@angular/core';
 import { CombatRoomService } from '../../combat/services/combat-room.service';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { MonsterCard } from 'src/app/domain/models/monster/monster.card';
+import { CreatureCard } from 'src/app/domain/models/monster/creature.card';
 
 @Component({
   selector: 'app-monster-search-card',
@@ -18,7 +18,7 @@ export class MonsterSearchCardComponent implements OnInit {
   public page: Page<MonsterOverview>;
   public search: String;
 
-  @Output() adcionarMonstro = new EventEmitter<MonsterCard>();
+  @Output() adcionarMonstro = new EventEmitter<CreatureCard>();
   @Output() fecharModal = new EventEmitter();
   
 

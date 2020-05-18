@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { MonsterCard } from 'src/app/domain/models/monster/monster.card';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { CreatureCard } from 'src/app/domain/models/monster/creature.card';
 
 @Component({
   selector: 'app-monster-card',
@@ -8,10 +8,18 @@ import { MonsterCard } from 'src/app/domain/models/monster/monster.card';
 })
 export class MonsterCardComponent implements OnInit {
 
-  @Input() public monster: MonsterCard;
+
+  @Input() public monster: CreatureCard;
+  @Output() deleteEnemy= new EventEmitter<any>();
   constructor() { }
 
   ngOnInit() {
   }
 
+  callDelete(){
+    this.deleteEnemy.emit();
+  }
+  drag(ev: DragEvent) {
+    ev.dataTransfer.setData("player", JSON.stringify(this.monster));
+  }
 }

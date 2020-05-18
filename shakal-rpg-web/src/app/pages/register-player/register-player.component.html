@@ -1,0 +1,40 @@
+<div class="container bg">
+    <div class="row justify-content-center align-items-center" style="height:100vh">
+        <div class="col-sm-12 col-md-6 col-lg-4">
+           <mat-card>
+                <mat-card-header>
+                    <mat-card-title>Junte-se a nós</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <form [formGroup]="registerForm" >
+                        <mat-form-field class="form-group col-12" appearance="outline" >
+                            <mat-label>Login</mat-label>
+                            <input class="input-sample" matInput placeholder="Login" formControlName="username">
+                            <mat-error *ngIf="!registerForm.controls['username'].valid && registerForm.controls['username'].touched">
+                                    Campo obrigatório
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="form-group col-12" appearance="outline">
+                            <mat-label>Senha</mat-label>
+                            <input  matInput type="password" placeholder="Senha" formControlName="password">
+                            <mat-error *ngIf="!registerForm.controls['password'].valid && registerForm.controls['password'].touched">
+                                    Campo obrigatório
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="form-group col-12" appearance="outline">
+                            <mat-label>Confirmar senha</mat-label>
+                            <input  matInput type="password" placeholder="Confirmar senha" formControlName="confirmPassword">
+                            <mat-error *ngIf="!registerForm.controls['confirmPassword'].valid && registerForm.controls['confirmPassword'].touched">
+                                    Campo obrigatório
+                            </mat-error>
+                        </mat-form-field>
+                        <div class="buttons-row">
+                            <button [disabled]="loading" (click)="goBack()" mat-raised-button color="secondary">Voltar</button>
+                            <button [disabled]="loading" (click)="onSubmit()" mat-raised-button color="primary">Cadastrar</button>
+                        </div>
+                    </form>
+                </mat-card-content>
+           </mat-card>
+        </div>
+    </div>
+</div>

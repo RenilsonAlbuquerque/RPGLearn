@@ -1,5 +1,6 @@
 package com.shakal.rpg.api.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -15,17 +16,17 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.shakal.rpg.api.contracts.entity.ICreature;
-import com.shakal.rpg.api.model.enums.AtributeEnum;
 import com.shakal.rpg.api.model.relation.CreatureAtribute;
 import com.shakal.rpg.api.model.relation.CreatureResistence;
 
 @Entity
 @Table(name= "tb_creature")
 @Inheritance( strategy = InheritanceType.JOINED)
-public abstract class Creature implements ICreature{
+public abstract class Creature implements ICreature, Serializable{
 
 	@Id
 	@GeneratedValue
@@ -33,6 +34,9 @@ public abstract class Creature implements ICreature{
 	
 	@Column(length = 500)
 	private String imagePath;
+	
+	@OneToOne(fetch = FetchType.LAZY, cascade=CascadeType.REMOVE, mappedBy= "creature")
+	private ImageToken token;
 	
 	private int speed;
 	
@@ -71,6 +75,15 @@ public abstract class Creature implements ICreature{
 
 	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;
+	}
+
+	
+	public ImageToken getToken() {
+		return token;
+	}
+
+	public void setToken(ImageToken token) {
+		this.token = token;
 	}
 
 	public List<CreatureResistence> getResistences() {
@@ -132,66 +145,66 @@ public abstract class Creature implements ICreature{
 	}
 
 	@Override
-	public Atribute getForce() {
-		Atribute result = null;
+	public CreatureAtribute getForce() {
+		CreatureAtribute result = null;
 		for(CreatureAtribute a: this.atributes) {
-			if(a.getAtribute().getValue() == AtributeEnum.FORCE) {
-				result = a.getAtribute();
+			if(a.getAtribute().getId() == 1) {
+				result = a;
 			}
 		}
 		return result;
 	}
 
 	@Override
-	public Atribute getDexterity() {
-		Atribute result = null;
+	public CreatureAtribute getDexterity() {
+		CreatureAtribute result = null;
 		for(CreatureAtribute a: this.atributes) {
-			if(a.getAtribute().getValue() == AtributeEnum.DEXTERITY) {
-				result = a.getAtribute();
+			if(a.getAtribute().getId() == 2) {
+				result = a;
 			}
 		}
 		return result;
 	}
 
 	@Override
-	public Atribute getConstitution() {
-		Atribute result = null;
+	public CreatureAtribute getConstitution() {
+		CreatureAtribute result = null;
 		for(CreatureAtribute a: this.atributes) {
-			if(a.getAtribute().getValue() == AtributeEnum.CONSTITUTION) {
-				result = a.getAtribute();
+			if(a.getAtribute().getId() == 3) {
+				result = a;
 			}
 		}
 		return result;
 	}
 
 	@Override
-	public Atribute getInteligence() {
-		Atribute result = null;
+	public CreatureAtribute getInteligence() {
+		CreatureAtribute result = null;
 		for(CreatureAtribute a: this.atributes) {
-			if(a.getAtribute().getValue() == AtributeEnum.INTELIGENCE) {
-				result = a.getAtribute();
+			if(a.getAtribute().getId() == 4) {
+				result = a;
 			}
 		}
 		return result;
 	}
 
 	@Override
-	public Atribute getWisdom() {
-		Atribute result = null;
+	public CreatureAtribute getWisdom() {
+		CreatureAtribute result = null;
 		for(CreatureAtribute a: this.atributes) {
-			if(a.getAtribute().getValue() == AtributeEnum.WISDOM) {
-				result = a.getAtribute();
+			if(a.getAtribute().getId() == 5) {
+				result = a;
 			}
 		}
 		return result;
 	}
 
 	@Override
-	public Atribute getCharisma() {
-		Atribute result = null;
+	public CreatureAtribute getCharisma() {
+		CreatureAtribute result = null;
 		for(CreatureAtribute a: this.atributes) {
-			if(a.getAtribute().getValue() == AtributeEnum.CHARISMA) {
-				result = a.getAtribute();
+			if(a.getAtribute().getId() == 6) {
+				result = a;
 			}
 		}
 		return result;

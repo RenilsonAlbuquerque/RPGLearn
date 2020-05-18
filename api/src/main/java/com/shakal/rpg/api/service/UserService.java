@@ -2,39 +2,40 @@ package com.shakal.rpg.api.service;
 
 
 
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.shakal.rpg.api.dto.create.CreateUserDTO;
+import com.shakal.rpg.api.contracts.service.IUserService;
+import com.shakal.rpg.api.dto.create.UserCreateDTO;
+import com.shakal.rpg.api.exception.DuplicatedResourceException;
 import com.shakal.rpg.api.mappers.UserMapper;
-import com.shakal.rpg.api.model.User;
+import com.shakal.rpg.api.model.character.Character;
+import com.shakal.rpg.api.model.embedded.UserStoryId;
+import com.shakal.rpg.api.model.relation.UserStory;
 import com.shakal.rpg.api.repository.UserDAO;
+import com.shakal.rpg.api.repository.UserStoryDAO;
+import com.shakal.rpg.api.security.AuthenticationContext;
 import com.shakal.rpg.api.utils.Messages;
 
-
-
-
 @Service
-public class UserService implements UserDetailsService {
-
-
+public class UserService implements UserDetailsService, IUserService {
 
 	private UserDAO userDAO;
+	private UserStoryDAO userStoryDao;
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	@Autowired
-	public UserService(UserDAO userDAO, BCryptPasswordEncoder bCryptPasswordEncoder){
+	public UserService(UserDAO userDAO, BCryptPasswordEncoder bCryptPasswordEncoder, UserStoryDAO userStoryDao) {
 		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
 		this.userDAO = userDAO;
+		this.userStoryDao = userStoryDao;
 	}
-
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -42,11 +43,30 @@ public class UserService implements UserDetailsService {
 		return this.userDAO.findByUsername(username)
 				.orElseThrow(() -> new BadCredentialsException(Messages.USER_NOT_FOUND));
 	}
-	
 
-	public Boolean createUser(CreateUserDTO user){
-		user.setPassword(this.bCryptPasswordEncoder.encode(user.getPassword()));
-		this.userDAO.save(UserMapper.createToEntity(user));
-		return true;
+	@Override
+	public long getCurrentUserId() {
+		return ((AuthenticationContext) SecurityContextHolder.getContext().getAuthentication()).getId();
 	}
+
+	public void setCharacterToUserInStory(long storyId, long userId, Character character) {
+
+		UserStory userStory = new UserStory();
+		userStory.setId(new UserStoryId(userId, storyId));
+		userStory.setCharacter(character);
+		this.userStoryDao.save(userStory);
+
+	}
+
+	@Override
+	public UserCreateDTO insertUser(UserCreateDTO createDto) throws DuplicatedResourceException {
+		boolean hasUser = this.userDAO.findByUsername(createDto.getUsername()).isPresent();
+		if (hasUser) {
+			throw new DuplicatedResourceException(Messages.INVALID_USERNAME);
+		}
+		createDto.setPassword(this.bCryptPasswordEncoder.encode(createDto.getPassword()));
+		this.userDAO.save(UserMapper.createToEntity(createDto));
+		return createDto;
+	}
+
 }

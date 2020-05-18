@@ -1,0 +1,27 @@
+<form id="form-mobile">
+    <div id="money-header">
+        <div style="display: flex;flex-direction: column;font-size: 15px;">
+            <div><b>Peso atual:</b> 12<label class="value-unity">Kg</label></div> 
+            <div><b>Peso máx.:</b> 103<label class="value-unity">Kg</label></div> 
+        </div>
+        <div id="money">
+            <app-coin-icon [coinType]="1" [value]="12"></app-coin-icon>
+            <app-coin-icon [coinType]="2" [value]="36"></app-coin-icon>
+            <app-coin-icon [coinType]="3" [value]="2"></app-coin-icon>
+            <app-coin-icon [coinType]="4" [value]="20"></app-coin-icon>
+            <app-coin-icon [coinType]="5" [value]="10"></app-coin-icon>
+        </div>
+    </div>
+    <div id="itens">
+        <div class="item-row" style="font-weight: 800;">
+            <label>Nome</label>
+            <label>Peso</label>
+            <label>Custo</label>
+        </div>
+        <div class="item-row" *ngFor="let equipment of equipment">
+            <label>{{equipment.name}}</label>
+            <label>{{equipment.weight}}</label>
+            <label>{{equipment.cost}}</label>
+        </div>
+    </div>
+</form>

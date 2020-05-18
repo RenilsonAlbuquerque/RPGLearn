@@ -1,0 +1,37 @@
+#form-mobile{
+    width: 100%;
+    min-height: 600px;
+    #money{
+        display: grid;
+
+    }
+    #itens{
+        width: 100%;
+    }
+    font-family: Roboto Condensed,Roboto,Helvetica,sans-serif;
+}
+.item-row{
+    display: grid;
+    grid-template-columns: 60% 15% 25%;
+    padding-left: 10px;
+    padding-top: 5px;
+    font-size: 13px;
+    font-family: Roboto Condensed,Roboto,Helvetica,sans-serif;
+    border-bottom: 1px solid black;
+}
+#money-header{
+    display: grid;
+    grid-template-columns: 40% 60%;
+    #money{
+        display: flex;
+        flex-direction: row-reverse;
+        flex-wrap: wrap;
+        .piece{
+            padding-left: 2px;
+            padding-right: 1px;
+        }
+    }
+}
+.value-unity{
+    font-size: 10px;
+}
