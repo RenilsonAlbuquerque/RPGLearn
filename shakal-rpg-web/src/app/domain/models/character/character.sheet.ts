@@ -24,10 +24,12 @@ export interface CharacterSheet{
     inteligence:CreatureAtribute,
     charisma:CreatureAtribute,
 
+    savins: ViewAtributeInfo[],
     proeficiencies:ViewAtributeInfo[],
 
     languages: KeyValue[],
 
+    inspiration: number,
     proeficiencBonus: number,
     
     age: number,

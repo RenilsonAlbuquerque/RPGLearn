@@ -30,10 +30,12 @@ public class CharacterMapper {
 		result.setWisdom(AtributeMapper.entityToDetailTO(entity.getAtributes(),5));
 		result.setCharisma(AtributeMapper.entityToDetailTO(entity.getAtributes(),6));
 		
+		result.setInspiration(0);
 		result.setProeficiencBonus(entity.getClassLevel().get(
 				entity.getClassLevel().size() -1).getClassLevel().getLevel().getProeficiencyBonus()
 				);
 		
+		result.setSavins(AtributeMapper.createSavins(entity,result.getProeficiencBonus()));
 		result.setProeficiencies(ProeficiencyMapper.createProeficiencyView(entity, result.getProeficiencBonus()));
 		
 		result.setLanguages(entity.getLanguages().stream()

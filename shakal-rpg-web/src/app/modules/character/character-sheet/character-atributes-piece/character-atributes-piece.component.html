@@ -107,58 +107,23 @@
     </div>
     <div id="proeficiency">
       <div class="upper-values">
-          <label class="value">0</label>
+          <label class="value">{{sheet.inspiration}}</label>
           <label class="label"><b>Inspiração</b></label>
       </div>
       <div class="upper-values">
         <label class="value">+{{sheet.proeficiencBonus}}</label>
         <label class="label"><b>Proeficiência</b></label>
       </div>
-      <div id="saving-throws">
-        <div class="saving">
+      <div class="saving-throws">
+        <div class="saving" *ngFor="let saving of sheet.savins">
           <svg height="20" width="10">
-            <circle cx="5" r="3" cy="10" stroke="black" stroke-width="1" fill="white" />
+            <circle cx="5" r="3" cy="10" stroke="black" stroke-width="1" [attr.fill]="(saving.marked == true)? 'black': 'white'"/>
           </svg>
-          <label class="value">+5</label> 
-          <label class="label">FORÇA</label>
-        </div>
-        <div class="saving">
-          <svg height="20" width="10">
-            <circle cx="5" r="3" cy="10" stroke="black" stroke-width="1" fill="white" />
-          </svg>
-          <label class="value">+5</label> 
-          <label class="label">DESTREZA</label>
-        </div>
-        <div class="saving">
-          <svg height="20" width="10">
-            <circle cx="5" r="3" cy="10" stroke="black" stroke-width="1" fill="white" />
-          </svg>
-          <label class="value">+5</label> 
-          <label class="label">CONSTITUIÇÃO</label>
-        </div>
-        <div class="saving">
-          <svg height="20" width="10">
-            <circle cx="5" r="3" cy="10" stroke="black" stroke-width="1" fill="white" />
-          </svg>
-          <label class="value">+5</label> 
-          <label class="label">INTELIGÊNCIA</label>
-        </div>
-        <div class="saving">
-          <svg height="20" width="10">
-            <circle cx="5" r="3" cy="10" stroke="black" stroke-width="1" fill="white" />
-          </svg>
-          <label class="value">+5</label> 
-          <label class="label">SABEDORIA</label>
-        </div>
-        <div class="saving">
-          <svg height="20" width="10">
-            <circle cx="5" r="3" cy="10" stroke="black" stroke-width="1" fill="white" />
-          </svg>
-          <label class="value">+5</label> 
-          <label class="label">CARISMA</label>
+          <label class="value"><span *ngIf="saving.bonus >= 0">+</span>{{saving.bonus}}</label> 
+          <label class="label">{{saving.label}}</label>
         </div>
       </div>
-      <div id="saving-throws" style="margin-top: 5px;">
+      <div class="saving-throws" style="margin-top: 5px;">
         <div class="saving" *ngFor="let proeficiency of sheet.proeficiencies" >
           <svg height="20" width="10">
             <circle cx="5" r="3" cy="10" stroke="black" stroke-width="1" [attr.fill]="(proeficiency.marked == true)? 'black': 'white'" />
