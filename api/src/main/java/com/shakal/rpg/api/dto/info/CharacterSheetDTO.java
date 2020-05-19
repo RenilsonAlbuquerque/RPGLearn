@@ -3,6 +3,7 @@ package com.shakal.rpg.api.dto.info;
 import java.util.List;
 
 import com.shakal.rpg.api.dto.commons.KeyValueDTO;
+import com.shakal.rpg.api.dto.overview.BagOverviewDTO;
 import com.shakal.rpg.api.dto.overview.ClassLevelOveriewDTO;
 
 public class CharacterSheetDTO {
@@ -29,6 +30,7 @@ public class CharacterSheetDTO {
 	
 	private List<KeyValueDTO> languages;
 
+	private int inspiration;
 	private int proeficiencBonus;
 	
 	private int age;
@@ -42,7 +44,7 @@ public class CharacterSheetDTO {
 	
 	private CharacterLifePointsDTO lifePoints;
 	
-	
+	private BagOverviewDTO bag;
 	
 	
 	public long getId() {
@@ -202,6 +204,18 @@ public class CharacterSheetDTO {
 	}
 	public void setSavins(List<ViewAtributeInfoDTO> savins) {
 		this.savins = savins;
+	}
+	public int getInspiration() {
+		return inspiration;
+	}
+	public void setInspiration(int inspiration) {
+		this.inspiration = inspiration;
+	}
+	public BagOverviewDTO getBag() {
+		return bag;
+	}
+	public void setBag(BagOverviewDTO bag) {
+		this.bag = bag;
 	}
 	
 	

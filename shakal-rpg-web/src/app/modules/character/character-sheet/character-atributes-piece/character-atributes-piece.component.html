@@ -16,7 +16,7 @@
           <span><b>{{sheet.strength.value}}</b></span>
          </div>
          <div class="atribute-modfier">
-          <span><b>{{sheet.strength.modfier}}</b></span>
+          <span><b><span *ngIf="sheet.strength.modfier >= 0">+</span>{{sheet.strength.modfier}}</b></span>
          </div>
       </div>
       <div class="coringa">
@@ -33,7 +33,7 @@
           <span><b>{{sheet.dexterity.value}}</b></span>
          </div>
          <div class="atribute-modfier">
-          <span><b>{{sheet.dexterity.modfier}}</b></span>
+          <span><b><span *ngIf="sheet.dexterity.modfier >= 0">+</span>{{sheet.dexterity.modfier}}</b></span>
          </div>
       </div>
       <div class="coringa">
@@ -50,7 +50,7 @@
           <span><b>{{sheet.constitution.value}}</b></span>
          </div>
          <div class="atribute-modfier">
-          <span><b>{{sheet.constitution.modfier}}</b></span>
+          <span><b><span *ngIf="sheet.constitution.modfier >= 0">+</span>{{sheet.constitution.modfier}}</b></span>
          </div>
       </div>
       <div class="coringa">
@@ -67,7 +67,7 @@
           <span><b>{{sheet.inteligence.value}}</b></span>
          </div>
          <div class="atribute-modfier">
-          <span><b>{{sheet.inteligence.modfier}}</b></span>
+          <span><b><span *ngIf="sheet.inteligence.modfier >= 0">+</span>{{sheet.inteligence.modfier}}</b></span>
          </div>
       </div>
       <div class="coringa">
@@ -84,7 +84,7 @@
           <span><b>{{sheet.wisdom.value}}</b></span>
          </div>
          <div class="atribute-modfier">
-          <span><b>{{sheet.wisdom.modfier}}</b></span>
+          <span><b><span *ngIf="sheet.wisdom.modfier >= 0">+</span>{{sheet.wisdom.modfier}}</b></span>
          </div>
       </div>
       <div class="coringa">
@@ -101,7 +101,7 @@
           <span><b>{{sheet.charisma.value}}</b></span>
          </div>
          <div class="atribute-modfier">
-          <span><b>{{sheet.charisma.modfier}}</b></span>
+          <span><b><span *ngIf="sheet.charisma.modfier >= 0">+</span>{{sheet.charisma.modfier}}</b></span>
          </div>
       </div>
     </div>
@@ -163,7 +163,7 @@
           <svg height="20" width="10">
             <circle cx="5" r="3" cy="10" stroke="black" stroke-width="1" [attr.fill]="(proeficiency.marked == true)? 'black': 'white'" />
           </svg>
-          <label class="value">{{proeficiency.bonus}}</label> 
+          <label class="value"><span *ngIf="proeficiency.bonus >= 0">+</span>{{proeficiency.bonus}}</label> 
           <label class="label">{{proeficiency.label}}</label>
         </div>
       </div>
