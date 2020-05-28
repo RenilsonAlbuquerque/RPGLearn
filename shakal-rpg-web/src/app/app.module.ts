@@ -23,6 +23,8 @@ import { SpinnerService } from './infra/services/spinner.service';
 
 import { FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import { DirectivesModule } from './modules/generalmodules/directives.module';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 
 export class HammerConfig extends HammerGestureConfig {
@@ -51,7 +53,8 @@ export class HammerConfig extends HammerGestureConfig {
     FormsModule,
     ReactiveFormsModule,
     FontAwesomeModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
     
   ],
   providers: [

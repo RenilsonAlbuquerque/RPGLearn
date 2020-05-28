@@ -46,6 +46,8 @@ public class CharacterSheetDTO {
 	
 	private BagOverviewDTO bag;
 	
+	 
+	
 	
 	public long getId() {
 		return id;
