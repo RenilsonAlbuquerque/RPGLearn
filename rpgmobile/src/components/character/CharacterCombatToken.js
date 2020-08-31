@@ -4,7 +4,9 @@ import changeColor from '../../helpers/Combat-helper';
 
 export default function CharacterCombatToken(props){
     return(
-        <View style={tokenStyle.container}>
+        <View style={[tokenStyle.container,
+                {marginTop: props.creature.position.y,
+                marginLeft: props.creature.position.x}]}>
             <Image style={tokenStyle.tokenImage} 
                 source={{uri: 'https://www.vippng.com/png/detail/83-831021_d-d-token-png-transparent-background-drow-token.png'}} />     
         </View>

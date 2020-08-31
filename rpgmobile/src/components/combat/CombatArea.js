@@ -10,7 +10,7 @@ class CombatArea extends Component{
         super(props);
         this.state = {
             combatState : {
-                creatures:[{id:2,name:'x'}]
+                creatures:[]
             }
         }   
     }
@@ -19,14 +19,13 @@ class CombatArea extends Component{
             combatStatusData
         } = this.props;
         return (
-            
             <ScrollView>
                 <ScrollView  directionalLockEnabled={false} horizontal={true}>
                     <Image style={{ width: 600, height: 900 }} 
                         source={{uri: 'https://i.pinimg.com/originals/34/60/07/346007827453cc41c9c05746f95582af.jpg'}} />
-                        {this.state.combatState.creatures.map((item, index) =>
+                        {combatStatusData.creatures.map((item, index) =>
                             
-                                <CharacterCombatToken key={index}></CharacterCombatToken>
+                                <CharacterCombatToken key={index} creature={item}></CharacterCombatToken>
                         
                         )}
                         
