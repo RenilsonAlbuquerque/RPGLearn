@@ -24,6 +24,9 @@ public class StoryMapper {
 		entity.setName(inputDto.getName());
 		entity.setBackground(inputDto.getBackground());
 		entity.setMap(inputDto.getMap());
+		entity.setxDimension(inputDto.getxDimension());
+		entity.setyDimension(inputDto.getyDimension());
+		entity.setSquareDimension(inputDto.getSquareDimension());
 		return entity;
 	}
 	public static PlaceInfoDTO placeEntityToDto(Place entity) {
