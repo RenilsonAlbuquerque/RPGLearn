@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { PlaceCreate } from 'src/app/domain/models/story/place-create';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { mapPlaceInFormToDto } from 'src/app/domain/mappers/place.mapper';
 
 @Component({
   selector: 'app-place-create',
@@ -19,19 +20,16 @@ export class PlaceCreateComponent implements OnInit {
     this.placeForm = this.formBuilder.group({
       name: ['', Validators.required],
       background: ['', Validators.required],
-      map: ['', Validators.required]
+      map: ['', Validators.required],
+      xDimension: ['',Validators.required],
+      yDimension: ['',Validators.required],
+      squareDimension: [1.5,Validators.required]
     });
 
   }
 
   onSubmit(){
-    var place = {
-      name: this.placeForm.controls['name'].value,
-      background: this.placeForm.controls['background'].value,
-      map: this.placeForm.controls['map'].value,
-      
-    }as PlaceCreate;
-
+    var place: PlaceCreate = mapPlaceInFormToDto(this.placeForm);
     this.adcionarLugar.emit(place)
   }
 

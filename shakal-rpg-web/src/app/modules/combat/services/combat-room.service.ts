@@ -36,6 +36,7 @@ export class CombatRoomService {
     // )
     this.rxStompService.watch('/topic/combat/'+ storyId).subscribe((message: IMessage) => {
       this.combatState.next(JSON.parse(message.body) as CombatState);
+      console.log(this.combatState.value);
     })
     
   }
