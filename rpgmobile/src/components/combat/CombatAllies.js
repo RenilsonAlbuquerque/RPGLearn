@@ -26,7 +26,7 @@ class CombatAllies extends Component {
         return (
             <FlatGrid
                 itemDimension={130}
-                items={combatStatusData.players}
+                items={combatStatusData.creatures}
                 style={avatarStyle.gridView}
                 // staticDimension={300}
                 // fixed
