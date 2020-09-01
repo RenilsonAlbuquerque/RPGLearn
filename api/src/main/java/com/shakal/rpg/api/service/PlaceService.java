@@ -39,7 +39,7 @@ public class PlaceService implements IPlaceService{
 	}
 	
 	@Override
-	public PlaceInfoDTO getStoryById(long id) throws ResourceNotFoundException {
+	public PlaceInfoDTO getPlaceById(long id) throws ResourceNotFoundException {
 		Place place = this.placeDao.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException(Messages.STORY_NOT_FOUND));
 		return StoryMapper.placeEntityToDto(place);

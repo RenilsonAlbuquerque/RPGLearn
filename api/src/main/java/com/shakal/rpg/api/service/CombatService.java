@@ -5,23 +5,30 @@ import java.util.Collections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.google.gson.Gson;
 import com.shakal.rpg.api.contracts.service.ICombatService;
 import com.shakal.rpg.api.dto.combat.CombatDifficultDTO;
 import com.shakal.rpg.api.dto.combat.CombatStateDTO;
 import com.shakal.rpg.api.dto.combat.ICreatureCardDTO;
 import com.shakal.rpg.api.dto.combat.CreatureCardDTO;
 import com.shakal.rpg.api.dto.info.CharacterSheetDTO;
+import com.shakal.rpg.api.dto.map.MapAreaDTO;
 import com.shakal.rpg.api.model.ChallangeDificult;
+import com.shakal.rpg.api.model.combatstate.CombatState;
 import com.shakal.rpg.api.repository.ChallengeDificultDAO;
+import com.shakal.rpg.api.repository.CombatStateDAO;
 
 @Service
 public class CombatService implements ICombatService{
 	
 	private ChallengeDificultDAO challengeDificultDAO;
+	private CombatStateDAO combatStateDAO;
 	
 	@Autowired
-	public CombatService(ChallengeDificultDAO challengeDificultDAO) {
+	public CombatService(ChallengeDificultDAO challengeDificultDAO,
+			CombatStateDAO combatStateDao) {
 		this.challengeDificultDAO = challengeDificultDAO;
+		this.combatStateDAO = combatStateDao;
 	}
 
 	
@@ -119,13 +126,17 @@ public class CombatService implements ICombatService{
 		}
 		return result;
 	}
+	private String serializeObjectToJSON(Object obj) {
+		return new Gson().toJson(obj);
+	}
 	@Override
-	public CombatStateDTO updateCombatConditions(CombatStateDTO input) {
+	public CombatStateDTO updateCombatConditions(CombatStateDTO input, long storyId) {
 		this.updateMonstersConditions(input);
 		calculateChallengeDeficult(input);
+		this.combatStateDAO.save(new CombatState(storyId,serializeObjectToJSON(input)));
 		return input;
 	}
-
+	
 
 	@Override
 	public CreatureCardDTO initalizePlayerTokenInStory(long storyId, CharacterSheetDTO characterSheet) {
@@ -136,6 +147,13 @@ public class CombatService implements ICombatService{
 		result.setImagePath(characterSheet.getImagePath());
 		result.setTotalLifePoints(characterSheet.getLifePoints().getTotalLifePoints());
 		return result;
+	}
+
+
+	@Override
+	public MapAreaDTO updateMapArea(MapAreaDTO input) {
+		// TODO Auto-generated method stub
+		return input;
 	}
 	
 }

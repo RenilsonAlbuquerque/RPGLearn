@@ -50,6 +50,9 @@ class LoginPage extends Component{
             <Button  full rounded style={loginStyle.customButton} onPress={() => this.props.loginAction(this.state.username,this.state.password)}>
                 <Text>Entrar</Text>
             </Button>
+            <Button  full rounded style={loginStyle.customButton}>
+                <Text>Trocar endereço</Text>
+            </Button>
                   
             <View style={{width: 20, height: 30}} />
             <Text style={{textAlign:'center',color:'red'}}>{errorMessage}</Text>

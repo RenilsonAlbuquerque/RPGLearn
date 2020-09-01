@@ -1,10 +1,18 @@
-import { COMBAT_STATUS_FETCHED } from "../actions/CombatAction";
+import { COMBAT_STATUS_FETCHED,COMBAT_MAP_FETCHED } from "../actions/CombatAction";
+import { act } from "react-test-renderer";
 
 const INITIAL_STATE = {
     combatState:{
         monsters:[],
         players:[],
         dificult:1
+    },
+    currentMap:{
+        map:'',
+        xDimension:0,
+        yDimension:0,
+        squareDimension:1.5 
+
     }
     
 }
@@ -14,6 +22,11 @@ export default function (state = INITIAL_STATE, action = {}) {
             return {
             ...state,
             combatState : action.payload
+        }
+        case COMBAT_MAP_FETCHED:
+            return{
+                ...state,
+                currentMap: action.payload
         }
         default:
             return state
