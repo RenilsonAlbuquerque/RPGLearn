@@ -35,6 +35,9 @@ public class StoryMapper {
 		dto.setName(entity.getName());
 		dto.setMap(entity.getMap());
 		dto.setBackground(entity.getBackground());
+		dto.setxDimension(entity.getxDimension());
+		dto.setyDimension(entity.getyDimension());
+		dto.setSquareDimension(entity.getSquareDimension());
 		return dto;
 	}
 	public static StoryInfoDTO entityToInfo(Story entity) {

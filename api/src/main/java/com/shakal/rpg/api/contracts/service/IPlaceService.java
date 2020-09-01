@@ -9,7 +9,7 @@ import com.shakal.rpg.api.exception.ResourceNotFoundException;
 
 public interface IPlaceService {
 
-	PlaceInfoDTO getStoryById(long id) throws ResourceNotFoundException;
+	PlaceInfoDTO getPlaceById(long id) throws ResourceNotFoundException;
 	List<PlaceOverviewDTO> getPlacesListByStoryId(long id) throws ResourceNotFoundException;
 	PlaceOverviewDTO createPlace(PlaceCreateDTO placeCreate) throws ResourceNotFoundException;
 }

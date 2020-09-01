@@ -12,7 +12,7 @@ public class CombatStateDTO {
 	private int userTypeInStory;
 	private String currentCreatureTurn;
 	private boolean combatStarted;
-	
+	private long placeId;
 	
 	
 	
@@ -60,13 +60,12 @@ public class CombatStateDTO {
 	public void setCombatStarted(boolean combatStarted) {
 		this.combatStarted = combatStarted;
 	}
-	
-	
-	
-	
-	
-	
-	
+	public long getPlaceId() {
+		return placeId;
+	}
+	public void setPlaceId(long placeId) {
+		this.placeId = placeId;
+	}
 	
 	
 	
