@@ -7,5 +7,6 @@ export interface CombatState{
     dificult: number,
     userTypeInStory: number,
     currentCreatureTurn: string,
-    combatStarted: boolean
+    combatStarted: boolean,
+    placeId: number
 }

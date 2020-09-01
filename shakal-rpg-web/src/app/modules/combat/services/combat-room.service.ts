@@ -20,7 +20,8 @@ export class CombatRoomService {
         creatures :[],
         allyQueue:[],
         enemyQueue:[],
-        dificult: 1
+        dificult: 1,
+        placeId: 1
       } as CombatState); 
   }
   protected onSendMessage(combatState: CombatState) {
@@ -36,6 +37,7 @@ export class CombatRoomService {
     // )
     this.rxStompService.watch('/topic/combat/'+ storyId).subscribe((message: IMessage) => {
       this.combatState.next(JSON.parse(message.body) as CombatState);
+      console.log(this.combatState.value);
     })
     
   }
@@ -66,7 +68,11 @@ export class CombatRoomService {
     }
     
   }
-  
+  public updateMapOfCombat(placeId: number){
+    let combatState: CombatState = this.combatState.getValue();
+    combatState.placeId = placeId;
+    this.onSendMessage(combatState);
+  }
 
   public updateMonsterLifePoints(index: number,value: number){
     

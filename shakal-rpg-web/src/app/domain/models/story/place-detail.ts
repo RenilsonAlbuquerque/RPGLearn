@@ -2,5 +2,8 @@ export interface PlaceDetail{
     id: number,
     name: String,
     background: String,
-    map: string
+    map: string,
+    xDimension: number,
+    yDimension: number,
+    squareDimension: number
 }

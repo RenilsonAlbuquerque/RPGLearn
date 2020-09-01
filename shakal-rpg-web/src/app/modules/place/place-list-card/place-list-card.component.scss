@@ -1,0 +1,22 @@
+.place-list-card{
+    flex:1;
+    margin: 5px;
+    width: 70px;
+    height: 70px;
+    background-color: blue;
+    cursor: pointer;
+    position: relative;
+}
+.img-place-list_card{
+    width: 70px;
+    height: 70px;
+}
+.card-image-0verlay{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1px;
+    font-size: 14px;
+}

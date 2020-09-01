@@ -2,6 +2,10 @@
   <!--#####################--Dice Roller--############################-->
   <app-dice-roll-container *ngIf="rolling"></app-dice-roll-container>
 
+
+  <!--#####################Place List ################################-->
+  <app-place-list></app-place-list>
+  
   <!--#####################--Toolbar--############################-->
   <div class="menu-toolbar">
     <div class="difficult-alert" [ngClass]="{'easy':combatState.dificult == 1, 

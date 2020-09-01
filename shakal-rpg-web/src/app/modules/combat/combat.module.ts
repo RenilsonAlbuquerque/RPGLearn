@@ -28,6 +28,8 @@ import { MasterMenuControlComponent } from './master-menu-control/master-menu-co
 import { InternModalService } from 'src/app/infra/services/intern.modal.service';
 import { CharacterModule } from '../character/character.module';
 import { WeaponModule } from '../weapon/weapon.module';
+import { StoryModule } from '../story/story.module';
+import { PlaceModule } from '../place/place.module';
 
 
 
@@ -37,6 +39,7 @@ import { WeaponModule } from '../weapon/weapon.module';
     CombatRoutingModule,
     CommonModule,
     MonsterModule,
+    PlaceModule,
     NgbModalModule,
     MaterialModule,
     NgbModule,

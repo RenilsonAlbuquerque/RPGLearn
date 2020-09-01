@@ -8,6 +8,9 @@ import { calculatePositionDrop, createSvgGrid, createSvgWalk, moveCreature, adju
 import { ActionType } from 'src/app/domain/models/combat/action.type';
 import { MonsterService } from '../../monster/monster.module.service';
 import { DragCreature } from 'src/app/domain/models/creature/drag.creature';
+import { PlaceService } from '../../place/place.module.service';
+import { BoardConfig } from 'src/app/domain/models/combat/board.config';
+import { GridBoardConfig } from 'src/app/domain/models/combat/grid.board.config';
 
 @Component({
   selector: 'app-grid-board',
@@ -37,19 +40,38 @@ export class GridBoardComponent implements OnInit{
   private startX: number;
   private startY: number;
 
-  //private squareSize: number;
   constructor(private combatRoomService: CombatRoomService,private gridBoardService: GridBoardService,
-    private monsterService: MonsterService) { 
-    //this.monsters = [];
-    //this.squareSize = 30;
+    private monsterService: MonsterService,private placeService: PlaceService) { 
+
+    
+    
+
     this.zoomValue = 1;
     this.combatRoomService.getCombatState().subscribe(
       state => {
-        this.combatState = state
+        this.combatState = state;
+      }
+    );
+    this.gridBoardService.getGridBoardConfTest().subscribe(
+      gridBoardState => {
+        this.canvas = gridBoardState.canvas,
+        this.mainContainer = gridBoardState.mainContainer,
+        this.imageContainer = gridBoardState.imageContainer,
+        this.svgBattleGrid = gridBoardState.svgBattleGrid,
+        this.image = gridBoardState.image 
       }
     );
   }
   ngOnInit() {
+    this.gridBoardService.setGridBoardConfTest({
+      canvas: this.canvas,
+      mainContainer: this.mainContainer,
+      imageContainer: this.imageContainer,
+      svgBattleGrid: this.svgBattleGrid,
+      image:this.image
+    }as GridBoardConfig);
+
+
     this.mainContainer.nativeElement.oncontextmenu = (ev) => {
       ev.preventDefault();
     }
@@ -77,35 +99,11 @@ export class GridBoardComponent implements OnInit{
         this.mainContainer.nativeElement.scrollTop += (this.startY - (ev.clientY + this.mainContainer.nativeElement.scrollTop));
       }
     }
-    this.newDrawImage();
+    this.gridBoardService.newDrawImage(this.gridBoardService.getGridBoardConfig().imagePath);
+    this.imageContainer.nativeElement.ondragover = (ev) => {this.allowDrop(ev)};
+    this.imageContainer.nativeElement.ondrop = (ev) => {this.drop(ev)};
   }
-  drawImage(){
-    this.image.src = "https://1.bp.blogspot.com/-skjFbWikSuU/VvUUhJu7ImI/AAAAAAAAGXw/7EtMwcNzPfw30x3CKdyo3wAYCxU7Qhr1g/s1600/dp6links.jpg";
-    this.ctx = this.canvas.nativeElement.getContext('2d');
-   
-    this.image.onload = () => {
-      this.canvas.nativeElement.height = this.image.height;
-      this.canvas.nativeElement.width = this.image.width;
-      this.ctx.drawImage(this.image,0,0);
-    }
-  }
-  newDrawImage(){
-    this.image.src = this.gridBoardService.getGridBoardConfig().imagePath;
-    this.image.onload = () => {
-      
-      this.imageContainer.nativeElement.style.width = "fit-content";
-      this.mainContainer.nativeElement.height = this.image.height;
-      this.mainContainer.nativeElement.width = this.image.width;
-      this.imageContainer.nativeElement.height = this.image.height;
-      this.imageContainer.nativeElement.width = this.image.width;
-      this.imageContainer.nativeElement.insertAdjacentHTML('afterbegin',createSvgGrid(this.gridBoardService.getSquareSize(),this.image.naturalWidth,this.image.height));
-      this.imageContainer.nativeElement.ondragover = (ev) => {this.allowDrop(ev)};
-      this.imageContainer.nativeElement.ondrop = (ev) => {this.drop(ev)};
-      this.imageContainer.nativeElement.style.backgroundImage = `url(${this.image.src})`;
-      this.svgBattleGrid = document.getElementById("svggrid");
-      //this.insertMovePreview();
-    }
-  }
+ 
   applyZoom(value: number){
     this.mainContainer.nativeElement.style.zoom = new Number(this.zoomValue += value).toString();
     this.zoomValue += value;
@@ -187,4 +185,5 @@ export class GridBoardComponent implements OnInit{
       }
     }
   }
+
 }

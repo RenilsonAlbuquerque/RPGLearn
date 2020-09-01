@@ -19,6 +19,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 
+
 @NgModule({
   declarations: [StoryMapComponent, PlaceDetailComponent, StoryListComponent, StoryDetailComponent, PlaceOverviewComponent, StoryCreateComponent, PlaceCreateComponent, StoryDetailPlayerComponent],
   imports: [
