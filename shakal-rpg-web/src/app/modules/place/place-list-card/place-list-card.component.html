@@ -1,6 +1,24 @@
-<div class="place-list-card">
+<div class="place-list-card" (click)="onOpenPlaceDetails(mdPlaceProperties)">
     <img class="img-place-list_card" src="{{ place.folderImage ||  defaultImage }}" alt="_blank" />
     <div class="card-image-0verlay">
         <p class="card-title">{{ place.name }}</p>
+    </div>
+
+
+    <ng-template #mdPlaceProperties let-modal>
+      <div class="modal-header">
+          <h4 class="modal-title">Propriedades do lugar</h4>
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>   
       </div>
+      <div class="modal-body">
+          <!-- <app-place-create (adcionarLugar)="addPlaceOnMap($event)" [storyId]="storyid" ></app-place-create> -->
+          <p>Hoje é festa</p>
+          <button type="button" focus-index="1" class="btn btn-primary" (click)="selectAsCurrentPlace()">
+              <div>Selecionar como mapa atual</div>
+          </button>
+         
+      </div>
+  </ng-template>
 </div>

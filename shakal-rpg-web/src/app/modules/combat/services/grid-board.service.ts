@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core';
+import { Injectable, ElementRef } from '@angular/core';
 import { CardPosition } from 'src/app/domain/models/combat/card.position';
 import { ActionControl } from 'src/app/domain/models/combat/action.control';
 import { BoardConfig } from 'src/app/domain/models/combat/board.config';
+import { PlaceDetail } from 'src/app/domain/models/story/place-detail';
 
 
 
@@ -14,14 +15,21 @@ export class GridBoardService {
   private creatureAction:ActionControl;
   private gridBoardConfig: BoardConfig;
 
+
   constructor(){
     this.gridBoardConfig = {
-      imagePath : 'https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs/129763638/original/05c10920c7074e25558016afbdc34ad7784c4467/create-a-custom-tabletop-battle-map-for-your-campaign.jpg'
+      imagePath : 'https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs/129763638/original/05c10920c7074e25558016afbdc34ad7784c4467/create-a-custom-tabletop-battle-map-for-your-campaign.jpg',
+      xDimension: 12,
+      yDimension: 12,
+      squareDimension: 1.5
     }
         
   }
   getGridBoardConfig():BoardConfig{
     return this.gridBoardConfig;
+  }
+  setGridBoardConfig(config: BoardConfig){
+    this.gridBoardConfig = config;
   }
   getSquareSize(): number{
     return this.squareSize;

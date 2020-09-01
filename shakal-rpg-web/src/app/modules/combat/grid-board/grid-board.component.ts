@@ -8,6 +8,8 @@ import { calculatePositionDrop, createSvgGrid, createSvgWalk, moveCreature, adju
 import { ActionType } from 'src/app/domain/models/combat/action.type';
 import { MonsterService } from '../../monster/monster.module.service';
 import { DragCreature } from 'src/app/domain/models/creature/drag.creature';
+import { PlaceService } from '../../place/place.module.service';
+import { BoardConfig } from 'src/app/domain/models/combat/board.config';
 
 @Component({
   selector: 'app-grid-board',
@@ -39,13 +41,14 @@ export class GridBoardComponent implements OnInit{
 
   //private squareSize: number;
   constructor(private combatRoomService: CombatRoomService,private gridBoardService: GridBoardService,
-    private monsterService: MonsterService) { 
+    private monsterService: MonsterService,private placeService: PlaceService) { 
     //this.monsters = [];
     //this.squareSize = 30;
     this.zoomValue = 1;
     this.combatRoomService.getCombatState().subscribe(
       state => {
-        this.combatState = state
+        this.handleUpdateState(state);
+        console.log(this.combatState)
       }
     );
   }
@@ -77,20 +80,11 @@ export class GridBoardComponent implements OnInit{
         this.mainContainer.nativeElement.scrollTop += (this.startY - (ev.clientY + this.mainContainer.nativeElement.scrollTop));
       }
     }
-    this.newDrawImage();
+    this.newDrawImage(this.gridBoardService.getGridBoardConfig().imagePath);
   }
-  drawImage(){
-    this.image.src = "https://1.bp.blogspot.com/-skjFbWikSuU/VvUUhJu7ImI/AAAAAAAAGXw/7EtMwcNzPfw30x3CKdyo3wAYCxU7Qhr1g/s1600/dp6links.jpg";
-    this.ctx = this.canvas.nativeElement.getContext('2d');
-   
-    this.image.onload = () => {
-      this.canvas.nativeElement.height = this.image.height;
-      this.canvas.nativeElement.width = this.image.width;
-      this.ctx.drawImage(this.image,0,0);
-    }
-  }
-  newDrawImage(){
-    this.image.src = this.gridBoardService.getGridBoardConfig().imagePath;
+ 
+  newDrawImage(image: string){
+    this.image.src = image;
     this.image.onload = () => {
       
       this.imageContainer.nativeElement.style.width = "fit-content";
@@ -103,6 +97,7 @@ export class GridBoardComponent implements OnInit{
       this.imageContainer.nativeElement.ondrop = (ev) => {this.drop(ev)};
       this.imageContainer.nativeElement.style.backgroundImage = `url(${this.image.src})`;
       this.svgBattleGrid = document.getElementById("svggrid");
+      console.log(image);
       //this.insertMovePreview();
     }
   }
@@ -186,5 +181,31 @@ export class GridBoardComponent implements OnInit{
         }
       }
     }
+  }
+  handleUpdateState(state:CombatState){
+    //console.log(this.combatState.placeId);
+    //let oldState = {...this.combatState};
+    this.combatState = state;
+    // console.log(oldState.placeId);
+    
+    // if(oldState.placeId != this.combatState.placeId){
+      
+    //   this.placeService.getDetail(state.placeId).subscribe(
+    //     result => {
+    //       this.gridBoardService.setGridBoardConfig({
+    //         imagePath: result.map,
+    //         xDimension: result.xDimension,
+    //         yDimension: result.yDimension,
+    //         squareDimension: result.squareDimension
+    //       } as BoardConfig);
+    //       this.newDrawImage(result.map);
+    //     },
+    //     err =>{
+    //       console.log(err)
+    //     }
+       
+    //   )
+    // }
+    
   }
 }

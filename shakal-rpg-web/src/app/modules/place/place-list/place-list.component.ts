@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PlaceService } from '../place.module.service';
 import { PlaceOverview } from 'src/app/domain/models/place/place.overview';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PlaceCreate } from 'src/app/domain/models/story/place-create';
+import { InternModalService } from 'src/app/infra/services/intern.modal.service';
 
 @Component({
   selector: 'app-place-list',
@@ -12,10 +13,10 @@ import { PlaceCreate } from 'src/app/domain/models/story/place-create';
 })
 export class PlaceListComponent implements OnInit {
 
-  private modalReference;
+  //private modalReference;
   private placesList: PlaceOverview[];
   storyid: number;
-  constructor(private _activatedRoute: ActivatedRoute, private placeService: PlaceService,private modalService: NgbModal) { }
+  constructor(private _activatedRoute: ActivatedRoute, private placeService: PlaceService,private internModalService: InternModalService) { }
 
   ngOnInit() {
     this._activatedRoute.params.subscribe(params => {
@@ -26,8 +27,8 @@ export class PlaceListComponent implements OnInit {
       );
     });
   }
-  openCreatePlace(content){
-    this.modalReference = this.modalService.open(content, {size: 'xl'});
+  openCreatePlace(content: TemplateRef<any>){
+    this.internModalService.openLargeModal(content);  
   }
   addPlaceOnMap(place: PlaceOverview){
     this.placesList.push({
@@ -36,7 +37,7 @@ export class PlaceListComponent implements OnInit {
       folderImage: place.folderImage
     } as PlaceOverview);
     
-    this.modalReference.dismiss();
+    this.internModalService.closeModalReference();
   }
 
 }
