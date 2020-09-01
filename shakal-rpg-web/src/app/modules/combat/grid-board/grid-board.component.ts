@@ -10,6 +10,7 @@ import { MonsterService } from '../../monster/monster.module.service';
 import { DragCreature } from 'src/app/domain/models/creature/drag.creature';
 import { PlaceService } from '../../place/place.module.service';
 import { BoardConfig } from 'src/app/domain/models/combat/board.config';
+import { GridBoardConfig } from 'src/app/domain/models/combat/grid.board.config';
 
 @Component({
   selector: 'app-grid-board',
@@ -39,20 +40,38 @@ export class GridBoardComponent implements OnInit{
   private startX: number;
   private startY: number;
 
-  //private squareSize: number;
   constructor(private combatRoomService: CombatRoomService,private gridBoardService: GridBoardService,
     private monsterService: MonsterService,private placeService: PlaceService) { 
-    //this.monsters = [];
-    //this.squareSize = 30;
+
+    
+    
+
     this.zoomValue = 1;
     this.combatRoomService.getCombatState().subscribe(
       state => {
-        this.handleUpdateState(state);
-        console.log(this.combatState)
+        this.combatState = state;
+      }
+    );
+    this.gridBoardService.getGridBoardConfTest().subscribe(
+      gridBoardState => {
+        this.canvas = gridBoardState.canvas,
+        this.mainContainer = gridBoardState.mainContainer,
+        this.imageContainer = gridBoardState.imageContainer,
+        this.svgBattleGrid = gridBoardState.svgBattleGrid,
+        this.image = gridBoardState.image 
       }
     );
   }
   ngOnInit() {
+    this.gridBoardService.setGridBoardConfTest({
+      canvas: this.canvas,
+      mainContainer: this.mainContainer,
+      imageContainer: this.imageContainer,
+      svgBattleGrid: this.svgBattleGrid,
+      image:this.image
+    }as GridBoardConfig);
+
+
     this.mainContainer.nativeElement.oncontextmenu = (ev) => {
       ev.preventDefault();
     }
@@ -80,27 +99,11 @@ export class GridBoardComponent implements OnInit{
         this.mainContainer.nativeElement.scrollTop += (this.startY - (ev.clientY + this.mainContainer.nativeElement.scrollTop));
       }
     }
-    this.newDrawImage(this.gridBoardService.getGridBoardConfig().imagePath);
+    this.gridBoardService.newDrawImage(this.gridBoardService.getGridBoardConfig().imagePath);
+    this.imageContainer.nativeElement.ondragover = (ev) => {this.allowDrop(ev)};
+    this.imageContainer.nativeElement.ondrop = (ev) => {this.drop(ev)};
   }
  
-  newDrawImage(image: string){
-    this.image.src = image;
-    this.image.onload = () => {
-      
-      this.imageContainer.nativeElement.style.width = "fit-content";
-      this.mainContainer.nativeElement.height = this.image.height;
-      this.mainContainer.nativeElement.width = this.image.width;
-      this.imageContainer.nativeElement.height = this.image.height;
-      this.imageContainer.nativeElement.width = this.image.width;
-      this.imageContainer.nativeElement.insertAdjacentHTML('afterbegin',createSvgGrid(this.gridBoardService.getSquareSize(),this.image.naturalWidth,this.image.height));
-      this.imageContainer.nativeElement.ondragover = (ev) => {this.allowDrop(ev)};
-      this.imageContainer.nativeElement.ondrop = (ev) => {this.drop(ev)};
-      this.imageContainer.nativeElement.style.backgroundImage = `url(${this.image.src})`;
-      this.svgBattleGrid = document.getElementById("svggrid");
-      console.log(image);
-      //this.insertMovePreview();
-    }
-  }
   applyZoom(value: number){
     this.mainContainer.nativeElement.style.zoom = new Number(this.zoomValue += value).toString();
     this.zoomValue += value;
@@ -182,30 +185,5 @@ export class GridBoardComponent implements OnInit{
       }
     }
   }
-  handleUpdateState(state:CombatState){
-    //console.log(this.combatState.placeId);
-    //let oldState = {...this.combatState};
-    this.combatState = state;
-    // console.log(oldState.placeId);
-    
-    // if(oldState.placeId != this.combatState.placeId){
-      
-    //   this.placeService.getDetail(state.placeId).subscribe(
-    //     result => {
-    //       this.gridBoardService.setGridBoardConfig({
-    //         imagePath: result.map,
-    //         xDimension: result.xDimension,
-    //         yDimension: result.yDimension,
-    //         squareDimension: result.squareDimension
-    //       } as BoardConfig);
-    //       this.newDrawImage(result.map);
-    //     },
-    //     err =>{
-    //       console.log(err)
-    //     }
-       
-    //   )
-    // }
-    
-  }
+
 }

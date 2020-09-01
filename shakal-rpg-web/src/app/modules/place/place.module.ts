@@ -8,6 +8,7 @@ import { StoryModule } from '../story/story.module';
 import { PlaceCreateComponent } from './place-create/place-create.component';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material-design/material.module';
+import { GridBoardService } from '../combat/services/grid-board.service';
 
 
 @NgModule({
@@ -20,6 +21,6 @@ import { MaterialModule } from '../material-design/material.module';
     MaterialModule
   ],
   exports:[PlaceListComponent,PlaceListCardComponent],
-  providers:[PlaceService,FormBuilder]
+  providers:[PlaceService,FormBuilder,GridBoardService]
 })
 export class PlaceModule { }
