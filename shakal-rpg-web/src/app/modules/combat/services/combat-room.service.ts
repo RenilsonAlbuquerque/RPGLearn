@@ -37,7 +37,6 @@ export class CombatRoomService {
     // )
     this.rxStompService.watch('/topic/combat/'+ storyId).subscribe((message: IMessage) => {
       this.combatState.next(JSON.parse(message.body) as CombatState);
-      console.log(this.combatState.value);
     })
     
   }
@@ -46,6 +45,10 @@ export class CombatRoomService {
   }
   public getCombatStateValue():CombatState{
     return this.combatState.value;
+  }
+  public updateCombateState(state:CombatState){
+    //this.combatState.next(state);
+    this.onSendMessage(state);
   }
 
   public addMonsterEnemy(enemy: CreatureCard){
@@ -166,5 +169,8 @@ export class CombatRoomService {
         this.onSendMessage(combatState)
       }
     }
+  }
+  public loadCombatState(storyId: number): Observable<CombatState>{
+    return this.httpClient.get<CombatState>(`${environment.BASE_URL}combat/status/${storyId}`);
   }
 }

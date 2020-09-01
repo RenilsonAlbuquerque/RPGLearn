@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { generateRandomId } from 'src/app/infra/helpers/grid-board.helper';
 import { DiceService } from '../../dice/dice.module.service';
 import { DiceNumber } from 'src/app/domain/models/dice/dice.number';
+import { GridBoardService } from '../services/grid-board.service';
 
 
 
@@ -24,11 +25,14 @@ export class CombatScreenComponent implements OnInit  {
   storyid: number;
 
   constructor(public element: ElementRef,private _activatedRoute: ActivatedRoute,private modalService: NgbModal,
-     private combatRoomService: CombatRoomService, private diceService:DiceService) { 
+     private combatRoomService: CombatRoomService, private diceService:DiceService, private gridBoardService:GridBoardService) { 
+
     this.combatRoomService.getCombatState().subscribe(
        state => {this.combatState = state,
-        this.updateCombatDifficult()}
+        this.updateCombatDifficult()
+      }
     );
+
     this.diceService.isRolling().subscribe(
       result =>{
         this.rolling = result;
@@ -40,6 +44,12 @@ export class CombatScreenComponent implements OnInit  {
     this._activatedRoute.params.subscribe(params => {
       this.storyid = params['id'];
       this.combatRoomService.initializeCombat(this.storyid);
+      this.combatRoomService.loadCombatState(this.storyid).subscribe(
+        result => {
+          this.combatRoomService.updateCombateState(result);
+          this.gridBoardService.updateMapById(result.placeId);
+        }
+      );
     });
   }
   open(content) {

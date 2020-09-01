@@ -8,7 +8,8 @@
         [ngClass]="{'dead':monster.lifePercent == 0, 
         'danger': monster.lifePercent < 10 && monster.lifePercent > 0,
         'warning': monster.lifePercent > 10 && monster.lifePercent < 50,
-        'safe': monster.lifePercent > 50 }" />
+        'safe': monster.lifePercent > 50 ,
+        'current-turn': isMyTurn}" />
         <div class="fab-menu-overlay" [ngClass]="{'active':menuOpen}"></div>
         <div class="fab-container" [hidden]="!menuOpen" >
             <button *ngIf="isMyTurn" type="button" class="btn btn-success bmd-btn-fab fab-options" data-toggle="tooltip" data-placement="top" title="Batalha">
