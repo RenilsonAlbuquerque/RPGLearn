@@ -28,8 +28,17 @@ public class CreatureService implements ICreatureService {
 		
 		ImageToken search = this.imageTokenDAO.retrieveCharacterTokenById(id)
 					.orElseThrow(() -> new ResourceNotFoundException(Messages.CHARACTER_NOT_FOUND));
+		if(search.getPicture() == null || search.getPicture().length == 0 ) {
+			
+			CreatureTokenDTO result = new CreatureTokenDTO();
+			result.setId(id);
+			result.setPicture(search.getCreature().getImagePath());
+			return result;
+		}else {
+			return CreatureTokenMapper.mapEntityToDTO(search);
+		}
 				
-		return CreatureTokenMapper.mapEntityToDTO(search);
+		
 	}
 
 }

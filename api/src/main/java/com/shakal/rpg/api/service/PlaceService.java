@@ -66,6 +66,7 @@ public class PlaceService implements IPlaceService{
 		entity.setxDimension(placeCreate.getxDimension());
 		entity.setyDimension(placeCreate.getyDimension());
 		entity.setSquareDimension(placeCreate.getSquareDimension());
+		//entity.setNaturalHeigth(placeCreate.);
 		entity.setStory(story);
 		entity = this.placeDao.save(entity);
 		return PlaceMapper.entityToOverview(entity);

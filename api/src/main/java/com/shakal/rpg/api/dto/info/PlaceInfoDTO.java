@@ -17,6 +17,10 @@ public class PlaceInfoDTO {
 	private double yDimension;
 	
 	private double squareDimension;
+	
+	private double naturalHeight;
+	
+	private double naturalWidth;
 
 	public long getId() {
 		return id;
@@ -72,6 +76,22 @@ public class PlaceInfoDTO {
 
 	public void setSquareDimension(double squareDimension) {
 		this.squareDimension = squareDimension;
+	}
+
+	public double getNaturalHeight() {
+		return naturalHeight;
+	}
+
+	public void setNaturalHeight(double naturalHeight) {
+		this.naturalHeight = naturalHeight;
+	}
+
+	public double getNaturalWidth() {
+		return naturalWidth;
+	}
+
+	public void setNaturalWidth(double naturalWidth) {
+		this.naturalWidth = naturalWidth;
 	}
 	
 	

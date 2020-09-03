@@ -13,10 +13,12 @@ import com.shakal.rpg.api.dto.combat.ICreatureCardDTO;
 import com.shakal.rpg.api.dto.combat.CreatureCardDTO;
 import com.shakal.rpg.api.dto.info.CharacterSheetDTO;
 import com.shakal.rpg.api.dto.map.MapAreaDTO;
+import com.shakal.rpg.api.exception.ResourceNotFoundException;
 import com.shakal.rpg.api.model.ChallangeDificult;
 import com.shakal.rpg.api.model.combatstate.CombatState;
 import com.shakal.rpg.api.repository.ChallengeDificultDAO;
 import com.shakal.rpg.api.repository.CombatStateDAO;
+import com.shakal.rpg.api.utils.Messages;
 
 @Service
 public class CombatService implements ICombatService{
@@ -154,6 +156,14 @@ public class CombatService implements ICombatService{
 	public MapAreaDTO updateMapArea(MapAreaDTO input) {
 		// TODO Auto-generated method stub
 		return input;
+	}
+
+
+	@Override
+	public CombatStateDTO getCombatState(long storyId) throws ResourceNotFoundException {
+		CombatState search = this.combatStateDAO.findById(storyId)
+				.orElseThrow(() -> new ResourceNotFoundException(Messages.MONSTER_NOT_FOUND));
+		return new Gson().fromJson(search.getCombatStateJSON(), CombatStateDTO.class);
 	}
 	
 }

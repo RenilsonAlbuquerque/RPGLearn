@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.shakal.rpg.api.contracts.service.ICombatService;
 import com.shakal.rpg.api.contracts.service.IStoryService;
 import com.shakal.rpg.api.dto.combat.CombatDifficultDTO;
 import com.shakal.rpg.api.dto.combat.CombatStateDTO;
@@ -27,28 +28,19 @@ import com.shakal.rpg.api.security.AuthenticationContext;
 @RequestMapping("/combat")
 public class CombatController {
 	
-
-	
-	private HashMap<Long,CombatStateDTO> combats;
 	private IStoryService storyService;
+	private ICombatService combatService;
 	
 	@Autowired
-    public CombatController(SimpMessagingTemplate template, IStoryService storyService) {
-		 this.combats = new HashMap<Long, CombatStateDTO>();
+    public CombatController(SimpMessagingTemplate template, IStoryService storyService,
+    		ICombatService combatService) {
 		 this.storyService = storyService;
+		 this.combatService = combatService;
     }
 	
 	@GetMapping(value="/status/{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<CombatStateDTO> getInitalCombatStatus(@PathVariable Long id) throws ResourceNotFoundException{
-		CombatStateDTO result = this.combats.get(id);
-		if(this.combats.get(id) == null) {
-			result = new CombatStateDTO();
-			result.setCreatures(new ArrayList<>());
-			result.setDificult(CombatDifficultDTO.easy.getValue());
-		}
-		AuthenticationContext context = (AuthenticationContext)SecurityContextHolder.getContext().getAuthentication();
-		result.setUserTypeInStory(this.storyService.checkUserRole(id, context.getId()).getValue());
-		return new ResponseEntity<CombatStateDTO>(result, HttpStatus.OK);
+		return new ResponseEntity<CombatStateDTO>(this.combatService.getCombatState(id), HttpStatus.OK);
     }
 	
 	
