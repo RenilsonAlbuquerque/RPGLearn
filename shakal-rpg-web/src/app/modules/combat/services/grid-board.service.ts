@@ -7,6 +7,8 @@ import { GridBoardConfig } from 'src/app/domain/models/combat/grid.board.config'
 import { createSvgGrid } from 'src/app/infra/helpers/grid-board.helper';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { DragCreature } from 'src/app/domain/models/creature/drag.creature';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 
 
@@ -22,7 +24,7 @@ export class GridBoardService {
 
   private gridBoardConfTest: BehaviorSubject<GridBoardConfig>;
 
-  constructor(){
+  constructor(private httpClient: HttpClient){
     this.gridBoardConfig = {
       imagePath : 'https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs/129763638/original/05c10920c7074e25558016afbdc34ad7784c4467/create-a-custom-tabletop-battle-map-for-your-campaign.jpg',
       xDimension: 12,
@@ -83,7 +85,13 @@ export class GridBoardService {
     } 
     return result;
   }
-
+  public updateMapById(placeId:number){
+    this.httpClient.get<PlaceDetail>(`${environment.BASE_URL}place/info/${placeId}`).subscribe(
+      place => {
+        this.updateMap(place);
+      }
+    )
+  }
   public updateMap(place: PlaceDetail){
     this.newDrawImage(place.map);
   }
@@ -107,40 +115,13 @@ export class GridBoardService {
       newObject.imageContainer.nativeElement.style.backgroundImage = `url(${newObject.image.src})`;
       newObject.imageContainer.nativeElement.style.backgroundRepeat = `no-repeat`;
       newObject.svgBattleGrid = document.getElementById("svggrid");
-      newObject.imageContainer.nativeElement.removeChild(newObject.imageContainer.nativeElement.childNodes[1]);
+      if(newObject.imageContainer.nativeElement.children.length >1){
+        newObject.imageContainer.nativeElement.removeChild(newObject.imageContainer.nativeElement.childNodes[1]);
+      }
 
       this.gridBoardConfTest.next(newObject);
       //this.insertMovePreview();
     }
   }
-
-
-  // allowDrop(ev:DragEvent) {
-  //   ev.preventDefault();
-  // }
-
-  // drop(ev: DragEvent) {
-  //   ev.preventDefault();
-  //   var data = ev.dataTransfer.getData("monster");
-  //   if(data){
-  //     let creature: DragCreature = JSON.parse(data);
-  //     if(creature){
-  //       this.monsterService.getMonsterCardById(creature.id).subscribe(
-  //       response => {
-  //         let newCreature = response
-  //         newCreature.combatId = generateRandomId();
-  //         newCreature.ally = creature.ally;
-  //         newCreature.position = calculatePositionDrop(ev.offsetX,ev.offsetY,this.zoomValue,this.gridBoardService.getSquareSize());
-  //         this.combatRoomService.addCreatureToCombat(newCreature)
-  //       });
-  //       return;
-  //     }
-  //   }
-  //   let player = JSON.parse(ev.dataTransfer.getData("player"));
-  //   if(player){
-  //     player.position = calculatePositionDrop(ev.offsetX,ev.offsetY,this.zoomValue,this.gridBoardService.getSquareSize());
-  //     this.combatRoomService.addCreatureToCombat(player)
-  //   }
-  // }
   
 }
