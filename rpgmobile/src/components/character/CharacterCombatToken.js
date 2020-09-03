@@ -1,26 +1,50 @@
 import React, {Component} from 'react';
 import { StyleSheet, Image, View,Text} from 'react-native';
 import changeColor from '../../helpers/Combat-helper';
+import CustomAxios from '../../service/AxiosConfig';
 
-export default function CharacterCombatToken(props){
-    return(
+
+export default class CharacterCombatToken extends Component{
+
+    constructor(props){
+        super(props);
+        this.state = {
+            tokenSource : ""
+        }
+        this.changeToken();
+    }
+    changeToken() {
+        CustomAxios
+        .get(`/creature/token/${this.props.creature.id}`).then(
+            result => {
+                this.setState({
+                    tokenSource: result.data.picture
+                });
+            }
+        )
+        
+    }
+    render(){
+        return(
         <View style={[tokenStyle.container,
-                {marginTop: props.creature.position.y * 1.5,
-                marginLeft: props.creature.position.x }]}>
-            <Image style={tokenStyle.tokenImage} 
-                source={{uri: 'https://www.vippng.com/png/detail/83-831021_d-d-token-png-transparent-background-drow-token.png'}} />     
+                {marginTop: this.props.creature.position.y ,
+                marginLeft: this.props.creature.position.x,
+                borderColor: changeColor(this.props.creature.lifePercent),
+                backgroundColor: changeColor(this.props.creature.lifePercent) }]}>
+            <Image style={{...tokenStyle.tokenImage}} 
+                source={{uri: this.state.tokenSource}} />     
         </View>
-    )
+        )
+    }
 }
 
 const tokenStyle = StyleSheet.create({
     container:{
-        height:50, 
-        width: 50,
+        height:30, 
+        width: 30,
         borderRadius:100,
         position:'absolute',
-        marginTop:33
     },
-    tokenImage:{height:50, width: 50, borderRadius:100}
+    tokenImage:{height:26, width: 26, borderRadius:100}
 
 })

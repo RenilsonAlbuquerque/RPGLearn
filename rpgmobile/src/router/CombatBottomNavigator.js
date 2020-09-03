@@ -45,7 +45,7 @@ const CombatBottomNavigator = createMaterialBottomTabNavigator({
 
 },
 {
-  initialRouteName: 'Monsters',
+  initialRouteName: 'CharacterSheet',
   //activeTintColor: '#f0edf6',
   //inactiveTintColor: '#3e2465',
   barStyle: { backgroundColor: Colors.DARK_PRIMARY_COLOR }

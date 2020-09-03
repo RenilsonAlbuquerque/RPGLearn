@@ -4,9 +4,11 @@ import { connect } from 'react-redux';
 import StompWS from 'react-native-stomp-websocket';
 import CombatBottomNavigator from '../router/CombatBottomNavigator';
 import { bindActionCreators } from "redux";
-import {setCombatStatus,getCombatStatusState} from '../actions/CombatAction'
+import {setCombatStatus,getCombatStatusState,getCombatStatusStateNoReducing,getCombatAreaStatusState} from '../actions/CombatAction'
 import {getCurrentCaracterFromStory} from '../actions/CharacterAction'
 import { BASE_URL } from '../constants/constants';
+import CustomAxios from '../service/AxiosConfig';
+import { LogBox } from 'react-native';
 
 
 class CombatPage extends Component {
@@ -16,16 +18,32 @@ class CombatPage extends Component {
       
     componentDidMount() {
       const storyId = this.props.currentCombat.id;
-      this.props.getCombatStatusState(storyId);
+      //this.props.getCombatStatusState(storyId);
+      this.requestCombatStatusAndScenario(storyId);
       const client = StompWS.client(`ws://${BASE_URL}/stomp`);
       client.connect({}, (frame) => {
         client.subscribe('/topic/combat/' + storyId, (message) => {
+            
             this.props.setCombatStatus(JSON.parse(message.body))
           });
       }, (err) => console.log(err))
-
+      
+      
+        
       this.props.getCurrentCaracterFromStory(this.props.currentUser.id,this.props.currentStory.id)
       
+    }
+    requestCombatStatusAndScenario(storyId){
+      CustomAxios
+        .get(`/combat/status/${storyId}`)
+        .then(
+          result => {
+            console.log("I am the Powerrrrrrrrrrr");
+            console.log(result.data.placeId);
+            this.props.setCombatStatus(result.data);
+            this.props.getCombatAreaStatusState(result.data.placeId);
+          }
+        )
     }
     
     constructor(props){
@@ -52,7 +70,9 @@ const mapStateToProps = state => ({
   const mapDispatchToProps = dispatch => bindActionCreators({
     setCombatStatus,
     getCombatStatusState,
-    getCurrentCaracterFromStory
+    getCombatStatusStateNoReducing,
+    getCurrentCaracterFromStory,
+    getCombatAreaStatusState
   }, dispatch);
 export default connect(mapStateToProps,mapDispatchToProps)(CombatPage);
 
