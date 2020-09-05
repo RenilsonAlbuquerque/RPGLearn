@@ -5,6 +5,7 @@ import { Provider } from 'react-redux'
 import ShakalStackNavigator from './src/router/ShakalStackNavigator';
 import store  from './src/store/store'
 import NavigationService from './src/service/NavigationService';
+import 'react-native-gesture-handler';
 
 
 
