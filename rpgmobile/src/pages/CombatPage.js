@@ -38,8 +38,6 @@ class CombatPage extends Component {
         .get(`/combat/status/${storyId}`)
         .then(
           result => {
-            console.log("I am the Powerrrrrrrrrrr");
-            console.log(result.data.placeId);
             this.props.setCombatStatus(result.data);
             this.props.getCombatAreaStatusState(result.data.placeId);
           }

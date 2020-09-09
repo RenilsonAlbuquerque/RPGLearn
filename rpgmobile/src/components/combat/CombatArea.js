@@ -52,6 +52,10 @@ let CombatArea = (props) =>{
         return result;
     }
 
+    let checkIfIsMyTurn =()=>{
+        
+    }
+
     return (
     /*******Only gesture**************************************** */
     <View onLayout={(event) => {mainContainer  = event.nativeEvent.layout;}} >
