@@ -7,6 +7,8 @@ import { getCombatAreaStatusState } from '../../actions/CombatAction';
 import GestureHandler, { PinchGestureHandler } from 'react-native-gesture-handler';
 import { Icon, Button } from 'native-base';
 import { Platform } from 'react-native';
+import WalkArea from './CombatShapes/WalkArea';
+import CombatTurnPanel from './CombatTurnPanel';
 
 
 let CombatArea = (props) =>{
@@ -58,8 +60,12 @@ let CombatArea = (props) =>{
 
     return (
     /*******Only gesture**************************************** */
-    <View onLayout={(event) => {mainContainer  = event.nativeEvent.layout;}} >
-        <ScrollView styles={{flex: 1, height: '100%', width: '100%' }} ref={(scrollView) => { verticalScroll = scrollView; }}> 
+   
+    <View>
+       <CombatTurnPanel styles={styles.panel}></CombatTurnPanel>
+    <View style={{height:'96%'}} onLayout={(event) => {mainContainer  = event.nativeEvent.layout;}} >
+        
+        <ScrollView styles={{ height: '100%', width: '100%' }} ref={(scrollView) => { verticalScroll = scrollView; }}> 
             <ScrollView directionalLockEnabled={false} horizontal={true} ref={(scrollView) => { horizontalScroll = scrollView; }}> 
                 <PinchGestureHandler onGestureEvent={handlePinch}
                         onHandlerStateChange={gestureHandlerStateChange}>
@@ -67,18 +73,27 @@ let CombatArea = (props) =>{
                         <Image style={[{width: areaMapStatusData.naturalWidth,
                             height: areaMapStatusData.naturalHeight}]} 
                             source={{uri: areaMapStatusData.map}}/>
+                            <WalkArea></WalkArea>
                             {combatStatusData.creatures.map((item, index) =>
-
+                                
                                 <CharacterCombatToken key={index} creature={item}></CharacterCombatToken>                        
                             )}
+                                
+                            
                     </Animated.View>            
                 </PinchGestureHandler>
             </ScrollView>
         </ScrollView>
-        <Button style={styles.fab} onPress={ handleChangeToPosition}>
+        <Button style={[styles.fab,{left:5}]} onPress={ handleChangeToPosition}>
             <Icon size={100} name={ Platform.OS === 'ios' ? (focused ? 'ios-person' : 'ios-home-outline') : 'md-locate' }  />
         </Button> 
-    </View>)
+        <Button style={[styles.fab,{right:5}]} onPress={ handleChangeToPosition}>
+            <Icon size={100} name={ Platform.OS === 'ios' ? (focused ? 'ios-person' : 'ios-home-outline') : 'md-menu' }  />
+        </Button> 
+        
+    </View>
+    </View>
+    )
 
 }
 const mapStateToProps = state => ({ 
@@ -101,6 +116,9 @@ const styles = StyleSheet.create({
         height:50, 
         width: 50,
         bottom: 5,
-        right:5
+      },
+      panel: {
+        zIndex:9999,
+        
       }
 });

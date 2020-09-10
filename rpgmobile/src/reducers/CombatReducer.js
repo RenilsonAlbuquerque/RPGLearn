@@ -1,4 +1,4 @@
-import { COMBAT_STATUS_FETCHED,COMBAT_MAP_FETCHED } from "../actions/CombatAction";
+import { COMBAT_STATUS_FETCHED,COMBAT_MAP_FETCHED, WALK_PROPERTIES_FETCHED } from "../actions/CombatAction";
 import { act } from "react-test-renderer";
 
 const INITIAL_STATE = {
@@ -17,9 +17,11 @@ const INITIAL_STATE = {
         squareDimension:1.5,
         naturalHeight: 0,
         naturalWidth:0
-        
-
-
+    },
+    walkMovement:{
+        x:150,
+        y:210,
+        visible:false
     }
     
 }
@@ -29,6 +31,11 @@ export default function (state = INITIAL_STATE, action = {}) {
             return {
             ...state,
             combatState : action.payload
+        }
+        case WALK_PROPERTIES_FETCHED:
+            return {
+            ...state,
+            walkMovement : action.payload
         }
         case COMBAT_MAP_FETCHED:
             return{

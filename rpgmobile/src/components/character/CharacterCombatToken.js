@@ -1,16 +1,20 @@
 import React, {Component} from 'react';
-import { StyleSheet, Image, View,Text, Platform} from 'react-native';
+import { StyleSheet, Image, View,Text, Platform, TouchableHighlight} from 'react-native';
 import changeColor from '../../helpers/Combat-helper';
 import CustomAxios from '../../service/AxiosConfig';
 import PlayerActionsMenu from './PlayerActionsMenu';
 import { Button, Icon } from 'native-base';
 import  BaseComponentStyle  from '../../styles/BaseComponentStyle';
+import { setWalkPoperties} from '../../actions/CombatAction';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
 
 
 
 const TOKEN_DEFAULT_SIZE =  30;
 
-export default class CharacterCombatToken extends Component{
+class CharacterCombatToken extends Component{
 
     constructor(props){
         super(props);
@@ -39,6 +43,14 @@ export default class CharacterCombatToken extends Component{
             marginLeft: this.props.creature.position.x - 55 + 13
         }
     }
+    handlePressWalkButton(){
+        this.props.setWalkPoperties({
+            x:this.props.creature.position.x,
+            y:this.props.creature.position.y,
+            visible: true
+        });
+        this.setState({menuOpen: !this.state.menuOpen})
+    }
     render(){
         let TOKEN_DIMENSION = TOKEN_DEFAULT_SIZE * this.props.creature.size;
 
@@ -48,7 +60,7 @@ export default class CharacterCombatToken extends Component{
                 {(this.state.menuOpen) ? 
                 (<View style={[tokenStyle.menuContainer,this.calculateMenuPosition()]}>
                         
-                    <Button style={BaseComponentStyle.fab}>
+                    <Button style={BaseComponentStyle.fab} onPress={() => this.handlePressWalkButton()}>
                         <Icon size={100} name={ Platform.OS === 'ios' ? (focused ? 'ios-person' : 'ios-home-outline') : 'md-walk' }  />
                     </Button>
                     <Button style={[BaseComponentStyle.fab,{left:60}]}>
@@ -56,7 +68,8 @@ export default class CharacterCombatToken extends Component{
                     </Button>
                 </View>) : (<></>)
                 }
-                <View style={[tokenStyle.container,
+                <TouchableHighlight onPress={() => this.setState({menuOpen: !this.state.menuOpen})}
+                    style={[tokenStyle.container,
                     {height: TOKEN_DIMENSION,
                     width: TOKEN_DIMENSION,
                     marginTop: this.props.creature.position.y ,
@@ -66,11 +79,17 @@ export default class CharacterCombatToken extends Component{
                     <Image style={{...tokenStyle.tokenImage}} 
                         source={{uri: this.state.tokenSource}}/> 
                                  
-                </View>
+                </TouchableHighlight>
+                
             </View>
         )
     }
 }
+
+const mapDispatchToProps = dispatch => bindActionCreators({
+    setWalkPoperties
+}, dispatch);
+export default connect(null,mapDispatchToProps)(CharacterCombatToken);
 
 const tokenStyle = StyleSheet.create({
     menuContainer:{
