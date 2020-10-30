@@ -1,15 +1,15 @@
-import React from 'react';
-import {StyleSheet, View,ScrollView,Image, Animated} from 'react-native';
-import { connect } from 'react-redux';
+import React, {Component} from 'react';
+import {StyleSheet, View,SafeAreaView,ScrollView,Image, Animated} from 'react-native';
 import CharacterCombatToken from '../character/CharacterCombatToken';
 import { bindActionCreators } from 'redux';
 import { getCombatAreaStatusState } from '../../actions/CombatAction';
-import GestureHandler, { PinchGestureHandler } from 'react-native-gesture-handler';
+import GestureHandler, { PinchGestureHandler, State, PanGestureHandler } from 'react-native-gesture-handler';
+import { connect } from 'react-redux';
 import { Icon, Button } from 'native-base';
 import { Platform } from 'react-native';
 
 
-let CombatArea = (props) =>{
+let CombatField = (props) =>{
     //******State of reducers ************/
     const {
         combatStatusData,
@@ -85,7 +85,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => bindActionCreators({
     getCombatAreaStatusState
 }, dispatch);
-export default connect(mapStateToProps,mapDispatchToProps)(CombatArea);
+export default connect(mapStateToProps,mapDispatchToProps)(CombatField);
 const styles = StyleSheet.create({
 
     fab: {

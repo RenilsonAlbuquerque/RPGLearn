@@ -32,6 +32,10 @@ public class Place {
 	
 	private double squareDimension;
 	
+	private double naturalHeight;
+	
+	private double naturalWidth;
+	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, targetEntity = Story.class)
 	@JoinColumn(name ="story_id", referencedColumnName = "id")
 	private Story story;
@@ -98,6 +102,22 @@ public class Place {
 
 	public void setSquareDimension(double squareDimension) {
 		this.squareDimension = squareDimension;
+	}
+
+	public double getNaturalHeight() {
+		return naturalHeight;
+	}
+
+	public void setNaturalHeight(double naturalHeight) {
+		this.naturalHeight = naturalHeight;
+	}
+
+	public double getNaturalWidth() {
+		return naturalWidth;
+	}
+
+	public void setNaturalWidth(double naturalWidth) {
+		this.naturalWidth = naturalWidth;
 	}
 
 	

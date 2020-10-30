@@ -8,10 +8,17 @@ const INITIAL_STATE = {
         dificult:1
     },
     currentMap:{
+        id:1,
+        name:'',
+        background: '',
         map:'',
         xDimension:0,
         yDimension:0,
-        squareDimension:1.5 
+        squareDimension:1.5,
+        naturalHeight: 0,
+        naturalWidth:0
+        
+
 
     }
     

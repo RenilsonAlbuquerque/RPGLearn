@@ -3,8 +3,8 @@ import CustomAxios from "../service/AxiosConfig";
 export const COMBAT_STATUS_FETCHED = 'COMBAT_STATUS_FETCHED';
 export const COMBAT_MAP_FETCHED = 'COMBAT_MAP_FETCHED';
 
-const STORY_API ="/combat";
-const PLACE_API ="/place";
+export const STORY_API ="/combat";
+export const PLACE_API ="/place";
 
 export function setCombatStatus(combatStatus){
         return {
@@ -26,17 +26,28 @@ export function getCombatStatusState(storyId){
         
     };
 }
+export function getCombatStatusStateNoReducing(storyId){
+    return CustomAxios
+        .get(`${STORY_API}/status/${storyId}`);
+}
 export function getCombatAreaStatusState(placeId){
     return (dispatch) => {
         return CustomAxios
         .get(`${PLACE_API}/info/${placeId}`)
-        .then(result =>
+        .then(result => {
             dispatch(
                 {
                     type:COMBAT_MAP_FETCHED,
                     payload: result.data
                 }
-            ))
-        
+            );
+        }
+
+            
+        )
     };
+}
+export function getCombatAreaStatusStateNoReducing(placeId){
+    return CustomAxios
+    .get(`${PLACE_API}/info/${placeId}`)
 }

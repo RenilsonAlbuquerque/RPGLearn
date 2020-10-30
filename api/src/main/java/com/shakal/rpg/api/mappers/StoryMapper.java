@@ -37,6 +37,8 @@ public class StoryMapper {
 		dto.setBackground(entity.getBackground());
 		dto.setxDimension(entity.getxDimension());
 		dto.setyDimension(entity.getyDimension());
+		dto.setNaturalHeight(entity.getNaturalHeight());
+		dto.setNaturalWidth(entity.getNaturalWidth());
 		dto.setSquareDimension(entity.getSquareDimension());
 		return dto;
 	}

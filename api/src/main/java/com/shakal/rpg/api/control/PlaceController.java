@@ -39,6 +39,7 @@ public class PlaceController {
 	
 	@GetMapping("/list/{id}")
 	public ResponseEntity<List<PlaceOverviewDTO>> getPlacesList(@PathVariable Long id) throws ResourceNotFoundException {
+		System.out.println("Hoje é fiesta");
 	    return new ResponseEntity<List<PlaceOverviewDTO>>(this.placeService.getPlacesListByStoryId(id), HttpStatus.OK);
 	}
 	@PostMapping(value="/create",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
