@@ -170,6 +170,11 @@ export class CombatRoomService {
       }
     }
   }
+  public removeAllCreatures(){
+    let combatState: CombatState = this.combatState.getValue();
+    combatState.creatures = [];
+    this.onSendMessage(combatState);
+  }
   public loadCombatState(storyId: number): Observable<CombatState>{
     return this.httpClient.get<CombatState>(`${environment.BASE_URL}combat/status/${storyId}`);
   }

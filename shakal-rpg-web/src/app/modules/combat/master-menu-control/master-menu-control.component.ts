@@ -72,4 +72,7 @@ export class MasterMenuControlComponent implements OnInit {
       this.diceService.rollInitiativeOfCreatures(this.combatRoomService.getCombatStateValue().creatures)
     );
   }
+  handleResetCombat(){
+    this.combatRoomService.removeAllCreatures();
+  }
 }
