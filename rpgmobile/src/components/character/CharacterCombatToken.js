@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { StyleSheet, Image, View,Text, Platform, TouchableHighlight} from 'react-native';
-import changeColor from '../../helpers/Combat-helper';
+import { changeColor} from '../../helpers/Combat-helper';
 import CustomAxios from '../../service/AxiosConfig';
 import PlayerActionsMenu from './PlayerActionsMenu';
 import { Button, Icon } from 'native-base';
@@ -28,6 +28,8 @@ class CharacterCombatToken extends Component{
         CustomAxios
         .get(`/creature/token/${this.props.creature.id}`).then(
             result => {
+                console.log("Imagem do token");
+                console.log(result);
                 this.setState({
                     tokenSource: result.data.picture
                 });
@@ -56,19 +58,7 @@ class CharacterCombatToken extends Component{
 
         return(
             <View style={{height:100,width:100, position:'absolute'}}>
-                {/* <PlayerActionsMenu style={{marginTop:120,position:'absolute'}} creature={this.props.creature} position={this.calculateMenuPosition()}></PlayerActionsMenu> */}
-                {(this.state.menuOpen) ? 
-                (<View style={[tokenStyle.menuContainer,this.calculateMenuPosition()]}>
-                        
-                    <Button style={BaseComponentStyle.fab} onPress={() => this.handlePressWalkButton()}>
-                        <Icon size={100} name={ Platform.OS === 'ios' ? (focused ? 'ios-person' : 'ios-home-outline') : 'md-walk' }  />
-                    </Button>
-                    <Button style={[BaseComponentStyle.fab,{left:60}]}>
-                        <Icon size={100} name={ Platform.OS === 'ios' ? (focused ? 'ios-person' : 'ios-home-outline') : 'md-fastforward' }  />
-                    </Button>
-                </View>) : (<></>)
-                }
-                <TouchableHighlight onPress={() => this.setState({menuOpen: !this.state.menuOpen})}
+                <View
                     style={[tokenStyle.container,
                     {height: TOKEN_DIMENSION,
                     width: TOKEN_DIMENSION,
@@ -79,7 +69,7 @@ class CharacterCombatToken extends Component{
                     <Image style={{...tokenStyle.tokenImage}} 
                         source={{uri: this.state.tokenSource}}/> 
                                  
-                </TouchableHighlight>
+                </View>
                 
             </View>
         )

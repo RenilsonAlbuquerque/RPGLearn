@@ -1,4 +1,4 @@
-export default function changeColor(percent){
+export  function changeColor(percent){
     var result = ''; 
     if(percent == 0){
         result = 'black'
@@ -17,4 +17,10 @@ export default function changeColor(percent){
     
     
     return result;
+}
+export  function adjustPosition(position,squareDimension){
+    return {
+        x: Math.floor(position.x/squareDimension) * squareDimension,
+        y: Math.floor(position.y/squareDimension) * squareDimension,
+    }
 }

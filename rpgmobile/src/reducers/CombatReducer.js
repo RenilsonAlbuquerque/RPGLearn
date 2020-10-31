@@ -1,4 +1,4 @@
-import { COMBAT_STATUS_FETCHED,COMBAT_MAP_FETCHED, WALK_PROPERTIES_FETCHED } from "../actions/CombatAction";
+import { COMBAT_STATUS_FETCHED,COMBAT_MAP_FETCHED, WALK_PROPERTIES_FETCHED, ACTION_PROPERTIES_FETCHED } from "../actions/CombatAction";
 import { act } from "react-test-renderer";
 
 const INITIAL_STATE = {
@@ -8,7 +8,7 @@ const INITIAL_STATE = {
         dificult:1
     },
     currentMap:{
-        id:1,
+        id:-1,
         name:'',
         background: '',
         map:'',
@@ -18,10 +18,15 @@ const INITIAL_STATE = {
         naturalHeight: 0,
         naturalWidth:0
     },
-    walkMovement:{
+    movimentActionsStatus:{
         x:150,
         y:210,
-        visible:false
+        walkVisible:false,
+        dashVisible:false
+    },
+    actionProperties:{
+        walkMove: 0,
+        dashMove: 0
     }
     
 }
@@ -35,7 +40,12 @@ export default function (state = INITIAL_STATE, action = {}) {
         case WALK_PROPERTIES_FETCHED:
             return {
             ...state,
-            walkMovement : action.payload
+            movimentActionsStatus : action.payload
+        }
+        case ACTION_PROPERTIES_FETCHED:
+            return {
+            ...state,
+            actionProperties : action.payload
         }
         case COMBAT_MAP_FETCHED:
             return{

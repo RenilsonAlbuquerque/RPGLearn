@@ -3,6 +3,7 @@ import CustomAxios from "../service/AxiosConfig";
 export const COMBAT_STATUS_FETCHED = 'COMBAT_STATUS_FETCHED';
 export const WALK_PROPERTIES_FETCHED = 'WALK_PROPERTIES_FETCHED';
 export const COMBAT_MAP_FETCHED = 'COMBAT_MAP_FETCHED';
+export const ACTION_PROPERTIES_FETCHED = 'ACTION_PROPERTIES_FETCHED';
 
 export const STORY_API ="/combat";
 export const PLACE_API ="/place";
@@ -18,6 +19,12 @@ export function setWalkPoperties(walkProperties){
     return {
         type:WALK_PROPERTIES_FETCHED,
         payload: walkProperties
+    }
+}
+export function setActionProperties(actionProperties){
+    return {
+        type:ACTION_PROPERTIES_FETCHED,
+        payload: actionProperties
     }
 }
 export function getCombatStatusState(storyId){
