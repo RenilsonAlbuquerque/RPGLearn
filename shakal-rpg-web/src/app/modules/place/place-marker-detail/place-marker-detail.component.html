@@ -1,0 +1,21 @@
+<div>
+    <form [formGroup]="markDetailForm" >
+        <mat-form-field class="form-group col-12" appearance="outline">
+            <mat-label>Nome</mat-label>
+            <input  matInput type="text" placeholder="largura" formControlName="name">
+            <mat-error *ngIf="!markDetailForm.controls['name'].valid && markDetailForm.controls['name'].touched">
+                    Campo obrigatório
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="form-group col-12" appearance="outline">
+            <mat-label>Descrição</mat-label>
+            <textarea matInput formControlName="description" matInput rows="13"></textarea>
+            <mat-error *ngIf="!markDetailForm.controls['description'].valid && markDetailForm.controls['description'].touched">
+                    Campo obrigatório
+            </mat-error>
+        </mat-form-field>
+        <div class="buttons-row">
+            <button [disabled]="loading" (click)="onSubmit()" mat-raised-button color="primary">Salvar</button>
+        </div>
+    </form>
+</div>

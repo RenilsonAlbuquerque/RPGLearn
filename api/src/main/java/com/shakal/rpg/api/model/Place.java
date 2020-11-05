@@ -1,5 +1,7 @@
 package com.shakal.rpg.api.model;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,7 +11,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.shakal.rpg.api.model.place.PlaceMark;
 
 @Entity
 @Table(name= "tb_place")
@@ -36,9 +41,14 @@ public class Place {
 	
 	private double naturalWidth;
 	
+	private int squareSizeCm;
+	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, targetEntity = Story.class)
 	@JoinColumn(name ="story_id", referencedColumnName = "id")
 	private Story story;
+	
+	@OneToMany(mappedBy = "place",cascade = CascadeType.PERSIST,fetch = FetchType.LAZY, targetEntity = PlaceMark.class)
+	private List<PlaceMark> marks;
 
 	public long getId() {
 		return id;
@@ -118,6 +128,22 @@ public class Place {
 
 	public void setNaturalWidth(double naturalWidth) {
 		this.naturalWidth = naturalWidth;
+	}
+
+	public int getSquareSizeCm() {
+		return squareSizeCm;
+	}
+
+	public void setSquareSizeCm(int squareSizeCm) {
+		this.squareSizeCm = squareSizeCm;
+	}
+
+	public List<PlaceMark> getMarks() {
+		return marks;
+	}
+
+	public void setMarks(List<PlaceMark> marks) {
+		this.marks = marks;
 	}
 
 	

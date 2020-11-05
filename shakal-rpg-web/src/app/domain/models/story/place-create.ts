@@ -5,5 +5,6 @@ export interface PlaceCreate{
     map: string,
     xDimension: number,
     yDimension: number,
-    squareSize: number
+    squareSize: number,
+    squareSizeCm: number
 }

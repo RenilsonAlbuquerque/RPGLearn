@@ -16,12 +16,14 @@ import { StoryDetailPlayerComponent } from './story-detail-player/story-detail-p
 import { CombatModule } from '../combat/combat.module';
 import { CharacterService } from '../character/character.module.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { PlaceMakerComponent } from './place-maker/place-maker.component';
+import { PlaceModule } from '../place/place.module';
 
 
 
 
 @NgModule({
-  declarations: [StoryMapComponent, PlaceDetailComponent, StoryListComponent, StoryDetailComponent, PlaceOverviewComponent, StoryCreateComponent, PlaceCreateComponent, StoryDetailPlayerComponent],
+  declarations: [StoryMapComponent, PlaceDetailComponent, StoryListComponent, StoryDetailComponent, PlaceOverviewComponent, StoryCreateComponent, PlaceCreateComponent, StoryDetailPlayerComponent, PlaceMakerComponent],
   imports: [
     CommonModule,
     StoryRoutingModule,
@@ -31,6 +33,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     BasecomponentsModule,
     CombatModule,
     FontAwesomeModule,
+    PlaceModule
   ],
   providers:[StoryService,FormBuilder,CharacterService]
 })

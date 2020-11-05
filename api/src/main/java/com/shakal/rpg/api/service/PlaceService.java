@@ -1,5 +1,7 @@
 package com.shakal.rpg.api.service;
 
+import java.awt.Dimension;
+import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,6 +17,7 @@ import com.shakal.rpg.api.dto.info.PlaceInfoDTO;
 import com.shakal.rpg.api.dto.overview.MonsterOverviewDTO;
 import com.shakal.rpg.api.dto.overview.PlaceOverviewDTO;
 import com.shakal.rpg.api.exception.ResourceNotFoundException;
+import com.shakal.rpg.api.helpers.FileHelper;
 import com.shakal.rpg.api.mappers.MonsterMapper;
 import com.shakal.rpg.api.mappers.PlaceMapper;
 import com.shakal.rpg.api.mappers.StoryMapper;
@@ -25,6 +28,7 @@ import com.shakal.rpg.api.repository.PlaceDAO;
 import com.shakal.rpg.api.repository.StoryDAO;
 import com.shakal.rpg.api.utils.Messages;
 import com.shakal.rpg.api.utils.PaginationGenerator;
+import com.shakal.rpg.api.utils.Constants;
 
 @Service
 public class PlaceService implements IPlaceService{
@@ -42,6 +46,13 @@ public class PlaceService implements IPlaceService{
 	public PlaceInfoDTO getPlaceById(long id) throws ResourceNotFoundException {
 		Place place = this.placeDao.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException(Messages.STORY_NOT_FOUND));
+		
+		try {
+			place.setMap(FileHelper.convertImageToBase64(Constants.MAPS_IMAGES_PATH + place.getMap()));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return StoryMapper.placeEntityToDto(place);
 	}
 
@@ -57,19 +68,35 @@ public class PlaceService implements IPlaceService{
 
 	@Override
 	public PlaceOverviewDTO createPlace(PlaceCreateDTO placeCreate) throws ResourceNotFoundException{
+		
 		Story story = this.storyDao.findById(placeCreate.getStoryId())
 				.orElseThrow(() -> new ResourceNotFoundException(Messages.STORY_NOT_FOUND));
 		Place entity = new Place();
 		entity.setName(placeCreate.getName());
 		entity.setBackground(placeCreate.getBackground());
-		entity.setMap(placeCreate.getMap());
+		entity.setMap("");
 		entity.setxDimension(placeCreate.getxDimension());
 		entity.setyDimension(placeCreate.getyDimension());
 		entity.setSquareDimension(placeCreate.getSquareDimension());
-		//entity.setNaturalHeigth(placeCreate.);
+		entity.setNaturalHeight(200.0d);
+		entity.setSquareSizeCm(placeCreate.getSquareSizeCm());
 		entity.setStory(story);
+		entity = this.placeDao.save(entity);
+		String fileName = "map" + entity.getId()+ ".jpg";
+		Dimension dimension = new Dimension();
+		try {
+			dimension =FileHelper.createFileAndPersist(Constants.MAPS_IMAGES_PATH, placeCreate.getMap(),fileName );
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		entity.setMap(fileName);
+		entity.setNaturalHeight(dimension.getHeight());
+		entity.setNaturalWidth(dimension.getWidth());
 		entity = this.placeDao.save(entity);
 		return PlaceMapper.entityToOverview(entity);
 	}
+	
+	
+
 
 }

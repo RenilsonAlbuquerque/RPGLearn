@@ -6,4 +6,5 @@ public class Constants {
 			"/swagger-ui.html", "/webjars/**", "/swagger-resources/configuration/ui", "/swagger-ui.html","/stomp/**"};
 	
 	public static final String LOGIN_PATH = "/login";
+	public static final String MAPS_IMAGES_PATH = "./images/maps/";
 }

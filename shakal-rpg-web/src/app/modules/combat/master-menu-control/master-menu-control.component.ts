@@ -59,7 +59,7 @@ export class MasterMenuControlComponent implements OnInit {
     this.creatureMenu = true;
     this.diceMenu = false;
   }
-  openConfirmDeleteModal(reference){
+  openConfirmationModal(reference){
     this.modalReference = this.modalService.open(reference,{ centered: true });
   }
   rollInitiativeForLeftPlayersAndStart(){
@@ -74,5 +74,6 @@ export class MasterMenuControlComponent implements OnInit {
   }
   handleResetCombat(){
     this.combatRoomService.removeAllCreatures();
+    this.modalReference.dismiss();
   }
 }

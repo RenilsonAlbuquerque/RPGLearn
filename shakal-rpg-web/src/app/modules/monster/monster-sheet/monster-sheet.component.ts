@@ -13,7 +13,7 @@ export class MonsterSheetComponent implements OnInit {
 
   @Input() monsterId: number;
   @Input() currentLifePoints: number;
-  @Input() monsterIndex: number;
+  @Input() monsterIndex: string;
 
 
   public amount: number;
@@ -65,6 +65,8 @@ export class MonsterSheetComponent implements OnInit {
     }
     this.amount = 0;
     console.log(newLifePoints)
+    console.log(this.monsterIndex);
+    console.log(this.monster);
     this.combatRoomService.updateMonsterLifePoints(this.monsterIndex,this.currentLifePoints);
     
   }

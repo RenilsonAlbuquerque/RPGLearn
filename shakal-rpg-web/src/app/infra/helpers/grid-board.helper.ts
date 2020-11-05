@@ -155,12 +155,25 @@ function createSvgGrid(squareDimension: number,width:number, height:number):stri
         </pattern> 
         <pattern id="grid" width="${squareDimension}" height="${squareDimension}" patternUnits="userSpaceOnUse">
           <rect width="80" height="80" fill="url(#smallGrid)"/>
-          <path d="M 80 0 L 0 0 0 80" fill="none" stroke="gray" stroke-width="1"/>
+          <path d="M ${squareDimension} 0 L 0 0 0 ${squareDimension}" fill="none" stroke="gray" stroke-width="1"/>
         </pattern>
       </defs>
       <rect width="100%" height="100%" fill="url(#grid)" />
     </svg>`;
       return result;
+}
+function createSvgGridPlaceCreate(squareDimension: number,width:number, height:number):string{
+  let result = `<svg id="svggridCreate" #svggridCreate  
+     width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
+      <defs> 
+        <pattern id="bigGridPattern" width="${squareDimension}" height="${squareDimension}" patternUnits="userSpaceOnUse">
+          <rect width="80" height="80" fill="none"/>
+          <path d="M ${squareDimension} 0 L 0 0 0 ${squareDimension}" fill="none" stroke="gray" stroke-width="1"/>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#bigGridPattern)" />
+    </svg>`;
+    return result;
 }
 function generateRandomId(): string{
   return 'xxxxxxxxxxxx4xxxyxxxxxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
@@ -205,4 +218,4 @@ function canDoubleMove(creature:CreatureCard, target: CardPosition,squareDimensi
    
 
 export  {calculatePositionDrop,createSvgGrid,createSvgWalk,generateRandomId,moveCreature,
-  createSvgDoubleMove,adjustPosition,canMove,canDoubleMove};
+  createSvgDoubleMove,adjustPosition,canMove,canDoubleMove,createSvgGridPlaceCreate};

@@ -3,6 +3,7 @@ package com.shakal.rpg.api.service;
 import java.util.Collections;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 
 import com.google.gson.Gson;
@@ -25,10 +26,12 @@ public class CombatService implements ICombatService{
 	
 	private ChallengeDificultDAO challengeDificultDAO;
 	private CombatStateDAO combatStateDAO;
+	private final SimpMessagingTemplate template;
 	
 	@Autowired
 	public CombatService(ChallengeDificultDAO challengeDificultDAO,
-			CombatStateDAO combatStateDao) {
+			CombatStateDAO combatStateDao,SimpMessagingTemplate simpMessagingTemplate) {
+		this.template = simpMessagingTemplate;
 		this.challengeDificultDAO = challengeDificultDAO;
 		this.combatStateDAO = combatStateDao;
 	}
@@ -54,7 +57,7 @@ public class CombatService implements ICombatService{
 				if(creature.getLevel().getValue() >20) {
 					currentChallengeLevel = this.challengeDificultDAO.findById(20L).get();
 				}else {
-					currentChallengeLevel = this.challengeDificultDAO.findById((long)creature.getLevel().getValue()).get();
+					currentChallengeLevel = this.challengeDificultDAO.findById((long)creature.getLevel().getId()).get();
 				}
 				xpPlayerEasySum += currentChallengeLevel.getEasy();
 				xpPlayerMediumSum += currentChallengeLevel.getMedium();
@@ -136,6 +139,7 @@ public class CombatService implements ICombatService{
 		this.updateMonstersConditions(input);
 		calculateChallengeDeficult(input);
 		this.combatStateDAO.save(new CombatState(storyId,serializeObjectToJSON(input)));
+		this.sendMessage(storyId, input);
 		return input;
 	}
 	
@@ -166,4 +170,15 @@ public class CombatService implements ICombatService{
 		return new Gson().fromJson(search.getCombatStateJSON(), CombatStateDTO.class);
 	}
 	
+	private void sendMessage(long id, CombatStateDTO state) {
+		this.template.convertAndSend("/topic/combat/"+ id, state);
+		
+	}
+
+
+	@Override
+	public boolean passTurn(String combatId) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

@@ -6,6 +6,7 @@ public class MapAreaDTO {
 	private double xDimension;
 	private double yDimension;
 	private double squareSize;
+	private int squareSizeCm;
 	public String getImage() {
 		return image;
 	}
@@ -29,6 +30,12 @@ public class MapAreaDTO {
 	}
 	public void setSquareSize(double squareSize) {
 		this.squareSize = squareSize;
+	}
+	public int getSquareSizeCm() {
+		return squareSizeCm;
+	}
+	public void setSquareSizeCm(int squareSizeCm) {
+		this.squareSizeCm = squareSizeCm;
 	}
 	
 	

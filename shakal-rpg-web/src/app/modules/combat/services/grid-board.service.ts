@@ -19,18 +19,23 @@ export class GridBoardService {
   private boardZoom: number = 0;
   private playerMoving: string;
   private creatureAction:ActionControl;
-  private gridBoardConfig: BoardConfig;
+  //private gridBoardConfig: BoardConfig;
 
 
+  private gridBoardPlace:BehaviorSubject<PlaceDetail>;
   private gridBoardConfTest: BehaviorSubject<GridBoardConfig>;
 
   constructor(private httpClient: HttpClient){
-    this.gridBoardConfig = {
-      imagePath : 'https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs/129763638/original/05c10920c7074e25558016afbdc34ad7784c4467/create-a-custom-tabletop-battle-map-for-your-campaign.jpg',
-      xDimension: 12,
-      yDimension: 12,
-      squareDimension: 1.5
-    }
+    this.gridBoardPlace = new BehaviorSubject<PlaceDetail>({
+      id: 0,
+      name: "O lugar misterioso",
+      background: "O vazio sem existência",
+      map: "https://s3.amazonaws.com/nerit-cms/neritpolitica/block/block_0960-black-friday1.png",
+      xDimension: 120,
+      yDimension: 120,
+      squareDimension: 1.5,
+      squareSizeCm: 30
+    });
     this.gridBoardConfTest =  new BehaviorSubject<GridBoardConfig>({
       canvas: null,
       mainContainer: null,
@@ -46,11 +51,14 @@ export class GridBoardService {
   public getGridBoardConfTest():Observable<GridBoardConfig>{
     return this.gridBoardConfTest.asObservable();
   }
-  getGridBoardConfig():BoardConfig{
-    return this.gridBoardConfig;
+  public getPlaceStatus():Observable<PlaceDetail>{
+    return this.gridBoardPlace.asObservable();
   }
-  setGridBoardConfig(config: BoardConfig){
-    this.gridBoardConfig = config;
+  getGridBoardConfig():PlaceDetail{
+    return this.gridBoardPlace.value;
+  }
+  setGridBoardConfig(config: PlaceDetail){
+    this.gridBoardPlace.next( config);
   }
   getSquareSize(): number{
     return this.squareSize;
@@ -93,6 +101,8 @@ export class GridBoardService {
     )
   }
   public updateMap(place: PlaceDetail){
+    this.gridBoardPlace.next(place);
+    this.squareSize = place.squareSizeCm;
     this.newDrawImage(place.map);
   }
 
@@ -110,8 +120,6 @@ export class GridBoardService {
 
       
       newObject.imageContainer.nativeElement.insertAdjacentHTML('afterbegin',createSvgGrid(this.getSquareSize(),newObject.image.naturalWidth,newObject.image.naturalHeight));
-      //this.gridBoardConfTest.imageContainer.nativeElement.ondragover = (ev) => {this.allowDrop(ev)};
-      //this.gridBoardConfTest.imageContainer.nativeElement.ondrop = (ev) => {this.drop(ev)};
       newObject.imageContainer.nativeElement.style.backgroundImage = `url(${newObject.image.src})`;
       newObject.imageContainer.nativeElement.style.backgroundRepeat = `no-repeat`;
       newObject.svgBattleGrid = document.getElementById("svggrid");

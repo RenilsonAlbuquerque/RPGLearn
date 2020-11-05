@@ -5,6 +5,8 @@ import { PlaceOverview } from 'src/app/domain/models/place/place.overview';
 import { environment } from 'src/environments/environment';
 import { PlaceCreate } from 'src/app/domain/models/story/place-create';
 import { PlaceDetail } from 'src/app/domain/models/story/place-detail';
+import { PlaceMarkCreate } from 'src/app/domain/models/place/place.mark.create';
+import { PlaceMarkOverview } from 'src/app/domain/models/place/place.mak.overview';
 
 @Injectable()
 export class PlaceService {
@@ -20,5 +22,11 @@ export class PlaceService {
     }
     createPlace(place: PlaceCreate): Observable<PlaceOverview>{
         return this.httpClient.post<PlaceOverview>(`${environment.BASE_URL}place/create`,place);
+    }
+    createPlaceMark(placeMark: PlaceMarkCreate): Observable<PlaceMarkCreate>{
+        return this.httpClient.post<PlaceMarkCreate>(`${environment.BASE_URL}place/create/mark`,placeMark);
+    }
+    getPlaceMarkOverviews(placeId): Observable<PlaceMarkOverview[]>{
+        return this.httpClient.get<PlaceMarkOverview[]>(`${environment.BASE_URL}place/list/marks/${placeId}`);
     }
 }

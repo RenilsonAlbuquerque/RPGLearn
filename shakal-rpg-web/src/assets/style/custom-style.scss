@@ -15,4 +15,11 @@
 }
  .aplication-container{
    height: 100vh;
- } 
+ }
+ .canvas-container{
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  overflow: scroll;
+
+} 

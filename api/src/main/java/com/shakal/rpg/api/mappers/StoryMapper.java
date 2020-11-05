@@ -40,6 +40,7 @@ public class StoryMapper {
 		dto.setNaturalHeight(entity.getNaturalHeight());
 		dto.setNaturalWidth(entity.getNaturalWidth());
 		dto.setSquareDimension(entity.getSquareDimension());
+		dto.setSquareSizeCm(entity.getSquareSizeCm());
 		return dto;
 	}
 	public static StoryInfoDTO entityToInfo(Story entity) {

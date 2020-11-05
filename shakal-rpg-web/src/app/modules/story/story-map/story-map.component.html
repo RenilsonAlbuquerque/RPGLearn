@@ -1,5 +1,14 @@
 <div class="col-12">
-        <canvas #canvas  width="1200" height="900"  (click)="selectPlace($event,content)" (dblclick)="addMarkEvent($event)"></canvas>
+      <div #mainContainerMapExhibition class="canvas-container" >
+          <div #imageContainerMapExhibition (dblclick)="addMarkEvent($event,modalCreateMark)"></div>
+          <div>
+            <app-place-maker *ngFor="let marker of markers; index as i" [coordinateX]="marker.coordinateX"
+              [coordinateY]="marker.coordinateY"></app-place-maker> 
+        </div>
+      </div>
+      <!-- <img height="{{place?.xDimension}}" width="{{place?.yDimension}}"  style="vertical-align: middle;padding: 15px;"
+      src="{{place?.map}}"/>
+      <canvas #canvas  width="1200" height="900"  (click)="selectPlace($event,content)" (dblclick)="addMarkEvent($event)"></canvas> -->
         <ng-template #content let-modal>
             <div class="modal-header">
               <h4 class="modal-title" id="modal-basic-title">Detalhes</h4>
@@ -10,5 +19,17 @@
             <div class="modal-body">
               {{currentMark.description}}
             </div>
+        </ng-template>
+        <ng-template #modalCreateMark let-modal>
+          <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Criar referência de lugar</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <app-place-marker-detail [placeId]="placeId" [coordinateX]="coordinateX" [coordinateY]="coordinateY">
+            </app-place-marker-detail>
+          </div>
         </ng-template>
 </div>

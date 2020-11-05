@@ -28,6 +28,7 @@ export class PlaceListCardComponent implements OnInit {
     this.placeService.getDetail(this.place.id).subscribe(
       place => {
         this.gridBoardService.updateMap(place);
+        this.combatRoomService.removeAllCreatures();
     });
     this.internModalService.closeModalReference();
   }

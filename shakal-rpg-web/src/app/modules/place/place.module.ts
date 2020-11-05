@@ -9,10 +9,11 @@ import { PlaceCreateComponent } from './place-create/place-create.component';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material-design/material.module';
 import { GridBoardService } from '../combat/services/grid-board.service';
+import { PlaceMarkerDetailComponent } from './place-marker-detail/place-marker-detail.component';
 
 
 @NgModule({
-  declarations: [PlaceListComponent, PlaceListCardComponent, PlaceCreateComponent],
+  declarations: [PlaceListComponent, PlaceListCardComponent, PlaceCreateComponent, PlaceMarkerDetailComponent],
   imports: [
     CommonModule,
     FontAwesomeModule,
@@ -20,7 +21,7 @@ import { GridBoardService } from '../combat/services/grid-board.service';
     ReactiveFormsModule,
     MaterialModule
   ],
-  exports:[PlaceListComponent,PlaceListCardComponent],
+  exports:[PlaceListComponent,PlaceListCardComponent,PlaceMarkerDetailComponent],
   providers:[PlaceService,FormBuilder,GridBoardService]
 })
 export class PlaceModule { }

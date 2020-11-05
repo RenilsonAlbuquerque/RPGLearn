@@ -23,37 +23,38 @@ export class GridBoardCardComponent implements OnInit {
   public menuOpen: boolean;
   private selfId: string;
   private imageToken: String;
+
+  private squareSizeInCm: number;
   
   constructor(private gridBoardService: GridBoardService,
     private combatRoomService: CombatRoomService, private internModalService: InternModalService,
     private creatureService: CreatureService) { 
     this.menuOpen = false;
+    this.gridBoardService.getPlaceStatus().subscribe(
+      state => {
+        console.log("Trigado");
+        console.log(state);
+        this.squareSizeInCm = state.squareSizeCm;
+        console.log(this.squareSizeInCm);
+        //this.handleReloadCard(this.squareSizeInCm)
+      }
+    );
   }
 
   ngOnInit() {
-    this.self.nativeElement.style.top = this.monster.position.y.toString() + "px";
-    this.self.nativeElement.style.left = this.monster.position.x.toString() + "px";
-    this.self.nativeElement.style.height = (this.gridBoardService.getSquareSize() * this.monster.size).toString() + "px";
-    this.self.nativeElement.style.width = (this.gridBoardService.getSquareSize() * this.monster.size).toString() + "px";
-    this.selfId = this.monster.combatId;
-    this.creatureService.getCreatureTokenById(this.monster.id).subscribe(
-      response =>{
-        this.imageToken = response.picture;
-      }
-    );
-
-    
+    this.handleReloadCard(this.squareSizeInCm);    
   }
   setMonster(monster: CreatureCard){
     if(this.monster == null){
       this.monster = monster;
+      console.log(this.monster)
     }
   }
   getMonster(): CreatureCard{
     return this.monster;
   }
   get isMyTurn():boolean{
-    return this.monster.combatId === this.combatRoomService.getCombatStateValue().currentCreatureTurn;
+    return this.monster.combatId === this.combatRoomService.getCombatStateValue().currentCreatureTurn && this.monster.playerId <= 0;
   }
   handleClickCard(){
     this.menuOpen = !this.menuOpen;
@@ -89,6 +90,20 @@ export class GridBoardCardComponent implements OnInit {
       let element = document.getElementById("movePreview");
       element.parentNode.removeChild(element);
     }
+  }
+  handleReloadCard(squareSizeInCm: number){
+    console.log(squareSizeInCm)
+    this.self.nativeElement.style.top = this.monster.position.y.toString() + "px";
+    this.self.nativeElement.style.left = this.monster.position.x.toString() + "px";
+    this.self.nativeElement.style.height = (squareSizeInCm * this.monster.size).toString() + "px";
+    this.self.nativeElement.style.width = (squareSizeInCm * this.monster.size).toString() + "px";
+    this.selfId = this.monster.combatId;
+    console.log(this.selfId)
+    this.creatureService.getCreatureTokenById(this.monster.id).subscribe(
+      response =>{
+        this.imageToken = response.picture;
+      }
+    );
   }
   
  

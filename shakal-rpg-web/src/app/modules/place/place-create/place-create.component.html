@@ -7,14 +7,17 @@
                     Campo obrigatório
             </mat-error>
         </mat-form-field>
-        <div class="form-group">           
-            <div class="card w-100 h-100">
-                <img height="320"  class="card-img" src="{{ mapImagePath}}" alt="">
-            </div>
-            <mat-form-field class="form-group col-12" appearance="outline">
-                <mat-label>URL Foto</mat-label>
-                <input matInput placeholder="Url imagem" [(ngModel)]="mapImagePath" formControlName="map">            
-            </mat-form-field>
+       
+        <div class="form-group col-12">
+           
+            <div #mainContainerCreatePlace class="canvas-container">
+                <div #imageContainerCreatePlace></div>
+            </div> 
+            <div class="column" style="display: inline-grid;">
+                <!-- <img height="500" width="100%" id="input-image-map" src="{{ mapImagePath}}"  accept="image/png"> -->
+                <input id="fileImageMap" type="file" (change)="changeCreatePlaceImage($event)" style="display: none;">
+                <button mat-raised-button color="primary" onclick="document.getElementById('fileImageMap').click();">Selecionar Imagem</button>
+            </div>          
         </div>
         <mat-form-field class="form-group col-12" appearance="outline">
             <mat-label>História de Background</mat-label>
@@ -24,24 +27,31 @@
             </mat-error>
         </mat-form-field>
         <div>
-            <mat-form-field class="form-group col-4" appearance="outline">
+            <mat-form-field class="form-group col-3" appearance="outline">
                 <mat-label>Largura (em metros)</mat-label>
                 <input  matInput type="text" placeholder="largura" formControlName="xDimension">
                 <mat-error *ngIf="!placeForm.controls['xDimension'].valid && placeForm.controls['xDimension'].touched">
                         Campo obrigatório
                 </mat-error>
             </mat-form-field>
-            <mat-form-field class="form-group col-4" appearance="outline">
+            <mat-form-field class="form-group col-3" appearance="outline">
                 <mat-label>Altura (em metros)</mat-label>
                 <input  matInput type="text" placeholder="Altura" formControlName="yDimension">
                 <mat-error *ngIf="!placeForm.controls['yDimension'].valid && placeForm.controls['yDimension'].touched">
                         Campo obrigatório
                 </mat-error>
             </mat-form-field>
-            <mat-form-field class="form-group col-4" appearance="outline">
-                <mat-label>Tamanho do quadrado</mat-label>
+            <mat-form-field class="form-group col-3" appearance="outline">
+                <mat-label>T. do quadrado em metros (default 1.5) </mat-label>
                 <input  matInput type="text" placeholder="Tamanho do quadrado" formControlName="squareDimension">
                 <mat-error *ngIf="!placeForm.controls['squareDimension'].valid && placeForm.controls['squareDimension'].touched">
+                        Campo obrigatório
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="form-group col-3" appearance="outline">
+                <mat-label>T. do quadrado em píxels</mat-label>
+                <input  matInput type="text" placeholder="Tamanho do quadrado" formControlName="squareDimensionCm" (change)="drawSvg()">
+                <mat-error *ngIf="!placeForm.controls['squareDimensionCm'].valid && placeForm.controls['squareDimensionCm'].touched">
                         Campo obrigatório
                 </mat-error>
             </mat-form-field>

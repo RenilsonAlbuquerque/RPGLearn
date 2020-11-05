@@ -37,6 +37,7 @@ export class CombatRoomService {
     // )
     this.rxStompService.watch('/topic/combat/'+ storyId).subscribe((message: IMessage) => {
       this.combatState.next(JSON.parse(message.body) as CombatState);
+      console.log(JSON.parse(message.body))
     })
     
   }
@@ -77,9 +78,10 @@ export class CombatRoomService {
     this.onSendMessage(combatState);
   }
 
-  public updateMonsterLifePoints(index: number,value: number){
+  public updateMonsterLifePoints(combatId: string,value: number){
     
     var combatState: CombatState = this.combatState.getValue();
+    let index = this.findCreatureIndexInCombatByCombatId(combatId);
     if(value < 0){
       combatState.creatures[index].lifePoints = 0; 
     }
@@ -173,9 +175,27 @@ export class CombatRoomService {
   public removeAllCreatures(){
     let combatState: CombatState = this.combatState.getValue();
     combatState.creatures = [];
+    combatState.currentCreatureTurn = '';
+    combatState.combatStarted = false;
     this.onSendMessage(combatState);
   }
   public loadCombatState(storyId: number): Observable<CombatState>{
     return this.httpClient.get<CombatState>(`${environment.BASE_URL}combat/status/${storyId}`);
+  }
+
+
+
+
+  ///=========================Private Methods==================================///
+  private findCreatureIndexInCombatByCombatId(combatId: string): number{
+    let result = -1;
+    let creatures = this.combatState.value.creatures;
+    for(let i = 0; i < creatures.length; i++){
+      if(creatures[i].combatId === combatId){
+        result = i;
+        break;
+      }
+    }
+    return result;
   }
 }

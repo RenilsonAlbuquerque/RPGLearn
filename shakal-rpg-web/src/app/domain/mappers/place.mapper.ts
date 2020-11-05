@@ -10,6 +10,7 @@ function mapPlaceInFormToDto(placesFormGroup : FormGroup): PlaceCreate{
         xDimension: placesFormGroup.controls['xDimension'].value,
         yDimension: placesFormGroup.controls['yDimension'].value,
         squareSize: placesFormGroup.controls['squareDimension'].value,
+        squareSizeCm: placesFormGroup.controls['squareDimensionCm'].value,
       } as PlaceCreate;
 }
 export  {mapPlaceInFormToDto};

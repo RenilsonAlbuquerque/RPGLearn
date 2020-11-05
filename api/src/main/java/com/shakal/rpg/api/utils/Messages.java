@@ -12,6 +12,7 @@ public class Messages {
     public static final String MONSTER_NOT_FOUND = "O monstro nï¿½o existe";
     public static final String CHARACTER_NOT_FOUND = "O personagem nÃ£o existe";
     public static final String STORY_NOT_FOUND = "A histï¿½ria nï¿½o existe";
+    public static final String PLACE_NOT_FOUND = "O Lugar nao existe";
     
     public static final String WEAPON_NOT_FOUND = "Arma não encontrada";
     

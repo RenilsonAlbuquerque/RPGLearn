@@ -22,6 +22,7 @@ public class PlaceInfoDTO {
 	
 	private double naturalWidth;
 
+	private int squareSizeCm;
 	public long getId() {
 		return id;
 	}
@@ -92,6 +93,14 @@ public class PlaceInfoDTO {
 
 	public void setNaturalWidth(double naturalWidth) {
 		this.naturalWidth = naturalWidth;
+	}
+
+	public int getSquareSizeCm() {
+		return squareSizeCm;
+	}
+
+	public void setSquareSizeCm(int squareSizeCm) {
+		this.squareSizeCm = squareSizeCm;
 	}
 	
 	

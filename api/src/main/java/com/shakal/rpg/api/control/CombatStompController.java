@@ -24,32 +24,28 @@ import com.shakal.rpg.api.dto.map.MapAreaDTO;
 
 public class CombatStompController {
 
-	private HashMap<Long,CombatStateDTO> combats;
-	private final SimpMessagingTemplate template;
+
+	
 	private ICombatService combatService;
 	
 	@Autowired
-	public CombatStompController(SimpMessagingTemplate simpMessagingTemplate,
+	public CombatStompController(
 			ICombatService combatService) {
-	        this.template = simpMessagingTemplate;
+	        
 	        this.combatService = combatService;
-	        this.combats = new HashMap<Long, CombatStateDTO>();
 	}
 	
 	@MessageMapping("/combat/{id}")
 	public void recieveDTO(@DestinationVariable Long id,CombatStateDTO state) throws Exception {
 		//state.setDificult(combatService.calculateChallengeDeficult(state));
 		state = this.combatService.updateCombatConditions(state,id);
-		combats.put(Long.valueOf(id), state);
-		this.template.convertAndSend("/topic/combat/"+ id, state);
-	     
 	}
 	@MessageMapping("/combat-area/{id}")
 	public void recieveCombatAreaDTO(@DestinationVariable Long id,MapAreaDTO mapState) throws Exception {
 		//state.setDificult(combatService.calculateChallengeDeficult(state));
 		mapState = this.combatService.updateMapArea(mapState);
 		//maps.put(Long.valueOf(id),mapState);
-		this.template.convertAndSend("/topic/combat-area/"+ id, mapState);
+		//this.template.convertAndSend("/topic/combat-area/"+ id, mapState);
 	     
 	}
 	

@@ -99,13 +99,14 @@ export class GridBoardComponent implements OnInit{
         this.mainContainer.nativeElement.scrollTop += (this.startY - (ev.clientY + this.mainContainer.nativeElement.scrollTop));
       }
     }
-    this.gridBoardService.newDrawImage(this.gridBoardService.getGridBoardConfig().imagePath);
+    this.gridBoardService.newDrawImage(this.gridBoardService.getGridBoardConfig().map);
     this.imageContainer.nativeElement.ondragover = (ev) => {this.allowDrop(ev)};
     this.imageContainer.nativeElement.ondrop = (ev) => {this.drop(ev)};
   }
  
   applyZoom(value: number){
-    this.mainContainer.nativeElement.style.zoom = new Number(this.zoomValue += value).toString();
+    //this.mainContainer.nativeElement.style.zoom = new Number(this.zoomValue += value).toString();
+    this.mainContainer.nativeElement.style.zoom = new Number(value).toString();
     this.zoomValue += value;
   }
   
@@ -132,6 +133,9 @@ export class GridBoardComponent implements OnInit{
     }
     let player = JSON.parse(ev.dataTransfer.getData("player"));
     if(player){
+      if(!player.combatId){
+        player.combatId = generateRandomId();
+      } 
       player.position = calculatePositionDrop(ev.offsetX,ev.offsetY,this.zoomValue,this.gridBoardService.getSquareSize());
       this.combatRoomService.addCreatureToCombat(player)
     }

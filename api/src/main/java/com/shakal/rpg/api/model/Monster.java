@@ -142,8 +142,7 @@ public class Monster extends Creature{
 			return false;
 		return true;
 	}
-
-
+	
 	
 
 	

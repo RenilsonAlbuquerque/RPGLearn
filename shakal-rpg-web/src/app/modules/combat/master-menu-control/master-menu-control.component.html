@@ -31,7 +31,7 @@
         <fa-icon icon="user-cog"></fa-icon>
     </button>
     <button *ngIf="canStartCombat" type="button" focus-index="2" class="btn btn-success btn-fab" 
-        (click)="openConfirmDeleteModal(confirmStartCombat)">
+        (click)="openConfirmationModal(confirmStartCombat)">
         <fa-icon icon="play"></fa-icon>
     </button>
     <button *ngIf="thereArePlayersNoInitiated"  type="button" focus-index="3" class="btn btn-info btn-fab" 
@@ -41,12 +41,13 @@
     <button type="button" focus-index="1" class="btn btn-secondary btn-fab " (click)="openDagger(weapon)">
         <fa-icon icon="user-cog"></fa-icon>
     </button>
-    <button type="button" focus-index="1" class="btn btn-danger btn-fab " (click)="handleResetCombat()">
-        <fa-icon icon="user-cog"></fa-icon>
+    <button type="button" focus-index="1" class="btn btn-danger btn-fab " (click)="openConfirmationModal(confirmResetCombat)">
+        <fa-icon icon="trash"></fa-icon>
     </button>
 </div>
 
-
+<!--++++++++++++++++++++++++++++++++++++++++Modais+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+<!-----------------------------------Modal confirmar começar combate----------------------------------->
 <ng-template #confirmStartCombat let-modal>
     <div class="modal-header">
         <h4 class="modal-title">Iniciar combate</h4>
@@ -60,6 +61,23 @@
     <div class="modal-footer">
         <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">Cancelar</button>
         <button type="button" class="btn btn-danger" (click)="rollInitiativeForLeftPlayersAndStart()">Confirmar</button>
+      </div>
+</ng-template>
+
+<!-----------------------------------Modal resetar combate----------------------------------------------->
+<ng-template #confirmResetCombat let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Resetar o combate</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p><strong>Existem criaturas no tabuleiro, ao confirmar a operação de resetar, você removerá todas do tabuleiro e todo o progresso de combate será perdido. Deseja prosseguir?</strong></p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">Cancelar</button>
+        <button type="button" class="btn btn-danger" (click)="handleResetCombat()">Confirmar</button>
       </div>
 </ng-template>
 

@@ -5,5 +5,6 @@ export interface PlaceDetail{
     map: string,
     xDimension: number,
     yDimension: number,
-    squareDimension: number
+    squareDimension: number,
+    squareSizeCm: number
 }

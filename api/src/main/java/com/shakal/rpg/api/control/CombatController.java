@@ -44,4 +44,9 @@ public class CombatController {
     }
 	
 	
+	@GetMapping(value="/pass-turn")
+	public ResponseEntity<CombatStateDTO> passTurn(@PathVariable Long id) throws ResourceNotFoundException{
+		return new ResponseEntity<CombatStateDTO>(this.combatService.getCombatState(id), HttpStatus.OK);
+    }
+	
 }

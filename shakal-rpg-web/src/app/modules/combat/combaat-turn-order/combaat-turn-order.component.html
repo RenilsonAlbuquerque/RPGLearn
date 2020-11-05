@@ -3,7 +3,7 @@
     </div>
     <div *ngIf="hasCreatures()" class="card-order" (click)="onShowList()">
         <img class="icon-image" src="{{currentCreature?.imagePath}}">
-        <span>{{currentCreature.name}}</span>
+        <span>{{currentCreature?.name}}</span>
     </div>
     <div *ngIf="showList" class="card-list">
         <div *ngFor="let creature of creatures; index as i" class="card-list-item">

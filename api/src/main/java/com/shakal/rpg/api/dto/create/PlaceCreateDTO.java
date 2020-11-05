@@ -10,6 +10,7 @@ public class PlaceCreateDTO {
 	private double xDimension;
 	private double yDimension;
 	private double squareDimension;
+	private int squareSizeCm;
 
 	
 	public long getStoryId() {
@@ -66,6 +67,14 @@ public class PlaceCreateDTO {
 
 	public void setSquareDimension(double squareDimension) {
 		this.squareDimension = squareDimension;
+	}
+
+	public int getSquareSizeCm() {
+		return squareSizeCm;
+	}
+
+	public void setSquareSizeCm(int squareSizeCm) {
+		this.squareSizeCm = squareSizeCm;
 	}
 
 	

@@ -12,5 +12,7 @@ public interface ICombatService {
 	CombatStateDTO updateCombatConditions(CombatStateDTO input, long storyId);
 	CreatureCardDTO initalizePlayerTokenInStory(long storyId, CharacterSheetDTO characterSheet);
 	MapAreaDTO updateMapArea(MapAreaDTO input);
+	boolean passTurn(String combatId);
 	CombatStateDTO getCombatState(long storyId) throws ResourceNotFoundException;
+	
 }
