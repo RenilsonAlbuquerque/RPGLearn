@@ -11,14 +11,14 @@ import { initializeCharacterSheet } from 'src/app/domain/mappers/character.mappe
   styleUrls: ['./character.sheet.alt.scss']
 })
 export class CharacterSheetComponent implements OnInit {
-  private hpLife: boolean =true;
-  private abilities: boolean =false;
-  private item: boolean =false;
-  private trait: boolean =false;
-  private spell: boolean =false;
+  public hpLife: boolean =true;
+  public abilities: boolean =false;
+  public item: boolean =false;
+  public trait: boolean =false;
+  public spell: boolean =false;
 
   @Input() characterId: number;
-  private sheet: CharacterSheet;
+  public sheet: CharacterSheet;
 
   public mobile: boolean = true;
   constructor(private characterService: CharacterService) {

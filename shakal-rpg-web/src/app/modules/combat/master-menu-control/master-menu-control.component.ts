@@ -11,9 +11,9 @@ import { InternModalService } from 'src/app/infra/services/intern.modal.service'
 })
 export class MasterMenuControlComponent implements OnInit {
 
-  private creatureMenu: boolean;
-  private diceMenu: boolean;
-  private configMenu: boolean;
+  public creatureMenu: boolean;
+  public diceMenu: boolean;
+  public configMenu: boolean;
   private modalReference;
   constructor(private combatRoomService:CombatRoomService,private modalService: NgbModal,
     private diceService: DiceService,private internModalService: InternModalService) { 

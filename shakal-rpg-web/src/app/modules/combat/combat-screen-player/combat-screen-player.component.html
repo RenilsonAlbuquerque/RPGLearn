@@ -2,7 +2,7 @@
     <app-grid-board></app-grid-board>
     <div class="players-container">
         <div *ngFor="let player of combatState.allyQueue; index as j">
-            <app-monster-card  [monster]="player" (click)="open(sheetAlly)"></app-monster-card>
+            <app-monster-card  [monster]="player" ></app-monster-card>
             <ng-template #sheetAlly let-modal>
                 <div class="modal-header">
                     <h4 class="modal-title">{{player.name}} #{{j +1}}</h4>

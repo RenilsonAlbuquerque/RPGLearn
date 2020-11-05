@@ -9,9 +9,9 @@ import { CreatureCard } from 'src/app/domain/models/monster/creature.card';
 })
 export class CombaatTurnOrderComponent implements OnInit {
 
-  private creatures: CreatureCard[];
+  public creatures: CreatureCard[];
   private currentCreatureTurn: string;
-  private showList: boolean;
+  public showList: boolean;
   
   constructor(private combatRoomService: CombatRoomService) {
     

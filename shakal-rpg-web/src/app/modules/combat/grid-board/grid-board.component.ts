@@ -31,9 +31,9 @@ export class GridBoardComponent implements OnInit{
   private ctx: CanvasRenderingContext2D;
   private image = new Image();
   
-  private zoomValue: number;
+  public zoomValue: number;
 
-  private combatState: CombatState;
+  public combatState: CombatState;
 
   
   private isPressed: boolean;

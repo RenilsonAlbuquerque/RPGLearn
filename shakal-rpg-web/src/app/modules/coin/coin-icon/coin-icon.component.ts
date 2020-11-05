@@ -11,7 +11,7 @@ export class CoinIconComponent implements OnInit {
   public coinType: number;
 
   @Input()
-  private value: number;
+  public value: number;
   constructor() { }
 
   ngOnInit() {

@@ -9,6 +9,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { DragCreature } from 'src/app/domain/models/creature/drag.creature';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import  {BASE_URL} from '../../../infra/config/constants';
 
 
 
@@ -94,7 +95,7 @@ export class GridBoardService {
     return result;
   }
   public updateMapById(placeId:number){
-    this.httpClient.get<PlaceDetail>(`${environment.BASE_URL}place/info/${placeId}`).subscribe(
+    this.httpClient.get<PlaceDetail>(`${BASE_URL}place/info/${placeId}`).subscribe(
       place => {
         this.updateMap(place);
       }

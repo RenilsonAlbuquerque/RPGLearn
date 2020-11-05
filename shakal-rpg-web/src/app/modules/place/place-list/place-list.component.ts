@@ -14,7 +14,7 @@ import { InternModalService } from 'src/app/infra/services/intern.modal.service'
 export class PlaceListComponent implements OnInit {
 
   //private modalReference;
-  private placesList: PlaceOverview[];
+  public placesList: PlaceOverview[];
   storyid: number;
   constructor(private _activatedRoute: ActivatedRoute, private placeService: PlaceService,private internModalService: InternModalService) { }
 

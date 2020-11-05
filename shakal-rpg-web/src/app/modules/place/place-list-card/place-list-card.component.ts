@@ -14,7 +14,7 @@ import { PlaceService } from '../place.module.service';
 export class PlaceListCardComponent implements OnInit {
 
   @Input()
-  private place: PlaceOverview;
+  public place: PlaceOverview;
   constructor(private modalService: NgbModal,private internModalService: InternModalService,
     private combatRoomService: CombatRoomService, private gridBoardService: GridBoardService,private placeService: PlaceService) { }
 

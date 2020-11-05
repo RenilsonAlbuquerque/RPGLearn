@@ -53,7 +53,7 @@
             <ng-template  matStepLabel>Lugares</ng-template>
             <div formArrayName="places">
                 <div class="col-12">
-                    <div class="card-columns" *ngFor="let place of placesFormGroup.get('places').controls;  let i = index;">
+                    <div class="card-columns" *ngFor="let place of placesFormGroup.get('places')?.controls;  let i = index;">
                         <div [formGroupName]="i">
                             <div class="card bg-dark text-white">
                                 <img class="card-img"

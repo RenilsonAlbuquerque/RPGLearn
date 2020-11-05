@@ -30,7 +30,7 @@
   <div class="d-flex justify-content-center">
     <ul class="pagination"  *ngIf="page?.elements" >
       <li class="page-item" 
-          [ngClass]="{'disabled': page?.first }"  
+          [ngClass]="{'disabled': page?.firts }"  
           (click)="pageChange(page.currentPageNumber -1)">
           <a class="page-link" href="javascript:;">Anterior</a>
       </li>

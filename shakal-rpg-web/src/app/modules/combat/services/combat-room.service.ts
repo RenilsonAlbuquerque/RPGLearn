@@ -7,6 +7,7 @@ import { IMessage } from '@stomp/stompjs';
 import { CombatState } from 'src/app/domain/models/combat/combat.state';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import  {BASE_URL} from '../../../infra/config/constants';
 
 @Injectable()
 export class CombatRoomService {
@@ -180,7 +181,7 @@ export class CombatRoomService {
     this.onSendMessage(combatState);
   }
   public loadCombatState(storyId: number): Observable<CombatState>{
-    return this.httpClient.get<CombatState>(`${environment.BASE_URL}combat/status/${storyId}`);
+    return this.httpClient.get<CombatState>(`${BASE_URL}combat/status/${storyId}`);
   }
 
 

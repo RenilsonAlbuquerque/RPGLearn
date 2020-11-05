@@ -21,8 +21,8 @@ export class GridBoardCardComponent implements OnInit {
   @Input() public monster: CreatureCard;
 
   public menuOpen: boolean;
-  private selfId: string;
-  private imageToken: String;
+  public selfId: string;
+  public imageToken: String;
 
   private squareSizeInCm: number;
   

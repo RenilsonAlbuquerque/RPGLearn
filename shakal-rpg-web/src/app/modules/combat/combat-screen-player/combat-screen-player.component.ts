@@ -12,7 +12,7 @@ import { GridBoardService } from '../services/grid-board.service';
 })
 export class CombatScreenPlayerComponent implements OnInit {
 
-  private combatState: CombatState;
+  public combatState: CombatState;
   private storyId: number;
   constructor(private combatRoomPlayerService: CombatRoomService,private _activatedRoute: ActivatedRoute,
     private gridBoardService:GridBoardService) {  

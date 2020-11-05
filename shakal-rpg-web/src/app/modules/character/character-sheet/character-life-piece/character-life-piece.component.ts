@@ -9,7 +9,7 @@ import { CharacterSheet } from 'src/app/domain/models/character/character.sheet'
 export class CharacterLifePieceComponent implements OnInit {
 
   @Input()
-  private sheet: CharacterSheet;
+  public sheet: CharacterSheet;
   constructor() { }
 
   ngOnInit() {

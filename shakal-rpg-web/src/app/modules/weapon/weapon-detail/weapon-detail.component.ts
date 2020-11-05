@@ -9,7 +9,7 @@ import { WeaponInfo } from 'src/app/domain/models/weapon/weapon.info';
 })
 export class WeaponDetailComponent implements OnInit {
 
-  private weapon:WeaponInfo = {
+  public weapon:WeaponInfo = {
     id: 0,
     imagePath:"",
     name:"",

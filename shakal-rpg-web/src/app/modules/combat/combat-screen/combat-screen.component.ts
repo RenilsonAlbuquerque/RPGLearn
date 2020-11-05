@@ -18,10 +18,10 @@ import { GridBoardService } from '../services/grid-board.service';
 })
 export class CombatScreenComponent implements OnInit  {
   
-  private combatState: CombatState;
+  public combatState: CombatState;
   private modalReference;
-  private combatLevel: string;
-  private rolling: boolean;
+  public combatLevel: string;
+  public rolling: boolean;
   storyid: number;
 
   constructor(public element: ElementRef,private _activatedRoute: ActivatedRoute,private modalService: NgbModal,

@@ -40,10 +40,10 @@ export class StoryMapComponent implements OnInit {
   
   //public currentMark: PlaceMarker;
   
-  private placeId: number;
+  public placeId: number;
 
-  private coordinateX: number;
-  private coordinateY: number;
+  public coordinateX: number;
+  public coordinateY: number;
 
   constructor(private internModalService: InternModalService,private _activatedRoute: ActivatedRoute, private placeService:PlaceService) { 
     

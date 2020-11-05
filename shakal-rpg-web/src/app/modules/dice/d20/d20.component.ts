@@ -11,7 +11,7 @@ import { generateRandomId } from 'src/app/infra/helpers/grid-board.helper';
 })
 export class D20Component implements OnInit, DiceComponent {
 
-  private selfId: string;
+  public selfId: string;
   private die: HTMLElement;
   private sides: number;
   private initialSide: number;

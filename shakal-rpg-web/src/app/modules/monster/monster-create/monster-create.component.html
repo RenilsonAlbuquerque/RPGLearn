@@ -225,7 +225,7 @@
                 <ng-template matStepLabel>Características</ng-template>
                 <form [formGroup]="featuresFormGroup">
                     <div formArrayName="features">
-                        <div *ngFor="let feature of featuresFormGroup.get('features').controls;  let i = index;">
+                        <div *ngFor="let feature of featuresFormGroup.get('features')?.controls;  let i = index;">
                             <div [formGroupName]="i">
                                 <mat-card>
                                     <mat-card-header>
@@ -269,7 +269,7 @@
                 <ng-template matStepLabel>Ações</ng-template>
                 <form [formGroup]="actionsFormGroup">
                     <div formArrayName="actions">
-                        <div *ngFor="let action of actionsFormGroup.get('actions').controls;  let i = index;">
+                        <div *ngFor="let action of actionsFormGroup.get('actions')?.controls;  let i = index;">
                             <div [formGroupName]="i">
                                 <mat-card>
                                     <mat-card-header>
@@ -357,7 +357,7 @@
         <ng-template matStepLabel>Ações Lendárias</ng-template>
         <form [formGroup]="legendaryActionsFormGroup">
             <div formArrayName="legendaryActions">
-                <div *ngFor="let legendaryAction of legendaryActionsFormGroup.get('legendaryActions').controls;  let i = index;">
+                <div *ngFor="let legendaryAction of legendaryActionsFormGroup.get('legendaryActions')?.controls;  let i = index;">
                     <div [formGroupName]="i">
                         <mat-card>
                             <mat-card-header>

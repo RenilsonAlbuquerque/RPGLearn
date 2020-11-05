@@ -11,7 +11,7 @@ import { DiceComponent } from 'src/app/domain/models/dice/dice.component';
 })
 export class D10Component implements OnInit,DiceComponent {
 
-  private selfId: string;
+  public selfId: string;
   private die: HTMLElement;
   private sides: number;
   private initialSide: number;

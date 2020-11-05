@@ -11,8 +11,8 @@ import { CombatRoomPlayerService } from '../../combat/services/combat-room.playe
 })
 export class StoryDetailPlayerComponent implements OnInit {
 
-  private combatShown: boolean;
-  private mapShown: boolean;
+  public combatShown: boolean;
+  public mapShown: boolean;
   private storyId: number;
 
   constructor(private _activatedRoute: ActivatedRoute, private characterService: CharacterService,
