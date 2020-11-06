@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import {StyleSheet, View,SafeAreaView,ScrollView,Image, Animated} from 'react-native';
+import {StyleSheet, View,SafeAreaView,ScrollView,Image, Animated, TouchableOpacity } from 'react-native';
 import CharacterCombatToken from '../character/CharacterCombatToken';
 import { bindActionCreators } from 'redux';
 import { getCombatAreaStatusState } from '../../actions/CombatAction';
-import GestureHandler, { PinchGestureHandler, State, PanGestureHandler } from 'react-native-gesture-handler';
+import GestureHandler, { PinchGestureHandler, State, PanGestureHandler, TouchableHighlight } from 'react-native-gesture-handler';
 import { connect } from 'react-redux';
 import { Icon, Button } from 'native-base';
 import { Platform } from 'react-native';
@@ -16,7 +16,6 @@ let CombatField = (props) =>{
         areaMapStatusData,
         playerId
     } = props;
-
     
     //****** Pinch part ************/
     const scale = React.useRef(new Animated.Value(1)).current;
@@ -51,15 +50,18 @@ let CombatField = (props) =>{
         });
         return result;
     }
+   
 
+    console.log(props.playerId)
     return (
     /*******Only gesture**************************************** */
-    <View onLayout={(event) => {mainContainer  = event.nativeEvent.layout;}} >
+    <TouchableHighlight onLayout={(event) => {mainContainer  = event.nativeEvent.layout;}} >
         <ScrollView styles={{flex: 1, height: '100%', width: '100%' }} ref={(scrollView) => { verticalScroll = scrollView; }}> 
             <ScrollView directionalLockEnabled={false} horizontal={true} ref={(scrollView) => { horizontalScroll = scrollView; }}> 
                 <PinchGestureHandler onGestureEvent={handlePinch}
                         onHandlerStateChange={gestureHandlerStateChange}>
                     <Animated.View style={{transform:[{scale}]}}>
+                       
                         <Image style={[{width: areaMapStatusData.naturalWidth,
                             height: areaMapStatusData.naturalHeight}]} 
                             source={{uri: areaMapStatusData.map}}/>
@@ -67,6 +69,7 @@ let CombatField = (props) =>{
 
                                 <CharacterCombatToken key={index} creature={item}></CharacterCombatToken>                        
                             )}
+                            
                     </Animated.View>            
                 </PinchGestureHandler>
             </ScrollView>
@@ -74,13 +77,17 @@ let CombatField = (props) =>{
         <Button style={styles.fab} onPress={ handleChangeToPosition}>
             <Icon size={100} name={ Platform.OS === 'ios' ? (focused ? 'ios-person' : 'ios-home-outline') : 'md-locate' }  />
         </Button> 
-    </View>)
+    </TouchableHighlight>)
+
+   
+
 
 }
 const mapStateToProps = state => ({ 
     combatStatusData: state.CombatReducer.combatState,
     areaMapStatusData: state.CombatReducer.currentMap,
-    playerId: state.CharacterReducer.currentCharacter.characterSheet.id
+    playerId: (state.CharacterReducer.currentCharacter) ? state.CharacterReducer.currentCharacter.characterSheet.id : -1
+    //playerId: state.CharacterReducer.currentCharacter
 });
 const mapDispatchToProps = dispatch => bindActionCreators({
     getCombatAreaStatusState

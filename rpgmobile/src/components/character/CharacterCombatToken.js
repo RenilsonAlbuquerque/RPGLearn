@@ -1,18 +1,26 @@
 import React, {Component} from 'react';
-import { StyleSheet, Image, View,Text} from 'react-native';
-import changeColor from '../../helpers/Combat-helper';
+import { StyleSheet, Image, View,Text, Platform, TouchableHighlight} from 'react-native';
+import { changeColor} from '../../helpers/Combat-helper';
 import CustomAxios from '../../service/AxiosConfig';
 import PlayerActionsMenu from './PlayerActionsMenu';
-import { PinchGestureHandler } from "react-native-gesture-handler";
+import { Button, Icon } from 'native-base';
+import  BaseComponentStyle  from '../../styles/BaseComponentStyle';
+import { setWalkPoperties} from '../../actions/CombatAction';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 
 
-export default class CharacterCombatToken extends Component{
+
+const TOKEN_DEFAULT_SIZE =  30;
+
+class CharacterCombatToken extends Component{
 
     constructor(props){
         super(props);
         this.state = {
-            tokenSource : ""
+            tokenSource : "",
+            menuOpen: false,
         }
         this.changeToken();
     }
@@ -20,6 +28,8 @@ export default class CharacterCombatToken extends Component{
         CustomAxios
         .get(`/creature/token/${this.props.creature.id}`).then(
             result => {
+                console.log("Imagem do token");
+                console.log(result);
                 this.setState({
                     tokenSource: result.data.picture
                 });
@@ -27,27 +37,61 @@ export default class CharacterCombatToken extends Component{
         )
         
     }
+    calculateMenuPosition(){
+        //40 is the half of menu square dimension
+        //15 is the half of token size
+        return {
+            marginTop: this.props.creature.position.y - 55 + 15,
+            marginLeft: this.props.creature.position.x - 55 + 13
+        }
+    }
+    handlePressWalkButton(){
+        this.props.setWalkPoperties({
+            x:this.props.creature.position.x,
+            y:this.props.creature.position.y,
+            visible: true
+        });
+        this.setState({menuOpen: !this.state.menuOpen})
+    }
     render(){
+        let TOKEN_DIMENSION = TOKEN_DEFAULT_SIZE * this.props.creature.size;
+
         return(
-        <View style={[tokenStyle.container,
-            {marginTop: this.props.creature.position.y ,
-            marginLeft: this.props.creature.position.x,
-            borderColor: changeColor(this.props.creature.lifePercent),
-            backgroundColor: changeColor(this.props.creature.lifePercent) }]}>
-            <Image style={{...tokenStyle.tokenImage}} 
-                source={{uri: this.state.tokenSource}} /> 
-            <PlayerActionsMenu></PlayerActionsMenu>         
-        </View>
+            <View style={{height:100,width:100, position:'absolute'}}>
+                <View
+                    style={[tokenStyle.container,
+                    {height: TOKEN_DIMENSION,
+                    width: TOKEN_DIMENSION,
+                    marginTop: this.props.creature.position.y ,
+                    marginLeft: this.props.creature.position.x,
+                    borderColor: changeColor(this.props.creature.lifePercent),
+                    backgroundColor: changeColor(this.props.creature.lifePercent)}]}>
+                    <Image style={{...tokenStyle.tokenImage}} 
+                        source={{uri: this.state.tokenSource}}/> 
+                                 
+                </View>
+                
+            </View>
         )
     }
 }
 
+const mapDispatchToProps = dispatch => bindActionCreators({
+    setWalkPoperties
+}, dispatch);
+export default connect(null,mapDispatchToProps)(CharacterCombatToken);
+
 const tokenStyle = StyleSheet.create({
+    menuContainer:{
+        height:110, 
+        width:110,
+        position:'absolute',
+        zIndex:88
+    },
     container:{
-        height:30, 
-        width: 30,
         borderRadius:100,
         position:'absolute',
+        zIndex:99
     },
     tokenImage:{height:26, width: 26, borderRadius:100}
 
