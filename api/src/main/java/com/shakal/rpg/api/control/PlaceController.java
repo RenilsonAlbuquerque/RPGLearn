@@ -36,7 +36,7 @@ public class PlaceController {
 	
 	@GetMapping("/info/{id}")
 	public ResponseEntity<PlaceInfoDTO> getPlaceInfoById(@PathVariable Long id) throws ResourceNotFoundException {
-	    	
+	    	//System.out.println(id);
 	    return new ResponseEntity<PlaceInfoDTO>(this.placeService.getPlaceById(id), HttpStatus.OK);
 	}
 	

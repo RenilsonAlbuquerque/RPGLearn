@@ -19,9 +19,9 @@
                             </mat-error>
                         </mat-form-field>
                         <div class="buttons-row">
-                            <button [disabled]="loading" color="accent" (click)="addToHomeScreen()" mat-raised-button>Add App</button>
-                            <button [disabled]="loading" (click)="goRegister()" mat-raised-button color="secondary">Registrar</button>
-                            <button [disabled]="loading" (click)="onSubmit()" mat-raised-button color="primary">Login</button>                          
+                            <button class="col-3" [disabled]="loading" color="accent" (click)="addToHomeScreen()" mat-raised-button>Add App</button>
+                            <button class="col-3" [disabled]="loading" (click)="goRegister()" mat-raised-button color="secondary">Registrar</button>
+                            <button class="col-3" [disabled]="loading" (click)="onSubmit()" mat-raised-button color="primary">Login</button>                          
                         </div>
                     </form>
                 </mat-card-content>

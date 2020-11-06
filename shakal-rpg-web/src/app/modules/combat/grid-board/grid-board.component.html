@@ -1,4 +1,4 @@
-<div class="zoom-slider">
+<div *ngIf="showZoom" class="zoom-slider">
   <input id="zoom-slider" value="{{zoomValue}}" type="range" min="0" max="5" #ranger (input)="applyZoom(ranger.value)">
 </div>
 <!-- <div id="zoom-slider_btn" class="btn-group-vertical" role="group" aria-label="Basic example">

@@ -31,6 +31,8 @@ export class GridBoardComponent implements OnInit{
   private ctx: CanvasRenderingContext2D;
   private image = new Image();
   
+  //=========================Zoom========================///
+  public showZoom: boolean = true;
   public zoomValue: number;
 
   public combatState: CombatState;
@@ -42,15 +44,20 @@ export class GridBoardComponent implements OnInit{
 
   constructor(private combatRoomService: CombatRoomService,private gridBoardService: GridBoardService,
     private monsterService: MonsterService,private placeService: PlaceService) { 
-
-    
-    
+  
+    if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i.test(navigator.userAgent)){
+      this.showZoom = false;
+    }else{
+      this.showZoom = true;
+    }
 
     this.zoomValue = 1;
     this.combatRoomService.getCombatState().subscribe(
-      state => {
-        this.combatState = state;
-      }
+      state => (
+        //this.handleUpdateBoard(state.placeId,this.combatState.placeId)
+        //this.combatState = state;
+        this.handleUpdateStatus(state)
+      )
     );
     this.gridBoardService.getGridBoardConfTest().subscribe(
       gridBoardState => {
@@ -103,7 +110,17 @@ export class GridBoardComponent implements OnInit{
     this.imageContainer.nativeElement.ondragover = (ev) => {this.allowDrop(ev)};
     this.imageContainer.nativeElement.ondrop = (ev) => {this.drop(ev)};
   }
- 
+  handleUpdateStatus(combatStatus: CombatState){
+    let variable = {...this.combatState}
+    this.handleUpdateBoard(variable.placeId,combatStatus.placeId);
+    this.combatState = combatStatus;
+    
+  }
+  handleUpdateBoard(previousAreaId: number, currentAreaId: number){
+    if(previousAreaId != currentAreaId){
+      this.gridBoardService.updateMapById(currentAreaId);
+    }
+  }
   applyZoom(value: number){
     //this.mainContainer.nativeElement.style.zoom = new Number(this.zoomValue += value).toString();
     this.mainContainer.nativeElement.style.zoom = new Number(value).toString();

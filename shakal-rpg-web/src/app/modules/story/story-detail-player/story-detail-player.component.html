@@ -1,8 +1,27 @@
 <div>
-    <div class="navtest">
+    <!-- <div class="navtest">
         <div class="navitem" (click)="onShowCombat()">Combate</div>
         <div class="navitem" (click)="onShowMap()">fichas</div> 
     </div>
+    
+    <div *ngIf="mapShown" >Here I am, rock you like a hurricane</div> -->
     <app-combat-screen-player *ngIf="combatShown"></app-combat-screen-player>
     <div *ngIf="mapShown" >Here I am, rock you like a hurricane</div>
+
+    <ul id="bottom-nav" class="nav nav-tabs">
+        <li class="nav-item" (click)="onShowCombat()">
+            <a class="nav-link" [ngClass]="{'active':combatShown === true}">Combate</a>
+        </li>
+        <li class="nav-item" (click)="onShowMap()">
+            <a class="nav-link" [ngClass]="{'active':mapShown === true}">iniciativa</a>
+        </li>
+        <!-- <li class="nav-item">
+            <a class="nav-link">Mapa</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link disabled">Ficha</a>
+        </li> -->
+    </ul>
+  
+    
 </div>

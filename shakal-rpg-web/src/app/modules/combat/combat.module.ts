@@ -30,6 +30,7 @@ import { CharacterModule } from '../character/character.module';
 import { WeaponModule } from '../weapon/weapon.module';
 import { StoryModule } from '../story/story.module';
 import { PlaceModule } from '../place/place.module';
+//import {MatTab} from '@angular/material/tabs'
 
 
 

@@ -57,7 +57,8 @@ public class CombatService implements ICombatService{
 				if(creature.getLevel().getValue() >20) {
 					currentChallengeLevel = this.challengeDificultDAO.findById(20L).get();
 				}else {
-					currentChallengeLevel = this.challengeDificultDAO.findById((long)creature.getLevel().getId()).get();
+					currentChallengeLevel = this.challengeDificultDAO.findById((long)creature.getLevel().getId())
+							.orElse(new ChallangeDificult());
 				}
 				xpPlayerEasySum += currentChallengeLevel.getEasy();
 				xpPlayerMediumSum += currentChallengeLevel.getMedium();

@@ -10,6 +10,9 @@ import { DragCreature } from 'src/app/domain/models/creature/drag.creature';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import  {BASE_URL} from '../../../infra/config/constants';
+import { MapAreaState } from 'src/app/domain/models/combat/map.area.state';
+import { RxStompService } from '@stomp/ng2-stompjs';
+import { IMessage } from '@stomp/stompjs';
 
 
 
@@ -25,8 +28,10 @@ export class GridBoardService {
 
   private gridBoardPlace:BehaviorSubject<PlaceDetail>;
   private gridBoardConfTest: BehaviorSubject<GridBoardConfig>;
+  private gridBoardStatus : BehaviorSubject<MapAreaState>; 
+  private storyId: number;
 
-  constructor(private httpClient: HttpClient){
+  constructor(private httpClient: HttpClient,protected rxStompService: RxStompService){
     this.gridBoardPlace = new BehaviorSubject<PlaceDetail>({
       id: 0,
       name: "O lugar misterioso",
@@ -45,6 +50,17 @@ export class GridBoardService {
       image: new Image()
     });
         
+  }
+  public initializeGridBoard(storyId: number){
+    this.storyId = storyId;
+    this.rxStompService.watch('/topic/combat-area/'+ storyId).subscribe((message: IMessage) => {
+      this.gridBoardStatus.next(JSON.parse(message.body) as MapAreaState);
+      console.log(JSON.parse(message.body))
+    })
+    
+  }
+  protected onSendMessage(combatState: MapAreaState) {
+    this.rxStompService.publish({destination: '/app/combat/' + this.storyId, body: JSON.stringify(combatState)});
   }
   setGridBoardConfTest(test:GridBoardConfig){
     this.gridBoardConfTest.next(test);

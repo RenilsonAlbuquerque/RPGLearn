@@ -43,6 +43,7 @@ public class CombatStompController {
 	@MessageMapping("/combat-area/{id}")
 	public void recieveCombatAreaDTO(@DestinationVariable Long id,MapAreaDTO mapState) throws Exception {
 		//state.setDificult(combatService.calculateChallengeDeficult(state));
+		System.out.println("Chegou aquiiiieeeee");
 		mapState = this.combatService.updateMapArea(mapState);
 		//maps.put(Long.valueOf(id),mapState);
 		//this.template.convertAndSend("/topic/combat-area/"+ id, mapState);

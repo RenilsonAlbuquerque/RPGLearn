@@ -1,96 +1,55 @@
-*,*:before,*:after {
-	box-sizing: border-box;
+#bottom-nav{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 40px;
+  background-color: blue;
 }
 
-:after {
-	content: "";
-}
+// *,*:before,*:after {
+// 	box-sizing: border-box;
+// }
 
-section {
-  position: relative;
-  left: 100px;
-}
+// :after {
+// 	content: "";
+// }
 
-h1 { 
-  margin:80px 0 10px 0;
-  font-size: 52px;
-  font-family: 'Montserrat', sans-serif;
-  text-transform: uppercase;
-  text-shadow: 1px 1px 0px #DC143C,
-	2px 2px 0px #DC143C,
-	3px 3px 0px #DC143C,
-	4px 4px 0px #DC143C;
-}
+// section {
+//   position: relative;
+//   left: 100px;
+// }
 
-h2 {
-  font-size: 24px;
-}
 
-body {
-  padding: 100px 0;
-	background: lightblue;
-  color: white;
-  max-width:640px;
-	font-family: 'Montserrat', sans-serif;
-	font-size: 14px;
-  line-height:1.4;
-}
 
-nav {
-  float: left;
-	position: fixed;
-	top: 0;
-  left: 0;
-	background: transparent;
-}
+// .navtest{
+//     float: left;
+//     position: fixed;
+//     top: 10;
+//     left: 0;
+//     background: goldenrod;
+// }
+// .navitem{
+//     width: 100%;
+//     display: block;
+//     padding: 8px 16px;
+//     text-align: left;
+//     border: none;
+//     white-space: normal;
+//     float: none;
+//     outline: 0;
+//     cursor: pointer;
+// }
+// .navbar {
 
-.navtest{
-    float: left;
-    position: fixed;
-    top: 10;
-    left: 0;
-    background: goldenrod;
-}
-.navitem{
-    width: 100%;
-    display: block;
-    padding: 8px 16px;
-    text-align: left;
-    border: none;
-    white-space: normal;
-    float: none;
-    outline: 0;
-    cursor: pointer;
-}
-.navbar {
-
-    float: left;
-      position: fixed;
-      top: 0;
-    left: 0;
-      //background: transparent;
-          /* height: 100%; */
-    width: 200px;
-    background-color: goldenrod;
-    color: yellow;
-    z-index: 1;
-    overflow: auto;
-}
-.w3-bar-block .w3-bar-item {
-    width: 100%;
-    display: block;
-    padding: 8px 16px;
-    text-align: left;
-    border: none;
-    white-space: normal;
-    float: none;
-    outline: 0;
-}
-.w3-bar-block .w3-bar-item {
-    border-top-color: initial;
-    border-right-color: initial;
-    border-bottom-color: initial;
-    border-left-color: initial;
-    outline-color: initial;
-}
-
+//     float: left;
+//       position: fixed;
+//       top: 0;
+//     left: 0;
+//       //background: transparent;
+//           /* height: 100%; */
+//     width: 200px;
+//     background-color: goldenrod;
+//     color: yellow;
+//     z-index: 1;
+//     overflow: auto;
+// }
