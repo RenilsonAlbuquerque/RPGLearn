@@ -6,6 +6,10 @@
                     <mat-icon aria-hidden="false" aria-label="Example axe-battle icon">swords</mat-icon>
                 Iniciar um combate
             </button>
+            <button mat-flat-button color="warn" (click)="openManagementModal(usersInStoryManagementModal)">
+                <mat-icon aria-hidden="false" aria-label="Example axe-battle icon">person</mat-icon>
+                Gerenciar jogadores
+            </button>
           </mat-card-header>
           <mat-card-content>
               <div class="card-body row">
@@ -34,7 +38,31 @@
             </div>
 </mat-card>
       
-   
+<!--------------------------Modal de gerenciar usuários na história---------------------------------->
+<ng-template #usersInStoryManagementModal let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Gerenciamento de usuários na história</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="playersFormGroup">
+            <div class="row">
+                <div class="form-group col-12">
+                    <app-input-chip [placeholderComponent]="'Jogadores'" (changeFunc)="changePlayersFormValues($event)" [allElements]="userManagement.usersOfStory"></app-input-chip>  
+                </div>             
+            </div>
+                <!-- <div class="example-button-row float-right">
+                        <button mat-raised-button color="primary" matStepperNext>Próximo</button>
+                </div> -->
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">Cancelar</button>
+        <button type="button" class="btn btn-danger" (click)="handleResetCombat()">Salvar</button>
+      </div>
+</ng-template>
 
 
 <!-- <div class="example-container" >

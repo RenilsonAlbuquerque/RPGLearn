@@ -1,15 +1,22 @@
 package com.shakal.rpg.api.model;
 
 import java.util.Collection;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import com.shakal.rpg.api.model.place.PlaceMark;
+import com.shakal.rpg.api.model.relation.UserStory;
 
 
 
@@ -29,6 +36,9 @@ public class User implements UserDetails {
 	private String username;
 	
 	private String password;
+	
+	@OneToMany(mappedBy = "user",cascade = CascadeType.PERSIST,fetch = FetchType.LAZY, targetEntity = UserStory.class)
+	private List<UserStory> stories;
 	
 	public User() {
 		super();
@@ -62,6 +72,15 @@ public class User implements UserDetails {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	
+	public List<UserStory> getStories() {
+		return stories;
+	}
+
+	public void setStories(List<UserStory> stories) {
+		this.stories = stories;
 	}
 
 	@Override

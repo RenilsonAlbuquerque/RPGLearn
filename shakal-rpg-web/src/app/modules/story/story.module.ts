@@ -18,6 +18,7 @@ import { CharacterService } from '../character/character.module.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { PlaceMakerComponent } from './place-maker/place-maker.component';
 import { PlaceModule } from '../place/place.module';
+import { UserService } from '../user/user.module.service';
 
 
 
@@ -35,6 +36,6 @@ import { PlaceModule } from '../place/place.module';
     FontAwesomeModule,
     PlaceModule
   ],
-  providers:[StoryService,FormBuilder,CharacterService]
+  providers:[StoryService,FormBuilder,CharacterService,UserService]
 })
 export class StoryModule { }
