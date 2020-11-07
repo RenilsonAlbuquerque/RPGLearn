@@ -7,14 +7,17 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 
 import com.google.gson.Gson;
+import com.shakal.rpg.api.contracts.service.ICharacterService;
 import com.shakal.rpg.api.contracts.service.ICombatService;
-import com.shakal.rpg.api.dto.combat.CombatDifficultDTO;
 import com.shakal.rpg.api.dto.combat.CombatStateDTO;
-import com.shakal.rpg.api.dto.combat.ICreatureCardDTO;
+import com.shakal.rpg.api.dto.combat.PassTurnDTO;
+import com.shakal.rpg.api.dto.filter.UserSheetFIlterDTO;
 import com.shakal.rpg.api.dto.combat.CreatureCardDTO;
+import com.shakal.rpg.api.dto.info.CharacterGeneralInfoDTO;
 import com.shakal.rpg.api.dto.info.CharacterSheetDTO;
 import com.shakal.rpg.api.dto.map.MapAreaDTO;
 import com.shakal.rpg.api.exception.ResourceNotFoundException;
+import com.shakal.rpg.api.mappers.CombatStateMapper;
 import com.shakal.rpg.api.model.ChallangeDificult;
 import com.shakal.rpg.api.model.combatstate.CombatState;
 import com.shakal.rpg.api.repository.ChallengeDificultDAO;
@@ -26,14 +29,17 @@ public class CombatService implements ICombatService{
 	
 	private ChallengeDificultDAO challengeDificultDAO;
 	private CombatStateDAO combatStateDAO;
+	private ICharacterService characterService;
 	private final SimpMessagingTemplate template;
 	
 	@Autowired
 	public CombatService(ChallengeDificultDAO challengeDificultDAO,
-			CombatStateDAO combatStateDao,SimpMessagingTemplate simpMessagingTemplate) {
+			CombatStateDAO combatStateDao,SimpMessagingTemplate simpMessagingTemplate,
+			ICharacterService characterService) {
 		this.template = simpMessagingTemplate;
 		this.challengeDificultDAO = challengeDificultDAO;
 		this.combatStateDAO = combatStateDao;
+		this.characterService = characterService;
 	}
 
 	
@@ -167,19 +173,102 @@ public class CombatService implements ICombatService{
 	@Override
 	public CombatStateDTO getCombatState(long storyId) throws ResourceNotFoundException {
 		CombatState search = this.combatStateDAO.findById(storyId)
-				.orElseThrow(() -> new ResourceNotFoundException(Messages.MONSTER_NOT_FOUND));
+				.orElseThrow(() -> new ResourceNotFoundException(Messages.COMBAT_STATE_NOT_FOUND));
 		return new Gson().fromJson(search.getCombatStateJSON(), CombatStateDTO.class);
 	}
 	
+	
+
+
+	@Override
+	public boolean passTurn(PassTurnDTO passTurn ) throws ResourceNotFoundException {
+		CombatState search = this.combatStateDAO.findById(passTurn.getStoryId())
+				.orElseThrow(() -> new ResourceNotFoundException(Messages.COMBAT_STATE_NOT_FOUND));
+		CombatStateDTO result = CombatStateMapper.entityToDTO(search);
+		
+		String nextCreature = result.getCurrentCreatureTurn();
+		//Itera as criaturas
+		for(short i = 0; i< result.getCreatures().size(); i++) {
+			//Acha de quem é o turno atual
+			if(result.getCreatures().get(i).getCombatId().equals(result.getCurrentCreatureTurn())) {
+				
+				short j = (short) (i+1) ;
+				while(true) {
+					if(j >= result.getCreatures().size()) {
+						j = 0;
+						continue;
+					}
+					if(result.getCreatures().get(j).getLifePoints() > 0) {
+						nextCreature = result.getCreatures().get(j).getCombatId();
+						break;
+					}else {
+						j++;
+					}
+				}
+				break;
+			}
+		}
+		result.setCurrentCreatureTurn(nextCreature);
+		this.saveAndSend(passTurn.getStoryId(), result);
+		return true;
+	}
+	
+
+	@Override
+	public boolean startCombat(long storyId) throws ResourceNotFoundException {
+		CombatState search = this.combatStateDAO.findById(storyId)
+				.orElseThrow(() -> new ResourceNotFoundException(Messages.COMBAT_STATE_NOT_FOUND));
+		CombatStateDTO result = CombatStateMapper.entityToDTO(search);
+		if(result.getCreatures().size() > 0) {
+			this.rollInitiative(result);
+			result.setCombatStarted(true);
+			result.setCurrentCreatureTurn(result.getCreatures().get(0).getCombatId());
+			this.saveAndSend(storyId, result);
+		}
+		return true;
+	}
+	@Override
+	public CharacterGeneralInfoDTO enterInCombat(UserSheetFIlterDTO filter) throws ResourceNotFoundException {
+		CharacterGeneralInfoDTO result = this.characterService.getCharacterSheetByUserInStory(filter);
+		CombatStateDTO combatState = null;
+		try {
+			combatState = this.getCombatState(filter.getStoryId());
+			boolean found = false;
+			for(int i = 0; i < combatState.getAllyQueue().size();i++) {
+				if(combatState.getAllyQueue().get(i).getPlayerId() == filter.getUserId() &&
+						combatState.getAllyQueue().get(i).getId() == result.getCharacterSheet().getId()) {
+					found = true;
+				}
+			}
+			if(!found) {
+				combatState.getAllyQueue().add(result.getCharacterToken());
+			}
+		}catch(ResourceNotFoundException e) {
+			combatState = CombatStateMapper.createBlankCombatStateWithPlayer(result.getCharacterToken());
+		}
+		
+		this.saveAndSend(filter.getStoryId(), combatState);
+		return result;
+	}
+	
+	private boolean saveAndSend(long storyId,CombatStateDTO combatState) {
+		this.combatStateDAO.save(new CombatState(storyId,serializeObjectToJSON(combatState)));
+		this.sendMessage(storyId, combatState);
+		return true;
+	}
 	private void sendMessage(long id, CombatStateDTO state) {
 		this.template.convertAndSend("/topic/combat/"+ id, state);
 		
 	}
-
-
-	@Override
-	public boolean passTurn(String combatId) {
-		// TODO Auto-generated method stub
-		return false;
+	private void rollInitiative(CombatStateDTO combatStatus) {
+		int range = (20  - 1) + 1;
+		for(int i = 0; i < combatStatus.getCreatures().size(); i ++) {
+			combatStatus.getCreatures().get(i).setInitiative((int) (Math.random() * range) + 1);
+		}
+		Collections.sort(combatStatus.getCreatures());
 	}
+
+
+	
+
 }

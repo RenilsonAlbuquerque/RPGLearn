@@ -4,7 +4,7 @@ public class Messages {
 
     public static final String USER_NOT_FOUND = "Usuï¿½rio nï¿½o encontrado";
     public static final String INVALID_PASSWORD = "Senha incorreta.";
-    public static final String INVALID_USERNAME = "Nome de usuário já existe";
+    public static final String INVALID_USERNAME = "Nome de usuï¿½rio jï¿½ existe";
     
     public static final String INVALID_JSON_FORMAT = "Formato do Json invï¿½lido";
     public static final String INVALID_TOKEN = "Token invï¿½lido.";
@@ -13,8 +13,9 @@ public class Messages {
     public static final String CHARACTER_NOT_FOUND = "O personagem nÃ£o existe";
     public static final String STORY_NOT_FOUND = "A histï¿½ria nï¿½o existe";
     public static final String PLACE_NOT_FOUND = "O Lugar nao existe";
+    public static final String COMBAT_STATE_NOT_FOUND = "O combate nÃ£o existe";
     
-    public static final String WEAPON_NOT_FOUND = "Arma não encontrada";
+    public static final String WEAPON_NOT_FOUND = "Arma nï¿½o encontrada";
     
     public static final String INVALID_MONSTER_TYPE = "O tipo do monstro nï¿½o ï¿½ vï¿½lido";
     public static final String INVALID_MONSTER_SIZE = "O tamanho do monstro nï¿½o ï¿½ vï¿½lido";

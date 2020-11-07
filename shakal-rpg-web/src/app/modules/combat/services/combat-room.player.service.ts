@@ -21,17 +21,17 @@ export class CombatRoomPlayerService extends CombatRoomService{
         this.characterInfo = characterInfo;
         
     }
-    public initializePlayerInfo(characterInfo: CharacterInfo, playerId: number){
-        var combatState: CombatState = this.combatState.getValue();
-        var alreadyOn : boolean = false;
-        combatState.creatures.forEach((creature) =>{
-            if(creature.id == characterInfo.characterToken.id && creature.playerId == playerId ){
-                alreadyOn = true;
-            }
-        })
-        if(!alreadyOn){
-            characterInfo.characterToken.combatId = generateRandomId();
-            this.addMonsterAlly(characterInfo.characterToken)
-        }
-    }
+    // public initializePlayerInfo(characterInfo: CharacterInfo, playerId: number){
+    //     var combatState: CombatState = this.combatState.getValue();
+    //     var alreadyOn : boolean = false;
+    //     combatState.creatures.forEach((creature) =>{
+    //         if(creature.id == characterInfo.characterToken.id && creature.playerId == playerId ){
+    //             alreadyOn = true;
+    //         }
+    //     })
+    //     if(!alreadyOn){
+    //         characterInfo.characterToken.combatId = generateRandomId();
+    //         this.addMonsterAlly(characterInfo.characterToken)
+    //     }
+    // }
 }

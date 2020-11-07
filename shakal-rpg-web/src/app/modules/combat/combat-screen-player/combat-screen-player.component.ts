@@ -25,7 +25,7 @@ export class CombatScreenPlayerComponent implements OnInit {
     this._activatedRoute.params.subscribe(params => {
       this.storyId = params['id'];
       this.combatRoomPlayerService.initializeCombat(this.storyId);
-      this.gridBoardService.initializeGridBoard(this.storyId);
+      //this.gridBoardService.initializeGridBoard(this.storyId);
       this.combatRoomPlayerService.loadCombatState(this.storyId).subscribe(
         result => {
           this.combatRoomPlayerService.updateCombateState(result);

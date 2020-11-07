@@ -8,7 +8,7 @@
     <app-combat-screen-player *ngIf="combatShown"></app-combat-screen-player>
     <div *ngIf="mapShown" >Here I am, rock you like a hurricane</div>
 
-    <ul id="bottom-nav" class="nav nav-tabs">
+    <ul id="bottom-nav" class="nav nav-tabs bg-primary">
         <li class="nav-item" (click)="onShowCombat()">
             <a class="nav-link" [ngClass]="{'active':combatShown === true}">Combate</a>
         </li>

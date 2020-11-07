@@ -20,6 +20,7 @@ export class GridBoardCardComponent implements OnInit {
   
   @Input() public monster: CreatureCard;
 
+  public mobile: boolean;
   public menuOpen: boolean;
   public selfId: string;
   public imageToken: String;
@@ -29,16 +30,24 @@ export class GridBoardCardComponent implements OnInit {
   constructor(private gridBoardService: GridBoardService,
     private combatRoomService: CombatRoomService, private internModalService: InternModalService,
     private creatureService: CreatureService) { 
+    // if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i.test(navigator.userAgent)){
+    //     this.mobile = true;
+    // }else{
+    //     this.mobile = false;
+    // }
     this.menuOpen = false;
     this.gridBoardService.getPlaceStatus().subscribe(
       state => {
-        console.log("Trigado");
-        console.log(state);
         this.squareSizeInCm = state.squareSizeCm;
-        console.log(this.squareSizeInCm);
         //this.handleReloadCard(this.squareSizeInCm)
       }
     );
+     if(window.innerWidth < 1000){
+       console.log(window.innerWidth)
+        this.mobile = true;
+    }else{
+        this.mobile = false;
+    }
   }
 
   ngOnInit() {
@@ -54,10 +63,18 @@ export class GridBoardCardComponent implements OnInit {
     return this.monster;
   }
   get isMyTurn():boolean{
-    return this.monster.combatId === this.combatRoomService.getCombatStateValue().currentCreatureTurn && this.monster.playerId <= 0;
+    if(this.monster.playerId && this.monster.playerId > 0){
+      return this.monster.combatId === this.combatRoomService.getCombatStateValue().currentCreatureTurn;
+    }else{
+      return this.monster.combatId === this.combatRoomService.getCombatStateValue().currentCreatureTurn && this.monster.playerId <= 0;
+    }
+    
   }
   handleClickCard(){
-    this.menuOpen = !this.menuOpen;
+    if(!this.mobile){
+      this.menuOpen = !this.menuOpen;
+    }
+    
   }
   handleMove(){
     this.resetMoves();
@@ -79,7 +96,9 @@ export class GridBoardCardComponent implements OnInit {
   }
   handleEndTurn(){
     this.resetMoves();
-    this.combatRoomService.endCreatureTurn(this.monster.combatId);
+    this.combatRoomService.passTurn(this.monster.combatId).subscribe(
+      result =>{},err =>{console.log(err)}
+    );
   }
   resetMoves(){
     if(document.getElementById("doubleMovePreview") != null){

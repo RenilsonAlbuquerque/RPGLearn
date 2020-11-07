@@ -47,8 +47,16 @@ export class MasterMenuControlComponent implements OnInit {
   disable(){
     document.getElementById("sidebar-master").style.width = "0";
   }
+  //start combat By API
   startCombat(){
-    this.combatRoomService.startCombat();
+    this.combatRoomService.startCombat().subscribe(
+      result => {
+        this.modalReference.dismiss();
+      },err =>{
+        console.log(err)
+      }
+    );
+    //this.modalReference.dismiss();
   }
  
   openDiceMenu(){
@@ -76,4 +84,5 @@ export class MasterMenuControlComponent implements OnInit {
     this.combatRoomService.removeAllCreatures();
     this.modalReference.dismiss();
   }
+
 }

@@ -74,7 +74,7 @@ public class CharacterService implements ICharacterService{
 	private ProeficiencyDAO proeficiencyDao;
 	
 	@Autowired
-	public CharacterService(IUserService userService,ICombatService combatService,
+	public CharacterService(IUserService userService,
 			CharacterDAO characterDao,AlignmentDAO alignmentDao,
 			UserStoryDAO userStoryDao,RaceDAO raceDao,
 			ClassDAO classDao, ClassLevelDAO classLevelDAO,
@@ -84,7 +84,6 @@ public class CharacterService implements ICharacterService{
 			AtributeDAO atributeDao,LanguageDAO languageDao,
 			ProeficiencyDAO proeficiencyDao) {
 		this.userService = userService;
-		this.combatService = combatService;
 		this.characterDao = characterDao;
 		this.alignmentDao = alignmentDao;
 		this.userStoryDao = userStoryDao;
@@ -155,7 +154,7 @@ public class CharacterService implements ICharacterService{
 		
 		Character ch = search.getCharacter();
 		if(ch == null) {
-			throw new ResourceNotFoundException("Sem personagem nessa história");
+			throw new ResourceNotFoundException("Sem personagem nessa histï¿½ria");
 		}
 		result.setCharacterSheet(CharacterMapper.entityToInfo(ch));
 		result.setCharacterToken(this.initalizePlayerTokenInStory(result.getCharacterSheet(),filter.getUserId()));

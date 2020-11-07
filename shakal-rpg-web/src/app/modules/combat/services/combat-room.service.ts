@@ -8,6 +8,7 @@ import { CombatState } from 'src/app/domain/models/combat/combat.state';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import  {BASE_URL} from '../../../infra/config/constants';
+import { CharacterInfo } from 'src/app/domain/models/character/character.info';
 
 @Injectable()
 export class CombatRoomService {
@@ -34,7 +35,6 @@ export class CombatRoomService {
    
     this.rxStompService.watch('/topic/combat/'+ storyId).subscribe((message: IMessage) => {
       this.combatState.next(JSON.parse(message.body) as CombatState);
-      console.log(JSON.parse(message.body))
     })
     
   }
@@ -137,37 +137,10 @@ export class CombatRoomService {
     })
     return result;
   }
-  public endCreatureTurn(combatId:string): void{
-    let combatState: CombatState = this.combatState.getValue();
-    if(combatId === combatState.currentCreatureTurn){
-      for(let i = 0; i < combatState.creatures.length; i++){
-        if(combatId == combatState.creatures[i].combatId){
-          if(i >= (combatState.creatures.length -1)){
-            combatState.currentCreatureTurn = combatState.creatures[0].combatId;  
-          }else{
-            combatState.currentCreatureTurn = combatState.creatures[i+1].combatId;
-          }
-          this.onSendMessage(combatState);
-          break;
-        }
-      }
-    }
-  }
-  public startCombat():void{
-    let combatState: CombatState = this.combatState.getValue();
-    if(!combatState.combatStarted && combatState.creatures.length > 0 ){
-      let found: boolean = false;
-      combatState.creatures.forEach(creature =>{
-        if(creature.initiative === 0){
-          found = true;
-        }
-      });
-      if(!found){
-        combatState.combatStarted = true;
-        combatState.currentCreatureTurn = combatState.creatures[0].combatId;
-        this.onSendMessage(combatState)
-      }
-    }
+  
+  public startCombat(): Observable<Boolean>{
+    
+    return this.httpClient.get<boolean>(`${BASE_URL}combat/start-combat/${this.storyId}`);
   }
   public removeAllCreatures(){
     let combatState: CombatState = this.combatState.getValue();
@@ -180,7 +153,13 @@ export class CombatRoomService {
     return this.httpClient.get<CombatState>(`${BASE_URL}combat/status/${storyId}`);
   }
 
-
+  public passTurn(combatId: string): Observable<Boolean>{
+    let sendObj = {combatId: combatId,storyId: this.storyId}
+    return this.httpClient.post<boolean>(`${BASE_URL}combat/pass-turn`,sendObj);
+  }
+  public playerEnterInCombat(storyId: number,userId: number): Observable<CharacterInfo>{
+    return this.httpClient.post<CharacterInfo>(`${BASE_URL}combat/enter-combat`,{userId:userId, storyId:storyId});
+  }
 
 
   ///=========================Private Methods==================================///
@@ -195,4 +174,5 @@ export class CombatRoomService {
     }
     return result;
   }
+  
 }

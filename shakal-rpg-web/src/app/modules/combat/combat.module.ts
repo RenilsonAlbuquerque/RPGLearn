@@ -30,12 +30,13 @@ import { CharacterModule } from '../character/character.module';
 import { WeaponModule } from '../weapon/weapon.module';
 import { StoryModule } from '../story/story.module';
 import { PlaceModule } from '../place/place.module';
+import { PlayerMenuControlComponent } from './player-menu-control/player-menu-control.component';
 //import {MatTab} from '@angular/material/tabs'
 
 
 
 @NgModule({
-  declarations: [CombatMenuComponent, CombatScreenComponent, GridBoardComponent, GridBoardCardComponent, CombatScreenPlayerComponent, CombaatTurnOrderComponent, CombatCounterComponent, MasterMenuControlComponent],
+  declarations: [CombatMenuComponent, CombatScreenComponent, GridBoardComponent, GridBoardCardComponent, CombatScreenPlayerComponent, CombaatTurnOrderComponent, CombatCounterComponent, MasterMenuControlComponent, PlayerMenuControlComponent],
   imports: [
     CombatRoutingModule,
     CommonModule,

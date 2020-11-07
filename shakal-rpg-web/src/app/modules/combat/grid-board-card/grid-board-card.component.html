@@ -11,23 +11,23 @@
         'safe': monster.lifePercent > 50 ,
         'current-turn': isMyTurn}" />
         <div class="fab-menu-overlay" [ngClass]="{'active':menuOpen}"></div>
-        <div class="fab-container" [hidden]="!menuOpen" >
-            <button *ngIf="isMyTurn" type="button" class="btn btn-success bmd-btn-fab fab-options" data-toggle="tooltip" data-placement="top" title="Batalha">
+            <div class="fab-container" [hidden]="!menuOpen" >
+            <!-- <button *ngIf="isMyTurn" type="button" class="btn btn-success bmd-btn-fab fab-options" data-toggle="tooltip" data-placement="top" title="Batalha">
                 <img src="../../../../assets/svg/sword.svg" alt="batle" height="17" width="17">
-            </button>
-            <button *ngIf="isMyTurn" (click)="handleMove()" type="button" class="btn btn-primary bmd-btn-fab fab-options" data-toggle="tooltip" data-placement="top" title="Andar">
-                <fa-icon icon="walking"></fa-icon>
-            </button>
-            <button *ngIf="isMyTurn" (click)="handleDoubleMove()" type="button" class="btn btn-warning bmd-btn-fab fab-options" data-toggle="tooltip" data-placement="top" title="Desengajar">
-                <fa-icon icon="running"></fa-icon>
-            </button>
-            <button (click)="handleOpenSheet(sheetPlayer,sheetEnemy)" type="button" class="btn btn-info bmd-btn-fab fab-options" data-toggle="tooltip" data-placement="top" title="Ficha">
-                <fa-icon icon="file-alt"></fa-icon>
-            </button>
-            <button *ngIf="isMyTurn" (click)="handleEndTurn()" type="button" class="btn btn-danger bmd-btn-fab fab-options" data-toggle="tooltip" data-placement="top" title="Encerrar o turno">
-                <fa-icon icon="forward"></fa-icon>
-            </button>
-        </div>
+            </button> -->
+                <button *ngIf="isMyTurn" (click)="handleMove()" type="button" class="btn btn-primary bmd-btn-fab fab-options" data-toggle="tooltip" data-placement="top" title="Andar">
+                    <fa-icon icon="walking"></fa-icon>
+                </button>
+                <button *ngIf="isMyTurn" (click)="handleDoubleMove()" type="button" class="btn btn-warning bmd-btn-fab fab-options" data-toggle="tooltip" data-placement="top" title="Desengajar">
+                    <fa-icon icon="running"></fa-icon>
+                </button>
+                <button (click)="handleOpenSheet(sheetPlayer,sheetEnemy)" type="button" class="btn btn-info bmd-btn-fab fab-options" data-toggle="tooltip" data-placement="top" title="Ficha">
+                    <fa-icon icon="file-alt"></fa-icon>
+                </button>
+                <button *ngIf="isMyTurn" (click)="handleEndTurn()" type="button" class="btn btn-danger bmd-btn-fab fab-options" data-toggle="tooltip" data-placement="top" title="Encerrar o turno">
+                    <fa-icon icon="forward"></fa-icon>
+                </button>
+            </div>
         <ng-template #sheetEnemy let-modal>
             <div class="modal-header">
                 <h4 class="modal-title">{{monster.name}}</h4>
@@ -50,5 +50,7 @@
             <div class="modal-body">
                 <app-character-sheet [characterId]="monster.id"></app-character-sheet>
             </div>
-        </ng-template>
+        </ng-template>     
 </div>
+
+

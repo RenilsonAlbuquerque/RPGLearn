@@ -21,11 +21,13 @@ export class StoryDetailPlayerComponent implements OnInit {
     this._activatedRoute.params.subscribe(params => {
       this.storyId = params['id'];
       this.combatRoomPlayerService.initializeCombat(this.storyId);
-      this.characterService.getCharacterSheetOnStory(this.storyId,this.authService.getCurrentUser().id).subscribe(
+      this.combatRoomPlayerService.playerEnterInCombat(this.storyId,this.authService.getCurrentUser().id).subscribe(
         data => {
-          this.combatRoomPlayerService.initializePlayerInfo(data, authService.getCurrentUser().id)
+          console.log(data)
+          this.combatRoomPlayerService.setCurrentCharacterInfo(data);
         },
         err =>{
+          console.log(err)
           this.redirectCreateSheet();
         }
       );
