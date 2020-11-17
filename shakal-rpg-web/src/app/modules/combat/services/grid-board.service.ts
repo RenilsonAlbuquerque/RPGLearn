@@ -31,6 +31,10 @@ export class GridBoardService {
   private gridBoardStatus : BehaviorSubject<MapAreaState>; 
   private storyId: number;
 
+
+  private movimentLeft: number;
+  private doubleMovimentLeft: number;
+  
   constructor(private httpClient: HttpClient,protected rxStompService: RxStompService){
     this.gridBoardPlace = new BehaviorSubject<PlaceDetail>({
       id: 0,

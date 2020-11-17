@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, ViewChild, ElementRef, TemplateRef } from '@angular/core';
 import { CreatureCard } from 'src/app/domain/models/monster/creature.card';
 import { GridBoardService } from '../services/grid-board.service';
-import { createSvgWalk, generateRandomId, createSvgDoubleMove } from 'src/app/infra/helpers/grid-board.helper';
+import { createSvgWalk, generateRandomId, createSvgDoubleMove,adjustPosition } from 'src/app/infra/helpers/grid-board.helper';
 import { ActionType } from 'src/app/domain/models/combat/action.type';
 import { CombatRoomService } from '../services/combat-room.service';
 import { InternModalService } from 'src/app/infra/services/intern.modal.service';
@@ -26,6 +26,9 @@ export class GridBoardCardComponent implements OnInit {
   public imageToken: String;
 
   private squareSizeInCm: number;
+
+
+  
   
   constructor(private gridBoardService: GridBoardService,
     private combatRoomService: CombatRoomService, private internModalService: InternModalService,
@@ -79,7 +82,8 @@ export class GridBoardCardComponent implements OnInit {
   handleMove(){
     this.resetMoves();
     this.gridBoardService.setCreatureAction({creature:this.monster,actionType: ActionType.move});
-    document.getElementById("svggrid").innerHTML += createSvgWalk(this.gridBoardService.getSquareSize(),this.monster.speed,this.monster.position, this.monster.size);
+    let targetPosition = adjustPosition(this.monster.position,this.gridBoardService.getSquareSize())
+    document.getElementById("svggrid").innerHTML += createSvgWalk(this.gridBoardService.getSquareSize(),this.monster.speed,targetPosition, this.monster.size);
   }
   handleDoubleMove(){
     this.resetMoves();

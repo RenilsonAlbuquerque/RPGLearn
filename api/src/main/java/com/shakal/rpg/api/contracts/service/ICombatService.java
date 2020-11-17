@@ -17,6 +17,7 @@ public interface ICombatService {
 	MapAreaDTO updateMapArea(MapAreaDTO input);
 	boolean passTurn(PassTurnDTO passTurnDto) throws ResourceNotFoundException;
 	boolean startCombat(long storyId) throws ResourceNotFoundException;
+	boolean resetCombat(long storyId) throws ResourceNotFoundException;
 	CombatStateDTO getCombatState(long storyId) throws ResourceNotFoundException;
 	CharacterGeneralInfoDTO enterInCombat(UserSheetFIlterDTO filter) throws ResourceNotFoundException;
 	

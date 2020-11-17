@@ -1,5 +1,6 @@
 package com.shakal.rpg.api.service;
 
+import java.util.ArrayList;
 import java.util.Collections;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -266,6 +267,20 @@ public class CombatService implements ICombatService{
 			combatStatus.getCreatures().get(i).setInitiative((int) (Math.random() * range) + 1);
 		}
 		Collections.sort(combatStatus.getCreatures());
+	}
+
+
+	@Override
+	public boolean resetCombat(long storyId) throws ResourceNotFoundException {
+		CombatState search = this.combatStateDAO.findById(storyId)
+				.orElseThrow(() -> new ResourceNotFoundException(Messages.COMBAT_STATE_NOT_FOUND));
+		CombatStateDTO result = CombatStateMapper.entityToDTO(search);
+		result.setCurrentCreatureTurn("");
+		result.setCreatures(new ArrayList<>());
+		result.setDificult(1);
+		result.setEnemyQueue(new ArrayList<>());
+		this.saveAndSend(storyId, result);
+		return true;
 	}
 
 

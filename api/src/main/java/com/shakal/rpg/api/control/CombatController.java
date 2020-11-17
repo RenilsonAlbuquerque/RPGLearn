@@ -59,6 +59,10 @@ public class CombatController {
     public ResponseEntity<CharacterGeneralInfoDTO> enterInCombat(@RequestBody UserSheetFIlterDTO filterDto) throws ResourceNotFoundException{
 		return new ResponseEntity<CharacterGeneralInfoDTO>(this.combatService.enterInCombat(filterDto), HttpStatus.OK);
     }
+	@PostMapping(value="/reset-combat",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<Boolean> resetCombat(@PathVariable Long id) throws ResourceNotFoundException{
+		return new ResponseEntity<Boolean>(this.combatService.resetCombat(id), HttpStatus.OK);
+    }
 	
 	/*
 	@GetMapping(value="/reset-combat/{id}")
